@@ -1,0 +1,48 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+    <h1>Oeuvre</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ oeuvre.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ oeuvre.title }}</td>
+            </tr>
+            <tr>
+                <th>Url_product</th>
+                <td>{{ oeuvre.urlproduct }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ oeuvre.description }}</td>
+            </tr>
+            <tr>
+                <th>Url_image</th>
+                <td>{{ oeuvre.urlimage }}</td>
+            </tr>
+            <tr>
+                <th>Publication_date</th>
+                <td>{% if oeuvre.publicationdate %}{{ oeuvre.publicationdate|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('oeuvre_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('oeuvre_edit', { 'id': oeuvre.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

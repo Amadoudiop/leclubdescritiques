@@ -1,0 +1,62 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+    <!-- header Page -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">Categories</span></div>
+                        <div class="description">Configure your subCategories</div>
+                    </div>
+                    <a href="{{ path('subcategory_new') }}">
+                        <button type="button" class="btn btn-success">Add a new Subcategory</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-header">
+              List of subCategories
+            </div>
+            <div class="card-body no-padding">
+              <table class="datatable table table-striped primary" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subcategory in subCategories %}
+                        <tr>
+                            <td>{{ subcategory.name }}</td>
+                            <td>{{ subcategory.category.getName }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('subcategory_show', { 'id': subcategory.id }) }}">
+                                        <button type="button" class="btn btn-primary">show</button></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('subcategory_edit', { 'id': subcategory.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}

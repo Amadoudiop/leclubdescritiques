@@ -1,0 +1,74 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+    <!-- header Page -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">Oeuvres list</span></div>
+                        <div class="description">lorem ipsum dolor</div>
+                    </div>
+                    <a href="{{ path('oeuvre_new') }}">
+                        <button type="button" class="btn btn-success">Add new Oeuvre</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-header">
+              List of pages
+            </div>
+            <div class="card-body no-padding">
+              <table class="datatable table table-striped primary" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>image</th>
+                        <th>Publication_date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for oeuvre in oeuvres %}
+                        <tr>
+                            <td>{{ oeuvre.title }}</td>
+                            <td class="text-center">
+                                <img src="{{ absolute_url(oeuvres_directory) }}{{ oeuvre.urlimage }}" alt="{{ oeuvre.title }}">
+                            </td>
+                            <td>{% if oeuvre.publicationdate %}{{ oeuvre.publicationdate|date('Y-m-d') }}{% endif %}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('oeuvre_show', { 'id': oeuvre.id }) }}">
+                                            <button type="button" class="btn btn-primary">show</button>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('oeuvre_edit', { 'id': oeuvre.id }) }}">
+                                            <button type="button" class="btn btn-warning">edit</button>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ oeuvre.urlproduct }}" target="blank">
+                                            <button type="button" class="btn btn-default">product</button>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}

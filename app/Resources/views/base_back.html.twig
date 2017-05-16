@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>{% block title %}CDC | Administration{% endblock %}</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/vendor.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/flat-admin.css') }}">
+
+		<!-- Theme -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/blue-sky.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/blue.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/red.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/yellow.css') }}">
+
+
+
+		<!-- Date picker -->
+		<!--
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
+		-->
+		<script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+		<script>tinymce.init({ selector:'textarea' });</script>
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<body>
+		<div class="app app-default">
+			<aside class="app-sidebar" id="sidebar">
+			  <div class="sidebar-header">
+			    <a class="sidebar-brand" href="#"><span class="highlight">CDC</span> Admin</a>
+			    <button type="button" class="sidebar-toggle">
+			      <i class="fa fa-times"></i>
+			    </button>
+			  </div>
+			  <div class="sidebar-menu">
+			    <ul class="sidebar-nav">
+			      <li class="">
+			        <a href="../index.html">
+			          <div class="icon">
+			            <i class="fa fa-tasks" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Dashboard</div>
+			        </a>
+			      </li>
+			      <li class="">
+			        <a href="{{ path('page_index') }}">
+			          <div class="icon">
+			            <i class="fa fa-file" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Pages</div>
+			        </a>
+			      </li>
+			      <li class="">
+			        <a href="{{ path('salon_index') }}">
+			          <div class="icon">
+			            <i class="fa fa-university" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Salons</div>
+			        </a>
+			      </li>
+			      <li class="">
+			        <a href="{{ path('oeuvre_index') }}">
+			          <div class="icon">
+			            <i class="fa fa-book" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Oeuvres</div>
+			        </a>
+			      </li>
+			      <li class="">
+			        <a href="{{ path('author_index') }}">
+			          <div class="icon">
+			            <i class="fa fa-user" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Authors</div>
+			        </a>
+			      </li>
+			      <li class="">
+			        <a href="{{ path('category_index') }}">
+			          <div class="icon">
+			            <i class="fa fa-folder" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Categories</div>
+			        </a>
+			      </li>
+			      <li class="">
+			        <a href="{{ path('subcategory_index') }}">
+			          <div class="icon">
+			            <i class="fa fa-folder-o" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Sub Categories</div>
+			        </a>
+			      </li>
+			    </ul>
+			  </div>
+			  <div class="sidebar-footer">
+			    <ul class="menu">
+			      <li>
+			        <a href="/" class="dropdown-toggle" data-toggle="dropdown">
+			          <i class="fa fa-cogs" aria-hidden="true"></i>
+			        </a>
+			      </li>
+			      <li><a href="#"><span class="flag-icon flag-icon-th flag-icon-squared"></span></a></li>
+			    </ul>
+			  </div>
+			</aside>
+
+			<div class="app-container">
+
+            	{% block body %}{% endblock %}
+            </div>
+
+			{% block javascripts %}{% endblock %}
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+			<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="{ asset('js/vendor.js') }}"></script>
+			<script type="text/javascript" src="{ asset('assets/js/app.js') }}"></script>
+			<script type="text/javascript" src="{{ asset('js/creemson.js') }}"></script>
+		</div>
+	</body>
+</html>

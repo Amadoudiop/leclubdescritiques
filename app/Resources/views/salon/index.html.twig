@@ -1,0 +1,41 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+    <h1>Salons list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Participants_number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salon in salons %}
+            <tr>
+                <td><a href="{{ path('salon_show', { 'id': salon.id }) }}">{{ salon.id }}</a></td>
+                <td>{{ salon.title }}</td>
+                <td>{{ salon.participantsnumber }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('salon_show', { 'id': salon.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('salon_edit', { 'id': salon.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('salon_new') }}">Create a new salon</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,293 @@
+h4,h1,h2,h3,h5{
+    font-family: 'Quicksand', sans-serif;
+}
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+@media (max-width: 767px) {
+    .logo{
+        width: 90px;
+        height: auto;
+        margin-top: -11px;
+    }
+}
+@media (min-width: 768px) {
+    .logo{
+        width: 150px;
+        height: auto;
+        margin-top: -24px;
+    }
+}
+
+#navbar-menu{
+    margin-right:-5px;
+}
+
+/*    --------------------------------------------------
+                    alaune
+	-------------------------------------------------- */
+
+.alauneCard{
+    cursor: pointer;
+}
+.img-alaune{
+    max-height: 250px;
+}
+.panel-body{
+    text-align: center;
+}
+.panel-footer{
+    text-align: center;
+}
+
+
+/*    --------------------------------------------------
+	:: NEW float-menu Section
+	-------------------------------------------------- */
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+
+a:link, a:hover, a:visited, a:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+.card-holder {
+    top: 20%;
+    position: absolute;
+    width: 0px;
+    overflow: visible;
+}
+
+.card-wrapper {
+    display: inline-block;
+    float: right;
+    clear: both;
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    z-index: 10;
+    left: 32px;
+    padding: 16px 32px 16px 64px;
+    margin: 8px;
+    x-box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 8px 0 8px -8px rgba(0, 0, 0, 0.5);
+    background: #fff;
+    transition: all 0.3s ease-in-out 0.1s;
+}
+
+.cardSelected {
+    position: relative;
+    left: 100%;
+    margin-left: -32px;
+    box-shadow:
+            0 -8px 8px -8px rgba(0, 0, 0, 0.5),
+            0 8px 8px -8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}
+
+/*.card:hover {
+    position: relative;
+    left: 100%;
+    margin-left: -32px;
+    box-shadow:
+            0 -8px 8px -8px rgba(0, 0, 0, 0.5),
+            0 8px 8px -8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
+}*/
+
+.card-content {
+    display: inline-block;
+    color: #fff;
+    font-family: 'Droid Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+.vertical{
+    writing-mode:tb-rl;
+    -webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform:rotate(180deg);
+    transform: rotate(180deg);
+    transform: translate(28%,50%);
+    white-space:nowrap;
+    display:block;
+    text-transform: uppercase;
+}
+
+/*    --------------------------------------------------
+	:: float-menu Section
+	-------------------------------------------------- */
+
+.float-menu {
+    position:absolute;
+    top:150px;
+    right:0;
+    width:200px;
+    padding-top: 10px;
+    /*position: fixed;*/
+}
+.float-menu .form-wrap {
+    padding:10px 15px 10px 15px;
+    border:1px solid #cccccc;
+    right: 2px;
+}
+.float-menu h4 {
+    color: #1fa67b;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+.float-menu .form-group {
+    margin-bottom: 25px;
+}
+.float-menu .checkbox {
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.float-menu .checkbox.show:before {
+    content: '\e013';
+    color: #1fa67b;
+    font-size: 14px;
+    margin: 1px 0 0 3px;
+    position: absolute;
+    pointer-events: none;
+}
+.float-menu .checkbox .character-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    display: inline-block;
+}
+.float-menu .checkbox .label {
+    color: #6d6d6d;
+    font-size: 13px;
+    font-weight: normal;
+}
+.float-menu .btn.btn-custom {
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.float-menu .forget {
+    font-size: 13px;
+    text-align: center;
+    display: block;
+}
+
+/*    --------------------------------------------------
+	:: Inputs & Buttons
+	-------------------------------------------------- */
+.form-control {
+    color: #212121;
+}
+.btn-custom {
+    color: #fff;
+    background-color: #1fa67b;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+    color: #fff;
+}
+
+/*    --------------------------------------------------
+    :: Footer
+	-------------------------------------------------- */
+#footer {
+    color: #6d6d6d;
+    font-size: 12px;
+    text-align: center;
+}
+#footer p {
+    margin-bottom: 0;
+}
+#footer a {
+    color: inherit;
+}
+
+/*    --------------------------------------------------
+                    CONCEPT
+	-------------------------------------------------- */
+.concept{
+    display: block;
+}
+
+/*    --------------------------------------------------
+                    OEUVRE - MODAL
+	-------------------------------------------------- */
+.oeuvre{
+    text-align: center;
+    position: fixed; /* Stay in place */
+    z-index: 2000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+}
+
+.oeuvre .modal-content {
+    border-radius: 0;
+    background-clip: border-box;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    min-height: 100%;
+    padding: 0px 0;
+    text-align: center;
+}
+.oeuvre .close-modal {
+    z-index: 2;
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    background-color: transparent;
+    top: 25px;
+    right: 25px;
+    cursor: pointer;
+}
+.oeuvre .close-modal .lr {
+    height: 75px;
+    width: 1px;
+    margin-left: 35px;
+    background-color: #2C3E50;
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    z-index: 1051;
+}
+.oeuvre .close-modal .lr .rl {
+    height: 75px;
+    width: 1px;
+    background-color: #2C3E50;
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    z-index: 1052;
+}
+.oeuvre a:link, a:hover, a:visited, a:active {
+    color: #D99E7E;
+    text-decoration: none;
+}
+.img-modal{
+    max-height: 80%;
+}
+
+/*    --------------------------------------------------
+                    VUE
+	-------------------------------------------------- */
+
+[v-cloak] {
+    display: none;
+}

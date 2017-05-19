@@ -1,41 +1,67 @@
 {% extends 'base_back.html.twig' %}
 
 {% block body %}
-    <h1>Salons list</h1>
+    <!-- header Page -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">Salons</span></div>
+                        <div class="description">Configure your salons</div>
+                    </div>
+                    <a href="{{ path('salon_new') }}">
+                        <button type="button" class="btn btn-success">Add a new Salon</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Participants_number</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for salon in salons %}
-            <tr>
-                <td><a href="{{ path('salon_show', { 'id': salon.id }) }}">{{ salon.id }}</a></td>
-                <td>{{ salon.title }}</td>
-                <td>{{ salon.participantsnumber }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('salon_show', { 'id': salon.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('salon_edit', { 'id': salon.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('salon_new') }}">Create a new salon</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-header">
+              List of salons
+            </div>
+            <div class="card-body no-padding">
+              <table class="datatable table table-striped primary" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Oeuvre</th>
+                        <th>Participants number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for salon in salons %}
+                        <tr>                            
+                            <td>{{ salon.title }}</td>
+                            <td>
+                                {{ salon.oeuvre.title }}
+                            </td>
+                            <td>
+                                {{ salon.participantsnumber }}
+                            </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('salon_show', { 'id': salon.id }) }}">
+                                        <button type="button" class="btn btn-primary">show</button></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('salon_edit', { 'id': salon.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
 {% endblock %}

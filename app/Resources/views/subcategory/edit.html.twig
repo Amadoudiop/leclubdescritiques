@@ -1,21 +1,47 @@
 {% extends 'base_back.html.twig' %}
 
 {% block body %}
-    <h1>Subcategory edit</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">SubCategory edit</span></div>
+                        <div class="description">Add a new subcategory</div>
+                    </div>
+                    <a href="{{ path('subcategory_new') }}">
+                        <button type="button" class="btn btn-success">Add new SubCategory</button>
+                    </a>
+                    <a href="{{ path('subcategory_index') }}">
+                        <button type="button" class="btn btn-info">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('subcategory_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    {{ form_start(delete_form) }}
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    {{ form_end(delete_form) }}
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            {{ form_start(edit_form) }}
+                                {{ form_widget(edit_form) }}
+                                <input type="submit" value="Edit" class="btn btn-warning">
+                            {{ form_end(edit_form) }}                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -1,16 +1,37 @@
 {% extends 'base_back.html.twig' %}
 
 {% block body %}
-    <h1>Category creation</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">Category creation</span></div>
+                        <div class="description">Add a new Category</div>
+                    </div>
+                    <a href="{{ path('category_index') }}">
+                        <button type="button" class="btn btn-info">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="col-md-9">
+                        {{ form_start(form) }}
+                            {{ form_widget(form) }}
+                            <input type="submit" value="Create" class="btn btn-primary">
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
 {% endblock %}

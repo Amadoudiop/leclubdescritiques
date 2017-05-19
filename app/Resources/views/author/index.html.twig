@@ -1,43 +1,63 @@
 {% extends 'base_back.html.twig' %}
 
 {% block body %}
-    <h1>Authors list</h1>
+    <!-- header Page -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">Authors</span></div>
+                        <div class="description">Configure your authors</div>
+                    </div>
+                    <a href="{{ path('author_new') }}">
+                        <button type="button" class="btn btn-success">Add a new Author</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Little_bio</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for author in authors %}
-            <tr>
-                <td><a href="{{ path('author_show', { 'id': author.id }) }}">{{ author.id }}</a></td>
-                <td>{{ author.firstname }}</td>
-                <td>{{ author.lastname }}</td>
-                <td>{{ author.littlebio }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('author_show', { 'id': author.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('author_edit', { 'id': author.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('author_new') }}">Create a new author</a>
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-header">
+              List of authors
+            </div>
+            <div class="card-body no-padding">
+              <table class="datatable table table-striped primary" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Little_bio</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for author in authors %}
+                        <tr>                            
+                            <td>{{ author.firstname }}</td>
+                            <td>{{ author.lastname }}</td>
+                            <td>{{ author.littlebio }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('author_show', { 'id': author.id }) }}">
+                                        <button type="button" class="btn btn-primary">show</button></a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('author_edit', { 'id': author.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
 {% endblock %}

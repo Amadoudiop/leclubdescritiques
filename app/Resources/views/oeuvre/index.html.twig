@@ -30,7 +30,9 @@
                 <thead>
                     <tr>
                         <th>Title</th>
-                        <th>image</th>
+                        <th class="text-center">image</th>
+                        <th>rating</th>
+                        <th>author</th>
                         <th>Publication_date</th>
                         <th>Actions</th>
                     </tr>
@@ -41,6 +43,12 @@
                             <td>{{ oeuvre.title }}</td>
                             <td class="text-center">
                                 <img src="{{ absolute_url(oeuvres_directory) }}{{ oeuvre.urlimage }}" alt="{{ oeuvre.title }}">
+                            </td>
+                            <td class="text-center">{{ oeuvre.rating }}</td>
+                            <td>
+                                {% if oeuvre.author is not null %}
+                                    {{ oeuvre.author.getLastname }}
+                                {% endif %}
                             </td>
                             <td>{% if oeuvre.publicationdate %}{{ oeuvre.publicationdate|date('Y-m-d') }}{% endif %}</td>
                             <td>

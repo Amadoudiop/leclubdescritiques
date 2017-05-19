@@ -31,7 +31,8 @@ class OeuvreController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $oeuvres = $em->getRepository('AppBundle:Oeuvre')->findAll();
-
+        /*dump($oeuvres);
+        die();*/
         return $this->render('oeuvre/index.html.twig', array(
             'oeuvres' => $oeuvres,
         ));

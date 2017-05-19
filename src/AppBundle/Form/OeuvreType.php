@@ -10,6 +10,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 /*File upload*/
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 //use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -35,6 +38,13 @@ class OeuvreType extends AbstractType
                         'class' => 'form-control'
                     ]
                 ])
+                ->add('author', EntityType::class, array(
+                    'class' => 'AppBundle:Author',
+                    'choice_label' => 'lastname',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+                ))
                 ->add('url_image', FileType::class, [
                     'data' => null,
                     'label' => 'Image',
@@ -46,6 +56,13 @@ class OeuvreType extends AbstractType
                 ])
                 ->add('publication_date', DateType::class, [  
                     'label' => 'Date de publication'
+
+                ])
+                ->add('rating', IntegerType::class, [  
+                    'label' => 'Rating',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
 
                 ]);
     }

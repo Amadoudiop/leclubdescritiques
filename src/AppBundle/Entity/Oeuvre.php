@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Oeuvre
@@ -56,6 +57,23 @@ class Oeuvre
      */
     private $publication_date;
 
+    /**
+     * @var \int
+     *
+     * @ORM\Column(name="rating", type="integer")
+     */
+    private $rating;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="oeuvres")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
+    private $author;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Salon", mappedBy="salon")
+     */
+    private $salons;
 
     /**
      * Get id
@@ -186,5 +204,93 @@ class Oeuvre
     {
         return $this->publication_date;
     }
-}
 
+    /**
+     * Set author
+     *
+     * @param \AppBundle\Entity\Author $author
+     *
+     * @return Oeuvre
+     */
+    public function setAuthor(\AppBundle\Entity\Author $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \AppBundle\Entity\Author
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->salons = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add salon
+     *
+     * @param \AppBundle\Entity\Salon $salon
+     *
+     * @return Oeuvre
+     */
+    public function addSalon(\AppBundle\Entity\Salon $salon)
+    {
+        $this->salons[] = $salon;
+
+        return $this;
+    }
+
+    /**
+     * Remove salon
+     *
+     * @param \AppBundle\Entity\Salon $salon
+     */
+    public function removeSalon(\AppBundle\Entity\Salon $salon)
+    {
+        $this->salons->removeElement($salon);
+    }
+
+    /**
+     * Get salons
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSalons()
+    {
+        return $this->salons;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param integer $rating
+     *
+     * @return Oeuvre
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return integer
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+}

@@ -13,6 +13,45 @@
     }
     })*/
 
+Vue.component('star-rating', {
+    template: '#star-rating',
+    data: function() {
+        return {
+            temp_value: null,
+            ratings: [1, 2, 3, 4, 5]
+        };
+    },
+    props: {
+        'name': String,
+        'value': null,
+        'id': String,
+        'disabled': String,
+        'required': Boolean
+    },
+    methods: {
+        star_over: function(index) {
+            if (this.disabled=="true") {
+                return;
+            }
+            this.temp_value = this.value;
+            this.value = index;
+        },
+        star_out: function() {
+            if (this.disabled=="true") {
+                return;
+            }
+            this.value = this.temp_value;
+        },
+        set: function(value) {
+            if (this.disabled=="true") {
+                return;
+            }
+            this.temp_value = value;
+            this.value = value;
+        }
+    }
+});
+
 Vue.component('navbar-menu', {
     props:{
         isConnected: Boolean,
@@ -59,28 +98,34 @@ var app = new Vue({
             lienSalon: '/salon',
             alaunes: [
              {
-                titre:'1984',
-                 auteur: 'Georges Orwell'
+                 titre:'1984',
+                 auteur: 'Georges Orwell',
+                 rating: 4
              },
              {
                 titre:'Harry Potter',
-                auteur: 'JK Rowling'
+                auteur: 'JK Rowling',
+                 rating: 3
              },
              {
                 titre:'Lord of the rings',
-                auteur: 'J.R.R Tolkien'
+                auteur: 'J.R.R Tolkien',
+                 rating: 4
              },
              {
                 titre:' Don Quijote de la Mancha',
-                auteur: 'Miguel de Cervantes'
+                auteur: 'Miguel de Cervantes',
+                 rating: 4.5
              },
              {
                 titre:'Le conte de Deux cités',
-                auteur: 'Charles Dickens'
+                auteur: 'Charles Dickens',
+                 rating: 5
              },
             {
                 titre:'Le Petit Prince',
-                auteur: 'Antoine de Saint-Exupéry'
+                auteur: 'Antoine de Saint-Exupéry',
+                rating: 5
             }
              ],
 

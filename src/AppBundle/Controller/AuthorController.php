@@ -43,12 +43,32 @@ class AuthorController extends Controller
         $form = $this->createForm('AppBundle\Form\AuthorType', $author);
         $form->handleRequest($request);
 
+        // Check When form submitted
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Check errors
+            $validator = $this->get('validator');
+            $errors = $validator->validate($author);
+
+            if (count($errors) > 0) {
+                // Show errors
+                $errorsString = (string) $errors;
+
+                return new Response($errorsString);
+            }
+
+            // Update database
             $em = $this->getDoctrine()->getManager();
             $em->persist($author);
             $em->flush();
 
-            return $this->redirectToRoute('author_show', array('id' => $author->getId()));
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Author Added'
+            );
+
+            return $this->redirectToRoute('author_edit', array('id' => $author->getId()));
         }
 
         return $this->render('author/new.html.twig', array(

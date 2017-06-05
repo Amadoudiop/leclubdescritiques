@@ -132,8 +132,19 @@ var app = new Vue({
         }
     },
     methods: {
-        inscription(){
-            alert("le compte a été créé.")
+        inscription : function (event) {
+
+          var email = $('#email').val();    
+
+          $.ajax({
+                url: 'http://localhost:8000/register/',
+                type: 'POST',
+                data: 'email='+email,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
+
         },
         showOeuvre(_auteur,_titre){
             this.oeuvreIsShown = true;

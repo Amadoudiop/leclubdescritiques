@@ -36,14 +36,14 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", length=255)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="text")
+     * @ORM\Column(name="photo", type="text", length=255)
      */
     private $photo;
 
@@ -123,5 +123,29 @@ class User extends BaseUser
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
     }
 }

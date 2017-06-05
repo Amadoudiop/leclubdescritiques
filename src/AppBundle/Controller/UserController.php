@@ -55,14 +55,14 @@ class UserController extends Controller
         $url = $request->headers->get('referer');
         $token = explode("/activateAccount/", $url);
 
-        $email = $request->request->get('user_email');
+        //$email = $request->request->get('email');
         
         $user = $userManager->findUserByConfirmationToken($token[1]);
 
-        $firstname = $request->request->get('user_firstname');
-        $lastname = $request->request->get('user_lastname');
-        $password = $request->request->get('user_password');
-        $confirmPassword = $request->request->get('user_confirmPassword');
+        $firstname = $request->request->get('firstname');
+        $lastname = $request->request->get('lastname');
+        $password = $request->request->get('password');
+        $confirmPassword = $request->request->get('confirmPassword');
 
         if ($request->getMethod() == 'POST') {
             if (!empty($firstname) && !empty($lastname) && !empty($password) && !empty($confirmPassword)) {

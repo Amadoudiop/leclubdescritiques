@@ -157,7 +157,22 @@ var app = new Vue({
         showFloatMenu(numberCard){
             floatMenu = "floatMenu" + numberCard + "IsActive";
             this.floatMenu = !this.floatMenu ;
-        }
+        },
+        confirmInscription : function (event) {
 
+            var firstname = $('#firstname').val();    
+            var lastname = $('#lastname').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();    
+
+            $.ajax({
+                url: Routing.generate('valide_activate_account'),
+                type: 'POST',
+                data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
+        },
     }
 });

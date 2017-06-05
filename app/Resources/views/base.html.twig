@@ -205,6 +205,21 @@
         </div>
 
     </div>
+        <!-- Concept -->
+    <header>
+        <div class="container" id="maincontent" tabindex="-1">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" alt="" src="{{ asset('images/book.jpg') }}">
+                    <div class="intro-text">
+                        <h1 class="name">Concept</h1>
+                        <hr class="star-light">
+                        <span class="skills">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <!-- Body -->
     {% block body %}{% endblock %}
     <!-- / Body -->
@@ -291,7 +306,10 @@
 
     <!-- Script js -->
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
-
+    
+    <!-- JS routing -->
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
 
 

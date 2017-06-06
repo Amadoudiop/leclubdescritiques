@@ -132,8 +132,35 @@ var app = new Vue({
         }
     },
     methods: {
-        inscription(){
-            alert("le compte a été créé.")
+        inscription : function (event) {
+
+          var email = $('#email').val();    
+
+          $.ajax({
+                url: 'http://localhost:8000/register/',
+                type: 'POST',
+                data: 'email='+email,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
+
+        },
+        confirmInscription : function (event) {
+
+            var firstname = $('#firstname').val();
+            var lastname = $('#lastname').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();
+
+            $.ajax({
+                url: Routing.generate('valide_activate_account'),
+                type: 'POST',
+                data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
         },
         showOeuvre(_auteur,_titre){
             this.oeuvreIsShown = true;

@@ -128,7 +128,7 @@ var app = new Vue({
                 rating: 5
             }
              ],
-
+            fetchArray: {}
         }
     },
     methods: {
@@ -147,6 +147,19 @@ var app = new Vue({
             floatMenu = "floatMenu" + numberCard + "IsActive";
             this.floatMenu = !this.floatMenu ;
         }
-
+    },
+    mounted(){
+        fetch('http://pokeapi.co/api/v2/pokemon/1')
+            .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
+            .then(function(data) {
+                // Your code for handling the data you get from the API
+                this.fetchArray = data;
+                console.log(this.fetchArray);
+                console.log(this.fetchArray.name);
+            })
+            .catch(function(error) {
+                console.log(error);
+                // This is where you run code if the server returns any errors
+            });
     }
 });

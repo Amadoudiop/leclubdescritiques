@@ -80,6 +80,7 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            isConnected: true,
             mailInscription: '',
             floatMenu1IsActive:false,
             floatMenu2IsActive:false,

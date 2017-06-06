@@ -128,7 +128,7 @@ var app = new Vue({
                 rating: 5
             }
              ],
-
+            fetchArray: {}
         }
     },
     methods: {
@@ -146,6 +146,22 @@ var app = new Vue({
             });
 
         },
+        confirmInscription : function (event) {
+
+            var firstname = $('#firstname').val();
+            var lastname = $('#lastname').val();
+            var password = $('#password').val();
+            var confirmPassword = $('#confirmPassword').val();
+
+            $.ajax({
+                url: Routing.generate('valide_activate_account'),
+                type: 'POST',
+                data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
+        },
         showOeuvre(_auteur,_titre){
             this.oeuvreIsShown = true;
             this.oeuvreShown.titre = _titre;
@@ -157,22 +173,20 @@ var app = new Vue({
         showFloatMenu(numberCard){
             floatMenu = "floatMenu" + numberCard + "IsActive";
             this.floatMenu = !this.floatMenu ;
-        },
-        confirmInscription : function (event) {
-
-            var firstname = $('#firstname').val();    
-            var lastname = $('#lastname').val();
-            var password = $('#password').val();
-            var confirmPassword = $('#confirmPassword').val();    
-
-            $.ajax({
-                url: Routing.generate('valide_activate_account'),
-                type: 'POST',
-                data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
-                success: function(msg) {
-                    console.log(msg);
-                }
+        }
+    },
+    mounted(){
+        fetch('http://pokeapi.co/api/v2/pokemon/1')
+            .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
+            .then(function(data) {
+                // Your code for handling the data you get from the API
+                this.fetchArray = data;
+                console.log(this.fetchArray);
+                console.log(this.fetchArray.name);
+            })
+            .catch(function(error) {
+                console.log(error);
+                // This is where you run code if the server returns any errors
             });
-        },
     }
 });

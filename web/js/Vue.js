@@ -63,7 +63,7 @@ Vue.component('navbar-menu', {
         }
     },
     template: '#navbar-menu',
-})
+});
 
 /*Vue.component('test-compo', {
     props: {
@@ -173,6 +173,16 @@ var app = new Vue({
         showFloatMenu(numberCard){
             floatMenu = "floatMenu" + numberCard + "IsActive";
             this.floatMenu = !this.floatMenu ;
+        },
+        showPassword() {
+            var key_attr = $('#key').attr('type');
+            if(key_attr != 'text') {
+                $('.checkbox').addClass('show');
+                $('#key').attr('type', 'text');
+            } else {
+                $('.checkbox').removeClass('show');
+                $('#key').attr('type', 'password');
+            }
         }
     },
     mounted(){

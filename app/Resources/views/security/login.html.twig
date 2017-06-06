@@ -9,10 +9,6 @@
     <section id="login">
         <div class="container">
             <div class="row">
-
-
-
-
                 <div class="col-xs-12">
                     <div class="form-wrap">
                         <h1>Connexion</h1>
@@ -29,6 +25,9 @@
                                 <span class="character-checkbox" @click="showPassword"></span>
                                 <span class="label">Montrer mot de passe</span>
                             </div>
+                            {% if csrf_token %}
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            {% endif %}
                             <input type="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Se connecter">
                         </form>
                         <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Mot de passe oublié?</a>

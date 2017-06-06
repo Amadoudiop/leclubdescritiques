@@ -14,17 +14,22 @@ class SecurityController extends Controller
      */
     public function loginAction(Request $request)
 	{
-	    $authenticationUtils = $this->get('security.authentication_utils');	
+	    $authenticationUtils = $this->get('security.authentication_utils');
 
 	    // get the login error if there is one
 	    $error = $authenticationUtils->getLastAuthenticationError();	
 
 	    // last username entered by the user
-	    $lastUsername = $authenticationUtils->getLastUsername();	
+	    $lastUsername = $authenticationUtils->getLastUsername();
+
+	    $csrfToken = $this->has('security.csrf.token_manager')
+            ? $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue()
+            : null;	
 
 	    return $this->render('security/login.html.twig', array(
 	        'last_username' => $lastUsername,
 	        'error'         => $error,
+	        'csrf_token' => $csrfToken,
 	    ));
 	}
 }

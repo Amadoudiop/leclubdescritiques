@@ -26,7 +26,7 @@ class Salon
     /**
      * @var string
      * @Assert\NotBlank()
-     * @Assert\Length(min=10)
+     * @Assert\Length(min=5)
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;

@@ -46,7 +46,7 @@ class AuthorController extends Controller
         // Check When form submitted
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // Check errors
+            /*// Check errors
             $validator = $this->get('validator');
             $errors = $validator->validate($author);
 
@@ -55,7 +55,7 @@ class AuthorController extends Controller
                 $errorsString = (string) $errors;
 
                 return new Response($errorsString);
-            }
+            }*/
 
             // Update database
             $em = $this->getDoctrine()->getManager();
@@ -68,7 +68,7 @@ class AuthorController extends Controller
                 'Author Added'
             );
 
-            return $this->redirectToRoute('author_edit', array('id' => $author->getId()));
+            return $this->redirectToRoute('author_show', array('id' => $author->getId()));
         }
 
         return $this->render('author/new.html.twig', array(
@@ -107,7 +107,13 @@ class AuthorController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+    
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Author Edited'
+            );
+    
             return $this->redirectToRoute('author_edit', array('id' => $author->getId()));
         }
 
@@ -133,6 +139,12 @@ class AuthorController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($author);
             $em->flush();
+    
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Author Deleted'
+            );
         }
 
         return $this->redirectToRoute('author_index');

@@ -1,4 +1,5 @@
 {% extends 'base_back.html.twig' %}
+{% block title %}{{ parent() }}Oeuvres{% endblock %}
 
 {% block body %}
     <!-- header Page -->
@@ -29,25 +30,31 @@
               <table class="datatable table table-striped primary" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th class="text-center">Image</th>
                         <th>Title</th>
-                        <th class="text-center">image</th>
-                        <th>rating</th>
-                        <th>author</th>
-                        <th>Publication_date</th>
+                        <th>Rating</th>
+                        <th>Author</th>
+                        <th>Name</th>
+                        <th>Publication date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for oeuvre in oeuvres %}
                         <tr>
-                            <td>{{ oeuvre.title }}</td>
                             <td class="text-center">
                                 <img src="{{ absolute_url(oeuvres_directory) }}{{ oeuvre.urlimage }}" alt="{{ oeuvre.title }}">
                             </td>
+                            <td>{{ oeuvre.title }}</td>
                             <td class="text-center">{{ oeuvre.rating }}</td>
                             <td>
                                 {% if oeuvre.author is not null %}
                                     {{ oeuvre.author.getLastname }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if oeuvre.category is not null %}
+                                    {{ oeuvre.category.getName }}
                                 {% endif %}
                             </td>
                             <td>{% if oeuvre.publicationdate %}{{ oeuvre.publicationdate|date('Y-m-d') }}{% endif %}</td>

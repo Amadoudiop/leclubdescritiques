@@ -23,7 +23,8 @@ class Page
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)     
      * @ORM\Column(name="name", type="string", length=125)
      */
     private $name;
@@ -37,7 +38,8 @@ class Page
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=20)     
      * @ORM\Column(name="content", type="text")
      */
     private $content;

@@ -45,6 +45,20 @@ class OeuvreType extends AbstractType
                         'class' => 'form-control'
                     ]
                 ))
+                ->add('category', EntityType::class, array(
+                    'class' => 'AppBundle:Category',
+                    'choice_label' => 'name',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+                ))
+                ->add('subcategory', EntityType::class, array(
+                    'class' => 'AppBundle:SubCategory',
+                    'choice_label' => 'name',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+                ))
                 ->add('url_image', FileType::class, [
                     'data' => null,
                     'label' => 'Image',

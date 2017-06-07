@@ -74,6 +74,18 @@ class Oeuvre
     private $author;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="oeuvres")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SubCategory", inversedBy="oeuvres")
+     * @ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")
+     */
+    private $subCategory;
+
+    /**
      * @ORM\OneToMany(targetEntity="Salon", mappedBy="salon")
      */
     private $salons;
@@ -121,9 +133,11 @@ class Oeuvre
      */
     public function setUrlProduct($urlProduct)
     {
-        $this->url_product = $urlProduct;
+        //if($urlProduct !== null) {
+            $this->url_product = $urlProduct;
 
-        return $this;
+            return $this;
+        //}
     }
 
     /**
@@ -295,5 +309,53 @@ class Oeuvre
     public function getRating()
     {
         return $this->rating;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Oeuvre
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set subCategory
+     *
+     * @param \AppBundle\Entity\SubCategory $subCategory
+     *
+     * @return Oeuvre
+     */
+    public function setSubCategory(\AppBundle\Entity\SubCategory $subCategory = null)
+    {
+        $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subCategory
+     *
+     * @return \AppBundle\Entity\SubCategory
+     */
+    public function getSubCategory()
+    {
+        return $this->subCategory;
     }
 }

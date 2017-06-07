@@ -32,18 +32,23 @@ class Category
      */
     private $name;
 
-
     /**
      * @ORM\OneToMany(targetEntity="SubCategory", mappedBy="category")
      */
     private $subCategories;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Oeuvre", mappedBy="category")
+     */
+    private $oeuvres;
+
+
     public function __construct()
     {
+        $this->oeuvres = new ArrayCollection();
         $this->subCategories = new ArrayCollection();
+
     }
-
-
 
     /**
      * Get id
@@ -111,5 +116,39 @@ class Category
     public function getSubCategories()
     {
         return $this->subCategories;
+    }
+
+    /**
+     * Add oeuvre
+     *
+     * @param \AppBundle\Entity\Oeuvre $oeuvre
+     *
+     * @return Category
+     */
+    public function addOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
+    {
+        $this->oeuvres[] = $oeuvre;
+
+        return $this;
+    }
+
+    /**
+     * Remove oeuvre
+     *
+     * @param \AppBundle\Entity\Oeuvre $oeuvre
+     */
+    public function removeOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
+    {
+        $this->oeuvres->removeElement($oeuvre);
+    }
+
+    /**
+     * Get oeuvres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOeuvres()
+    {
+        return $this->oeuvres;
     }
 }

@@ -30,13 +30,17 @@ class SubCategory
      */
     private $name;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Oeuvre", mappedBy="subCategory")
+     */
+    private $oeuvres;
 
     /**
      * Get id
@@ -94,5 +98,46 @@ class SubCategory
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->oeuvres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add oeuvre
+     *
+     * @param \AppBundle\Entity\Oeuvre $oeuvre
+     *
+     * @return SubCategory
+     */
+    public function addOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
+    {
+        $this->oeuvres[] = $oeuvre;
+
+        return $this;
+    }
+
+    /**
+     * Remove oeuvre
+     *
+     * @param \AppBundle\Entity\Oeuvre $oeuvre
+     */
+    public function removeOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
+    {
+        $this->oeuvres->removeElement($oeuvre);
+    }
+
+    /**
+     * Get oeuvres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOeuvres()
+    {
+        return $this->oeuvres;
     }
 }

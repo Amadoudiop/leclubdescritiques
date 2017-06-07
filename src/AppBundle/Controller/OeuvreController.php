@@ -73,6 +73,12 @@ class OeuvreController extends Controller
             $em->persist($oeuvre);
             $em->flush();
 
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Oeuvre Added'
+            );
+
             return $this->redirectToRoute('oeuvre_show', array('id' => $oeuvre->getId()));
         }
 
@@ -113,11 +119,10 @@ class OeuvreController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            /*dump($oeuvre);
-            die();*/
             $file = $oeuvre->getUrlImage();
-            if( $file !== null ){
+
+            if( $file !== null )
+            {
                 // Generate a unique name for the file before saving it
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 // Move the file to the directory where brochures are stored
@@ -126,13 +131,26 @@ class OeuvreController extends Controller
                     $fileName
                 );
 
-                // Update the 'brochure' property to store the PDF file name
-                // instead of its contents
                 $oeuvre->setUrlImage($fileName);
             }
-            /*dump($oeuvre);
-            die();*/
+            else
+            {
+                /*$oldOeuvre = new Oeuvre();
+                $oldOeuvre = $this->getDoctrine()
+                    ->getRepository('AppBundle:Oeuvre')
+                    ->find($oeuvre->getId());
+                $fileName = $oldOeuvre->getUrlImage();
+                dump($fileName);
+                die();*/
+            }
+
             $this->getDoctrine()->getManager()->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Oeuvre Added'
+            );
 
             return $this->redirectToRoute('oeuvre_edit', array('id' => $oeuvre->getId()));
         }
@@ -159,6 +177,12 @@ class OeuvreController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($oeuvre);
             $em->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Oeuvre Deleted'
+            );
         }
 
         return $this->redirectToRoute('oeuvre_index');

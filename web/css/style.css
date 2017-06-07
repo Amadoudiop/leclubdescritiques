@@ -402,3 +402,9 @@ a:link, a:hover, a:visited, a:active {
 .btn-custom:focus {
     color: #fff;
 }
+/*    --------------------------------------------------
+	:: Profil
+	-------------------------------------------------- */
+.vd_content-section{
+    margin-top: 100px;
+}

@@ -52,7 +52,7 @@ Vue.component('star-rating', {
     }
 });
 
-Vue.component('navbar-menu', {
+/*Vue.component('navbar-menu', {
     props:{
         isConnected: Boolean,
         page: String
@@ -63,7 +63,7 @@ Vue.component('navbar-menu', {
         }
     },
     template: '#navbar-menu',
-});
+});*/
 
 /*Vue.component('test-compo', {
     props: {
@@ -80,7 +80,7 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
-            isConnected: true,
+            isConnected: false,
             mailInscription: '',
             floatMenu1IsActive:false,
             floatMenu2IsActive:false,

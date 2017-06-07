@@ -11,10 +11,15 @@
 
     <title>Le club des critiques</title>
 
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/clubcritique.css') }}">
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <!-- Custom Fonts -->
@@ -128,7 +133,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top"><img alt="Brand logo" class="logo" src="{{ asset("images/logo.jpg") }}"></a>
+                <a class="navbar-brand" href="#page-top"><img alt="Brand logo" class="logo" src="{{ asset("images/logo/logo.png") }}"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -147,7 +152,7 @@
                         <a href="#about">Salons</a>
                     </li>
                     <li class="page-scroll">
-                        <a v-if="isConnected" href="/account">Mon compte</a> <a v-else href="/login">Se connecter</a>
+                        <a  href="/account">Mon compte</a> <a  href="/login">Se connecter</a>
                     </li>
                 </ul>
             </div>
@@ -286,13 +291,10 @@
     <!-- Vue js -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script type="text/javascript" src="{{ asset('js/Vue.js') }}"></script>
-
-    <!-- Script js -->
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
     
     <!-- JS routing -->
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
 
 

@@ -13,8 +13,19 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        //$user = $this->get('security.token_storage')->getToken()->getUser();
+        //var_dump($user);die;
         // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
+        return $this->render('front/index.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        ]);
+    }
+    /**
+     * @Route("/profil", name="profil")
+     */
+    public function profilAction(Request $request)
+    {
+        return $this->render('front/profil.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }

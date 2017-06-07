@@ -12,8 +12,9 @@
       }
     }
     })*/
+Vue.component('star-rating', VueStarRating.default);
 
-Vue.component('star-rating', {
+/*Vue.component('star-rating', {
     template: '#star-rating',
     data: function() {
         return {
@@ -50,7 +51,7 @@ Vue.component('star-rating', {
             this.value = value;
         }
     }
-});
+});*/
 
 /*Vue.component('navbar-menu', {
     props:{
@@ -101,7 +102,7 @@ var app = new Vue({
              {
                  titre:'1984',
                  auteur: 'Georges Orwell',
-                 rating: 4
+                 rating: 4.5
              },
              {
                 titre:'Harry Potter',
@@ -116,7 +117,7 @@ var app = new Vue({
              {
                 titre:' Don Quijote de la Mancha',
                 auteur: 'Miguel de Cervantes',
-                 rating: 4.5
+                 rating: 4.8
              },
              {
                 titre:'Le conte de Deux cités',
@@ -164,6 +165,7 @@ var app = new Vue({
             });
         },
         showOeuvre(_auteur,_titre){
+            console.log("hello");
             this.oeuvreIsShown = true;
             this.oeuvreShown.titre = _titre;
             this.oeuvreShown.auteur = _auteur;
@@ -187,7 +189,7 @@ var app = new Vue({
         }
     },
     mounted(){
-        fetch('http://pokeapi.co/api/v2/pokemon/1')
+        /*fetch('http://pokeapi.co/api/v2/pokemon/1')
             .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
             .then(function(data) {
                 // Your code for handling the data you get from the API
@@ -198,6 +200,6 @@ var app = new Vue({
             .catch(function(error) {
                 console.log(error);
                 // This is where you run code if the server returns any errors
-            });
+            });*/
     }
 });

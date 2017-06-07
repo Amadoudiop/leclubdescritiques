@@ -408,3 +408,20 @@ a:link, a:hover, a:visited, a:active {
 .vd_content-section{
     margin-top: 100px;
 }
+
+.star-rating{
+    margin-left: auto;
+    text-align: center;
+    margin-right: auto;
+}
+
+@media (max-width: 767px) {
+    .vd_content-section{
+        margin-top: -22px;
+    }
+}
+@media (min-width: 768px) {
+    .vd_content-section{
+        margin-top: 100px;
+    }
+}

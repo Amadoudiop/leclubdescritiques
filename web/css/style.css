@@ -425,3 +425,206 @@ a:link, a:hover, a:visited, a:active {
         margin-top: 100px;
     }
 }
+
+/*    --------------------------------------------------
+	:: contact modal
+	-------------------------------------------------- */
+#modalContactForm .modal-dialog .modal-content {
+    border-radius: 2px;
+}
+
+#modalContactForm .modal-dialog.cascading-modal .modal-header .title .fa {
+    margin-right: 9px;
+}
+
+#modalContactForm .modal-header{
+    background-color: #70BEB1;
+    border-radius: 2px;
+}
+
+#modalContactForm .modal-dialog.cascading-modal .modal-header {
+    text-align: center;
+    margin: -2rem 1rem 1rem;
+    padding: 1.5rem;
+    border: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: 3px;
+}
+
+#modalContactForm .modal-dialog.cascading-modal .modal-header .title {
+    width: 100%;
+    margin-bottom: 0;
+    font-size: 1.45rem;
+    color:white;
+}
+
+#modalContactForm .modal-dialog.cascading-modal {
+    margin-top: 10%;
+}
+
+#modalContactForm .modal-dialog.cascading-modal .modal-header {
+    text-align: center;
+    margin: -2rem 1rem 1rem;
+    padding: 1.5rem;
+    border: none;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-radius: 3px;
+}
+#modalContactForm .modal-content {
+    background-color: white;
+}
+
+#modalContactForm .btn-info {
+    background: #d99e7e;
+}
+
+#modalContactForm .btn {
+    margin-bottom: 1.5rem!important;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    padding: .85rem 2.13rem;
+    border-radius: 2px;
+    border: 0;
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+    color: #fff!important;
+    margin: 6px;
+    white-space: normal!important;
+    word-wrap: break-word;
+    display: inline-block;
+    line-height: 1.25;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    font-weight: 400;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    z-index: 1;
+}
+
+.author-box, .badge, .btn, .btn-floating, .card, .card-cascade-2 .card-block, .card-cascade.wider .card-block, .card-wrapper .back, .card-wrapper .front, .cascading-media .view, .chip, .dropdown-content, .dropdown-menu, .jumbotron, .list-group, .modal-dialog.cascading-modal .modal-c-tabs .nav-tabs, .modal-dialog.modal-notify .modal-header, .navbar, .navbar .nav-item .dropdown-menu.dropdown a:active, .navbar .nav-item .dropdown-menu.dropdown a:focus, .navbar .nav-item .dropdown-menu.dropdown a:hover, .pager li a, .pagination .active .page-link, .popover, .pricing-card .price .version, .section-blog-fw .view, .side-nav, .social-list, .z-depth-1 {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.btn-amber.active, .btn-blue-grey.active, .btn-brown.active, .btn-cyan.active, .btn-danger.active, .btn-dark-green.active, .btn-deep-orange.active, .btn-deep-purple.active, .btn-default.active, .btn-elegant.active, .btn-floating.btn-flat.active, .btn-floating:hover, .btn-indigo.active, .btn-info.active, .btn-light-green.active, .btn-lime.active, .btn-mdb.active, .btn-orange.active, .btn-pink.active, .btn-primary.active, .btn-purple.active, .btn-secondary.active, .btn-secondary.dropdown-toggle, .btn-success.active, .btn-unique.active, .btn-warning.active, .btn-yellow.active, .btn.active, .btn:active, .btn:focus, .btn:hover, .card .form-header, .colorful-select .dropdown-content li.active span, .comments-list .badge, .inline-ul-img li img, .md-pills .nav-item .nav-link.active, .media .media-left img, .modal-dialog .modal-content, .modal-dialog.cascading-modal .modal-header, .modal-dialog.modal-notify.modal-danger .btn-primary-modal.active, .modal-dialog.modal-notify.modal-info .btn-primary-modal.active, .modal-dialog.modal-notify.modal-success .btn-primary-modal.active, .modal-dialog.modal-notify.modal-warning .btn-primary-modal.active, .pager li a:hover, .picker--focused .picker__day--selected, .picker__day--selected, .picker__day--selected:hover, .pricing-card .header, .reply-form .badge, .section .view, .section img, .side-modal .modal-dialog, .tooltip .tooltip-inner, .z-depth-1-half, ul.instagram-photos li img {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+#modalContactForm .modal-dialog.cascading-modal .modal-body, .modal-dialog.cascading-modal .modal-footer {
+    color: #616161;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+#modalContactForm .modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 15px;
+}
+
+#modalContactForm .md-form.form-sm .prefix {
+    font-size: 1.5rem;
+    top: .4rem;
+}
+#modalContactForm .md-form .prefix {
+    position: absolute;
+    width: 3rem;
+    font-size: 2rem;
+    -webkit-transition: color .2s;
+    transition: color .2s;
+}
+
+#modalContactForm .md-form.form-sm .prefix~input, .md-form.form-sm .prefix~label, .md-form.form-sm .prefix~textarea {
+    margin-left: 2.2rem;
+}
+@media only screen and (max-width: 992px){
+    #modalContactForm .md-form .prefix~input {
+        width: 86%;
+        width: -webkit-calc(100% - 3rem);
+        width: calc(100% - 3rem);
+    }
+}
+#modalContactForm .md-form .prefix~input, .md-form .prefix~textarea {
+    margin-left: 3rem;
+    width: 92%;
+    width: -webkit-calc(100% - 3rem);
+    width: calc(100% - 3rem);
+}
+
+#modalContactForm .md-form .prefix~textarea {
+    min-height:60px;
+}
+
+#modalContactForm .md-form.form-sm input {
+    padding-bottom: .2rem;
+    padding-top: .2rem;
+    line-height: .5;
+}
+#modalContactForm #modalContactForm input[type=date], #modalContactForm input[type=datetime-local], #modalContactForm input[type=email], #modalContactForm input[type=number], #modalContactForm input[type=password], #modalContactForm input[type=search-md], #modalContactForm input[type=search], #modalContactForm input[type=tel], #modalContactForm input[type=text], #modalContactForm input[type=time], #modalContactForm input[type=url], textarea.md-textarea {
+    background-color: transparent;
+    border: none ;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    outline: 0;
+    height: 2.1rem;
+    width: 100%;
+    font-size: 1rem;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+#modalContactForm .form-control {
+    padding: .5rem 0 .6rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    background-color: transparent;
+    background-image: none;
+    border-radius: 0;
+    margin-top: .2rem;
+    margin-bottom: 1rem;
+}
+#modalContactForm .form-control {
+    color: #464a4c;
+    background-clip: padding-box;
+   /* border: 1px solid rgba(0,0,0,.15);*/
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+}
+
+
+#modalContactForm .md-form {
+    position: relative;
+}
+
+#modalContactForm .md-form, .md-form .btn {
+    margin-bottom: 1.5rem;
+}
+
+.md-form.form-sm .prefix~input, .md-form.form-sm .prefix~label, .md-form.form-sm .prefix~textarea {
+    margin-left: 2.2rem;
+}

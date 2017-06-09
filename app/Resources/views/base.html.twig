@@ -18,9 +18,14 @@
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Custom CSS -->
-
     <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
+    <!-- Material-bootstrap -->
+    {#<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css" />#}
+
     <!-- Custom CSS -->
+    {% block stylesheet %}
+
+    {% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -297,6 +302,9 @@
     <!-- JS routing -->
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+    <!-- JS material design -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.umd.min.js"></script>
 
 
 

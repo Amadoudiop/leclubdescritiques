@@ -36,14 +36,14 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div>
-                                            <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                                            <a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                                                {# <img :src="{{ asset("'images/' + alaune.titre + '.jpg'") }}" class="img-thumbnail img-alaune img-responsive">#}
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="panel-footer">
+                                    <div class="panel-footer" >
                                         ${ alaune.titre } <br>
-                                        ${ alaune.auteur } <star-rating :value="alaune.rating" disabled="true">${ alaune.rating }</star-rating>
+                                        ${ alaune.auteur } <star-rating :star-size="30" :rating="alaune.rating" :read-only="true" increment="0.5" show-rating="false"></star-rating><br>
                                         <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                     </div>
                                 </div>
@@ -51,11 +51,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
             </div>
         </div>
     </section>
@@ -266,6 +261,8 @@
     <!-- Vue js -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script type="text/javascript" src="{{ asset('js/Vue.js') }}"></script>
+    <!-- Vue js star rating -->
+    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
 
 
 {% endblock %}

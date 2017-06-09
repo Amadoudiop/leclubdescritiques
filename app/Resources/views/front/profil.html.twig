@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/theme.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/font-entypo.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/theme-responsive.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+
+    {% block stylesheet %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/theme.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/font-entypo.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/theme-responsive.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
+    {% endblock  %}
 
     <div class="vd_content-section clearfix">
         <div class="row">
@@ -12,27 +15,21 @@
                 <div class="panel widget light-widget panel-bd-top">
                     <div class="panel-heading no-title"> </div>
                     <div class="panel-body">
-                        <div class="text-center vd_info-parent"> <img alt="example image" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAwaAAAAJGU2NjhlYTc1LWIwMjYtNGUzMS05NWVlLTIzYThhZmVjZTRiYQ.jpg"> </div>
+                        <div class="text-center vd_info-parent"> <img alt="example image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrJ2P7MVKF8hUlVR87wMsGO7T4Jikl_8R7BehuqezQEOhQDnl3Aw"> </div>
                         <div class="row">
                             <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i class="fa fa-check-circle append-icon"></i>Friends</a> </div>
-                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br"><i class="fa fa-envelope append-icon"></i>Send Message</a> </div>
+                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Contacter</a> </div>
                         </div>
-                        <h2 class="font-semibold mgbt-xs-5">Mariah Caraiban</h2>
-                        <h4>Owner at Our Company, Inc.</h4>
-                        <p>Ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        <h3 class="font-semibold mgbt-xs-5">Mariah Caraiban</h3>
                         <div class="mgtp-20">
                             <table class="table table-striped table-hover">
                                 <tbody>
                                 <tr>
-                                    <td style="width:60%;">Status</td>
-                                    <td><span class="label label-success">Active</span></td>
+                                    <td style="width:60%;">Statut</td>
+                                    <td><span class="label label-success">Actif</span></td>
                                 </tr>
                                 <tr>
-                                    <td>User Rating</td>
-                                    <td><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i><i class="fa fa-star vd_yellow fa-fw"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>Member Since</td>
+                                    <td>Membre depuis</td>
                                     <td> Jan 07, 2014 </td>
                                 </tr>
                                 </tbody>
@@ -41,61 +38,33 @@
                     </div>
                 </div>
                 <!-- panel widget -->
-                {#<div class="panel widget light-widget">
-                    <div class="panel-body-list">
-                        <h3 class="pd-20 mgbt-xs-0"><i class="fa fa-users mgr-10"></i>Friends</h3>
-                        <div class="content-grid column-xs-2 column-sm-3 height-xs-auto mgbt-xs-20">
-                            <div>
-                                <ul class="list-wrapper">
-                                    <li> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar.jpg"></span> </a> </li>
-                                    <li class="warning"> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar-2.jpg"></span> </a> </li>
-                                    <li> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar-3.jpg"></span> </a> </li>
-                                    <li> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar-4.jpg"></span> </a> </li>
-                                    <li> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar-5.jpg"></span> </a> </li>
-                                    <li> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar-6.jpg"></span> </a> </li>
-                                    <li> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar-7.jpg"></span> </a> </li>
-                                    <li> <a href="#"> <span class="menu-icon"><img alt="example image" src="img/avatar/avatar-8.jpg"></span> </a> </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="closing text-center" style=""> <a href="#">See All Friends<i class="fa fa-angle-double-right prepend-icon"></i></a> </div>
-                    </div>
-                </div>#}
-                <!-- panel widget -->
+
+
             </div>
             <div class="col-sm-9">
                 <div class="tabs widget">
                     <ul class="nav nav-tabs widget">
-                        <li class="active"> <a data-toggle="tab" href="#profile-tab"> Profile <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
-                        <li> <a data-toggle="tab" href="#projects-tab"> Projects <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
-                        <li> <a data-toggle="tab" href="#photos-tab"> Photos <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
-                        <li> <a data-toggle="tab" href="#friends-tab"> Friends <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
-                        <li> <a data-toggle="tab" href="#groups-tab"> Groups <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        <li class="active"> <a data-toggle="tab" href="#profile-tab"> Profil <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        <li class=""> <a data-toggle="tab" href="#projects-tab"> Livres <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+
                     </ul>
                     <div class="tab-content">
                         <div id="profile-tab" class="tab-pane active">
                             <div class="pd-20">
-                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow"> <i class="fa fa-pencil append-icon"></i> Edit </a> </div>
-                                <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="icon-user mgr-10 profile-icon"></i> ABOUT</h3>
+                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow"> <i class="fa fa-pencil append-icon"></i> Editer </a> </div>
+                                <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-user mgr-10 profile-icon " aria-hidden="true" ></i> A PROPOS</h3>
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">First Name:</label>
+                                            <label class="col-xs-5 control-label">Prénom:</label>
                                             <div class="col-xs-7 controls">Mariah</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">Last Name:</label>
+                                            <label class="col-xs-5 control-label">Nom:</label>
                                             <div class="col-xs-7 controls">Caraiban</div>
-                                            <!-- col-sm-10 -->
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">User Name:</label>
-                                            <div class="col-xs-7 controls">Mariah</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
@@ -106,45 +75,10 @@
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">City:</label>
-                                            <div class="col-xs-7 controls">Los Angeles</div>
-                                            <!-- col-sm-10 -->
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">Country:</label>
-                                            <div class="col-xs-7 controls">United States</div>
-                                            <!-- col-sm-10 -->
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">Birthday:</label>
-                                            <div class="col-xs-7 controls">Jan 22, 1984</div>
-                                            <!-- col-sm-10 -->
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">Interests:</label>
-                                            <div class="col-xs-7 controls">Basketball, Web, Design, etc.</div>
-                                            <!-- col-sm-10 -->
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">Website:</label>
-                                            <div class="col-xs-7 controls"><a href="http://Vendroid.venmond.com">Vendroid.venmond.com</a></div>
-                                            <!-- col-sm-10 -->
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="row mgbt-xs-0">
-                                            <label class="col-xs-5 control-label">Phone:</label>
-                                            <div class="col-xs-7 controls">+1-234-5678</div>
+                                            <label class="col-xs-2 control-label">Description:</label>
+                                            <div class="col-xs-10 controls">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, illum, magnam. A corporis deleniti enim fuga iste magnam maiores nam natus nulla placeat quas, ratione recusandae reiciendis repellat ullam veniam?</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
@@ -176,12 +110,12 @@
                                 </div>#}
                                 <!-- row -->
                                 {#<hr class="pd-10">#}
-                                {#<div class="row">
+                               {# <div class="row">
                                     <div class="col-sm-7">
                                         <h3 class="mgbt-xs-15 font-semibold"><i class="fa fa-globe mgr-10 profile-icon"></i> ACTIVITY</h3>
                                         <div class="">
                                             <div class="content-list">
-                                                <div data-rel="scroll" class="mCustomScrollbar _mCS_6" style="overflow: hidden;"><div class="mCustomScrollBox mCS-light" id="mCSB_6" style="position: relative; height: 100%; overflow: hidden; max-width: 100%; max-height: 400px;"><div class="mCSB_container" style="position:relative; top:0;">
+                                                <div data-rel="scroll" class="mCustomScrollbar _mCS_6" style="overflow: hidden;"><div class="mCustomScrollBox mCS-light" id="mCSB_6" style="position: relative; height: 100%; overflow: hidden; max-width: 100%; max-height: 400px;"><div class="mCSB_container mCS_no_scrollbar" style="position: relative; top: 0px;">
                                                             <ul class="list-wrapper">
                                                                 <li> <span class="menu-icon vd_yellow"><i class="fa fa-suitcase"></i></span> <span class="menu-text"> Someone has give you a surprise <span class="menu-info"><span class="menu-date"> ~ 12 Minutes Ago</span></span> </span>  </li>
                                                                 <li> <span class="menu-icon vd_blue"><i class=" fa fa-user"></i></span> <span class="menu-text"> Change your user profile details <span class="menu-info"><span class="menu-date"> ~ 1 Hour 20 Minutes Ago</span></span> </span> </li>
@@ -192,7 +126,7 @@
                                                                 <li>  <span class="menu-icon vd_green"><i class=" fa fa-book"></i></span> <span class="menu-text"> Added new article <span class="menu-info"><span class="menu-date"> ~ 19 Days Ago</span></span> </span> </li>
                                                                 <li>  <span class="menu-icon vd_green"><img alt="example image" src="img/avatar/avatar.jpg"></span> <span class="menu-text"> Change Profile Pic <span class="menu-info"><span class="menu-date"> ~ 20 Days Ago</span></span> </span>  </li>
                                                             </ul>
-                                                        </div><div class="mCSB_scrollTools" style="position: absolute; display: block; opacity: 0;"><div class="mCSB_draggerContainer"><div class="mCSB_dragger" style="position: absolute; top: 0px; height: 352px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="position: relative; line-height: 352px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
+                                                        </div><div class="mCSB_scrollTools" style="position: absolute; opacity: 0; display: none;"><div class="mCSB_draggerContainer"><div class="mCSB_dragger" style="position: absolute; height: 352px; top: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar" style="position: relative; line-height: 352px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div>
                                                 <div class="closing text-center" style=""> <a href="#">See All Activities <i class="fa fa-angle-double-right"></i></a> </div>
                                             </div>
                                         </div>
@@ -247,9 +181,9 @@
 
                         <div id="projects-tab" class="tab-pane">
                             <div class="pd-20">
-                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow"> <i class="fa fa-plus append-icon"></i> Add Project </a> </div>
-                                <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-bolt mgr-10 profile-icon"></i> PROJECTS</h3>
-                                <table class="table table-striped table-hover">
+                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow"> <i class="fa fa-plus append-icon"></i> Ajouter livre </a> </div>
+                                <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-book mgr-10 profile-icon"></i> LIVRES</h3>
+                                {#<table class="table table-striped table-hover">
                                     <thead>
                                     <tr>
                                         <th>#</th>
@@ -375,13 +309,40 @@
 
 
                                     </tbody>
-                                </table>
+                                </table>#}
+
+                                <div class="row">
+                                    <div class="container-fluid">
+                                        <div v-for="alaune in alaunes">
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                                <div class="alauneCard"  >
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <div>
+                                                                <a   href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                                                                    {# <img :src="{{ asset("'images/' + alaune.titre + '.jpg'") }}" class="img-thumbnail img-alaune img-responsive">#}
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-footer" >
+                                                            ${ alaune.titre } <br>
+                                                            ${ alaune.auteur } <star-rating :star-size="20" :rating="alaune.rating" :read-only="true" increment="0.5" show-rating="false"></star-rating>
+                                                            <span class="label label-success">à échanger</span>
+                                                            <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="">
                                 </div>
                             </div>
                         </div>
 
-                        <div id="photos-tab" class="tab-pane">
+                        {#<div id="photos-tab" class="tab-pane">
                             <div class="pd-20">
                                 <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow"> <i class="fa fa-plus append-icon"></i> Add Photo </a> </div>
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-picture-o mgr-10 profile-icon"></i> PHOTOS</h3>
@@ -406,7 +367,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 200px;">
+                                    <div class="gallery-item  filter-2" style="position: absolute; left: 200px; top: 0px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(-200px, 200px, 0px);">
                                         <a href="img/photos/03.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/03.jpg">
                                             <div class="bg-cover"></div>
@@ -419,7 +380,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 400px;">
+                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 200px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(0px, 200px, 0px);">
                                         <a href="img/photos/08.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/08.jpg">
                                             <div class="bg-cover"></div>
@@ -432,7 +393,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="gallery-item  filter-3" style="position: absolute; left: 0px; top: 600px;">
+                                    <div class="gallery-item  filter-3" style="position: absolute; left: 200px; top: 200px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(-200px, 400px, 0px);">
                                         <a href="img/photos/15.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/15.jpg">
                                             <div class="bg-cover"></div>
@@ -445,7 +406,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="gallery-item  filter-1" style="position: absolute; left: 0px; top: 800px;">
+                                    <div class="gallery-item  filter-1" style="position: absolute; left: 0px; top: 400px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(0px, 400px, 0px);">
                                         <a href="img/photos/02.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/02.jpg">
                                             <div class="bg-cover"></div>
@@ -458,7 +419,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 1000px;">
+                                    <div class="gallery-item  filter-2" style="position: absolute; left: 200px; top: 400px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(-200px, 600px, 0px);">
                                         <a href="img/photos/06.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/06.jpg">
                                             <div class="bg-cover"></div>
@@ -473,7 +434,7 @@
 
 
                                     </div>
-                                    <div class="gallery-item  filter-3" style="position: absolute; left: 0px; top: 1200px;">
+                                    <div class="gallery-item  filter-3" style="position: absolute; left: 0px; top: 600px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(0px, 600px, 0px);">
                                         <a href="img/photos/08.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/08.jpg">
                                             <div class="bg-cover"></div>
@@ -486,7 +447,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 1400px;">
+                                    <div class="gallery-item  filter-2" style="position: absolute; left: 200px; top: 600px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(-200px, 800px, 0px);">
                                         <a href="img/photos/04.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/04.jpg">
                                             <div class="bg-cover"></div>
@@ -497,10 +458,8 @@
                                             <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="#"><i class="fa fa-thumbs-up"></i></a>
                                             <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="#"><i class="fa fa-comments"></i></a>
                                         </div>
-
-
                                     </div>
-                                    <div class="gallery-item  filter-1" style="position: absolute; left: 0px; top: 1600px;">
+                                    <div class="gallery-item  filter-1" style="position: absolute; left: 0px; top: 800px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(0px, 800px, 0px);">
                                         <a href="img/photos/10.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/10.jpg">
                                             <div class="bg-cover"></div>
@@ -511,12 +470,9 @@
                                             <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="#"><i class="fa fa-thumbs-up"></i></a>
                                             <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="#"><i class="fa fa-comments"></i></a>
                                         </div>
-
-
-
                                     </div>
 
-                                    <div class="gallery-item   filter-3" style="position: absolute; left: 0px; top: 1800px;">
+                                    <div class="gallery-item   filter-3" style="position: absolute; left: 200px; top: 800px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(-200px, 1000px, 0px);">
                                         <a href="img/photos/09.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/09.jpg">
                                             <div class="bg-cover"></div>
@@ -528,7 +484,7 @@
                                             <a class="vd_bg-green vd_white mgr-10 btn vd_round-btn btn-xs" role="button" href="#"><i class="fa fa-comments"></i></a>
                                         </div>
                                     </div>
-                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 2000px;">
+                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 1000px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(0px, 1000px, 0px);">
                                         <a href="img/photos/01.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/01.jpg">
                                             <div class="bg-cover"></div>
@@ -542,7 +498,7 @@
 
 
                                     </div>
-                                    <div class="gallery-item  filter-1" style="position: absolute; left: 0px; top: 2200px;">
+                                    <div class="gallery-item  filter-1" style="position: absolute; left: 200px; top: 1000px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(-200px, 1200px, 0px);">
                                         <a href="img/photos/11.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/11.jpg">
                                             <div class="bg-cover"></div>
@@ -555,7 +511,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="gallery-item  filter-1" style="position: absolute; left: 0px; top: 2400px;">
+                                    <div class="gallery-item  filter-1" style="position: absolute; left: 0px; top: 1200px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(0px, 1200px, 0px);">
                                         <a href="img/photos/12.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/12.jpg">
                                             <div class="bg-cover"></div>
@@ -568,7 +524,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="gallery-item  filter-3" style="position: absolute; left: 0px; top: 2600px;">
+                                    <div class="gallery-item  filter-3" style="position: absolute; left: 200px; top: 1200px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(-200px, 1400px, 0px);">
                                         <a href="img/photos/13.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/13.jpg">
                                             <div class="bg-cover"></div>
@@ -582,7 +538,7 @@
 
 
                                     </div>
-                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 2800px;">
+                                    <div class="gallery-item  filter-2" style="position: absolute; left: 0px; top: 1400px; transition-property: transform, opacity; transition-duration: 0.4s; transform: translate3d(0px, 1400px, 0px);">
                                         <a href="img/photos/14.jpg" data-rel="prettyPhoto[2]" rel="prettyPhoto[2]">
                                             <img alt="example image" src="img/photos/14.jpg">
                                             <div class="bg-cover"></div>
@@ -603,8 +559,8 @@
 
                             </div>
                             <!-- pd-20 -->
-                        </div> <!-- photos tab -->
-                        <div id="friends-tab" class="tab-pane">
+                        </div> #}<!-- photos tab -->
+                        {#<div id="friends-tab" class="tab-pane">
                             <div class="pd-20">
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-users mgr-10 profile-icon"></i> FRIENDS</h3>
                                 <ul class="nav nav-pills">
@@ -757,8 +713,8 @@
                                     </div>
                                 </div>
                             </div><!-- pd-20 -->
-                        </div>  <!-- photos tab -->
-                        <div id="groups-tab" class="tab-pane">
+                        </div> #} <!-- photos tab -->
+                        {#<div id="groups-tab" class="tab-pane">
                             <div class="pd-20">
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-leaf mgr-10 profile-icon"></i> GROUPS</h3>
                                 <div class="row">
@@ -836,7 +792,7 @@
 
                                 </div> <!-- row -->
                             </div> <!-- pd-20 -->
-                        </div>  <!-- groups tab -->
+                        </div> #} <!-- groups tab -->
 
                     </div>
                     <!-- tab-content -->
@@ -845,6 +801,58 @@
         </div>
         <!-- row -->
 
+        <!--Modal: Contact form-->
+        <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Header-->
+                    <div class="modal-header light-blue darken-3 white-text">
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="title"><i class="fa fa-pencil"></i> Formulaire de contact</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body mb-0">
+                        <div class="md-form form-sm">
+                            <i class="fa fa-envelope prefix"></i>
+                            <label for="form19">Votre nom</label>
+                            <input type="text" id="form19" class="form-control">
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <i class="fa fa-lock prefix"></i>
+                            <label for="form20">Votre adresse email </label>
+                            <input type="password" id="form20" class="form-control">
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <i class="fa fa-tag prefix"></i>
+                            <label for="form21">Sujet</label>
+                            <input type="text" id="form21" class="form-control">
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <i class="fa fa-pencil prefix"></i>
+                            <label for="form8">Votre message</label>
+                            <textarea type="text" id="form8" rows="6" class="md-textarea mb-0"></textarea>
+                        </div>
+
+                        <div class="text-center mt-1-half">
+                            <button class="btn btn-info mb-2">Envoyer <i class="fa fa-send ml-1"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: Contact form-->
+
     </div>
+    <!-- Vue js star rating -->
+    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
 
 {% endblock %}

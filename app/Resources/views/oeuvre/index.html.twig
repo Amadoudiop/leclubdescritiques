@@ -24,7 +24,7 @@
         <div class="col-xs-12">
           <div class="card">
             <div class="card-header">
-              List of pages
+                <span class="badge badge-info badge-icon"><i class="fa fa-star" aria-hidden="true"></i><span>Number of Oeuvres on the trending section : {{ nbTrendingOeuvres }}</span></span>
             </div>
             <div class="card-body no-padding">
               <table class="datatable table table-striped primary" cellspacing="0" width="100%">
@@ -75,6 +75,19 @@
                                             <button type="button" class="btn btn-default">product</button>
                                         </a>
                                     </li>
+                                    {% if nbTrendingOeuvres < 6 %}
+                                    <li>
+                                        {% if oeuvre.trends == false %}
+                                            <button type="button" class="btn btn-info trends" dataInt="{{ oeuvre.id }}">Add from Trends</button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-pink trends" dataInt="{{ oeuvre.id }}">Remove from Trends</button>
+                                        {% endif %}
+                                    </li>
+                                    {% else %}
+                                        {% if oeuvre.trends == true %}
+                                            <button type="button" class="btn btn-pink trends" dataInt="{{ oeuvre.id }}">Remove from Trends</button>
+                                        {% endif %}
+                                    {% endif %}
                                 </ul>
                             </td>
                         </tr>

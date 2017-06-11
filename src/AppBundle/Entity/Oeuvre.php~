@@ -61,6 +61,13 @@ class Oeuvre
     private $publication_date;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="trends", type="boolean")
+     */
+    private $trends;
+
+    /**
      * @var \int
      *
      * @ORM\Column(name="rating", type="integer")
@@ -333,5 +340,29 @@ class Oeuvre
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set subCategory
+     *
+     * @param \AppBundle\Entity\SubCategory $subCategory
+     *
+     * @return Oeuvre
+     */
+    public function setSubCategory(\AppBundle\Entity\SubCategory $subCategory = null)
+    {
+        $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subCategory
+     *
+     * @return \AppBundle\Entity\SubCategory
+     */
+    public function getSubCategory()
+    {
+        return $this->subCategory;
     }
 }

@@ -17,7 +17,18 @@
 .card #preview_img{
   max-width: 100%;
 }
-
+.btn.btn-pink{
+  color: #fff;
+  border-color: #f06060;
+  border-bottom-color: #f06060;
+  background-color: #f06060;
+  box-shadow: 0 2px 3px rgba(57, 195, 218, 0.3);
+}
+/*.btn.btn-pink:hover{
+    color: #fff;
+    background-color: #31b0d5;
+    border-color: #269abc;
+}*/
 @import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700';
 @keyframes fadeInUp {
   0% {

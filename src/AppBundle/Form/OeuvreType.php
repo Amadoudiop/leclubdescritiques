@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /*File upload*/
@@ -78,7 +79,14 @@ class OeuvreType extends AbstractType
                         'class' => 'form-control'
                     ]
 
-                ]);
+                ])
+                /*->add('trends', ButtonType::class, [  
+                    'label' => 'Add to the trending ?',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+
+                ])*/;
     }
     
     /**

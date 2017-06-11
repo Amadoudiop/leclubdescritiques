@@ -61,6 +61,13 @@ class Oeuvre
     private $publication_date;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="trends", type="boolean")
+     */
+    private $trends;
+
+    /**
      * @var \int
      *
      * @ORM\Column(name="rating", type="integer")
@@ -357,5 +364,29 @@ class Oeuvre
     public function getSubCategory()
     {
         return $this->subCategory;
+    }
+
+    /**
+     * Set trends
+     *
+     * @param boolean $trends
+     *
+     * @return Oeuvre
+     */
+    public function setTrends($trends)
+    {
+        $this->trends = $trends;
+ 
+       return $this;
+    }
+
+    /**
+     * Get trends
+     *
+     * @return boolean
+     */
+    public function getTrends()
+    {
+        return $this->trends;
     }
 }

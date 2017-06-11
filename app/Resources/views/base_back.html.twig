@@ -9,10 +9,11 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/flat-admin.css') }}">
 
 		<!-- Theme -->
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/blue-sky.css') }}">
+		<!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/theme/blue-sky.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/blue.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/red.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/yellow.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/theme/yellow.css') }}"> -->
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/creemson.css') }}">
 		<!-- <link rel="stylesheet" type="text/css" href="{{ asset('css/rating.min.css') }}"> -->
 
 		<!-- Date picker -->
@@ -169,6 +170,11 @@
 			<script type="text/javascript" src="{ asset('js/app.js') }}"></script>
 			<!-- <script src="{{ asset('js/rating.min.js') }}"></script> -->
 			<script type="text/javascript" src="{{ asset('js/creemson.js') }}"></script>
+
+		    <!-- JS routing -->
+		    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
 		</div>
 	</body>
 </html>

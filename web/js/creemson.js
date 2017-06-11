@@ -35,3 +35,21 @@ $('form .btn-danger').click(function(e){
         e.preventDefault();
     }
 });
+
+
+/**
+ * Add Oeuvre to the trending list
+ */
+$('.trends').click(function(){
+    var id = $(this).attr('dataInt');
+    console.log(id);
+    $.ajax({
+        url: Routing.generate('oeuvre_index'),
+        type:'POST',
+        data:'oeuvre_id='+id,
+        success: function(state){
+            //console.log(state);
+            location.reload();
+        }
+    })
+});

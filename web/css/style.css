@@ -429,20 +429,21 @@ a:link, a:hover, a:visited, a:active {
 /*    --------------------------------------------------
 	:: contact modal
 	-------------------------------------------------- */
-#modalContactForm .modal-dialog .modal-content {
+
+#modalEditProfil .modal-dialog .modal-content, #modalAddBook .modal-dialog .modal-content, #modalContactForm .modal-dialog .modal-content {
     border-radius: 2px;
 }
 
-#modalContactForm .modal-dialog.cascading-modal .modal-header .title .fa {
+#modalEditProfil .modal-dialog.cascading-modal .modal-header .title .fa,#modalContactForm .modal-dialog.cascading-modal .modal-header .title .fa, #modalAddBook .modal-dialog.cascading-modal .modal-header .title .fa  {
     margin-right: 9px;
 }
 
-#modalContactForm .modal-header{
+#modalEditProfil .modal-header,#modalContactForm .modal-header, #modalAddBook .modal-header{
     background-color: #70BEB1;
     border-radius: 2px;
 }
 
-#modalContactForm .modal-dialog.cascading-modal .modal-header {
+#modalEditProfil .modal-dialog.cascading-modal .modal-header ,#modalContactForm .modal-dialog.cascading-modal .modal-header, #modalAddBook .modal-dialog.cascading-modal .modal-header {
     text-align: center;
     margin: -2rem 1rem 1rem;
     padding: 1.5rem;
@@ -455,18 +456,18 @@ a:link, a:hover, a:visited, a:active {
     border-radius: 3px;
 }
 
-#modalContactForm .modal-dialog.cascading-modal .modal-header .title {
+#modalEditProfil .modal-dialog.cascading-modal .modal-header .title,#modalContactForm .modal-dialog.cascading-modal .modal-header .title, #modalAddBook .modal-dialog.cascading-modal .modal-header .title {
     width: 100%;
     margin-bottom: 0;
     font-size: 1.45rem;
     color:white;
 }
 
-#modalContactForm .modal-dialog.cascading-modal {
+#modalEditProfil .modal-dialog.cascading-modal ,#modalContactForm .modal-dialog.cascading-modal, #modalAddBook .modal-dialog.cascading-modal {
     margin-top: 10%;
 }
 
-#modalContactForm .modal-dialog.cascading-modal .modal-header {
+#modalEditProfil .modal-dialog.cascading-modal .modal-header  ,#modalContactForm .modal-dialog.cascading-modal .modal-header , modalCAddBook.modal-dialog.cascading-modal .modal-header {
     text-align: center;
     margin: -2rem 1rem 1rem;
     padding: 1.5rem;
@@ -478,15 +479,15 @@ a:link, a:hover, a:visited, a:active {
     flex-direction: column;
     border-radius: 3px;
 }
-#modalContactForm .modal-content {
+#modalEditProfil .modal-content,#modalContactForm .modal-content, #modalAddBook .modal-content {
     background-color: white;
 }
 
-#modalContactForm .btn-info {
+#modalEditProfil .btn-info,#modalContactForm .btn-info, #modalAddBook .btn-info {
     background: #d99e7e;
 }
 
-#modalContactForm .btn {
+#modalEditProfil .btn,#modalContactForm .btn, #modalAddBook .btn {
     margin-bottom: 1.5rem!important;
     text-transform: uppercase;
     font-size: 1.4rem;
@@ -528,12 +529,12 @@ a:link, a:hover, a:visited, a:active {
     box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
 }
 
-#modalContactForm .modal-dialog.cascading-modal .modal-body, .modal-dialog.cascading-modal .modal-footer {
+#modalEditProfil .modal-dialog.cascading-modal .modal-body, .modal-dialog.cascading-modal .modal-footer,#modalContactForm .modal-dialog.cascading-modal .modal-body, .modal-dialog.cascading-modal .modal-footer, #modalAddBook .modal-dialog.cascading-modal .modal-body, .modal-dialog.cascading-modal .modal-footer {
     color: #616161;
     padding-right: 2rem;
     padding-left: 2rem;
 }
-#modalContactForm .modal-body {
+#modalEditProfil .modal-body, #modalContactForm .modal-body, #modalAddBook .modal-body {
     position: relative;
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 auto;
@@ -542,11 +543,11 @@ a:link, a:hover, a:visited, a:active {
     padding: 15px;
 }
 
-#modalContactForm .md-form.form-sm .prefix {
+#modalEditProfil .md-form.form-sm .prefix ,#modalContactForm .md-form.form-sm .prefix, #modalAddBook .md-form.form-sm .prefix {
     font-size: 1.5rem;
     top: .4rem;
 }
-#modalContactForm .md-form .prefix {
+#modalEditProfil .md-form .prefix,#modalContactForm .md-form .prefix, #modalAddBook .md-form .prefix {
     position: absolute;
     width: 3rem;
     font-size: 2rem;
@@ -554,33 +555,33 @@ a:link, a:hover, a:visited, a:active {
     transition: color .2s;
 }
 
-#modalContactForm .md-form.form-sm .prefix~input, .md-form.form-sm .prefix~label, .md-form.form-sm .prefix~textarea {
+#modalEditProfil .md-form.form-sm .prefix~input, .md-form.form-sm .prefix~label, .md-form.form-sm .prefix~textarea,#modalContactForm .md-form.form-sm .prefix~input, .md-form.form-sm .prefix~label, .md-form.form-sm .prefix~textarea, #modalAddBook .md-form.form-sm .prefix~input, .md-form.form-sm .prefix~label, .md-form.form-sm .prefix~textarea {
     margin-left: 2.2rem;
 }
 @media only screen and (max-width: 992px){
-    #modalContactForm .md-form .prefix~input {
+    #modalEditProfil .md-form .prefix~input,#modalContactForm .md-form .prefix~input, #modalAddBook .md-form .prefix~input {
         width: 86%;
         width: -webkit-calc(100% - 3rem);
         width: calc(100% - 3rem);
     }
 }
-#modalContactForm .md-form .prefix~input, .md-form .prefix~textarea {
+#modalEditProfil .md-form .prefix~input, .md-form .prefix~textarea,#modalContactForm .md-form .prefix~input, .md-form .prefix~textarea, #modalAddBook .md-form .prefix~input, .md-form .prefix~textarea {
     margin-left: 3rem;
     width: 92%;
     width: -webkit-calc(100% - 3rem);
     width: calc(100% - 3rem);
 }
 
-#modalContactForm .md-form .prefix~textarea {
+#modalEditProfil .md-form .prefix~textarea,#modalContactForm .md-form .prefix~textarea, #modalAddBook .md-form .prefix~textarea {
     min-height:60px;
 }
 
-#modalContactForm .md-form.form-sm input {
+#modalEditProfil .md-form.form-sm input,#modalContactForm .md-form.form-sm input, #modalAddBook .md-form.form-sm input {
     padding-bottom: .2rem;
     padding-top: .2rem;
     line-height: .5;
 }
-#modalContactForm #modalContactForm input[type=date], #modalContactForm input[type=datetime-local], #modalContactForm input[type=email], #modalContactForm input[type=number], #modalContactForm input[type=password], #modalContactForm input[type=search-md], #modalContactForm input[type=search], #modalContactForm input[type=tel], #modalContactForm input[type=text], #modalContactForm input[type=time], #modalContactForm input[type=url], textarea.md-textarea {
+#modalContactForm #modalContactForm input[type=date], #modalContactForm input[type=datetime-local], #modalContactForm input[type=email], #modalContactForm input[type=number], #modalContactForm input[type=password], #modalContactForm input[type=search-md], #modalContactForm input[type=search], #modalContactForm input[type=tel], #modalContactForm input[type=text], #modalContactForm input[type=time], #modalContactForm input[type=url],#modalContactForm  textarea.md-textarea, #modalAddBook input[type=date], #modalAddBook input[type=datetime-local], #modalAddBook input[type=email], #modalAddBook input[type=number], #modalAddBook input[type=password], #modalAddBook input[type=search-md], #modalAddBook input[type=search], #modalAddBook input[type=tel], #modalAddBook input[type=text], #modalAddBook input[type=time], #modalAddBook input[type=url],#modalAddBook  textarea.md-textarea,#modalEditProfil input[type=date], #modalEditProfil input[type=datetime-local], #modalEditProfil input[type=email], #modalEditProfil input[type=number], #modalEditProfil input[type=password], #modalEditProfil input[type=search-md], #modalEditProfil input[type=search], #modalEditProfil input[type=tel], #modalEditProfil input[type=text], #modalEditProfil input[type=time], #modalEditProfil input[type=url],#modalEditProfil  textarea.md-textarea {
     background-color: transparent;
     border: none ;
     border-bottom: 1px solid #ccc;
@@ -596,7 +597,7 @@ a:link, a:hover, a:visited, a:active {
     -webkit-transition: all .3s;
     transition: all .3s;
 }
-#modalContactForm .form-control {
+#modalEditProfil .form-control,#modalContactForm .form-control, #modalAddBook.form-control {
     padding: .5rem 0 .6rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -606,7 +607,7 @@ a:link, a:hover, a:visited, a:active {
     margin-top: .2rem;
     margin-bottom: 1rem;
 }
-#modalContactForm .form-control {
+#modalEditProfil form-control,#modalContactForm .form-control, #modalAddBook.form-control {
     color: #464a4c;
     background-clip: padding-box;
    /* border: 1px solid rgba(0,0,0,.15);*/
@@ -617,14 +618,89 @@ a:link, a:hover, a:visited, a:active {
 }
 
 
-#modalContactForm .md-form {
+#modalEditProfil .md-form,#modalContactForm .md-form, #modalAddBook.md-form {
     position: relative;
 }
 
-#modalContactForm .md-form, .md-form .btn {
+#modalEditProfil .md-form, .md-form .btn,#modalContactForm .md-form, .md-form .btn, #modalAddBook.md-form, .md-form .btn {
     margin-bottom: 1.5rem;
 }
 
 .md-form.form-sm .prefix~input, .md-form.form-sm .prefix~label, .md-form.form-sm .prefix~textarea {
     margin-left: 2.2rem;
 }
+
+/*    --------------------------------------------------
+	:: autocomplete
+	-------------------------------------------------- */
+/*
+.transition, .autocomplete, .showAll-transition, .autocomplete ul, .autocomplete ul li a{
+    transition:all 0.3s ease-out;
+    -moz-transition:all 0.3s ease-out;
+    -webkit-transition:all 0.3s ease-out;
+    -o-transition:all 0.3s ease-out;
+}
+
+.autocomplete ul{
+    font-family: sans-serif;
+    position: absolute;
+    list-style: none;
+    background: #f8f8f8;
+    padding: 10px 0;
+    margin: 0;
+    display: inline-block;
+    min-width: 15%;
+    margin-top: 10px;
+}
+
+.autocomplete ul:before{
+    content: "";
+    display: block;
+    position: absolute;
+    height: 0;
+    width: 0;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #f8f8f8;
+    left: 46%;
+    top: -20px
+}
+
+.autocomplete ul li a{
+    text-decoration: none;
+    display: block;
+    background: #f8f8f8;
+    color: #2b2b2b;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.autocomplete ul li a:hover, .autocomplete ul li.focus-list a{
+    color: white;
+    background: #2F9AF7;
+}
+
+.autocomplete ul li a span{
+    display: block;
+    margin-top: 3px;
+    color: grey;
+    font-size: 13px;
+}
+
+.autocomplete ul li a:hover span, .autocomplete ul li.focus-list a span{
+    color: white;
+}
+
+.showAll-transition{
+    opacity: 1;
+    height: 50px;
+    overflow: hidden;
+}
+
+.showAll-enter{
+    opacity: 0.3;
+    height: 0;
+}
+
+.showAll-leave{
+    display: none;
+}*/

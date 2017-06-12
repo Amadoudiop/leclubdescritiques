@@ -17,8 +17,8 @@
                     <div class="panel-body">
                         <div class="text-center vd_info-parent"> <img alt="example image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrJ2P7MVKF8hUlVR87wMsGO7T4Jikl_8R7BehuqezQEOhQDnl3Aw"> </div>
                         <div class="row">
-                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"><i class="fa fa-check-circle append-icon"></i>Friends</a> </div>
-                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Contacter</a> </div>
+
+                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Contacter</a> </div>
                         </div>
                         <h3 class="font-semibold mgbt-xs-5">Mariah Caraiban</h3>
                         <div class="mgtp-20">
@@ -51,7 +51,7 @@
                     <div class="tab-content">
                         <div id="profile-tab" class="tab-pane active">
                             <div class="pd-20">
-                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow"> <i class="fa fa-pencil append-icon"></i> Editer </a> </div>
+                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalEditProfil"> <i class="fa fa-pencil append-icon"></i> Editer </a> </div>
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-user mgr-10 profile-icon " aria-hidden="true" ></i> A PROPOS</h3>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -181,7 +181,7 @@
 
                         <div id="projects-tab" class="tab-pane">
                             <div class="pd-20">
-                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow"> <i class="fa fa-plus append-icon"></i> Ajouter livre </a> </div>
+                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalAddBook"> <i class="fa fa-plus append-icon"></i> Ajouter livre </a> </div>
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-book mgr-10 profile-icon"></i> LIVRES</h3>
                                 {#<table class="table table-striped table-hover">
                                     <thead>
@@ -313,20 +313,21 @@
 
                                 <div class="row">
                                     <div class="container-fluid">
-                                        <div v-for="alaune in alaunes">
+                                        <div v-for="userBook in userBooks">
                                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                <div class="alauneCard"  >
+                                                <div class="userBooksCard"  >
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
                                                             <div>
                                                                 <a   href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                                                                    {# <img :src="{{ asset("'images/' + alaune.titre + '.jpg'") }}" class="img-thumbnail img-alaune img-responsive">#}
+                                                                    {# <img :src="{{ asset("'images/' + userBook.titre + '.jpg'") }}" class="img-thumbnail img-userBook img-responsive">#}
                                                                 </a>
                                                             </div>
                                                         </div>
                                                         <div class="panel-footer" >
-                                                            ${ alaune.titre } <br>
-                                                            ${ alaune.auteur } <star-rating :star-size="20" :rating="alaune.rating" :read-only="true" increment="0.5" show-rating="false"></star-rating>
+                                                            ${ userBook.titre } <br>
+                                                            ${ userBook.auteur } rating<star-rating :star-size="20" :rating="userBook.Grating" :read-only="true" :show-rating="false" increment="0.5" ></star-rating>
+                                                            <star-rating :star-size="20" :rating="userBook.Urating" :read-only="true" increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
                                                             <span class="label label-success">à échanger</span>
                                                             <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                                         </div>
@@ -851,6 +852,94 @@
         </div>
         <!--Modal: Contact form-->
 
+        <!--Modal: ajouter livre-->
+        <div class="modal fade" id="modalAddBook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Header-->
+                    <div class="modal-header light-blue darken-3 white-text">
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="title"><i class="fa fa-book"></i>Ajouter un livre</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body mb-0">
+
+                        <div class="md-form form-sm">
+                            <i class="fa fa-book prefix"></i>
+                            <label for="form27">Recherche</label>
+                            <!-- id="form27" class="form-control" -->
+                            <autocomplete
+                                    url="http://localhost:8000/getBooks/"
+                                    anchor="title"
+                                    label="writer"
+                                    :on-select="getData">
+                            </autocomplete>
+                        </div>
+                        <div class="text-center mt-1-half">
+                            <button class="btn btn-info mb-1 waves-effect waves-light"> Ajouter <i class="fa fa-check ml-1"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: ajouter livre-->
+
+        <!--Modal: Editer profil form-->
+        <div class="modal fade" id="modalEditProfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Header-->
+                    <div class="modal-header light-blue darken-3 white-text">
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="title"><i class="fa fa-pencil"></i> Editer le profil</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body mb-0">
+                        <div class="md-form form-sm">
+                            <i class="fa fa-envelope prefix"></i>
+                            <label for="form19">Votre prénom</label>
+                            <input type="text" id="form19" class="form-control">
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <i class="fa fa-lock prefix"></i>
+                            <label for="form20">Votre nom </label>
+                            <input type="password" id="form20" class="form-control">
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <i class="fa fa-tag prefix"></i>
+                            <label for="form21">Votre adresse email</label>
+                            <input type="text" id="form21" class="form-control">
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <i class="fa fa-pencil prefix"></i>
+                            <label for="form8">Votre description</label>
+                            <textarea type="text" id="form8" rows="6" class="md-textarea mb-0"></textarea>
+                        </div>
+
+                        <div class="text-center mt-1-half">
+                            <button class="btn btn-info mb-2"> Mettre à jour <i class="fa fa-send ml-1"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: Editer profil form-->
+        
     </div>
     <!-- Vue js star rating -->
     <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>

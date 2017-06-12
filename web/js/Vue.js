@@ -178,7 +178,7 @@ Vue.component('autocomplete', {
                         params += `&${key}=${this.customParams[key]}`
                     })
                 }
-                ajax.open('GET', `${this.url}?${this.param}=${val}${params}`, true);
+                ajax.open('GET', `${this.url}{${this.param}=${val}${params}}`, true);
                 ajax.send();
                 ajax.addEventListener('progress', function (data) {
                     if(data.lengthComputable){

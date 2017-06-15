@@ -15,6 +15,7 @@
     display: inline-block;
     min-width: 15%;
     margin-top: 10px;
+    z-index: 2000;
 }
 
 .autocomplete ul:before{
@@ -33,14 +34,14 @@
     text-decoration: none;
     display: block;
     background: #f8f8f8;
-    color: #2b2b2b;
+    color: #25283C;
     padding: 5px;
     padding-left: 10px;
 }
 
 .autocomplete ul li a:hover, .autocomplete ul li.focus-list a{
     color: white;
-    background: #2F9AF7;
+    background: #CEE8DF;
 }
 
 .autocomplete ul li a span{

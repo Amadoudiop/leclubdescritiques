@@ -873,11 +873,19 @@
                             <label for="form27">Recherche</label>
                             <!-- id="form27" class="form-control" -->
                             <autocomplete
-                                    url="http://localhost:8000/app_dev.php/getBooks/"
-                                    anchor="title"
-                                    label="writer"
-                                    :on-select="getData">
+                                name="people"
+                                placeholder="Tapez ici un livre ou un auteur"
+                                url="http://localhost:8000/app_dev.php/getBooks/"
+                                param="q"
+                                limit="5"
+                                anchor="title"
+                                label="writer"
+                                model="vModelLike">
                             </autocomplete>
+                        </div>
+                        <div class="preview">
+                            <h2>Votre sélection</h2>
+                            <pre>${ data | json 2 }</pre>
                         </div>
                         <div class="text-center mt-1-half">
                             <button class="btn btn-info mb-1 waves-effect waves-light"> Ajouter <i class="fa fa-check ml-1"></i></button>

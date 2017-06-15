@@ -29,4 +29,14 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+         * @Route("/salon", name="salon")
+         */
+        public function salonAction(Request $request)
+        {
+            return $this->render('front/salon.html.twig', [
+                'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            ]);
+        }
 }

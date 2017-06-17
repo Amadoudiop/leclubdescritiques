@@ -1,27 +1,6 @@
-/*Vue.component( 'oeuvre', {
-    template: "#oeuvre",
-    props: {
-        title:'test',
-        auteur:'',
-        description:'',
-        contenu:''
-    },
-    data(){
-      return{
-          oeuvreIsShown:true
-      }
-    }
-    })*/
-/*Vue.component('autocomplete', Vue2Autocomplete.default);*/
-/*import Autocomplete from 'vue2-autocomplete-js';
-var Vue2Autocomplete = require('vue2-autocomplete');
-Vue.component('autocomplete', Vue2Autocomplete);*/
-
-/*<div :class=\"(className ? className + \'-wrapper \' : \'\') + \"autocomplete-wrapper\"\"><input  type="text" :id=\"id\" :class=\"(className ? className + \'-input \' : \'\') + \"autocomplete-input\"\" :placeholder="placeholder"   v-model=\"type\"    @input=\"input(type)\"    @dblclick=\"showAll\"    @blur=\"hideAll\"@keydown=\"keydown\" @focus=\"focus\"    autocomplete=\"off\" /> <div :class=\"(className ? className + \'-list \' : \'\') + \"autocomplete transition autocomplete-list\"\" v-show=\"showList\"> <ul> <li v-for=\"(data, i) in json\" transition=\"showAll\"    :class=\"activeClass(i)\"> <a  href=\"#\" @click.prevent=\"selectList(data)\" @mousemove=\"mousemove(i)\"> <b>{{ data[anchor] }}</b> <span>{{ data[label] }}</span> </a> </li> </ul> </div> </div>*/
-
 
 Vue.component('autocomplete', {
-    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div></div>',
+    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"author\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div></div>',
     props: {
         id: String,
         className: String,
@@ -74,15 +53,23 @@ Vue.component('autocomplete', {
         return {
             showList: false,
             type: "",
+            author:"",
             json: [],
             focusList: ""
         };
     },
     methods: {
+        chargement() {
+            console.log("debut")
+        },
+        finChargement(){
+          console.log("fin")
+        },
         // Netralize Autocomplete
         clearInput() {
             this.showList = false
             this.type = ""
+            this.author = ""
             this.json = []
             this.focusList = ""
         },
@@ -158,6 +145,7 @@ Vue.component('autocomplete', {
             let clean = this.cleanUp(data);
             // Put the selected data to type (model)
             this.type = clean[this.anchor];
+            this.author = clean[this.anchor];
             this.showList = false;
             /**
              * Callback Event
@@ -196,78 +184,19 @@ Vue.component('autocomplete', {
         },
         setValue(val) {
             this.type = val
+            this.author = val
         }
     },
     created(){
         // Sync parent model with initValue Props
         this.type = this.initValue ? this.initValue : null
+        this.author = this.initValue ? this.initValue : null
     }
 
 })
 
 Vue.component('star-rating', VueStarRating.default);
 
-/*Vue.component('star-rating', {
-    template: '#star-rating',
-    data: function() {
-        return {
-            temp_value: null,
-            ratings: [1, 2, 3, 4, 5]
-        };
-    },
-    props: {
-        'name': String,
-        'value': null,
-        'id': String,
-        'disabled': String,
-        'required': Boolean
-    },
-    methods: {
-        star_over: function(index) {
-            if (this.disabled=="true") {
-                return;
-            }
-            this.temp_value = this.value;
-            this.value = index;
-        },
-        star_out: function() {
-            if (this.disabled=="true") {
-                return;
-            }
-            this.value = this.temp_value;
-        },
-        set: function(value) {
-            if (this.disabled=="true") {
-                return;
-            }
-            this.temp_value = value;
-            this.value = value;
-        }
-    }
-});*/
-
-/*Vue.component('navbar-menu', {
-    props:{
-        isConnected: Boolean,
-        page: String
-    },
-    data(){
-        return{
-
-        }
-    },
-    template: '#navbar-menu',
-});*/
-
-/*Vue.component('test-compo', {
-    props: {
-        title: String
-    },
-    data(){
-
-    },
-    template:'<div>{{ title }}</div>'
-    })*/
 
 var app = new Vue({
     el: '#app',

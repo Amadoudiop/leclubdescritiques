@@ -31,11 +31,11 @@ class DefaultController extends Controller
     }
 
     /**
-         * @Route("/salon", name="salon")
+         * @Route("/chat", name="chat")
          */
         public function salonAction(Request $request)
         {
-            return $this->render('front/salon.html.twig', [
+            return $this->render('front/chat.html.twig', [
                 'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
             ]);
         }

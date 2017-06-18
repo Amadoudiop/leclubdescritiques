@@ -24,6 +24,8 @@ class GoogleBooksApiController extends Controller
         $result = file_get_contents($url);
         $result = json_decode($result, true);
 
+        //var_dump($result);die;
+
         if ($result) {
             foreach ($result['items'] as $item) {
                 $authors = (empty($item['volumeInfo']['authors'][0])) ? '' : $item['volumeInfo']['authors'][0];
@@ -32,8 +34,9 @@ class GoogleBooksApiController extends Controller
                 $description = (empty($item['volumeInfo']['description'])) ? '' : $item['volumeInfo']['description'];
                 $url_image = (empty($item['volumeInfo']['imageLinks']['thumbnail'])) ? '' : $item['volumeInfo']['imageLinks']['thumbnail'];
                 $publication_date = (empty($item['volumeInfo']['publishedDate'])) ? '' : $item['volumeInfo']['publishedDate'];
+                $id_google_books_api = (empty($item['id'])) ? '' : $item['id'];
 
-                $response[] = ['authors' => $authors, 'title' => $title, 'url_product' => $url_product, 'description' => $description, 'url_image' => $url_image, 'publication_date' => $publication_date];
+                $response[] = ['authors' => $authors, 'title' => $title, 'url_product' => $url_product, 'description' => $description, 'url_image' => $url_image, 'publication_date' => $publication_date, 'id_google_books_api' => $id_google_books_api ];
             }
         }
         return new JsonResponse($response);

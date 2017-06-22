@@ -24,23 +24,26 @@ class UserOeuvre
     /**
      * @var int
      *
-     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idUser;
+    private $user;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="id_oeuvre", type="integer")
+     * @ORM\ManyToOne(targetEntity="Oeuvre")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idOeuvre;
+    private $oeuvre;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="id_status", type="integer")
+     * @ORM\ManyToOne(targetEntity="Status")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idStatus;
+    private $status;
 
     /**
      * @var float
@@ -60,75 +63,75 @@ class UserOeuvre
     }
 
     /**
-     * Set idUser
+     * Set user
      *
-     * @param integer $idUser
+     * @param integer $user
      *
      * @return UserOeuvre
      */
-    public function setIdUser($idUser)
+    public function setUser($user)
     {
-        $this->idUser = $idUser;
+        $this->user = $user;
 
         return $this;
     }
 
     /**
-     * Get idUser
+     * Get user
      *
      * @return int
      */
-    public function getIdUser()
+    public function getUser()
     {
-        return $this->idUser;
+        return $this->user;
     }
 
     /**
-     * Set idOeuvre
+     * Set oeuvre
      *
-     * @param integer $idOeuvre
+     * @param integer $oeuvre
      *
      * @return UserOeuvre
      */
-    public function setIdOeuvre($idOeuvre)
+    public function setOeuvre($oeuvre)
     {
-        $this->idOeuvre = $idOeuvre;
+        $this->oeuvre = $oeuvre;
 
         return $this;
     }
 
     /**
-     * Get idOeuvre
+     * Get oeuvre
      *
      * @return int
      */
-    public function getIdOeuvre()
+    public function getOeuvre()
     {
-        return $this->idOeuvre;
+        return $this->oeuvre;
     }
 
     /**
-     * Set idStatus
+     * Set status
      *
-     * @param integer $idStatus
+     * @param integer $status
      *
      * @return UserOeuvre
      */
-    public function setIdStatus($idStatus)
+    public function setStatus($status)
     {
-        $this->idStatus = $idStatus;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get idStatus
+     * Get status
      *
      * @return int
      */
-    public function getIdStatus()
+    public function getStatus()
     {
-        return $this->idStatus;
+        return $this->status;
     }
 
     /**

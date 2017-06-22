@@ -37,10 +37,16 @@ class Salon
     private $participants_number;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Oeuvre", inversedBy="salons")
-     * @ORM\JoinColumn(name="oeuvre_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Oeuvre")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $oeuvre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     /**
      * Get id

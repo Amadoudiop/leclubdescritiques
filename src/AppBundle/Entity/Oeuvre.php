@@ -71,9 +71,11 @@ class Oeuvre
     private $author;
 
     /**
-     * @ORM\OneToMany(targetEntity="Salon", mappedBy="salon")
+     * @var string
+     *
+     * @ORM\Column(name="id_google_api", type="string", length=255)
      */
-    private $salons;
+    private $id_google_api;
 
     /**
      * Get id
@@ -228,47 +230,6 @@ class Oeuvre
     {
         return $this->author;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->salons = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add salon
-     *
-     * @param \AppBundle\Entity\Salon $salon
-     *
-     * @return Oeuvre
-     */
-    public function addSalon(\AppBundle\Entity\Salon $salon)
-    {
-        $this->salons[] = $salon;
-
-        return $this;
-    }
-
-    /**
-     * Remove salon
-     *
-     * @param \AppBundle\Entity\Salon $salon
-     */
-    public function removeSalon(\AppBundle\Entity\Salon $salon)
-    {
-        $this->salons->removeElement($salon);
-    }
-
-    /**
-     * Get salons
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSalons()
-    {
-        return $this->salons;
-    }
 
     /**
      * Set rating
@@ -292,5 +253,29 @@ class Oeuvre
     public function getRating()
     {
         return $this->rating;
+    }
+
+    /**
+     * Set idGoogleApi
+     *
+     * @param string $idGoogleApi
+     *
+     * @return Oeuvre
+     */
+    public function setIdGoogleApi($idGoogleApi)
+    {
+        $this->id_google_api = $idGoogleApi;
+
+        return $this;
+    }
+
+    /**
+     * Get idGoogleApi
+     *
+     * @return string
+     */
+    public function getIdGoogleApi()
+    {
+        return $this->id_google_api;
     }
 }

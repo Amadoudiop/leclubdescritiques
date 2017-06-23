@@ -40,12 +40,20 @@ class DefaultController extends Controller
     }
 
     /**
-         * @Route("/chat", name="chat")
-         */
-        public function salonAction(Request $request)
-        {
-            return $this->render('front/chat.html.twig', [
-                'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-            ]);
-        }
+     * @Route("/salon/{id}", name="salon")
+     */
+    public function salonAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $salon = $em->getRepository('AppBundle:Salon')->findById($id);
+
+        $messages = $em->getRepository('AppBundle:SalonMessages')->findBySalon($salon);
+
+        //var_dump($salon);die;
+
+        return $this->render('front/chat.html.twig', [
+            'salon' => $salon,
+            'messages' => $messages
+        ]);
+    }
 }

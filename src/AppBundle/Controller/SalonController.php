@@ -10,14 +10,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Salon controller.
  *
- * @Route("salon")
  */
 class SalonController extends Controller
 {
     /**
      * Lists all salon entities.
      *
-     * @Route("/", name="salon_index")
+     * @Route("/admin/salon/", name="salon_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +33,7 @@ class SalonController extends Controller
     /**
      * Creates a new salon entity.
      *
-     * @Route("/new", name="salon_new")
+     * @Route("/admin/salon/new", name="salon_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +59,7 @@ class SalonController extends Controller
     /**
      * Finds and displays a salon entity.
      *
-     * @Route("/{id}", name="salon_show")
+     * @Route("/admin/salon/{id}", name="salon_show")
      * @Method("GET")
      */
     public function showAction(Salon $salon)
@@ -76,7 +75,7 @@ class SalonController extends Controller
     /**
      * Displays a form to edit an existing salon entity.
      *
-     * @Route("/{id}/edit", name="salon_edit")
+     * @Route("/admin/salon/{id}/edit", name="salon_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Salon $salon)
@@ -101,7 +100,7 @@ class SalonController extends Controller
     /**
      * Deletes a salon entity.
      *
-     * @Route("/{id}", name="salon_delete")
+     * @Route("/admin/salon/{id}", name="salon_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Salon $salon)

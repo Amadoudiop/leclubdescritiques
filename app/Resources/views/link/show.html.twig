@@ -1,0 +1,40 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+    <h1>Link</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ link.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ link.name }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ link.url }}</td>
+            </tr>
+            <tr>
+                <th>External</th>
+                <td>{% if link.external %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('menu_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('link_edit', { 'id': link.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

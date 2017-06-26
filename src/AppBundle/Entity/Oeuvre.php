@@ -93,7 +93,7 @@ class Oeuvre
     private $subCategory;
 
     /**
-     * @ORM\OneToMany(targetEntity="Salon", mappedBy="salon")
+     * @ORM\OneToMany(targetEntity="Salon", mappedBy="oeuvre")
      */
     private $salons;
 

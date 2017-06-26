@@ -93,7 +93,7 @@ class Oeuvre
     private $subCategory;
 
     /**
-     * @ORM\OneToMany(targetEntity="Salon", mappedBy="salon")
+     * @ORM\OneToMany(targetEntity="Salon", mappedBy="oeuvre")
      */
     private $salons;
 
@@ -364,5 +364,29 @@ class Oeuvre
     public function getSubCategory()
     {
         return $this->subCategory;
+    }
+
+    /**
+     * Set trends
+     *
+     * @param boolean $trends
+     *
+     * @return Oeuvre
+     */
+    public function setTrends($trends)
+    {
+        $this->trends = $trends;
+ 
+       return $this;
+    }
+
+    /**
+     * Get trends
+     *
+     * @return boolean
+     */
+    public function getTrends()
+    {
+        return $this->trends;
     }
 }

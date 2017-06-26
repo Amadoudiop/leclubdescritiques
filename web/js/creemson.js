@@ -23,7 +23,6 @@ $(".fileUploader").change(function(){
  * Confirm delete
  */
 $('form .btn-danger').click(function(e){
-
     var r = confirm("Confirm delete");
     
     if (r == true)
@@ -53,3 +52,55 @@ $('.trends').click(function(){
         }
     })
 });
+
+$( function() {
+    // sort the links
+    var sortList = $('#sortable');
+    //var animation = $( '#loading-animation' );
+    var pageTitle = $( 'h1' );
+    sortList.sortable({
+        update: function( event, ui ) {
+        //animation.show();
+        var data = sortList.sortable( 'toArray' );
+        console.log(data);
+        $.ajax({
+            url: Routing.generate('menu_show')+'/'+1,
+            //url: Routing.generate('menu_show'),
+            type:'POST',
+            data:'sortList='+data,
+            success: function(response){
+                console.log('success');
+                //animation.hide();
+                pageTitle.after('success');
+            },
+            error: function(error){
+                console.log('error');
+                //animation.hide();
+                pageTitle.after('error');
+
+            }
+        })
+        //Dropped();
+
+      }
+    });
+    //$( "#sortable" ).disableSelection();
+});
+
+function Dropped(event, ui){
+    /*$("#sortable tr").each(function(){
+        //var p = $(this).position();
+        console.log($(this).attr('data_link_id'));
+
+    });*/
+    $.ajax({
+        url: Routing.generate('menu_show'),
+        type:'POST',
+        data:'sortList='+id,
+        success: function(state){
+            //console.log(state);
+            location.reload();
+        }
+    })
+  //refresh();
+}

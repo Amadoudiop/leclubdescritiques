@@ -31,7 +31,6 @@ class OeuvreController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $oeuvres = $em->getRepository('AppBundle:Oeuvre')->findAll();
 
         $nbTrendingOeuvres = $em->getRepository('AppBundle:Oeuvre')
@@ -99,8 +98,8 @@ class OeuvreController extends Controller
         $form = $this->createForm('AppBundle\Form\OeuvreType', $oeuvre);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted() && $form->isValid())
+        {
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $oeuvre->getUrlImage();
@@ -198,7 +197,7 @@ class OeuvreController extends Controller
             // Show notice
             $this->addFlash(
                 'notice',
-                'Oeuvre Added'
+                'Oeuvre Edited'
             );
 
             return $this->redirectToRoute('oeuvre_edit', array('id' => $oeuvre->getId()));

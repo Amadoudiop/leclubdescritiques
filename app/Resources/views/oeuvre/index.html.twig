@@ -78,7 +78,7 @@
                                     {% if nbTrendingOeuvres < 6 %}
                                     <li>
                                         {% if oeuvre.trends == false %}
-                                            <button type="button" class="btn btn-info trends" dataInt="{{ oeuvre.id }}">Add from Trends</button>
+                                            <button type="button" class="btn btn-info trends" dataInt="{{ oeuvre.id }}">Add to Trends</button>
                                         {% else %}
                                             <button type="button" class="btn btn-pink trends" dataInt="{{ oeuvre.id }}">Remove from Trends</button>
                                         {% endif %}

@@ -875,18 +875,17 @@
                             <autocomplete
                                     url="http://localhost:8000/app_dev.php/getBooks/"
                                     anchor="title"
-                                    label="writer"
+                                    label="authors"
                                     placeholder="Recherche sur le titre ou l'auteur"
                                     :on-select="getData"
-                                    :on-ajax-progress="chargement"
-                                    :on-ajax-loaded="finChargement">>
+                                    on-ajax-progress="chargement"
+                                    on-ajax-loaded="finChargement">>
                             </autocomplete>
-                            <label for="form28"></label>
                         </div>
-                        <div class="preview">
+                        {#<div class="preview">
                             <h2>Votre sélection</h2>
                             <pre>${ data | json 2 }</pre>
-                        </div>
+                        </div>#}
                         <div class="text-center mt-1-half">
                             <button class="btn btn-info mb-1 waves-effect waves-light"> Ajouter <i class="fa fa-check ml-1"></i></button>
                         </div>

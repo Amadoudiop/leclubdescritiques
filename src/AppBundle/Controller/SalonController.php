@@ -3,9 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Salon;
+use AppBundle\Entity\SalonMessages;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Salon controller.
@@ -131,5 +135,71 @@ class SalonController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/salon/{id}", name="salon")
+     */
+    public function salonAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $salon = $em->getRepository('AppBundle:Salon')->findById($id);
+
+        $messages = $em->getRepository('AppBundle:SalonMessages')->findBySalon($salon);
+
+        return $this->render('front/chat.html.twig', [
+            'salon' => $salon,
+            'messages' => $messages
+        ]);
+    }
+
+    /**
+     * @Route("/sendMessage", name="send_message", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function sendMessageAction(Request $request)
+    {
+        //dump($request);die;
+        $em = $this->getDoctrine()->getManager();
+        //dump($em);die;
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        //var_dump($request);die;
+
+        //on récupère le salon dans l'url
+        $url = $request->headers->get('referer');
+        $url = explode("/salon/", $url);
+
+        $id_salon = intval($url[1]);
+
+        $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+        //dump($salon);die;
+
+        $message = $request->request->get('message');
+
+        $time = new \DateTime('now');
+        //var_dump($time);die;
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($message)) {
+                $salon_message = new SalonMessages();
+                $salon_message->setSalon($salon);
+                $salon_message->setUser($user);
+                $salon_message->setMessage($message);
+                $salon_message->setTime($time);
+
+                $em->persist($salon_message);
+                $em->flush();
+
+                $response = ['valid' => true, 'msg' => 'Message envoyé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => 'Votre message est obligatoire'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
     }
 }

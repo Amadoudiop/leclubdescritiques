@@ -864,3 +864,11 @@ body::-webkit-scrollbar {
 ::-webkit-scrollbar-thumb:window-inactive {
     background: #ddd;
 }
+
+/*    --------------------------------------------------
+                    Previsu
+	-------------------------------------------------- */
+
+.previsu{
+    transform: translateX(39%);
+}

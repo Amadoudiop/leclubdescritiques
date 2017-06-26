@@ -1,6 +1,6 @@
 
 Vue.component('autocomplete', {
-    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"authors\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div></div>',
+    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu"> <label for="authors">{{ dataRecup.authors }}</label> <br><img :src="dataRecup.url_image" alt="bookImg"></div></div>',
     props: {
         id: String,
         className: String,
@@ -51,9 +51,9 @@ Vue.component('autocomplete', {
     },
     data() {
         return {
+            autocompleteFlag:false,
             showList: false,
             type: "",
-            authors:"",
             json: [],
             focusList: "",
             dataRecup: ""
@@ -70,7 +70,6 @@ Vue.component('autocomplete', {
         clearInput() {
             this.showList = false
             this.type = ""
-            this.authors = ""
             this.json = []
             this.focusList = ""
         },
@@ -144,11 +143,11 @@ Vue.component('autocomplete', {
         },
         selectList(data){
             this.dataRecup = this.cleanUp(data);
+            this.autocompleteFlag = true ;
             console.log(this.dataRecup);
             let clean = this.cleanUp(data);
             // Put the selected data to type (model)
             this.type = clean[this.anchor];
-            this.authors = clean[this.authors];
             this.showList = false;
             /**
              * Callback Event
@@ -187,13 +186,11 @@ Vue.component('autocomplete', {
         },
         setValue(val) {
             this.type = val
-            this.authors = val
         }
     },
     created(){
         // Sync parent model with initValue Props
         this.type = this.initValue ? this.initValue : null
-        this.authors = this.initValue ? this.initValue : null
     }
 
 })

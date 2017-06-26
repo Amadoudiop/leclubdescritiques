@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7b0820-e8f3-47ec-8e03-15f9d6e87203" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/GoogleBooksApiController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/GoogleBooksApiController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/Vue.js" afterPath="$PROJECT_DIR$/web/js/Vue.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,26 +23,36 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="881" column="69" lean-forward="false" selection-start-line="881" selection-start-column="69" selection-end-line="881" selection-end-column="69" />
+            <state relative-caret-position="-5479">
+              <caret line="881" column="36" lean-forward="false" selection-start-line="881" selection-start-column="36" selection-end-line="881" selection-end-column="36" />
               <folding>
-                <marker date="1497711620000" expanded="false" signature="74033:74040" ph="×" />
+                <marker date="1498202449000" expanded="false" signature="73979:73986" ph="×" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="195" column="20" lean-forward="false" selection-start-line="195" selection-start-column="20" selection-end-line="195" selection-end-column="20" />
+            <state relative-caret-position="230">
+              <caret line="2" column="838" lean-forward="false" selection-start-line="2" selection-start-column="815" selection-end-line="2" selection-end-column="838" />
               <folding>
-                <element signature="e#8366#9246#0" expanded="false" />
+                <element signature="e#8133#9013#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="872" column="29" lean-forward="false" selection-start-line="872" selection-start-column="29" selection-end-line="872" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,7 +60,7 @@
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-123">
+            <state relative-caret-position="-15">
               <caret line="181" column="106" lean-forward="false" selection-start-line="181" selection-start-column="106" selection-end-line="181" selection-end-column="106" />
               <folding />
             </state>
@@ -59,17 +71,20 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>debounce</find>
       <find>autocomp</find>
       <find>anchor</find>
       <find>data</find>
       <find>type</find>
-      <find>Recherche</find>
-      <find>autocomple</find>
       <find>setValue</find>
       <find>val</find>
       <find>cleanUp</find>
       <find>author</find>
+      <find>selectLi</find>
+      <find>authors</find>
+      <find>Recherche</find>
+      <find>debounce</find>
+      <find>autocomple</find>
+      <find>votre s</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -80,10 +95,10 @@
       <list>
         <option value="$PROJECT_DIR$/app/Resources/views/front/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/front/salon.html.twig" />
-        <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/web/js/Vue.js" />
+        <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
       </list>
     </option>
@@ -156,6 +171,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="myapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -395,12 +428,12 @@
       <workItem from="1495198974897" duration="153000" />
       <workItem from="1495199160635" duration="1489000" />
       <workItem from="1497536224000" duration="18000" />
-      <workItem from="1497536272388" duration="7494000" />
+      <workItem from="1497536272388" duration="13681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9246000" />
+    <option name="totallyTimeSpent" value="15433000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -725,14 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-632">
-          <caret line="717" column="22" lean-forward="false" selection-start-line="717" selection-start-column="22" selection-end-line="717" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
@@ -741,30 +766,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="872" column="29" lean-forward="false" selection-start-line="872" selection-start-column="29" selection-end-line="872" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-123">
+        <state relative-caret-position="-15">
           <caret line="181" column="106" lean-forward="false" selection-start-line="181" selection-start-column="106" selection-end-line="181" selection-end-column="106" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="195" column="20" lean-forward="false" selection-start-line="195" selection-start-column="20" selection-end-line="195" selection-end-column="20" />
+        <state relative-caret-position="-5479">
+          <caret line="881" column="36" lean-forward="false" selection-start-line="881" selection-start-column="36" selection-end-line="881" selection-end-column="36" />
           <folding>
-            <element signature="e#8366#9246#0" expanded="false" />
+            <marker date="1498202449000" expanded="false" signature="73979:73986" ph="×" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="881" column="69" lean-forward="false" selection-start-line="881" selection-start-column="69" selection-end-line="881" selection-end-column="69" />
+        <state relative-caret-position="230">
+          <caret line="2" column="838" lean-forward="false" selection-start-line="2" selection-start-column="815" selection-end-line="2" selection-end-column="838" />
           <folding>
-            <marker date="1497711620000" expanded="false" signature="74033:74040" ph="×" />
+            <element signature="e#8133#9013#0" expanded="false" />
           </folding>
         </state>
       </provider>

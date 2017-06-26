@@ -25,8 +25,17 @@ class DefaultController extends Controller
      */
     public function profilAction(Request $request)
     {
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        //les oeuvres de l'utilisateur
+        $em = $this->getDoctrine()->getManager();
+        $user_oeuvres = $em->getRepository('AppBundle:UserOeuvre')->findByUser($user);
+        //var_dump($user_oeuvres[0]->getOeuvre());die;
+
         return $this->render('front/profil.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'user' => $user,
+            'user_oeuvres' => $user_oeuvres
         ]);
     }
 

@@ -37,10 +37,16 @@ class Salon
     private $participants_number;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Oeuvre", inversedBy="salons")
-     * @ORM\JoinColumn(name="oeuvre_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Oeuvre")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $oeuvre;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     /**
      * Get id
@@ -122,5 +128,29 @@ class Salon
     public function getOeuvre()
     {
         return $this->oeuvre;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Salon
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

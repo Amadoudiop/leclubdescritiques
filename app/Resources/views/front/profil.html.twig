@@ -20,7 +20,7 @@
 
                             <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Contacter</a> </div>
                         </div>
-                        <h3 class="font-semibold mgbt-xs-5">Mariah Caraiban</h3>
+                        <h3 class="font-semibold mgbt-xs-5">{{ user.firstname }} {{ user.lastname }}</h3>
                         <div class="mgtp-20">
                             <table class="table table-striped table-hover">
                                 <tbody>
@@ -57,28 +57,28 @@
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-5 control-label">Prénom:</label>
-                                            <div class="col-xs-7 controls">Mariah</div>
+                                            <div class="col-xs-7 controls">{{ user.firstname }}</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-5 control-label">Nom:</label>
-                                            <div class="col-xs-7 controls">Caraiban</div>
+                                            <div class="col-xs-7 controls">{{ user.lastname }}</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-5 control-label">Email:</label>
-                                            <div class="col-xs-7 controls">mariah@Vendroid.com</div>
+                                            <div class="col-xs-7 controls">{{ user.email }}</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-2 control-label">Description:</label>
-                                            <div class="col-xs-10 controls">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, illum, magnam. A corporis deleniti enim fuga iste magnam maiores nam natus nulla placeat quas, ratione recusandae reiciendis repellat ullam veniam?</div>
+                                            <div class="col-xs-10 controls">{{ user.description }}</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
@@ -313,28 +313,28 @@
 
                                 <div class="row">
                                     <div class="container-fluid">
-                                        <div v-for="userBook in userBooks">
+                                        {% for user_oeuvre in user_oeuvres %}
                                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                 <div class="userBooksCard"  >
                                                     <div class="panel panel-default">
                                                         <div class="panel-body">
                                                             <div>
                                                                 <a   href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                                                                    {# <img :src="{{ asset("'images/' + userBook.titre + '.jpg'") }}" class="img-thumbnail img-userBook img-responsive">#}
+                                                                    <img src="{{ user_oeuvre.oeuvre.urlimage }}" class="img-thumbnail img-userBook img-responsive">
                                                                 </a>
                                                             </div>
                                                         </div>
                                                         <div class="panel-footer" >
-                                                            ${ userBook.titre } <br>
-                                                            ${ userBook.auteur } rating<star-rating :star-size="20" :rating="userBook.Grating" :read-only="true" :show-rating="false" increment="0.5" ></star-rating>
+                                                            {{ user_oeuvre.oeuvre.title }} <br>
+                                                            {{ user_oeuvre.oeuvre.author.firstname }} {#rating<star-rating :star-size="20" :rating="userBook.Grating" :read-only="true" :show-rating="false" increment="0.5" ></star-rating>
                                                             <star-rating :star-size="20" :rating="userBook.Urating" :read-only="true" increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
-                                                            <span class="label label-success">à échanger</span>
+                                                            <span class="label label-success">à échanger</span>#}
                                                             <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
 

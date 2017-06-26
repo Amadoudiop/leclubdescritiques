@@ -3,21 +3,24 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Salon;
+use AppBundle\Entity\SalonMessages;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Salon controller.
  *
- * @Route("salon")
  */
 class SalonController extends Controller
 {
     /**
      * Lists all salon entities.
      *
-     * @Route("/", name="salon_index")
+     * @Route("/admin/salon/", name="salon_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -34,7 +37,7 @@ class SalonController extends Controller
     /**
      * Creates a new salon entity.
      *
-     * @Route("/new", name="salon_new")
+     * @Route("/admin/salon/new", name="salon_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -60,7 +63,7 @@ class SalonController extends Controller
     /**
      * Finds and displays a salon entity.
      *
-     * @Route("/{id}", name="salon_show")
+     * @Route("/admin/salon/{id}", name="salon_show")
      * @Method("GET")
      */
     public function showAction(Salon $salon)
@@ -76,7 +79,7 @@ class SalonController extends Controller
     /**
      * Displays a form to edit an existing salon entity.
      *
-     * @Route("/{id}/edit", name="salon_edit")
+     * @Route("/admin/salon/{id}/edit", name="salon_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Salon $salon)
@@ -101,7 +104,7 @@ class SalonController extends Controller
     /**
      * Deletes a salon entity.
      *
-     * @Route("/{id}", name="salon_delete")
+     * @Route("/admin/salon/{id}", name="salon_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Salon $salon)
@@ -132,5 +135,71 @@ class SalonController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/salon/{id}", name="salon")
+     */
+    public function salonAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $salon = $em->getRepository('AppBundle:Salon')->findById($id);
+
+        $messages = $em->getRepository('AppBundle:SalonMessages')->findBySalon($salon);
+
+        return $this->render('front/chat.html.twig', [
+            'salon' => $salon,
+            'messages' => $messages
+        ]);
+    }
+
+    /**
+     * @Route("/sendMessage", name="send_message", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function sendMessageAction(Request $request)
+    {
+        //dump($request);die;
+        $em = $this->getDoctrine()->getManager();
+        //dump($em);die;
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        //var_dump($request);die;
+
+        //on récupère le salon dans l'url
+        $url = $request->headers->get('referer');
+        $url = explode("/salon/", $url);
+
+        $id_salon = intval($url[1]);
+
+        $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+        //dump($salon);die;
+
+        $message = $request->request->get('message');
+
+        $time = new \DateTime('now');
+        //var_dump($time);die;
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($message)) {
+                $salon_message = new SalonMessages();
+                $salon_message->setSalon($salon);
+                $salon_message->setUser($user);
+                $salon_message->setMessage($message);
+                $salon_message->setTime($time);
+
+                $em->persist($salon_message);
+                $em->flush();
+
+                $response = ['valid' => true, 'msg' => 'Message envoyé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => 'Votre message est obligatoire'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
     }
 }

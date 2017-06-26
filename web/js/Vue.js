@@ -322,7 +322,23 @@ var app = new Vue({
                 $('.checkbox').removeClass('show');
                 $('#key').attr('type', 'password');
             }
-        }
+        },
+        sendMessage : function (event) {
+
+            var message = $('#message').val();
+
+            $.ajax({
+                url: Routing.generate('send_message'),
+                type: 'POST',
+                data: 'message='+message,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
+
+            $('.msg').append("<p> dit : " + message + "</p>");
+
+        },
     },
     mounted(){
         /*fetch('http://pokeapi.co/api/v2/pokemon/1')

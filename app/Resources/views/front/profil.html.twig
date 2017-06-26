@@ -326,9 +326,10 @@
                                                         </div>
                                                         <div class="panel-footer" >
                                                             {{ user_oeuvre.oeuvre.title }} <br>
-                                                            {{ user_oeuvre.oeuvre.author.firstname }} {#rating<star-rating :star-size="20" :rating="userBook.Grating" :read-only="true" :show-rating="false" increment="0.5" ></star-rating>
-                                                            <star-rating :star-size="20" :rating="userBook.Urating" :read-only="true" increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
-                                                            <span class="label label-success">à échanger</span>#}
+                                                            {{ user_oeuvre.oeuvre.author.firstname }} rating<star-rating :star-size="20" :rating="5" :read-only="true" :show-rating="false" increment="0.5" >
+                                                            </star-rating>
+                                                            <star-rating :star-size="20" :rating="5" :read-only="true" increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
+                                                            <span class="label label-success">à échanger</span>
                                                             <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                                         </div>
                                                     </div>
@@ -878,8 +879,8 @@
                                     label="authors"
                                     placeholder="Recherche sur le titre ou l'auteur"
                                     :on-select="getData"
-                                    on-ajax-progress="chargement"
-                                    on-ajax-loaded="finChargement">>
+                                    :on-ajax-progress="chargement"
+                                    :on-ajax-loaded="finChargement">
                             </autocomplete>
                         </div>
                         {#<div class="preview">

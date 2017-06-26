@@ -4,8 +4,6 @@
     <list default="true" id="8c7b0820-e8f3-47ec-8e03-15f9d6e87203" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/Vue.js" afterPath="$PROJECT_DIR$/web/js/Vue.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,23 +21,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5479">
-              <caret line="881" column="36" lean-forward="false" selection-start-line="881" selection-start-column="36" selection-end-line="881" selection-end-column="36" />
+            <state relative-caret-position="217">
+              <caret line="328" column="197" lean-forward="false" selection-start-line="328" selection-start-column="188" selection-end-line="328" selection-end-column="197" />
               <folding>
-                <marker date="1498202449000" expanded="false" signature="73979:73986" ph="×" />
+                <element signature="e#1599#1617#0#HTML" expanded="true" />
+                <marker date="1498486779000" expanded="false" signature="69181:69188" ph="×" />
+                <marker date="1498486779000" expanded="false" signature="73887:73894" ph="×" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="2" column="838" lean-forward="false" selection-start-line="2" selection-start-column="815" selection-end-line="2" selection-end-column="838" />
+            <state relative-caret-position="217">
+              <caret line="65" column="21" lean-forward="false" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
               <folding>
                 <element signature="e#8133#9013#0" expanded="false" />
               </folding>
@@ -85,6 +85,9 @@
       <find>debounce</find>
       <find>autocomple</find>
       <find>votre s</find>
+      <find>star-</find>
+      <find>ajax</find>
+      <find>increment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -428,12 +431,12 @@
       <workItem from="1495198974897" duration="153000" />
       <workItem from="1495199160635" duration="1489000" />
       <workItem from="1497536224000" duration="18000" />
-      <workItem from="1497536272388" duration="13681000" />
+      <workItem from="1497536272388" duration="14881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15433000" />
+    <option name="totallyTimeSpent" value="16633000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -782,22 +785,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5479">
-          <caret line="881" column="36" lean-forward="false" selection-start-line="881" selection-start-column="36" selection-end-line="881" selection-end-column="36" />
+        <state relative-caret-position="217">
+          <caret line="65" column="21" lean-forward="false" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
           <folding>
-            <marker date="1498202449000" expanded="false" signature="73979:73986" ph="×" />
+            <element signature="e#8133#9013#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="2" column="838" lean-forward="false" selection-start-line="2" selection-start-column="815" selection-end-line="2" selection-end-column="838" />
+        <state relative-caret-position="217">
+          <caret line="328" column="197" lean-forward="false" selection-start-line="328" selection-start-column="188" selection-end-line="328" selection-end-column="197" />
           <folding>
-            <element signature="e#8133#9013#0" expanded="false" />
+            <element signature="e#1599#1617#0#HTML" expanded="true" />
+            <marker date="1498486779000" expanded="false" signature="69181:69188" ph="×" />
+            <marker date="1498486779000" expanded="false" signature="73887:73894" ph="×" />
           </folding>
         </state>
       </provider>

@@ -49,6 +49,11 @@ class Salon
     private $user;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", cascade={"persist"})
+     */
+    private $participants;
+
+    /**
      * Get id
      *
      * @return int
@@ -152,5 +157,46 @@ class Salon
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->participants = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add participant
+     *
+     * @param \AppBundle\Entity\User $participant
+     *
+     * @return Salon
+     */
+    public function addParticipant(\AppBundle\Entity\User $participant)
+    {
+        $this->participants[] = $participant;
+
+        return $this;
+    }
+
+    /**
+     * Remove participant
+     *
+     * @param \AppBundle\Entity\User $participant
+     */
+    public function removeParticipant(\AppBundle\Entity\User $participant)
+    {
+        $this->participants->removeElement($participant);
+    }
+
+    /**
+     * Get participants
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
     }
 }

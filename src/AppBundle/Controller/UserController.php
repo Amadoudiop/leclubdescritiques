@@ -93,4 +93,41 @@ class UserController extends Controller
 
         return new JsonResponse($response);
     }
+
+    /**
+     * @Route("/editProfil", name="edit_profil", options={"expose"=true})
+     */
+    public function editProfilAction(Request $request)
+    {
+         $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $firstname = $request->request->get('firstname');
+        $lastname = $request->request->get('lastname');
+        $email = $request->request->get('email');
+        $description = $request->request->get('description');
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($firstname) && !empty($lastname) && !empty($email) && !empty($description)) {
+                $user->setFirstname($firstname);
+                $user->setLastname($lastname);
+                $user->setEmail($email);
+                $user->setDescription($description);
+
+                $em->persist($user);
+                $em->flush();
+
+                $response = ['valid' => true, 'msg' => 'Vos informations sont enregistrées'];
+                     
+            }else{
+                $response = ['valid' => false, 'msg' => 'Toutes les informations sont obligatoires'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
 }

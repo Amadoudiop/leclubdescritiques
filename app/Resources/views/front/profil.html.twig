@@ -916,29 +916,29 @@
                         <div class="md-form form-sm">
                             <i class="fa fa-envelope prefix"></i>
                             <label for="form19">Votre prénom</label>
-                            <input type="text" id="form19" class="form-control">
+                            <input type="text" id="edit_firstname" class="form-control" value="{{ user.firstname }}">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-lock prefix"></i>
                             <label for="form20">Votre nom </label>
-                            <input type="password" id="form20" class="form-control">
+                            <input type="text" id="edit_lastname" class="form-control" value="{{ user.lastname }}">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-tag prefix"></i>
                             <label for="form21">Votre adresse email</label>
-                            <input type="text" id="form21" class="form-control">
+                            <input type="text" id="edit_email" class="form-control" value="{{ user.email }}">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-pencil prefix"></i>
                             <label for="form8">Votre description</label>
-                            <textarea type="text" id="form8" rows="6" class="md-textarea mb-0"></textarea>
+                            <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0">{{ user.description }}</textarea>
                         </div>
 
                         <div class="text-center mt-1-half">
-                            <button class="btn btn-info mb-2"> Mettre à jour <i class="fa fa-send ml-1"></i></button>
+                            <button class="btn btn-info mb-2" id="btnEditProfil" @click.stop.prevent="editProfil"> Mettre à jour <i class="fa fa-send ml-1"></i></button>
                         </div>
 
                     </div>

@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7b0820-e8f3-47ec-8e03-15f9d6e87203" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/vue-spinner.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js.map" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/Vue.js" afterPath="$PROJECT_DIR$/web/js/Vue.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,8 +26,8 @@
       <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="886" column="36" lean-forward="false" selection-start-line="886" selection-start-column="36" selection-end-line="886" selection-end-column="36" />
+            <state relative-caret-position="326">
+              <caret line="331" column="111" lean-forward="true" selection-start-line="331" selection-start-column="60" selection-end-line="331" selection-end-column="111" />
               <folding />
             </state>
           </provider>
@@ -39,12 +36,12 @@
       <file leaf-file-name="Vue.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2427">
-              <caret line="256" column="23" lean-forward="false" selection-start-line="256" selection-start-column="23" selection-end-line="256" selection-end-column="23" />
+            <state relative-caret-position="470">
+              <caret line="27" column="64" lean-forward="false" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
               <folding>
-                <element signature="e#3774#3971#0" expanded="false" />
-                <element signature="e#8795#8911#0" expanded="false" />
-                <element signature="e#10774#11654#0" expanded="false" />
+                <element signature="e#3538#3735#0" expanded="false" />
+                <element signature="e#8559#8675#0" expanded="false" />
+                <element signature="e#10538#11418#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -83,7 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>anchor</find>
       <find>data</find>
       <find>type</find>
       <find>setValue</find>
@@ -113,6 +109,7 @@
       <find>min</find>
       <find>transition</find>
       <find>autocompl</find>
+      <find>panel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -127,8 +124,8 @@
         <option value="$PROJECT_DIR$/web/js/vue-spinner.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/web/css/style.css" />
-        <option value="$PROJECT_DIR$/web/js/Vue.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/Vue.js" />
       </list>
     </option>
   </component>
@@ -458,12 +455,12 @@
       <workItem from="1495199160635" duration="1489000" />
       <workItem from="1497536224000" duration="18000" />
       <workItem from="1497536272388" duration="19733000" />
-      <workItem from="1498556710897" duration="9883000" />
+      <workItem from="1498556710897" duration="10230000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31368000" />
+    <option name="totallyTimeSpent" value="31715000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -533,9 +530,9 @@
         <state relative-caret-position="322">
           <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
           <folding>
-            <element signature="e#3774#3971#0" expanded="false" />
-            <element signature="e#8795#8911#0" expanded="false" />
-            <element signature="e#10774#11654#0" expanded="false" />
+            <element signature="e#3538#3735#0" expanded="false" />
+            <element signature="e#8559#8675#0" expanded="false" />
+            <element signature="e#10538#11418#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -820,20 +817,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="886" column="36" lean-forward="false" selection-start-line="886" selection-start-column="36" selection-end-line="886" selection-end-column="36" />
+        <state relative-caret-position="326">
+          <caret line="331" column="111" lean-forward="true" selection-start-line="331" selection-start-column="60" selection-end-line="331" selection-end-column="111" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2427">
-          <caret line="256" column="23" lean-forward="false" selection-start-line="256" selection-start-column="23" selection-end-line="256" selection-end-column="23" />
+        <state relative-caret-position="470">
+          <caret line="27" column="64" lean-forward="false" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
           <folding>
-            <element signature="e#3774#3971#0" expanded="false" />
-            <element signature="e#8795#8911#0" expanded="false" />
-            <element signature="e#10774#11654#0" expanded="false" />
+            <element signature="e#3538#3735#0" expanded="false" />
+            <element signature="e#8559#8675#0" expanded="false" />
+            <element signature="e#10538#11418#0" expanded="false" />
           </folding>
         </state>
       </provider>

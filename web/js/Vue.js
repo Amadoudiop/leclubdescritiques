@@ -24,10 +24,8 @@ Vue.component('autocomplete', {
                         '</div>'+
                         '<div class="panel-footer" >'+
                         '{{ dataRecup.title }} <br>'+
-                    '{{ dataRecup.authors }} rating<star-rating :star-size="20" :rating="5" :read-only="true" :show-rating="false" :increment="0.5" >'+
-                        '</star-rating>'+
-                        '<star-rating :star-size="20" :rating="5" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
-                        '<span class="label label-success">à échanger</span>'+
+                    '{{ dataRecup.authors }} rating'+
+                        '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+

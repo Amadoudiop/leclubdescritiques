@@ -38,5 +38,15 @@ class DefaultController extends Controller
             'user_oeuvres' => $user_oeuvres
         ]);
     }
+     /**
+         * @Route("/salons", name="salons")
+         */
+        public function salonsAction(Request $request)
+        {
+
+            return $this->render('front/salons.html.twig', [
+                'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            ]);
+        }
 
 }

@@ -44,16 +44,6 @@ class Author
     private $little_bio;
 
     /**
-     * @ORM\OneToMany(targetEntity="Oeuvre", mappedBy="author")
-     */
-    private $oeuvres;
-
-    public function __construct()
-    {
-        $this->oeuvres = new ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return int
@@ -133,39 +123,5 @@ class Author
     public function getLittleBio()
     {
         return $this->little_bio;
-    }
-
-    /**
-     * Add oeuvre
-     *
-     * @param \AppBundle\Entity\Oeuvre $oeuvre
-     *
-     * @return Author
-     */
-    public function addOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
-    {
-        $this->oeuvres[] = $oeuvre;
-
-        return $this;
-    }
-
-    /**
-     * Remove oeuvre
-     *
-     * @param \AppBundle\Entity\Oeuvre $oeuvre
-     */
-    public function removeOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
-    {
-        $this->oeuvres->removeElement($oeuvre);
-    }
-
-    /**
-     * Get oeuvres
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOeuvres()
-    {
-        return $this->oeuvres;
     }
 }

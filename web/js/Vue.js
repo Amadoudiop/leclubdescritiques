@@ -1,6 +1,6 @@
 
 Vue.component('autocomplete', {
-    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu"> <label for="authors">{{ dataRecup.authors }}</label> <br><img :src="dataRecup.url_image" alt="bookImg"></div></div>',
+    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu"> <p id="authors">{{ dataRecup.authors }}</p><br><img :src="dataRecup.url_image" id="url_image" alt="bookImg"><br><p id="title">{{ dataRecup.title }}</p><br><p id="url_product">{{ dataRecup.url_product }}</p><br><p id="description">{{ dataRecup.description }}</p><br><p id="publication_date">{{ dataRecup.publication_date }}</p><br><p id="id_google_books_api" >{{ dataRecup.id_google_books_api }}</p><br></div></div>',
     props: {
         id: String,
         className: String,
@@ -355,6 +355,25 @@ var app = new Vue({
                 }
             });
 
+        },
+        addBook : function (event) {
+
+            var author = encodeURIComponent($('#authors').text());
+            var title = encodeURIComponent($('#title').text());
+            var description = encodeURIComponent($('#description').text());
+            var publication_date = encodeURIComponent($('#publication_date').text());
+            var id_google_api = encodeURIComponent($('#id_google_books_api').text());
+            var url_image = encodeURIComponent(document.getElementById("url_image").src);
+            var url_product = encodeURIComponent($('#url_product').text());
+
+            $.ajax({
+                url: Routing.generate('add_book'),
+                type: 'POST',
+                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
         },
     },
     mounted(){

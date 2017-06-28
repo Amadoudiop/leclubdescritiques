@@ -142,9 +142,7 @@ class UserController extends Controller
      */
     public function addBookAction(Request $request)
     {
-        //var_dump($request);die;
         $em = $this->getDoctrine()->getManager();
-        //var_dump('OK');die;
 
         //infos de l'utlisateur
         $user = $this->get('security.token_storage')->getToken()->getUser();
@@ -164,9 +162,9 @@ class UserController extends Controller
 
             $author1 = $em->getRepository('AppBundle:Author')->findOneBy(['firstname' => $author]);
 
-            $category = $em->getRepository('AppBundle:SubCategory')->find(1);
+            $category = $em->getRepository('AppBundle:Category')->find(1);
 
-            $sub_category1 = $em->getRepository('AppBundle:SubCategory')->findByName($sub_category);
+            $sub_category1 = $em->getRepository('AppBundle:SubCategory')->findOneBy(['name' => $sub_category]);
 
             //si l'oeuvre n'existe pas
             if (null === $book) {
@@ -192,7 +190,7 @@ class UserController extends Controller
                     $em->persist($newSubCategory);
                     $em->flush();
 
-                    $sub_category1 = $em->getRepository('AppBundle:SubCategory')->findByName($sub_category);
+                    $sub_category1 = $em->getRepository('AppBundle:SubCategory')->findOneBy(['name' => $sub_category]);
                 }
 
                 $newBook = new Oeuvre();
@@ -206,6 +204,7 @@ class UserController extends Controller
                 $newBook->setIdGoogleApi($id_google_api);
                 $newBook->setCategory($category);
                 $newBook->setSubCategory($sub_category1);
+                $newBook->setTrends(false);
 
                 $em->persist($newBook);
                 $em->flush();

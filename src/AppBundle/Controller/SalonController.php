@@ -143,13 +143,27 @@ class SalonController extends Controller
     public function salonAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $salon = $em->getRepository('AppBundle:Salon')->findById($id);
+        $salon = $em->getRepository('AppBundle:Salon')->find($id);
+
+         //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $participants = $salon->getParticipants();
+
+        /*foreach ($salon->getParticipants() as $participant) {
+            $verif = 
+        }*/
+
+        //die;
+
 
         $messages = $em->getRepository('AppBundle:SalonMessages')->findBySalon($salon);
 
+
         return $this->render('front/chat.html.twig', [
             'salon' => $salon,
-            'messages' => $messages
+            'messages' => $messages,
+            'participants' => $participants
         ]);
     }
 

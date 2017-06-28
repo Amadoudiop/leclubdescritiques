@@ -49,6 +49,11 @@ class Salon
     private $user;
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", cascade={"persist"})
+     */
+    private $participants;
+
+    /**
      * Get id
      *
      * @return int
@@ -128,5 +133,29 @@ class Salon
     public function getOeuvre()
     {
         return $this->oeuvre;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Salon
+     */
+    public function setUser(\AppBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

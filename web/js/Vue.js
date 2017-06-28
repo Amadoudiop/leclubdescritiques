@@ -417,6 +417,23 @@ var app = new Vue({
             $('.msg').append("<p> dit : " + message + "</p>");
 
         },
+        editProfil : function (event) {
+
+            var firstname = $('#edit_firstname').val();
+            var lastname = $('#edit_lastname').val();
+            var email = $('#edit_email').val();
+            var description = $('#edit_description').val();
+
+            $.ajax({
+                url: Routing.generate('edit_profil'),
+                type: 'POST',
+                data: 'firstname='+firstname+'&lastname='+lastname+'&email='+email+'&description='+description,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
+
+        },
     },
     mounted(){
         /*fetch('http://pokeapi.co/api/v2/pokemon/1')

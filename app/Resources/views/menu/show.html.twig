@@ -1,0 +1,87 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+    <!-- header menu -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">{{ menu.name }}</span></div>
+                        <div class="description">Configure this menu</div>
+                    </div>
+                    <a href="{{ path('menu_edit', { 'id': menu.id }) }}">
+                        <button type="button" class="btn btn-warning">edit</button>
+                    </a>
+                    <a href="{{ path('menu_index') }}">
+                        <button type="button" class="btn btn-success"><i class="fa fa-reply"></i></button>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    New Link
+                </div>
+                <div class="card-body no-padding">
+                    <div class="col-md-12 col-xs-12">
+                        {{ form_start(newForm) }}
+                            {{ form_widget(newForm) }}
+                            <input type="submit" value="Create" class="btn btn-success">
+                        {{ form_end(newForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-header">
+                    {{ form_start(delete_form) }}
+                        <input type="submit" value="Delete menu" class="btn btn-danger">
+                    {{ form_end(delete_form) }}
+            </div>
+            <div class="card-body no-padding">
+              <table class="datatable table table-striped primary" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Position</th>
+                        <th>Name</th>
+                        <th>Url</th>
+                        <th>external link</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="sortable">
+                    {% for link in links %}
+                    <tr id="{{ link.id }}">
+                        <td><i class="fa fa-arrows-v"></i></td>
+                        <td>{{ link.name }}</td>
+                        <td>{{ link.url }}</td>
+                        <td>{% if link.external %}Yes{% else %}No{% endif %}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('link_edit', { 'id': link.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>       
+
+
+{% endblock %}

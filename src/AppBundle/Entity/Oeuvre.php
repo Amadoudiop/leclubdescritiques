@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Oeuvre
@@ -24,7 +25,8 @@ class Oeuvre
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -38,14 +40,15 @@ class Oeuvre
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=20)
      * @ORM\Column(name="description", type="text")
      */
     private $description;
 
     /**
      * @var string
-     *
+     *  
      * @ORM\Column(name="url_image", type="string", length=255)
      */
     private $url_image;
@@ -56,6 +59,13 @@ class Oeuvre
      * @ORM\Column(name="publication_date", type="date")
      */
     private $publication_date;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="trends", type="boolean")
+     */
+    private $trends;
 
     /**
      * @var \int
@@ -76,6 +86,19 @@ class Oeuvre
      * @ORM\Column(name="id_google_api", type="string", length=255)
      */
     private $id_google_api;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="oeuvres")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SubCategory", inversedBy="oeuvres")
+     * @ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")
+     */
+    private $subCategory;
+
 
     /**
      * Get id
@@ -120,9 +143,11 @@ class Oeuvre
      */
     public function setUrlProduct($urlProduct)
     {
-        $this->url_product = $urlProduct;
+        //if($urlProduct !== null) {
+            $this->url_product = $urlProduct;
 
-        return $this;
+            return $this;
+        //}
     }
 
     /**
@@ -277,5 +302,77 @@ class Oeuvre
     public function getIdGoogleApi()
     {
         return $this->id_google_api;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     *
+     * @return Oeuvre
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set subCategory
+     *
+     * @param \AppBundle\Entity\SubCategory $subCategory
+     *
+     * @return Oeuvre
+     */
+    public function setSubCategory(\AppBundle\Entity\SubCategory $subCategory = null)
+    {
+        $this->subCategory = $subCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get subCategory
+     *
+     * @return \AppBundle\Entity\SubCategory
+     */
+    public function getSubCategory()
+    {
+        return $this->subCategory;
+    }
+
+    /**
+     * Set trends
+     *
+     * @param boolean $trends
+     *
+     * @return Oeuvre
+     */
+    public function setTrends($trends)
+    {
+        $this->trends = $trends;
+ 
+       return $this;
+    }
+
+    /**
+     * Get trends
+     *
+     * @return boolean
+     */
+    public function getTrends()
+    {
+        return $this->trends;
     }
 }

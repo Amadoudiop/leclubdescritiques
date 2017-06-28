@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+// Json handler
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 //upload
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -23,18 +25,64 @@ class OeuvreController extends Controller
     /**
      * Lists all oeuvre entities.
      *
-     * @Route("/admin/oeuvres", name="oeuvre_index")
-     * @Method("GET")
+     * @Route("/admin/oeuvres", name="oeuvre_index", options={"expose"=true})
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $oeuvres = $em->getRepository('AppBundle:Oeuvre')->findAll();
-        /*dump($oeuvres);
-        die();*/
+
+        $nbTrendingOeuvres = $em->getRepository('AppBundle:Oeuvre')
+                       ->createQueryBuilder('t')
+                       ->select('count(t.id)')
+                       ->where('t.trends = true')
+                       ->getQuery()->getSingleScalarResult();
+            $oeuvre = $em->getRepository('AppBundle:Oeuvre')->find(2);
+
+        dump($nbTrendingOeuvres);
+
+        if( $request->getMethod() == 'POST' )
+        {
+            // get the id send by ajax
+            $oeuvre_id = (int)$request->request->get('oeuvre_id');
+            $oeuvre = $em->getRepository('AppBundle:Oeuvre')->find($oeuvre_id);
+
+            $trendsStatus = $oeuvre->getTrends();
+            // Change trends status
+            if( $nbTrendingOeuvres == 6 )
+            {
+                if( $trendsStatus )
+                {
+                    $oeuvre->setTrends(false);
+
+                }
+
+            }
+            elseif( $nbTrendingOeuvres < 6 )
+            {
+                if( $trendsStatus )
+                {
+                    $oeuvre->setTrends(false);
+                }
+                else
+                {
+                    $oeuvre->setTrends(true);                    
+                }                
+            }
+
+            // update
+            $em->persist($oeuvre);
+            $em->flush();
+            $response = $oeuvre->getTrends();
+
+
+            return new JsonResponse($response);
+        }
+
         return $this->render('oeuvre/index.html.twig', array(
             'oeuvres' => $oeuvres,
+            'nbTrendingOeuvres' => $nbTrendingOeuvres,
         ));
     }
 
@@ -50,8 +98,8 @@ class OeuvreController extends Controller
         $form = $this->createForm('AppBundle\Form\OeuvreType', $oeuvre);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
+        if ($form->isSubmitted() && $form->isValid())
+        {
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $oeuvre->getUrlImage();
@@ -72,6 +120,12 @@ class OeuvreController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($oeuvre);
             $em->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Oeuvre Added'
+            );
 
             return $this->redirectToRoute('oeuvre_show', array('id' => $oeuvre->getId()));
         }
@@ -113,11 +167,10 @@ class OeuvreController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             // $file stores the uploaded PDF file
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            /*dump($oeuvre);
-            die();*/
             $file = $oeuvre->getUrlImage();
-            if( $file !== null ){
+
+            if( $file !== null )
+            {
                 // Generate a unique name for the file before saving it
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 // Move the file to the directory where brochures are stored
@@ -126,13 +179,26 @@ class OeuvreController extends Controller
                     $fileName
                 );
 
-                // Update the 'brochure' property to store the PDF file name
-                // instead of its contents
                 $oeuvre->setUrlImage($fileName);
             }
-            /*dump($oeuvre);
-            die();*/
+            else
+            {
+                /*$oldOeuvre = new Oeuvre();
+                $oldOeuvre = $this->getDoctrine()
+                    ->getRepository('AppBundle:Oeuvre')
+                    ->find($oeuvre->getId());
+                $fileName = $oldOeuvre->getUrlImage();
+                dump($fileName);
+                die();*/
+            }
+
             $this->getDoctrine()->getManager()->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Oeuvre Edited'
+            );
 
             return $this->redirectToRoute('oeuvre_edit', array('id' => $oeuvre->getId()));
         }
@@ -159,6 +225,12 @@ class OeuvreController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($oeuvre);
             $em->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Oeuvre Deleted'
+            );
         }
 
         return $this->redirectToRoute('oeuvre_index');
@@ -179,4 +251,5 @@ class OeuvreController extends Controller
             ->getForm()
         ;
     }
+
 }

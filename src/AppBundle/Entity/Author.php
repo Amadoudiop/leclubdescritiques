@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Author
@@ -24,21 +25,24 @@ class Author
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      * @ORM\Column(name="firstname", type="string", length=255)
      */
     private $firstname;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      * @ORM\Column(name="lastname", type="string", length=255)
      */
     private $lastname;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=20)
      * @ORM\Column(name="little_bio", type="text")
      */
     private $little_bio;

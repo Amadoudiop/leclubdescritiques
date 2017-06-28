@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SubCategory
@@ -23,11 +24,11 @@ class SubCategory
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
-
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="subCategories")
@@ -35,6 +36,11 @@ class SubCategory
      */
     private $category;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="Oeuvre", mappedBy="subCategory")
+     */
+    private $oeuvres;
 
     /**
      * Get id
@@ -92,5 +98,46 @@ class SubCategory
     public function getCategory()
     {
         return $this->category;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->oeuvres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add oeuvre
+     *
+     * @param \AppBundle\Entity\Oeuvre $oeuvre
+     *
+     * @return SubCategory
+     */
+    public function addOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
+    {
+        $this->oeuvres[] = $oeuvre;
+
+        return $this;
+    }
+
+    /**
+     * Remove oeuvre
+     *
+     * @param \AppBundle\Entity\Oeuvre $oeuvre
+     */
+    public function removeOeuvre(\AppBundle\Entity\Oeuvre $oeuvre)
+    {
+        $this->oeuvres->removeElement($oeuvre);
+    }
+
+    /**
+     * Get oeuvres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOeuvres()
+    {
+        return $this->oeuvres;
     }
 }

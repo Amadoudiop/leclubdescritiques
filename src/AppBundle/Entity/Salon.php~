@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Salon
@@ -24,7 +25,8 @@ class Salon
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
+     * @Assert\Length(min=5)
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;

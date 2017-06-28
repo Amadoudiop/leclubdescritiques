@@ -20,7 +20,7 @@ class SalonController extends Controller
     /**
      * Lists all salon entities.
      *
-     * @Route("/admin/salon/", name="salon_index")
+     * @Route("/admin/salons/", name="salon_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -50,6 +50,12 @@ class SalonController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($salon);
             $em->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Salon Added'
+            );
 
             return $this->redirectToRoute('salon_show', array('id' => $salon->getId()));
         }
@@ -91,6 +97,12 @@ class SalonController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Salon Edited'
+            );
+
             return $this->redirectToRoute('salon_edit', array('id' => $salon->getId()));
         }
 
@@ -116,6 +128,12 @@ class SalonController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($salon);
             $em->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Salon Deleted'
+            );
         }
 
         return $this->redirectToRoute('salon_index');

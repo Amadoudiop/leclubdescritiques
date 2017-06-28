@@ -50,6 +50,12 @@ class SubCategoryController extends Controller
             $em->persist($subCategory);
             $em->flush();
 
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Subcategory Added'
+            );
+
             return $this->redirectToRoute('subcategory_show', array('id' => $subCategory->getId()));
         }
 
@@ -93,6 +99,12 @@ class SubCategoryController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'SubCategory Edited'
+            );
+
             return $this->redirectToRoute('subcategory_edit', array('id' => $subCategory->getId()));
         }
 
@@ -118,6 +130,12 @@ class SubCategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($subCategory);
             $em->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'SubCategory Deleted'
+            );
         }
 
         return $this->redirectToRoute('subcategory_index');

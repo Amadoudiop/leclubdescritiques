@@ -8,6 +8,8 @@ var debounce = function(callback, delay) {
                   }, delay);
             };
       };
+
+
 Vue.component('autocomplete', {
     template: 
     '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' +
@@ -19,17 +21,18 @@ Vue.component('autocomplete', {
                             '<div class="panel-body">'+
                             '<div>'+
                             '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">'+
-                            '<img :src="dataRecup.url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">'+
+                            '<img :src="dataRecup.url_image" id="url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">'+
                             '</a>'+
                             '</div>'+
                             '</div>'+
                             '<div class="panel-footer" >'+
-                            '{{ dataRecup.title }} <br>'+
-                            '<span id="url_product" class="hidden">{{ dataRecup.url_product }}</span><br>'+
-                            '<span id="description" class="hidden">{{ dataRecup.description }}</span><br>'+
-                            '<span id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span><br>'+                        
-                            '<span id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
-                        '{{ dataRecup.authors }} rating'+
+                            '<h3><span id="title">{{ dataRecup.title }}</span></h3><br>'+
+                            '<span  id="url_product" class="hidden">{{ dataRecup.url_product }}</span>'+
+                            '<span  id="description" class="hidden">{{ dataRecup.description }}</span>'+
+                            '<span  id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span>'+
+                            '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
+                            '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>'+
+                            '<h4><span id="author">{{ dataRecup.authors }}</span></h4>'+
                             '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
                             '</div>'+
                         '</div>'+
@@ -201,7 +204,6 @@ Vue.component('autocomplete', {
             if (val.length < this.min) return;
             if(this.url != null){
                 // Callback Event
-                console.log('call back debut')
                 app.autocompleteLoader = true
                 this.onBeforeAjax ? this.onBeforeAjax(val) : null
                 let ajax = new XMLHttpRequest();
@@ -216,14 +218,12 @@ Vue.component('autocomplete', {
                 ajax.addEventListener('progress', function (data) {
                     if(data.lengthComputable){
                         // Callback Event
-                        console.log('callback on progress')
                         this.onAjaxProgress ? this.onAjaxProgress(data) : null
                     }
                 });
                 ajax.addEventListener('loadend', function (data) {
                     let json = JSON.parse(this.responseText);
                     // Callback Event
-                    console.log('callback de fin')
                     app.autocompleteLoader = false
                     this.onAjaxLoaded ? this.onAjaxLoaded(json) : null
                     self.json = self.process ? self.process(json) : json;
@@ -252,7 +252,7 @@ Vue.component('loader', {
         },
         color: {
             type: String,
-            default: '#5dc596'
+            default: '#70BEB1'
         },
         size: {
             type: String,
@@ -269,8 +269,49 @@ Vue.component('loader', {
         }
     }
 })
-
+Vue.component('toast',{
+    template: '' +
+    '<div class="v-toaster">'+
+    '<transition-group name="v-toast">'+
+    '<div class="v-toast" :class="{[t.theme]: t.theme}" v-for="t in items" :key="t.key"><a class="v-toast-btn-clear" @click="remove(t)"></a>{{t.message}}</div>'+
+    '</transition-group>'+
+    '</div>' +
+    '',
+    props: {
+        timeout: {
+            type: Number,
+            default: 10000
+        }
+    },
+    methods: {
+        success (message, option = {}) { this.add(message, {theme: 'v-toast-success', timeout: option.timeout}) },
+        info    (message, option = {}) { this.add(message, {theme: 'v-toast-info',    timeout: option.timeout}) },
+        warning (message, option = {}) { this.add(message, {theme: 'v-toast-warning', timeout: option.timeout}) },
+        error   (message, option = {}) { this.add(message, {theme: 'v-toast-error',   timeout: option.timeout}) },
+        add (message, {theme, timeout}) {
+            if (!this.$parent) {
+                this.$mount()
+                document.body.appendChild(this.$el)
+            }
+            let item = {message, theme, key: `${Date.now()}-${Math.random()}`}
+            this.items.push(item)
+            setTimeout( () => this.remove(item), timeout || this.timeout)
+        },
+        remove (item) {
+            let i = this.items.indexOf(item)
+            if (i >= 0) {
+                this.items.splice(i, 1)
+            }
+        }
+    },
+    data () {
+        return {
+            items: []
+        }
+    }
+})
 Vue.component('star-rating', VueStarRating.default);
+
 
 
 var app = new Vue({
@@ -439,21 +480,25 @@ var app = new Vue({
 
         },
         addBook : function (event) {
-
-            var author = encodeURIComponent($('#authors').text());
+            app.$root.$children[0].success('hello');
+            app.$root.$children[0].error('error')
+            //this.$children.success('toster ok')
+            var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
             var description = encodeURIComponent($('#description').text());
             var publication_date = encodeURIComponent($('#publication_date').text());
             var id_google_api = encodeURIComponent($('#id_google_books_api').text());
             var url_image = encodeURIComponent(document.getElementById("url_image").src);
             var url_product = encodeURIComponent($('#url_product').text());
+            var sub_category = encodeURIComponent($('#sub_category').text());
 
             $.ajax({
                 url: Routing.generate('add_book'),
                 type: 'POST',
-                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api,
+                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category,
                 success: function(msg) {
-                    console.log(msg);
+                    app.$root.$children[0].success(msg)
+                    console.log(msg)
                 }
             });
         },

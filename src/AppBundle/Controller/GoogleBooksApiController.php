@@ -35,8 +35,10 @@ class GoogleBooksApiController extends Controller
                 $url_image = (empty($item['volumeInfo']['imageLinks']['thumbnail'])) ? '' : $item['volumeInfo']['imageLinks']['thumbnail'];
                 $publication_date = (empty($item['volumeInfo']['publishedDate'])) ? '' : $item['volumeInfo']['publishedDate'];
                 $id_google_books_api = (empty($item['id'])) ? '' : $item['id'];
+                $sub_category = (empty($item['volumeInfo']['categories'][0])) ? '' : $item['volumeInfo']['categories'][0];
 
-                $response[] = ['authors' => $authors, 'title' => $title, 'url_product' => $url_product, 'description' => $description, 'url_image' => $url_image, 'publication_date' => $publication_date, 'id_google_books_api' => $id_google_books_api ];
+                $response[] = ['authors' => $authors, 'title' => $title, 'url_product' => $url_product, 'description' => $description, 'url_image' => $url_image, 'publication_date' => $publication_date, 'id_google_books_api' => $id_google_books_api,
+                   'sub_category' => $sub_category ];
             }
         }
         return new JsonResponse($response);

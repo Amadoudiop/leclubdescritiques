@@ -248,7 +248,7 @@ Vue.component('loader', {
         },
         color: {
             type: String,
-            default: '#5dc596'
+            default: '#70BEB1'
         },
         size: {
             type: String,

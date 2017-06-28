@@ -234,7 +234,7 @@ Vue.component('loader', {
         },
         color: {
             type: String,
-            default: '#5dc596'
+            default: '#70BEB1'
         },
         size: {
             type: String,
@@ -392,6 +392,22 @@ var app = new Vue({
             });
 
             $('.msg').append("<p> dit : " + message + "</p>");
+        },
+        editProfil: function editProfil(event) {
+
+            var firstname = $('#edit_firstname').val();
+            var lastname = $('#edit_lastname').val();
+            var email = $('#edit_email').val();
+            var description = $('#edit_description').val();
+
+            $.ajax({
+                url: Routing.generate('edit_profil'),
+                type: 'POST',
+                data: 'firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&description=' + description,
+                success: function success(msg) {
+                    console.log(msg);
+                }
+            });
         }
     },
     mounted: function mounted() {

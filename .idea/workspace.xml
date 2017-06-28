@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7b0820-e8f3-47ec-8e03-15f9d6e87203" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js.map" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/Vue.js" afterPath="$PROJECT_DIR$/web/js/Vue.js" />
@@ -27,8 +27,11 @@
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="326">
-              <caret line="331" column="111" lean-forward="true" selection-start-line="331" selection-start-column="60" selection-end-line="331" selection-end-column="111" />
-              <folding />
+              <caret line="331" column="111" lean-forward="false" selection-start-line="331" selection-start-column="60" selection-end-line="331" selection-end-column="111" />
+              <folding>
+                <marker date="1498649967000" expanded="true" signature="32:76207" ph="{% block body ...%}" />
+                <marker date="1498649967000" expanded="true" signature="75806:75893" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -36,8 +39,8 @@
       <file leaf-file-name="Vue.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="27" column="64" lean-forward="false" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+            <state relative-caret-position="364">
+              <caret line="249" column="25" lean-forward="true" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="25" />
               <folding>
                 <element signature="e#3538#3735#0" expanded="false" />
                 <element signature="e#8559#8675#0" expanded="false" />
@@ -50,7 +53,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-333">
+            <state relative-caret-position="2023">
               <caret line="936" column="1" lean-forward="false" selection-start-line="936" selection-start-column="1" selection-end-line="936" selection-end-column="1" />
               <folding />
             </state>
@@ -107,9 +110,9 @@
       <find>ajouter</find>
       <find>increment</find>
       <find>min</find>
-      <find>transition</find>
-      <find>autocompl</find>
       <find>panel</find>
+      <find>autocompl</find>
+      <find>transition</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -455,12 +458,12 @@
       <workItem from="1495199160635" duration="1489000" />
       <workItem from="1497536224000" duration="18000" />
       <workItem from="1497536272388" duration="19733000" />
-      <workItem from="1498556710897" duration="10230000" />
+      <workItem from="1498556710897" duration="10585000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31715000" />
+    <option name="totallyTimeSpent" value="32070000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -521,7 +524,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1498649967000" expanded="true" signature="32:76207" ph="{% block body ...%}" />
+            <marker date="1498649967000" expanded="true" signature="75806:75893" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -807,26 +813,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-333">
-          <caret line="936" column="1" lean-forward="false" selection-start-line="936" selection-start-column="1" selection-end-line="936" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
-          <caret line="331" column="111" lean-forward="true" selection-start-line="331" selection-start-column="60" selection-end-line="331" selection-end-column="111" />
+          <caret line="331" column="111" lean-forward="false" selection-start-line="331" selection-start-column="60" selection-end-line="331" selection-end-column="111" />
+          <folding>
+            <marker date="1498649967000" expanded="true" signature="32:76207" ph="{% block body ...%}" />
+            <marker date="1498649967000" expanded="true" signature="75806:75893" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="936" column="1" lean-forward="false" selection-start-line="936" selection-start-column="1" selection-end-line="936" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="27" column="64" lean-forward="false" selection-start-line="27" selection-start-column="64" selection-end-line="27" selection-end-column="64" />
+        <state relative-caret-position="364">
+          <caret line="249" column="25" lean-forward="true" selection-start-line="249" selection-start-column="25" selection-end-line="249" selection-end-column="25" />
           <folding>
             <element signature="e#3538#3735#0" expanded="false" />
             <element signature="e#8559#8675#0" expanded="false" />

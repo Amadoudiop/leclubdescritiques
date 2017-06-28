@@ -74,16 +74,17 @@
 			        </a>
 			      </li>
 			      <li class="dropdown">
-			        <a href="{{ path('oeuvre_index') }}" class="dropdown-toggle" data-toggle="dropdown">
-			          <div class="icon">
-			            <i class="fa fa-book" aria-hidden="true"></i>
-			          </div>
-			          <div class="title">Oeuvres</div>
-			        </a>
+					<a href="{{ path('oeuvre_index') }}" class="dropdown-toggle" data-toggle="dropdown">
+					  <div class="icon">
+					    <i class="fa fa-book" aria-hidden="true"></i>
+					  </div>
+					  <div class="title">Oeuvres</div>
+					</a>
 			        <div class="dropdown-menu">
 			          <ul>
 			            <li><a href="{{ path('oeuvre_index') }}">List of Oeuvres</a></li>
 			            <li><a href="{{ path('oeuvre_new') }}">New Oeuvre</a></li>
+			            <li><a href="{{ path('statut_index') }}">Statuts</a></li>
 
 			           	<li class="line"></li>
 			            <li class="section"><i class="fa fa-folder" aria-hidden="true"></i> Categories</li>
@@ -101,6 +102,14 @@
 			            <li><a href="{{ path('author_new') }}">New author</a></li>
 			          </ul>
 			        </div>
+			      </li>
+			      <li class="">
+			        <a href="{{ path('user_index') }}">
+			          <div class="icon">
+			            <i class="fa fa-group" aria-hidden="true"></i>
+			          </div>
+			          <div class="title">Users</div>
+			        </a>
 			      </li>
 			    </ul>
 			  </div>
@@ -167,18 +176,19 @@
 
 
 
-			{% block javascripts %}{% endblock %}
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-			<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-			<!-- <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-			<script src="{{ asset('js/rating.min.js') }}"></script> -->
-			<script type="text/javascript" src="{{ asset('js/creemson.js') }}"></script>
+			{% block javascripts %}
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+				<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+				<!-- <script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
+				<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+				<script src="{{ asset('js/rating.min.js') }}"></script> -->
+				<script type="text/javascript" src="{{ asset('js/creemson.js') }}"></script>
 
-		    <!-- JS routing -->
-		    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-		    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+			    <!-- JS routing -->
+			    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+			    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+			{% endblock %}
 
 		</div>
 	</body>

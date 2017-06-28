@@ -1,0 +1,63 @@
+{% extends 'base_back.html.twig' %}
+{% block title %}{{ parent() }}User{% endblock %}
+
+{% block body %}
+    <!-- header User -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body app-heading">
+                    <img class="profile-img" src="http://placehold.it/150x150">
+                    <div class="app-title">
+                        <div class="title"><span class="highlight">Users</span></div>
+                        <div class="description">Configure your users</div>
+                    </div>
+                    <a href="{{ path('user_new') }}">
+                        <button type="button" class="btn btn-success">Add a new User</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="card">
+            <div class="card-header">
+              List of users
+            </div>
+            <div class="card-body no-padding">
+              <table class="datatable table table-striped primary" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>firstname</th>
+                        <th>lastname</th>
+                        <th>description</th>
+                        <th>photo</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user.firstname }}</td>
+                            <td>{{ user.lastname }}</td>
+                            <td>{{ user.description }}</td>
+                            <td>{{ user.photo }}</td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('user_edit', { 'id': user.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}

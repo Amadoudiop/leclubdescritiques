@@ -9,30 +9,34 @@ var debounce = function(callback, delay) {
             };
       };
 Vue.component('autocomplete', {
-    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' +
-    '<div class="row" v-if="autocompleteFlag">'+
-        '<div class="container-fluid">' +
-            '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
-                '<div class="userBooksCard"  >'+
-                    '<div class="panel panel-default">'+
-                        '<div class="panel-body">'+
-                        '<div>'+
-                        '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">'+
-                        '<img :src="dataRecup.url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">'+
-                        '</a>'+
-                        '</div>'+
-                        '</div>'+
-                        '<div class="panel-footer" >'+
-                        '{{ dataRecup.title }} <br>'+
-                    '{{ dataRecup.authors }} rating'+
-                        '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
+    template: 
+    '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' +
+        '<div class="row" v-if="autocompleteFlag">'+
+            '<div class="container-fluid">' +
+                '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+                    '<div class="userBooksCard"  >'+
+                        '<div class="panel panel-default">'+
+                            '<div class="panel-body">'+
+                            '<div>'+
+                            '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">'+
+                            '<img :src="dataRecup.url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">'+
+                            '</a>'+
+                            '</div>'+
+                            '</div>'+
+                            '<div class="panel-footer" >'+
+                            '{{ dataRecup.title }} <br>'+
+                            '<span id="url_product" class="hidden">{{ dataRecup.url_product }}</span><br>'+
+                            '<span id="description" class="hidden">{{ dataRecup.description }}</span><br>'+
+                            '<span id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span><br>'+                        
+                            '<span id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
+                        '{{ dataRecup.authors }} rating'+
+                            '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
+                            '</div>'+
                         '</div>'+
                     '</div>'+
                 '</div>'+
-            '</div>'+
+            '</div>' +
         '</div>' +
-    '</div>' +
-
     '</div>',
     props: {
         id: String,
@@ -433,6 +437,25 @@ var app = new Vue({
                 }
             });
 
+        },
+        addBook : function (event) {
+
+            var author = encodeURIComponent($('#authors').text());
+            var title = encodeURIComponent($('#title').text());
+            var description = encodeURIComponent($('#description').text());
+            var publication_date = encodeURIComponent($('#publication_date').text());
+            var id_google_api = encodeURIComponent($('#id_google_books_api').text());
+            var url_image = encodeURIComponent(document.getElementById("url_image").src);
+            var url_product = encodeURIComponent($('#url_product').text());
+
+            $.ajax({
+                url: Routing.generate('add_book'),
+                type: 'POST',
+                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api,
+                success: function(msg) {
+                    console.log(msg);
+                }
+            });
         },
     },
     mounted(){

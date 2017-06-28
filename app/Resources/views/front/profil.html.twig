@@ -893,7 +893,7 @@
                             <pre>${ data | json 2 }</pre>
                         </div>#}
                         <div class="text-center mt-1-half">
-                            <button class="btn btn-info mb-1 waves-effect waves-light"> Ajouter <i class="fa fa-check ml-1"></i></button>
+                            <button class="btn btn-info mb-1 waves-effect waves-light" @click.stop.prevent="addBook"> Ajouter <i class="fa fa-check ml-1"></i></button>
                         </div>
 
                     </div>

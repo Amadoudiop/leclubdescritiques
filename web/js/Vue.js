@@ -26,12 +26,13 @@ Vue.component('autocomplete', {
                             '</div>'+
                             '</div>'+
                             '<div class="panel-footer" >'+
-                            '<h3>{{ dataRecup.title }} <br></h3>'+
+                            '<h3><span id="title">{{ dataRecup.title }}</span></h3><br>'+
                             '<span  id="url_product" class="hidden">{{ dataRecup.url_product }}</span>'+
                             '<span  id="description" class="hidden">{{ dataRecup.description }}</span>'+
                             '<span  id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span>'+
                             '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
-                            '<h4>{{ dataRecup.authors }} </h4>'+
+                            '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>'+
+                            '<h4><span id="author">{{ dataRecup.authors }}</span></h4>'+
                             '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
                             '</div>'+
                         '</div>'+
@@ -1056,18 +1057,19 @@ var app = new Vue({
             app.$root.$children[0].success('hello');
             app.$root.$children[0].error('error')
             //this.$children.success('toster ok')
-            var author = encodeURIComponent($('#authors').text());
+            var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
             var description = encodeURIComponent($('#description').text());
             var publication_date = encodeURIComponent($('#publication_date').text());
             var id_google_api = encodeURIComponent($('#id_google_books_api').text());
             var url_image = encodeURIComponent(document.getElementById("url_image").src);
             var url_product = encodeURIComponent($('#url_product').text());
+            var sub_category = encodeURIComponent($('#sub_category').text());
 
             $.ajax({
                 url: Routing.generate('add_book'),
                 type: 'POST',
-                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api,
+                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category,
                 success: function(msg) {
                     app.$root.$children[0].success(msg)
                     console.log(msg)

@@ -1,6 +1,43 @@
-
+var debounce = function(callback, delay) {
+        var timeout;
+        return function() {
+              var context = this, args = arguments;
+              clearTimeout(timeout);
+              timeout = setTimeout(function() {
+                    callback.apply(context, args);
+                  }, delay);
+            };
+      };
 Vue.component('autocomplete', {
-    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu"> <p id="authors">{{ dataRecup.authors }}</p><br><img :src="dataRecup.url_image" id="url_image" alt="bookImg"><br><p id="title">{{ dataRecup.title }}</p><br><p id="url_product">{{ dataRecup.url_product }}</p><br><p id="description">{{ dataRecup.description }}</p><br><p id="publication_date">{{ dataRecup.publication_date }}</p><br><p id="id_google_books_api" >{{ dataRecup.id_google_books_api }}</p><br></div></div>',
+    template: 
+    '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' +
+        '<div class="row" v-if="autocompleteFlag">'+
+            '<div class="container-fluid">' +
+                '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' +
+                    '<div class="userBooksCard"  >'+
+                        '<div class="panel panel-default">'+
+                            '<div class="panel-body">'+
+                            '<div>'+
+                            '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">'+
+                            '<img :src="dataRecup.url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">'+
+                            '</a>'+
+                            '</div>'+
+                            '</div>'+
+                            '<div class="panel-footer" >'+
+                            '{{ dataRecup.title }} <br>'+
+                            '<span id="url_product" class="hidden">{{ dataRecup.url_product }}</span><br>'+
+                            '<span id="description" class="hidden">{{ dataRecup.description }}</span><br>'+
+                            '<span id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span><br>'+                        
+                            '<span id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
+                        '{{ dataRecup.authors }} rating'+
+                            '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>'+
+            '</div>' +
+        '</div>' +
+    '</div>',
     props: {
         id: String,
         className: String,
@@ -18,7 +55,10 @@ Vue.component('autocomplete', {
         // Label of list
         label: String,
         // Debounce time
-        debounce: Number,
+        debounce:{
+            type: Number,
+            default: 500
+        },
         // ajax URL will be fetched
         url: {
             type: String,
@@ -34,7 +74,7 @@ Vue.component('autocomplete', {
         // minimum length
         min: {
             type: Number,
-            default: 0
+            default: 3
         },
         // Process the result before retrieveng the result array.
         process: Function,
@@ -156,10 +196,13 @@ Vue.component('autocomplete', {
             this.onSelect ? this.onSelect(clean) : null
         },
         getData(val){
+            app.autocompleteLoader = true
             let self = this;
             if (val.length < this.min) return;
             if(this.url != null){
                 // Callback Event
+                console.log('call back debut')
+                app.autocompleteLoader = true
                 this.onBeforeAjax ? this.onBeforeAjax(val) : null
                 let ajax = new XMLHttpRequest();
                 let params = ""
@@ -173,12 +216,15 @@ Vue.component('autocomplete', {
                 ajax.addEventListener('progress', function (data) {
                     if(data.lengthComputable){
                         // Callback Event
+                        console.log('callback on progress')
                         this.onAjaxProgress ? this.onAjaxProgress(data) : null
                     }
                 });
                 ajax.addEventListener('loadend', function (data) {
                     let json = JSON.parse(this.responseText);
                     // Callback Event
+                    console.log('callback de fin')
+                    app.autocompleteLoader = false
                     this.onAjaxLoaded ? this.onAjaxLoaded(json) : null
                     self.json = self.process ? self.process(json) : json;
                 });
@@ -194,6 +240,35 @@ Vue.component('autocomplete', {
     }
 
 })
+Vue.component('loader', {
+    template: '<div class="v-spinner" v-show="loading">'+
+    '<div class="v-square" v-bind:style="spinnerStyle">'+
+    '</div>'+
+    '</div>',
+    props: {
+        loading: {
+            type: Boolean,
+            default: true
+        },
+        color: {
+            type: String,
+            default: '#5dc596'
+        },
+        size: {
+            type: String,
+            default: '50px'
+        }
+    },
+    data(){
+        return{
+            spinnerStyle: {
+                backgroundColor: this.color,
+                height: this.size,
+                width: this.size
+            }
+        }
+    }
+})
 
 Vue.component('star-rating', VueStarRating.default);
 
@@ -203,6 +278,7 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            autocompleteLoader: false,
             isConnected: false,
             mailInscription: '',
             floatMenu1IsActive:false,
@@ -270,6 +346,12 @@ var app = new Vue({
         }
     },
     methods: {
+        chargement() {
+            //this.autocompleteLoader = true
+        },
+        finChargement(){
+           // this.autocompleteLoader = false
+        },
         inscription : function (event) {
 
           var email = $('#email').val();    

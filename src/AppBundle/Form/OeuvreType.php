@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 /*File upload*/
@@ -45,6 +46,20 @@ class OeuvreType extends AbstractType
                         'class' => 'form-control'
                     ]
                 ))
+                ->add('category', EntityType::class, array(
+                    'class' => 'AppBundle:Category',
+                    'choice_label' => 'name',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+                ))
+                ->add('subcategory', EntityType::class, array(
+                    'class' => 'AppBundle:SubCategory',
+                    'choice_label' => 'name',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+                ))
                 ->add('url_image', FileType::class, [
                     'data' => null,
                     'label' => 'Image',
@@ -64,7 +79,14 @@ class OeuvreType extends AbstractType
                         'class' => 'form-control'
                     ]
 
-                ]);
+                ])
+                /*->add('trends', ButtonType::class, [  
+                    'label' => 'Add to the trending ?',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+
+                ])*/;
     }
     
     /**

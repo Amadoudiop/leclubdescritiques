@@ -5,7 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Page controller.
@@ -47,6 +50,12 @@ class PageController extends Controller
             $em->persist($page);
             $em->flush();
 
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Page Added'
+            );
+
             return $this->redirectToRoute('page_show', array('id' => $page->getId()));
         }
 
@@ -87,6 +96,13 @@ class PageController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Page Added'
+            );
+
             return $this->redirectToRoute('page_edit', array('id' => $page->getId()));
         }
 
@@ -112,6 +128,12 @@ class PageController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($page);
             $em->flush();
+
+            // Show notice
+            $this->addFlash(
+                'notice',
+                'Page Added'
+            );
         }
 
         return $this->redirectToRoute('page_index');

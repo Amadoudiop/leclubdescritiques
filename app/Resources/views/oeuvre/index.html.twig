@@ -1,4 +1,5 @@
 {% extends 'base_back.html.twig' %}
+{% block title %}{{ parent() }}Oeuvres{% endblock %}
 
 {% block body %}
     <!-- header Page -->
@@ -23,31 +24,37 @@
         <div class="col-xs-12">
           <div class="card">
             <div class="card-header">
-              List of pages
+                <span class="badge badge-info badge-icon"><i class="fa fa-star" aria-hidden="true"></i><span>Number of Oeuvres on the trending section : {{ nbTrendingOeuvres }}</span></span>
             </div>
             <div class="card-body no-padding">
               <table class="datatable table table-striped primary" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th class="text-center">Image</th>
                         <th>Title</th>
-                        <th class="text-center">image</th>
-                        <th>rating</th>
-                        <th>author</th>
-                        <th>Publication_date</th>
+                        <th>Rating</th>
+                        <th>Author</th>
+                        <th>Name</th>
+                        <th>Publication date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for oeuvre in oeuvres %}
                         <tr>
-                            <td>{{ oeuvre.title }}</td>
                             <td class="text-center">
                                 <img src="{{ absolute_url(oeuvres_directory) }}{{ oeuvre.urlimage }}" alt="{{ oeuvre.title }}">
                             </td>
+                            <td>{{ oeuvre.title }}</td>
                             <td class="text-center">{{ oeuvre.rating }}</td>
                             <td>
                                 {% if oeuvre.author is not null %}
                                     {{ oeuvre.author.getLastname }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if oeuvre.category is not null %}
+                                    {{ oeuvre.category.getName }}
                                 {% endif %}
                             </td>
                             <td>{% if oeuvre.publicationdate %}{{ oeuvre.publicationdate|date('Y-m-d') }}{% endif %}</td>
@@ -68,6 +75,19 @@
                                             <button type="button" class="btn btn-default">product</button>
                                         </a>
                                     </li>
+                                    {% if nbTrendingOeuvres < 6 %}
+                                    <li>
+                                        {% if oeuvre.trends == false %}
+                                            <button type="button" class="btn btn-info trends" dataInt="{{ oeuvre.id }}">Add to Trends</button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-pink trends" dataInt="{{ oeuvre.id }}">Remove from Trends</button>
+                                        {% endif %}
+                                    </li>
+                                    {% else %}
+                                        {% if oeuvre.trends == true %}
+                                            <button type="button" class="btn btn-pink trends" dataInt="{{ oeuvre.id }}">Remove from Trends</button>
+                                        {% endif %}
+                                    {% endif %}
                                 </ul>
                             </td>
                         </tr>

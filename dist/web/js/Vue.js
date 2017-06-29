@@ -461,8 +461,8 @@ var app = new Vue({
             });
         },
         addBook: function addBook(event) {
-            app.$root.$children[0].success('hello');
-            app.$root.$children[0].error('error');
+            //app.$root.$children[0].success('hello');
+            //app.$root.$children[0].error('error');
             //this.$children.success('toster ok')
             var author = encodeURIComponent($('#authors').text());
             var title = encodeURIComponent($('#title').text());

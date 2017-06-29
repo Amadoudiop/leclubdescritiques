@@ -288,4 +288,40 @@ class OeuvreController extends Controller
         return new JsonResponse($data);
     }
 
+    /**
+     * @Route("/getAllBooks", name="get_all_books", options={"expose"=true})
+     */
+    public function getAllBooksAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $books = $em->getRepository('AppBundle:Oeuvre')->findAll();
+
+        foreach ($books as $book) {
+            $title = (empty($book->getTitle())) ? '' : $book->getTitle();
+            $url_product = (empty($book->getUrlProduct())) ? '' : $book->getUrlProduct();
+            $description = (empty($book->getDescription())) ? '' : $book->getDescription();
+            $url_image = (empty($book->getUrlImage())) ? '' : $book->getUrlImage();
+            $publication_date = (empty($book->getPublicationDate()->format('d/m/Y'))) ? '' : $book->getPublicationDate()->format('d/m/Y');
+            $rating = (empty($book->getRating())) ? '' : $book->getRating();
+            $author = (empty($book->getAuthor()->getFirstname())) ? '' : $book->getAuthor()->getFirstname();
+            $category = (empty($book->getCategory()->getName())) ? '' : $book->getCategory()->getName();
+            $sub_category = (empty($book->getSubCategory()->getName())) ? '' : $book->getSubCategory()->getName();
+
+            $data[] = [
+                'title' => $title,
+                'url_product' => $url_product,
+                'description' => $description,
+                'url_image' => $url_image,
+                'publication_date' => $publication_date,
+                'rating' => $rating,
+                'author' => $author,
+                'category' => $category,
+                'sub_category' => $sub_category
+             ];
+        }
+
+        return new JsonResponse($data);
+    }
+
 }

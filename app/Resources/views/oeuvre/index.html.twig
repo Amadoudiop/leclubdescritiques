@@ -57,7 +57,15 @@
                                     {{ oeuvre.subcategory.getName }}
                                 {% endif %}
                             </td>
-                            <td>{% if oeuvre.statut %}<span style="background-color: {{ oeuvre.statut.color  }}">{{ oeuvre.statut.label }}</span>{% endif %}</td>
+                            <td>
+                                {% if oeuvre.statut %}
+                                    <span ></span>
+                                    <span class="badge badge-icon" style="background-color: {{ oeuvre.statut.color  }}">
+                                        <i class="fa fa-bell" aria-hidden="true"></i>
+                                        <span>{{ oeuvre.statut.label }}</span>
+                                    </span>
+                                {% endif %}
+                            </td>
                             <td>
                                 <ul>
                                     <li>

@@ -9,7 +9,6 @@ var debounce = function(callback, delay) {
             };
       };
 
-
 Vue.component('autocomplete', {
     template: 
     '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' +
@@ -312,6 +311,78 @@ Vue.component('toast',{
 })
 Vue.component('star-rating', VueStarRating.default);
 
+Vue.component('vue-table', {
+    template: '' +
+    '<table>'+
+    '    <thead>'+
+    '    <tr>'+
+    '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">'+
+    '    {{ key | capitalize }}'+
+    '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'">'+
+    '    </span>'+
+    '    </th>'+
+    '    </tr>'+
+    '    </thead>'+
+    '    <tbody>'+
+    '    <tr v-for="entry in filteredData">'+
+    '    <td v-for="key in columns">'+
+    '    {{entry[key]}}'+
+    '</td>'+
+    '</tr>'+
+    '</tbody>'+
+    '</table> '+
+    '',
+    props: {
+        data: Array,
+        columns: Array,
+        filterKey: String
+    },
+    data: function () {
+        var sortOrders = {}
+        this.columns.forEach(function (key) {
+            sortOrders[key] = 1
+        })
+        return {
+            sortKey: '',
+            sortOrders: sortOrders
+        }
+    },
+    computed: {
+        filteredData: function () {
+            var sortKey = this.sortKey
+            var filterKey = this.filterKey && this.filterKey.toLowerCase()
+            var order = this.sortOrders[sortKey] || 1
+            var data = this.data
+            if (filterKey) {
+                data = data.filter(function (row) {
+                    return Object.keys(row).some(function (key) {
+                        return String(row[key]).toLowerCase().indexOf(filterKey) > -1
+                    })
+                })
+            }
+            if (sortKey) {
+                data = data.slice().sort(function (a, b) {
+                    a = a[sortKey]
+                    b = b[sortKey]
+                    return (a === b ? 0 : a > b ? 1 : -1) * order
+                })
+            }
+            return data
+        }
+    },
+    filters: {
+        capitalize: function (str) {
+            return str.charAt(0).toUpperCase() + str.slice(1)
+        }
+    },
+    methods: {
+        sortBy: function (key) {
+            this.sortKey = key
+
+            this.sortOrders[key] = this.sortOrders[key] * -1
+        }
+    }
+})
 
 
 var app = new Vue({
@@ -319,6 +390,63 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            searchQuery: '',
+            gridColumns: ['name', 'power'],
+            gridData: [
+                { name: 'Chuck Norris', power: Infinity },
+                { name: 'Bruce Lee', power: 9000 },
+                { name: 'Jackie Chan', power: 7000 },
+                { name: 'Jet Li', power: 8000 }
+            ],
+            columns: [
+                {
+                    label: 'Id',
+                    field: 'id',
+                    type: 'number',
+                    html: false,
+                    width: '50px',
+                },
+                {
+                    label: 'Name',
+                    field: 'name',
+                    html: false,
+                    filterable: true,
+                },
+                {
+                    label: 'Age',
+                    field: 'age',
+                    type: 'number',
+                    html: false,
+                    filterable: true,
+                },
+                {
+                    label: 'Created On',
+                    field: 'createdAt',
+                    type: 'date',
+                    inputFormat: 'YYYYMMDD',
+                    outputFormat: 'MMM Do YY',
+                    filterable: false,
+                },
+                {
+                    label: 'Percent',
+                    field: 'btn',
+                    type: 'percentage',
+                    html: false,
+                    filterable: true,
+                },
+            ],
+            rows: [
+                {id:1, name:"John",age:"20",btn: 0.03343},
+                {id:2, name:"Jane",age:"24",btn: 0.03343},
+                {id:3, name:"Susan",age:"16",btn: 0.03343},
+                {id:4, name:"Chris",age:"55",btn: 0.03343},
+                {id:5, name:"Dan",age:"40",btn: 0.03343},
+                {id:6, name:"John",age:"20",btn: 0.03343},
+                {id:7, name:"Jane",age:"24",btn: 0.03343},
+                {id:8, name:"Susan",age:"16",btn: 0.03343},
+                {id:9, name:"Chris",age:"55",btn: 0.03343},
+                {id:10, name:"Dan",age:"40",btn: 0.03343},
+            ],
             autocompleteLoader: false,
             isConnected: false,
             mailInscription: '',

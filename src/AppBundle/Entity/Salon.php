@@ -42,6 +42,7 @@ class Salon
      * @var \DateTime
      *
      * @Assert\DateTime()
+     * @ORM\Column(name="date_start", type="datetime")
      */
     private $date_start;
 
@@ -49,6 +50,7 @@ class Salon
      * @var \DateTime
      *
      * @Assert\DateTime()
+     * @ORM\Column(name="date_end", type="datetime")
      */
     private $date_end;
 

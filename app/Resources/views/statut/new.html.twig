@@ -13,4 +13,18 @@
             <a href="{{ path('statut_index') }}">Back to the list</a>
         </li>
     </ul>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/color-picker.min.js') }}"></script>
+    <script>
+    console.log('yo');
+    var picker = new CP($('#appbundle_statut_color'));
+
+    picker.on("change", function(color) {
+        this.target.value = '#' + color;
+    });
+
+    </script>
 {% endblock %}

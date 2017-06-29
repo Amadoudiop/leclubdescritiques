@@ -34,8 +34,8 @@
                         <th>Title</th>
                         <th>Rating</th>
                         <th>Author</th>
-                        <th>Name</th>
-                        <th>Publication date</th>
+                        <th>Subcategory</th>
+                        <th>Statut</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -53,11 +53,11 @@
                                 {% endif %}
                             </td>
                             <td>
-                                {% if oeuvre.category is not null %}
-                                    {{ oeuvre.category.getName }}
+                                {% if oeuvre.subcategory is not null %}
+                                    {{ oeuvre.subcategory.getName }}
                                 {% endif %}
                             </td>
-                            <td>{% if oeuvre.publicationdate %}{{ oeuvre.publicationdate|date('Y-m-d') }}{% endif %}</td>
+                            <td>{% if oeuvre.statut %}<span style="background-color: {{ oeuvre.statut.color  }}">{{ oeuvre.statut.label }}</span>{% endif %}</td>
                             <td>
                                 <ul>
                                     <li>

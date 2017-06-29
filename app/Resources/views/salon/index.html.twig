@@ -33,6 +33,8 @@
                         <th>Title</th>
                         <th>Oeuvre</th>
                         <th>Participants number</th>
+                        <th>Date start</th>
+                        <th>Date end</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -45,6 +47,12 @@
                             </td>
                             <td>
                                 {{ salon.participantsnumber }}
+                            </td>
+                            <td>
+                                {{ salon.datestart|date('d-m-Y H:m') }}
+                            </td>
+                            <td>
+                                {{ salon.dateend|date('d-m-Y H:m') }}
                             </td>
                             <td>
                                 <ul>

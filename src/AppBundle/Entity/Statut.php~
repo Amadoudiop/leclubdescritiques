@@ -28,6 +28,13 @@ class Statut
      */
     private $label;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=10)
+     */
+    private $color;
+
 
     /**
      * Get id

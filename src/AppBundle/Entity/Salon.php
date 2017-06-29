@@ -105,53 +105,6 @@ class Salon
         return $this->title;
     }
 
-    /**
-     * Set dateStart
-     *
-     * @param string $dateStart
-     *
-     * @return Salon
-     */
-    public function setDateStart($dateStart)
-    {
-        $this->date_start = $dateStart;
-
-        return $this;
-    }
-
-    /**
-     * Get dateStart
-     *
-     * @return string
-     */
-    public function getDateStart()
-    {
-        return $this->date_start;
-    }
-
-    /**
-     * Set dateEnd
-     *
-     * @param string $dateEnd
-     *
-     * @return Salon
-     */
-    public function setDateEnd($dateEnd)
-    {
-        $this->date_end = $dateEnd;
-
-        return $this;
-    }
-
-    /**
-     * Get dateEnd
-     *
-     * @return string
-     */
-    public function getDateEnd()
-    {
-        return $this->date_end;
-    }
 
     /**
      * Set participantsNumber
@@ -264,5 +217,53 @@ class Salon
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * Set dateStart
+     *
+     * @param \DateTime $dateStart
+     *
+     * @return Salon
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->date_start = $dateStart;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStart
+     *
+     * @return \DateTime
+     */
+    public function getDateStart()
+    {
+        return $this->date_start;
+    }
+
+    /**
+     * Set dateEnd
+     *
+     * @param \DateTime $dateEnd
+     *
+     * @return Salon
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->date_end = $dateEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnd
+     *
+     * @return \DateTime
+     */
+    public function getDateEnd()
+    {
+        return $this->date_end;
     }
 }

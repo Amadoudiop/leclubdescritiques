@@ -39,7 +39,11 @@
                     {% for subcategory in subCategories %}
                         <tr>
                             <td>{{ subcategory.name }}</td>
-                            <td>{{ subcategory.category.getName }}</td>
+                            <td>
+                                {% if subcategory.category is not null %}
+                                    {{ subcategory.category.getName }}
+                                {% endif %}
+                            </td>
                             <td>
                                 <ul>
                                     <li>

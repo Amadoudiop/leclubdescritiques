@@ -42,7 +42,7 @@ class Salon
      * @var \DateTime
      *
      * @Assert\DateTime()
-     * @ORM\Column(name="date_start", type="Datetime")
+     * @ORM\Column(name="date_start", type="datetime")
      */
     private $date_start;
 
@@ -50,7 +50,7 @@ class Salon
      * @var \DateTime
      *
      * @Assert\DateTime()
-     * @ORM\Column(name="date_end", type="Datetime")
+     * @ORM\Column(name="date_end", type="datetime")
      */
     private $date_end;
 
@@ -105,53 +105,6 @@ class Salon
         return $this->title;
     }
 
-    /**
-     * Set dateStart
-     *
-     * @param string $dateStart
-     *
-     * @return Salon
-     */
-    public function setDateStart($dateStart)
-    {
-        $this->date_start = $dateStart;
-
-        return $this;
-    }
-
-    /**
-     * Get dateStart
-     *
-     * @return string
-     */
-    public function getDateStart()
-    {
-        return $this->date_start;
-    }
-
-    /**
-     * Set dateEnd
-     *
-     * @param string $dateEnd
-     *
-     * @return Salon
-     */
-    public function setDateEnd($dateEnd)
-    {
-        $this->date_end = $dateEnd;
-
-        return $this;
-    }
-
-    /**
-     * Get dateEnd
-     *
-     * @return string
-     */
-    public function getDateEnd()
-    {
-        return $this->date_end;
-    }
 
     /**
      * Set participantsNumber

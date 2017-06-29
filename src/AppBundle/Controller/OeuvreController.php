@@ -139,7 +139,7 @@ class OeuvreController extends Controller
     /**
      * Finds and displays a oeuvre entity.
      *
-     * @Route("/admin/oeuvre/{id}", name="oeuvre_show")
+     * @Route("/oeuvre/{id}", name="oeuvre_show")
      * @Method("GET")
      */
     public function showAction(Oeuvre $oeuvre)

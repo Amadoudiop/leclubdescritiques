@@ -291,6 +291,23 @@ class UserController extends Controller
 
 
     /**
+     * Finds and displays a oeuvre entity.
+     *
+     * @Route("/user/{id}", name="oeuvre_show")
+     * @Method("GET")
+     */
+    public function showAction(Oeuvre $oeuvre)
+    {
+        $deleteForm = $this->createDeleteForm($oeuvre);
+
+        return $this->render('oeuvre/show.html.twig', array(
+            'oeuvre' => $oeuvre,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+
+    /**
      * Displays a form to edit an existing user entity.
      *
      * @Route("/admin/user/{id}/edit", name="user_edit")

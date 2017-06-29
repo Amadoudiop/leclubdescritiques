@@ -32,7 +32,7 @@ Vue.component('autocomplete', {
                             '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
                             '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>'+
                             '<h4><span id="author">{{ dataRecup.authors }}</span></h4>'+
-                            '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
+                            '<star-rating :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -310,7 +310,6 @@ Vue.component('toast',{
     }
 })
 Vue.component('star-rating', VueStarRating.default);
-
 Vue.component('vue-table', {
     template: '' +
     '<table>'+
@@ -390,6 +389,7 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            searchBook:'',
             searchQuery: '',
             gridColumns: ['name', 'power'],
             gridData: [
@@ -398,55 +398,7 @@ var app = new Vue({
                 { name: 'Jackie Chan', power: 7000 },
                 { name: 'Jet Li', power: 8000 }
             ],
-            columns: [
-                {
-                    label: 'Id',
-                    field: 'id',
-                    type: 'number',
-                    html: false,
-                    width: '50px',
-                },
-                {
-                    label: 'Name',
-                    field: 'name',
-                    html: false,
-                    filterable: true,
-                },
-                {
-                    label: 'Age',
-                    field: 'age',
-                    type: 'number',
-                    html: false,
-                    filterable: true,
-                },
-                {
-                    label: 'Created On',
-                    field: 'createdAt',
-                    type: 'date',
-                    inputFormat: 'YYYYMMDD',
-                    outputFormat: 'MMM Do YY',
-                    filterable: false,
-                },
-                {
-                    label: 'Percent',
-                    field: 'btn',
-                    type: 'percentage',
-                    html: false,
-                    filterable: true,
-                },
-            ],
-            rows: [
-                {id:1, name:"John",age:"20",btn: 0.03343},
-                {id:2, name:"Jane",age:"24",btn: 0.03343},
-                {id:3, name:"Susan",age:"16",btn: 0.03343},
-                {id:4, name:"Chris",age:"55",btn: 0.03343},
-                {id:5, name:"Dan",age:"40",btn: 0.03343},
-                {id:6, name:"John",age:"20",btn: 0.03343},
-                {id:7, name:"Jane",age:"24",btn: 0.03343},
-                {id:8, name:"Susan",age:"16",btn: 0.03343},
-                {id:9, name:"Chris",age:"55",btn: 0.03343},
-                {id:10, name:"Dan",age:"40",btn: 0.03343},
-            ],
+            rooms: {},
             autocompleteLoader: false,
             isConnected: false,
             mailInscription: '',
@@ -498,19 +450,8 @@ var app = new Vue({
             }
              ],
             userBooks:[
-                {
-                    titre:'1984',
-                    auteur: 'Georges Orwell',
-                    Grating: 4.5,
-                    Urating: 5
-                },
-                {
-                    titre:'Harry Potter',
-                    auteur: 'JK Rowling',
-                    Grating: 3,
-                    Urating: 5
-                }
             ],
+            books: [ ],
             fetchArray: {}
         }
     },
@@ -584,6 +525,7 @@ var app = new Vue({
                 data: 'message='+message,
                 success: function(msg) {
                     console.log(msg);
+                    $('#close-send-message').trigger( "click" );
                 }
             });
 
@@ -603,13 +545,13 @@ var app = new Vue({
                 data: 'firstname='+firstname+'&lastname='+lastname+'&email='+email+'&description='+description,
                 success: function(msg) {
                     console.log(msg);
+                    $('#close-edit-profil').trigger( "click" );
                 }
             });
 
         },
         addBook : function (event) {
-            app.$root.$children[0].success('hello');
-            app.$root.$children[0].error('error')
+            app.$root.$children[0].success('requete envoyée');
             //this.$children.success('toster ok')
             var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
@@ -626,12 +568,62 @@ var app = new Vue({
                 data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category,
                 success: function(msg) {
                     app.$root.$children[0].success(msg)
-                    console.log(msg)
+                    $('#close-add-book').trigger( "click" );
                 }
             });
         },
     },
     mounted(){
+        console.log('mounted')
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getBooksTrends',
+            type: 'GET',
+            data: data,
+            success: function(msg) {
+                console.log(data);
+                this.alaunes = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg)
+            }
+        });
+        console.log('booksTrends  done')
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getAllBooks',
+            type: 'GET',
+            data: data,
+            success: function(msg) {
+                console.log(data);
+                this.books = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg)
+            }
+        });
+        console.log('books done')
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getUserBooks',
+            type: 'GET',
+            data: data,
+            success: function(msg) {
+                console.log(data);
+                this.userBooks = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg)
+            }
+        });
+        console.log('userBooks done')
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getRooms',
+            type: 'GET',
+            data: data,
+            success: function(msg) {
+                console.log(data);
+                this.rooms = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg)
+            }
+        });
+        console.log('rooms done')
+
         /*fetch('http://pokeapi.co/api/v2/pokemon/1')
             .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
             .then(function(data) {
@@ -644,5 +636,6 @@ var app = new Vue({
                 console.log(error);
                 // This is where you run code if the server returns any errors
             });*/
-    }
+    },
+
 });

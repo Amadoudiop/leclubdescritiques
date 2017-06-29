@@ -74,6 +74,11 @@ class Oeuvre
      */
     private $rating;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Author", inversedBy="oeuvres")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     */
+    private $author;
 
     /**
      * @var string
@@ -81,12 +86,6 @@ class Oeuvre
      * @ORM\Column(name="id_google_api", type="string", length=255)
      */
     private $id_google_api;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Author", inversedBy="oeuvres")
-     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
-     */
-    private $author;
 
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="oeuvres")
@@ -99,6 +98,7 @@ class Oeuvre
      * @ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")
      */
     private $subCategory;
+
 
     /**
      * Get id
@@ -281,27 +281,27 @@ class Oeuvre
     }
 
     /**
-     * Set rating
+     * Set idGoogleApi
      *
-     * @param integer $rating
+     * @param string $idGoogleApi
      *
      * @return Oeuvre
      */
-    public function setRating($rating)
+    public function setIdGoogleApi($idGoogleApi)
     {
-        $this->rating = $rating;
+        $this->id_google_api = $idGoogleApi;
 
         return $this;
     }
 
     /**
-     * Get rating
+     * Get idGoogleApi
      *
-     * @return integer
+     * @return string
      */
-    public function getRating()
+    public function getIdGoogleApi()
     {
-        return $this->rating;
+        return $this->id_google_api;
     }
 
     /**

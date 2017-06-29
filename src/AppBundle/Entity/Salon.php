@@ -39,6 +39,20 @@ class Salon
     private $participants_number;
 
     /**
+     * @var \DateTime
+     *
+     * @Assert\DateTime()
+     */
+    private $date_start;
+
+    /**
+     * @var \DateTime
+     *
+     * @Assert\DateTime()
+     */
+    private $date_end;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Oeuvre")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -87,6 +101,54 @@ class Salon
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set dateStart
+     *
+     * @param string $dateStart
+     *
+     * @return Salon
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->date_start = $dateStart;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStart
+     *
+     * @return string
+     */
+    public function getDateStart()
+    {
+        return $this->date_start;
+    }
+
+    /**
+     * Set dateEnd
+     *
+     * @param string $dateEnd
+     *
+     * @return Salon
+     */
+    public function setDateEnd($dateEnd)
+    {
+        $this->date_end = $dateEnd;
+
+        return $this;
+    }
+
+    /**
+     * Get dateEnd
+     *
+     * @return string
+     */
+    public function getDateEnd()
+    {
+        return $this->date_end;
     }
 
     /**

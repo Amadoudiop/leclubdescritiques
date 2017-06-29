@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class SalonType extends AbstractType
 {
@@ -35,7 +36,18 @@ class SalonType extends AbstractType
                     'attr' => [
                         'class' => 'form-control'
                     ]
-                ));
+                ))
+                ->add('user', EntityType::class, array(
+                    'class' => 'AppBundle:User',
+                    'choice_label' => 'email',
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
+                ))
+                ->add('date_start', DateTimeType::class, [
+                ])
+                ->add('date_end', DateTimeType::class, [
+                ]);
     }
     
     /**

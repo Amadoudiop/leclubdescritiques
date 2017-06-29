@@ -9,6 +9,25 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
     {% endblock  %}
 
-  hello world
+    <div id="div-salon" class="content">
+        <div class="row">
+            <div class="container">
+                <div class="col-sm-1 col-md-1"></div>
+                <div class="col-sm-10 col-md-10">
+                    <form id="search">
+                        <input id="search-input" name="query" placeholder="Recherche" v-model="searchQuery">
+                    </form>
+                    <vue-table
+                            :data="gridData"
+                            :columns="gridColumns"
+                            :filter-key="searchQuery">
+                    </vue-table>
+                </div>
+                <div class="col-sm-1 col-md-1"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Vue js star rating -->
+    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
 
 {% endblock %}

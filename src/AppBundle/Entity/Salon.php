@@ -56,6 +56,20 @@ class Salon
     private $participants;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="date")
+     */
+    private $start_date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="date")
+     */
+    private $end_date;
+
+    /**
      * Get id
      *
      * @return int
@@ -200,5 +214,53 @@ class Salon
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * Set startDate
+     *
+     * @param \DateTime $startDate
+     *
+     * @return Salon
+     */
+    public function setStartDate($startDate)
+    {
+        $this->start_date = $startDate;
+
+        return $this;
+    }
+
+    /**
+     * Get startDate
+     *
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->start_date;
+    }
+
+    /**
+     * Set endDate
+     *
+     * @param \DateTime $endDate
+     *
+     * @return Salon
+     */
+    public function setEndDate($endDate)
+    {
+        $this->end_date = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Get endDate
+     *
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->end_date;
     }
 }

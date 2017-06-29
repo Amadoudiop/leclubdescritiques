@@ -234,4 +234,37 @@ class SalonController extends Controller
 
         return new JsonResponse($response);
     }
+
+    /**
+     * @Route("/getRooms", name="get_rooms", options={"expose"=true})
+     */
+    public function getRoomsAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $salons = $em->getRepository('AppBundle:Salon')->findAll();
+
+        foreach ($salons as $salon) {
+            $title = (empty($salon->getTitle())) ? '' : $salon->getTitle();
+            $participants_number = (empty($salon->getParticipantsNumber())) ? '' : $salon->getParticipantsNumber();
+            $oeuvre = (empty($salon->getOeuvre()->getTitle())) ? '' : $salon->getOeuvre()->getTitle();
+            $created_by = (empty($salon->getUser()->getFirstname())) ? '' : $salon->getUser()->getFirstname().' '.$salon->getUser()->getLastname();
+            //$participants = (empty($salon->getParticipants())) ? '' : $salon->getParticipants();
+            $start_date = (empty($salon->getStartDate()->format('d/m/Y'))) ? '' : $salon->getStartDate()->format('d/m/Y');
+            $end_date = (empty($salon->getEndDate()->format('d/m/Y'))) ? '' : $salon->getEndDate()->format('d/m/Y');
+
+            $data[] = [
+                'title' => $title,
+                'participants_number' => $participants_number,
+                'oeuvre' => $oeuvre,
+                'created_by' => $created_by,
+                /*'participants' => $participants,*/
+                'start_date' => $start_date,
+                'end_date' => $end_date,
+             ];
+        }
+
+        return new JsonResponse($data);
+    }
+
 }

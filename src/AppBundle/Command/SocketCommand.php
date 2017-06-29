@@ -10,6 +10,8 @@ use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
 
+// Ratchet libs
+use Ratchet\App;
 // Change the namespace according to your bundle
 use AppBundle\Sockets\Chat;
 
@@ -32,16 +34,30 @@ class SocketCommand extends Command
             '============',// Another line
             'Starting chat, open your browser.',// Empty line
         ]);
+
+        // The domain of your app as first parameter
         
-        $server = IoServer::factory(
-            new HttpServer(
-                new WsServer(
-                    new Chat()
-                )
-            ),
-            9090
-        );
+        // Note : if you got problems during the initialization, add as third parameter '0.0.0.0'
+        // to prevent any error related to localhost :
+        // $app = new \Ratchet\App('sandbox', 8080,'0.0.0.0');
+        // Domain as first parameter
+        $app = new App('localhost', 9090,'0.0.0.0');
+        // Add route to chat with the handler as second parameter
+        $app->route('/chat-01', new Chat);
+        $app->route('/chat-02', new Chat);
+        $app->route('/chat-03', new Chat);
+        $app->route('/chat-04', new Chat);
+        $app->route('/chat-05', new Chat);
+        $app->route('/chat-06', new Chat);
+        $app->route('/chat-07', new Chat);
+        $app->route('/chat-08', new Chat);
+        $app->route('/chat-09', new Chat);
+        $app->route('/chat-10', new Chat);
+
         
-        $server->run();
+        // Run !
+        $app->run();
+        
+        
     }
 }

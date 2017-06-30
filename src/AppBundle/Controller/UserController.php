@@ -382,4 +382,78 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * @Route("/getInfosUser/{id}", name="get_infos_user", options={"expose"=true})
+     */
+    public function getInfosUserAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $em->getRepository('AppBundle:User')->find($id);
+
+        if (null === $user) {
+          throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+        }
+
+        $firstname = (empty($user->getFirstname())) ? '' : $user->getFirstname();
+        $lastname = (empty($user->getLastname())) ? '' : $user->getLastname();
+        $description = (empty($user->getDescription())) ? '' : $user->getDescription();
+        $last_login = (empty($user->getLastLogin()->format('d/m/Y'))) ? '' : $user->getLastLogin()->format('d/m/Y');
+        $email = (empty($user->getEmail())) ? '' : $user->getEmail();
+
+        $data = [
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'description' => $description,
+            'last_login' => $last_login,
+            'email' => $email,
+         ];
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/getBooksUser/{id}", name="get_bookss_user", options={"expose"=true})
+     */
+    public function getBooksUserAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $em->getRepository('AppBundle:User')->find($id);
+
+        if (null === $user) {
+          throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+        }
+
+        //les oeuvres de l'utilisateur
+        $em = $this->getDoctrine()->getManager();
+        $user_oeuvres = $em->getRepository('AppBundle:UserOeuvre')->findByUser($user);
+
+        foreach ($user_oeuvres as $user_oeuvre) {
+            $title = (empty($user_oeuvre->getOeuvre()->getTitle())) ? '' : $user_oeuvre->getOeuvre()->getTitle();
+            $url_product = (empty($user_oeuvre->getOeuvre()->getUrlProduct())) ? '' : $user_oeuvre->getOeuvre()->getUrlProduct();
+            $description = (empty($user_oeuvre->getOeuvre()->getDescription())) ? '' : $user_oeuvre->getOeuvre()->getDescription();
+            $url_image = (empty($user_oeuvre->getOeuvre()->getUrlImage())) ? '' : $user_oeuvre->getOeuvre()->getUrlImage();
+            $publication_date = (empty($user_oeuvre->getOeuvre()->getPublicationDate()->format('d/m/Y'))) ? '' : $user_oeuvre->getOeuvre()->getPublicationDate()->format('d/m/Y');
+            $rating = (empty($user_oeuvre->getOeuvre()->getRating())) ? '' : $user_oeuvre->getOeuvre()->getRating();
+            $author = (empty($user_oeuvre->getOeuvre()->getAuthor()->getFirstname())) ? '' : $user_oeuvre->getOeuvre()->getAuthor()->getFirstname();
+            $category = (empty($user_oeuvre->getOeuvre()->getCategory()->getName())) ? '' : $user_oeuvre->getOeuvre()->getCategory()->getName();
+            $sub_category = (empty($user_oeuvre->getOeuvre()->getSubCategory()->getName())) ? '' : $user_oeuvre->getOeuvre()->getSubCategory()->getName();
+
+            $data[] = [
+                'title' => $title,
+                'url_product' => $url_product,
+                'description' => $description,
+                'url_image' => $url_image,
+                'publication_date' => $publication_date,
+                'rating' => $rating,
+                'author' => $author,
+                'category' => $category,
+                'sub_category' => $sub_category
+             ];
+        }
+
+        return new JsonResponse($data);
+    }
 }

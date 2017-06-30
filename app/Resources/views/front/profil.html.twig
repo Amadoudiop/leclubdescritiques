@@ -326,9 +326,9 @@
                                                         </div>
                                                         <div class="panel-footer" >
                                                             {{ user_oeuvre.oeuvre.title }} <br>
-                                                            {{ user_oeuvre.oeuvre.author.firstname }} rating<star-rating :star-size="20" :rating="5" :read-only="true" :show-rating="false" :increment="0.5" >
+                                                            {{ user_oeuvre.oeuvre.author.firstname }} rating<star-rating :star-size="20" :max-rating="4" :rating="5" :read-only="true" :show-rating="false" :increment="0.5" >
                                                             </star-rating>
-                                                            <star-rating :star-size="20" :rating="5" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
+                                                            <star-rating :star-size="20" :max-rating="4" :rating="5" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
                                                             <span class="label label-success">à échanger</span>
                                                             <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                                         </div>
@@ -811,7 +811,7 @@
 
                     <!--Header-->
                     <div class="modal-header light-blue darken-3 white-text">
-                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="close-form-contact" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 class="title"><i class="fa fa-pencil"></i> Formulaire de contact</h4>
@@ -861,7 +861,7 @@
 
                     <!--Header-->
                     <div class="modal-header light-blue darken-3 white-text">
-                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <button type="button" id="close-add-book" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                         <h4 class="title"><i class="fa fa-book"></i>Ajouter un livre</h4>
@@ -912,7 +912,7 @@
 
                     <!--Header-->
                     <div class="modal-header light-blue darken-3 white-text">
-                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <button type="button"  id="close-edit-profil" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <h4 class="title"><i class="fa fa-pencil"></i> Editer le profil</h4>

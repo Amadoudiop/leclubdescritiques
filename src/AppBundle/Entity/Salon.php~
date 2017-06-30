@@ -72,6 +72,20 @@ class Salon
     private $participants;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="date")
+     */
+    private $start_date;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="end_date", type="date")
+     */
+    private $end_date;
+
+    /**
      * Get id
      *
      * @return int

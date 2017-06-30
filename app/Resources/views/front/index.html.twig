@@ -32,18 +32,18 @@
                     <div v-for="alaune in alaunes">
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 
-                            <div class="alauneCard" @click="showOeuvre(alaune.auteur,alaune.titre)" >
+                            <div class="alauneCard" @click="showOeuvre(alaune)" >
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div>
                                             <a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                                               {# <img :src="{{ asset("'images/' + alaune.titre + '.jpg'") }}" class="img-thumbnail img-alaune img-responsive">#}
+                                                <img :src="alaune.url_image" class="img-thumbnail img-alaune img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                     <div class="panel-footer" >
-                                        ${ alaune.titre } <br>
-                                        ${ alaune.auteur } <star-rating :star-size="30" :max-rating="4" :rating="alaune.rating" :read-only="true" :increment="0.5" :show-rating="false"></star-rating><br>
+                                        ${ alaune.title } <br>
+                                        ${ alaune.author } <star-rating :star-size="30" :max-rating="4" :rating="alaune.rating" :read-only="true" :increment="0.5" :show-rating="false"></star-rating><br>
                                         <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                     </div>
                                 </div>
@@ -148,26 +148,22 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>${ oeuvreShown.titre }</h2>
+                            <h2>${ oeuvreShown.title }</h2>
                             <hr class="star-primary">
-                            {#<img :src="{{ asset("'images/' + oeuvreShown.titre + '.jpg'") }}" class="img-responsive img-modal img-centered" alt="">#}
+                            <img :src="oeuvreShown.url_image" class="img-responsive img-modal img-centered" alt="">
                             <p>${ oeuvreShown.description }</p>
                             <ul class="list-inline item-details">
                                 <li>Auteur:
-                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.auteur }</a>
+                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.author }</a>
                                     </strong>
                                 </li>
                                 <li>Genre:
-                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.genre }</a>
-                                    </strong>
-                                </li>
-                                <li>Prochain salon:
-                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.salon }</a>
+                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.subcategory }</a>
                                     </strong>
                                 </li>
                                 <li>Note moyenne utilisateurs:
-                                    <strong>${ oeuvreShown.note }</a>
-                                    </strong>
+                                    {#<star-rating :star-size="10" :max-rating="4" :rating="${ oeuvreShown.rating }" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>#}
+                                    ${ oeuvreShown.rating }
                                 </li>
                             </ul>
                             <button type="button" class="btn btn-default" @click="closeModal" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>

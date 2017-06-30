@@ -365,27 +365,18 @@ var app = new Vue({
         return {
             searchBook: '',
             searchQuery: '',
-            gridColumns: ['name', 'power'],
-            gridData: [{ name: 'Chuck Norris', power: Infinity }, { name: 'Bruce Lee', power: 9000 }, { name: 'Jackie Chan', power: 7000 }, { name: 'Jet Li', power: 8000 }],
-            rooms: {},
+            gridColumns: [],
+            gridData: [],
+            rooms: [],
             autocompleteLoader: false,
-            isConnected: false,
             mailInscription: '',
             floatMenu1IsActive: false,
             floatMenu2IsActive: false,
             oeuvreIsShown: false,
-            oeuvreShown: {
-                titre: 'temp_titre',
-                auteur: 'temp_auteur',
-                description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                genre: 'roman',
-                salon: 'Date_du_salon',
-                note: '4'
-            },
+            oeuvreShown: {},
             sujetSalon: "Lord of the Rings",
             nbParticipantsSalon: '3',
             dateSalon: '',
-            lienSalon: '/salon',
             alaunes: [{
                 titre: '1984',
                 auteur: 'Georges Orwell',
@@ -454,11 +445,9 @@ var app = new Vue({
                 }
             });
         },
-        showOeuvre: function showOeuvre(_auteur, _titre) {
-            console.log("hello");
+        showOeuvre: function showOeuvre(obj) {
             this.oeuvreIsShown = true;
-            this.oeuvreShown.titre = _titre;
-            this.oeuvreShown.auteur = _auteur;
+            this.oeuvreShown = obj;
         },
         closeModal: function closeModal() {
             this.oeuvreIsShown = false;
@@ -535,55 +524,35 @@ var app = new Vue({
         }
     },
     mounted: function mounted() {
-        console.log('mounted');
+        var that = this;
         $.ajax({
             url: 'http://localhost:8000/app_dev.php/getBooksTrends',
             type: 'GET',
-            data: data,
-            success: function success(msg) {
-                console.log(data);
-                this.alaunes = data;
-                app.$root.$children[0].success(msg);
-                console.log(msg);
+            success: function success(data) {
+                that.alaunes = data;
+                app.$root.$children[0].success('books trends récupérés');
             }
         });
-        console.log('booksTrends  done');
         $.ajax({
             url: 'http://localhost:8000/app_dev.php/getAllBooks',
             type: 'GET',
-            data: data,
-            success: function success(msg) {
+            success: function success(data) {
                 console.log(data);
-                this.books = data;
-                app.$root.$children[0].success(msg);
-                console.log(msg);
+                that.books = data;
+                app.$root.$children[0].success('all books récupérés');
             }
         });
-        console.log('books done');
-        $.ajax({
-            url: 'http://localhost:8000/app_dev.php/getUserBooks',
-            type: 'GET',
-            data: data,
-            success: function success(msg) {
-                console.log(data);
-                this.userBooks = data;
-                app.$root.$children[0].success(msg);
-                console.log(msg);
-            }
-        });
-        console.log('userBooks done');
         $.ajax({
             url: 'http://localhost:8000/app_dev.php/getRooms',
             type: 'GET',
-            data: data,
-            success: function success(msg) {
-                console.log(data);
-                this.rooms = data;
-                app.$root.$children[0].success(msg);
-                console.log(msg);
+            success: function success(data) {
+                that.rooms = data;
+                that.gridColumns = Object.keys(data[0]);
+                that.gridData = data;
+                console.log(Object.keys(data[0]));
+                app.$root.$children[0].success('get rooms récupéré');
             }
         });
-        console.log('rooms done');
 
         /*fetch('http://pokeapi.co/api/v2/pokemon/1')
             .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter

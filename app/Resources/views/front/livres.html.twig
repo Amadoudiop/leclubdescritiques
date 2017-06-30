@@ -20,7 +20,7 @@
                     <div v-for="book in books">
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 
-                            <div class="alauneCard" @click="showOeuvre(book.auteur,book.titre)" >
+                            <div class="alauneCard" @click="showOeuvre(book)" >
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div>
@@ -30,8 +30,8 @@
                                         </div>
                                     </div>
                                     <div class="panel-footer" >
-                                        ${ book.titre } <br>
-                                        ${ book.auteur } <star-rating :star-size="30" :max-rating="4" :rating="book.rating" :read-only="true" :increment="0.5" :show-rating="false"></star-rating><br>
+                                        ${ book.title } <br>
+                                        ${ book.author } <star-rating :star-size="20" :max-rating="4" :rating="book.rating" :read-only="true" :increment="0.5" :show-rating="false"></star-rating><br>
                                         <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                     </div>
                                 </div>

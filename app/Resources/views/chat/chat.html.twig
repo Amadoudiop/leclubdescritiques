@@ -54,7 +54,7 @@
     var Chat = {
         appendMessage: function(username,message){
             var from;
-            
+            console.log(clientInformation.username);
             if(username == clientInformation.username){
                 from = "me";
             }else{

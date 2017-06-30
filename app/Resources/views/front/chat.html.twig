@@ -51,7 +51,7 @@
                                 <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
                             </a>
                             <div class="media-body">
-                                <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ message.time|date('Y-m-d h:i:s') }}</small>    
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ message.time|date('d-m-Y h:i:s') }}</small>    
 
                                 <h5 class="media-heading">{{ message.user.firstname }} {{ message.user.lastname }}</h5>
                                 <small class="col-lg-10">{{ message.message }}</small>
@@ -69,9 +69,9 @@
                 </div>
                 <div class="btn-panel">
                     <a href="" class=" col-lg-3 btn   send-message-btn " role="button"><i class="fa fa-cloud-upload"></i> Add Files</a>
-                    <a href="" class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button" id="sendMessage"><i class="fa fa-plus"></i> Send Message</a>
-                    <input type="button" id="form-submit" value="Send message"/>
-                </div>
+                    <a href="" class=" col-lg-4 text-right btn   send-message-btn pull-right" role="button" id="sendMessage"><i class="fa fa-plus" ></i> Send Message</a>
+                    <input type="button" id="form-submit" value="Send message" @click.stop.prevent="sendMessageChat"/>
+                    <span id="username" class="hidden">{{ user.firstname }} {{ user.lastname }}</span>
             </div>
         </div>
     </div>
@@ -79,7 +79,8 @@
     <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
 
     <!-- Socket -->
-    <script>
+    <!--<script>
+
         // This object will be sent everytime you submit a message in the sendMessage function.
         var clientInformation = {
             username: new Date().getTime().toString()
@@ -116,6 +117,7 @@
         document.getElementById("form-submit").addEventListener("click",function(){
             var msg = document.getElementById("message").value;
             console.log(msg);
+            alert(msg);
             
             if(!msg){
                 alert("Please send something on the chat");
@@ -125,7 +127,7 @@
             // Empty text area
             document.getElementById("message").value = "";
         }, false);
-        
+        console.log('coucou1');
         // Mini API to send a message with the socket and append a message in a UL element.
         var Chat = {
             appendMessage: function(username,message){
@@ -142,7 +144,7 @@
                 var li = document.createElement("li");
                 li.appendChild(document.createTextNode(from + " : "+ message));
                 ul.appendChild(li);*/
-                $('.msg').append("<p> "+ from +"dit : " + message + "</p>");
+                $('.msg:last').append("<p> "+ from +"dit : " + message + "</p>");
             },
             sendMessage: function(text){
                 clientInformation.message = text;
@@ -152,6 +154,6 @@
                 this.appendMessage(clientInformation.username, clientInformation.message);
             }
         };
-    </script>
+    </script>-->
 
 {% endblock %}

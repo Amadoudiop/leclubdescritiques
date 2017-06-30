@@ -511,7 +511,9 @@ var app = new Vue({
                     Urating: 5
                 }
             ],
-            fetchArray: {}
+            fetchArray: {},
+            conn: {},
+            clientInformation: {}
         }
     },
     methods: {
@@ -574,7 +576,7 @@ var app = new Vue({
                 $('#key').attr('type', 'password');
             }
         },
-        sendMessage : function (event) {
+        sendMessageChat : function (event) {
 
             var message = $('#message').val();
 
@@ -586,8 +588,10 @@ var app = new Vue({
                     console.log(msg);
                 }
             });
-
-            $('.msg').append("<p> dit : " + message + "</p>");
+            
+            this.sendMessage(message);
+            // Empty text area
+            document.getElementById("message").value = "";
 
         },
         editProfil : function (event) {
@@ -630,19 +634,72 @@ var app = new Vue({
                 }
             });
         },
+        appendMessage: function(username,message){
+            var dt = new Date();
+            var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
+            if(message){
+                $('.msg:last').after(
+                    '<div class="media msg">'+
+                        '<a class="pull-left" href="#">'+
+                            '<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">' +
+                        '</a>'+
+                        '<div class="media-body">'+
+                            '<small class="pull-right time"><i class="fa fa-clock-o"></i> '+ time +'</small>'+   
+                            '<h5 class="media-heading">'+ username +'</h5>'+
+                            '<small class="col-lg-10">'+ message +'</small>'+
+                        '</div>'+
+                    '</div>'
+                );
+            }
+       },
+       sendMessage: function(text){
+           this.clientInformation.message = text;
+           //console.log(text);
+           console.log(this.clientInformation);
+           // Send info as JSON
+           this.conn.send(JSON.stringify(this.clientInformation));
+           // Add my own message to the list
+           this.appendMessage(this.clientInformation.username, this.clientInformation.message);
+       },
+       setConn: function(){
+           this.conn = new WebSocket('ws://localhost:9090/chat-01');
+       },
+       setClientInformation: function(myusername){
+            this.clientInformation = {
+                username: myusername
+            };
+       }
+       
     },
     mounted(){
-        /*fetch('http://pokeapi.co/api/v2/pokemon/1')
-            .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
-            .then(function(data) {
-                // Your code for handling the data you get from the API
-                this.fetchArray = data;
-                console.log(this.fetchArray);
-                console.log(this.fetchArray.name);
-            })
-            .catch(function(error) {
-                console.log(error);
-                // This is where you run code if the server returns any errors
-            });*/
+        
+        // START SOCKET CONFIG
+        /**
+         * Note that you need to change the "sandbox" for the URL of your project. 
+         * According to the configuration in Sockets/Chat.php , change the port if you need to.
+         * @type WebSocket
+         */
+         var self = this;
+        this.setConn();
+        this.setClientInformation($('#username').text());
+
+        this.conn.onopen = function(e) {
+            console.info("Connection established succesfully");
+        };  
+
+        this.conn.onmessage = function(e) {
+            var data = JSON.parse(e.data);
+
+            self.appendMessage(data.username, data.message);
+            
+            console.log(data);
+        };
+        
+        this.conn.onerror = function(e){
+            alert("Error: something went wrong with the socket.");
+            console.error(e);
+        };
+        // END SOCKET CONFIG
     }
 });

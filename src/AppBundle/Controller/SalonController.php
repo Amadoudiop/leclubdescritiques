@@ -181,7 +181,8 @@ class SalonController extends Controller
         return $this->render('front/chat.html.twig', [
             'salon' => $salon,
             'messages' => $messages,
-            'participants' => $participants
+            'participants' => $participants,
+            'user' => $user
         ]);
     }
 

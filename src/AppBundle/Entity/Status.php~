@@ -30,6 +30,14 @@ class Status
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=10, options={"default" : "#fff"})
+     */
+    private $color;
+
+
+    /**
      * Get id
      *
      * @return int

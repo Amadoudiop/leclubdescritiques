@@ -35,7 +35,6 @@
                         <th>Rating</th>
                         <th>Author</th>
                         <th>Subcategory</th>
-                        <th>Statut</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -55,15 +54,6 @@
                             <td>
                                 {% if oeuvre.subcategory is not null %}
                                     {{ oeuvre.subcategory.getName }}
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if oeuvre.statut %}
-                                    <span ></span>
-                                    <span class="badge badge-icon" style="background-color: {{ oeuvre.statut.color  }}">
-                                        <i class="fa fa-bell" aria-hidden="true"></i>
-                                        <span>{{ oeuvre.statut.label }}</span>
-                                    </span>
                                 {% endif %}
                             </td>
                             <td>

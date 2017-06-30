@@ -30,6 +30,14 @@ class Status
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=10, options={"default" : "#fff"})
+     */
+    private $color;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -61,5 +69,29 @@ class Status
     public function getWording()
     {
         return $this->wording;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     *
+     * @return Status
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: en
     oeuvres_directory: '%kernel.root_dir%/../web/uploads/oeuvres'
+    pages_directory: '%kernel.root_dir%/../web/uploads/pages'
 
 framework:
     #esi: ~
@@ -41,6 +42,7 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         oeuvres_directory: '/uploads/oeuvres/'
+        pages_directory: '/uploads/pages/'
 
 # Doctrine Configuration
 doctrine:

@@ -1,27 +1,31 @@
 {% extends 'base_back.html.twig' %}
 
 {% block body %}
-    <h1>Statut</h1>
+    <h1>Status</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ statut.id }}</td>
+                <td>{{ status.id }}</td>
             </tr>
             <tr>
-                <th>Label</th>
-                <td>{{ statut.label }}</td>
+                <th>Wording</th>
+                <td>{{ status.wording }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ status.color }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('statut_index') }}">Back to the list</a>
+            <a href="{{ path('status_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('statut_edit', { 'id': statut.id }) }}">Edit</a>
+            <a href="{{ path('status_edit', { 'id': status.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

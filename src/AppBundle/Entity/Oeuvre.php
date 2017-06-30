@@ -100,13 +100,6 @@ class Oeuvre
     private $subCategory;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Statut", inversedBy="oeuvres")
-     * @ORM\JoinColumn(name="statut_id", referencedColumnName="id")
-     */
-    private $statut;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -380,29 +373,5 @@ class Oeuvre
     public function getTrends()
     {
         return $this->trends;
-    }
-
-    /**
-     * Set statut
-     *
-     * @param \AppBundle\Entity\Statut $statut
-     *
-     * @return Oeuvre
-     */
-    public function setStatut(\AppBundle\Entity\Statut $statut = null)
-    {
-        $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return \AppBundle\Entity\Statut
-     */
-    public function getStatut()
-    {
-        return $this->statut;
     }
 }

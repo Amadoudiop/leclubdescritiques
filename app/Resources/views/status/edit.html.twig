@@ -1,24 +1,23 @@
 {% extends 'base_back.html.twig' %}
 {% block stylesheets %}
-
     <link href="{{ asset('css/color-picker.min.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-    <h1>Statut edit</h1>
+    <h1>Status edit</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
+        <div id="color_square" style="width: 50px; height: 50px;"></div>
         <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
 
     <ul>
         <li>
-            <a href="{{ path('statut_index') }}">Back to the list</a>
+            <a href="{{ path('status_index') }}">Back to the list</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <div id="color_square" style="width: 50px; height: 50px;"></div>
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
 
@@ -29,7 +28,7 @@
 {% block javascripts %}
     <script src="{{ asset('js/color-picker.min.js') }}"></script>
     <script>
-        var picker = document.querySelector('#appbundle_statut_color');
+        var picker = document.querySelector('#appbundle_status_color');
         picker = new CP(picker);
 
         picker.on("change", function(color) {

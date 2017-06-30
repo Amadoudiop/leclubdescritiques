@@ -13,7 +13,7 @@ var debounce = function debounce(callback, delay) {
 };
 
 Vue.component('autocomplete', {
-    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' + '<div class="row" v-if="autocompleteFlag">' + '<div class="container-fluid">' + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' + '<div class="userBooksCard"  >' + '<div class="panel panel-default">' + '<div class="panel-body">' + '<div>' + '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">' + '<img :src="dataRecup.url_image" id="url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">' + '</a>' + '</div>' + '</div>' + '<div class="panel-footer" >' + '<h3><span id="title">{{ dataRecup.title }}</span></h3><br>' + '<span  id="url_product" class="hidden">{{ dataRecup.url_product }}</span>' + '<span  id="description" class="hidden">{{ dataRecup.description }}</span>' + '<span  id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span>' + '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>' + '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>' + '<h4><span id="author">{{ dataRecup.authors }}</span></h4>' + '<star-rating :star-size="20" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>',
+    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' + '<div class="row" v-if="autocompleteFlag">' + '<div class="container-fluid">' + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' + '<div class="userBooksCard"  >' + '<div class="panel panel-default">' + '<div class="panel-body">' + '<div>' + '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">' + '<img :src="dataRecup.url_image" id="url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">' + '</a>' + '</div>' + '</div>' + '<div class="panel-footer" >' + '<h3><span id="title">{{ dataRecup.title }}</span></h3><br>' + '<span  id="url_product" class="hidden">{{ dataRecup.url_product }}</span>' + '<span  id="description" class="hidden">{{ dataRecup.description }}</span>' + '<span  id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span>' + '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>' + '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>' + '<h4><span id="author">{{ dataRecup.authors }}</span></h4>' + '<star-rating :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>',
     props: {
         id: String,
         className: String,
@@ -304,7 +304,6 @@ Vue.component('toast', {
     }
 });
 Vue.component('star-rating', VueStarRating.default);
-
 Vue.component('vue-table', {
     template: '' + '<table>' + '    <thead>' + '    <tr>' + '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">' + '    {{ key | capitalize }}' + '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'">' + '    </span>' + '    </th>' + '    </tr>' + '    </thead>' + '    <tbody>' + '    <tr v-for="entry in filteredData">' + '    <td v-for="key in columns">' + '    {{entry[key]}}' + '</td>' + '</tr>' + '</tbody>' + '</table> ' + '',
     props: {
@@ -364,41 +363,11 @@ var app = new Vue({
     delimiters: ['${', '}'],
     data: function data() {
         return {
+            searchBook: '',
             searchQuery: '',
             gridColumns: ['name', 'power'],
             gridData: [{ name: 'Chuck Norris', power: Infinity }, { name: 'Bruce Lee', power: 9000 }, { name: 'Jackie Chan', power: 7000 }, { name: 'Jet Li', power: 8000 }],
-            columns: [{
-                label: 'Id',
-                field: 'id',
-                type: 'number',
-                html: false,
-                width: '50px'
-            }, {
-                label: 'Name',
-                field: 'name',
-                html: false,
-                filterable: true
-            }, {
-                label: 'Age',
-                field: 'age',
-                type: 'number',
-                html: false,
-                filterable: true
-            }, {
-                label: 'Created On',
-                field: 'createdAt',
-                type: 'date',
-                inputFormat: 'YYYYMMDD',
-                outputFormat: 'MMM Do YY',
-                filterable: false
-            }, {
-                label: 'Percent',
-                field: 'btn',
-                type: 'percentage',
-                html: false,
-                filterable: true
-            }],
-            rows: [{ id: 1, name: "John", age: "20", btn: 0.03343 }, { id: 2, name: "Jane", age: "24", btn: 0.03343 }, { id: 3, name: "Susan", age: "16", btn: 0.03343 }, { id: 4, name: "Chris", age: "55", btn: 0.03343 }, { id: 5, name: "Dan", age: "40", btn: 0.03343 }, { id: 6, name: "John", age: "20", btn: 0.03343 }, { id: 7, name: "Jane", age: "24", btn: 0.03343 }, { id: 8, name: "Susan", age: "16", btn: 0.03343 }, { id: 9, name: "Chris", age: "55", btn: 0.03343 }, { id: 10, name: "Dan", age: "40", btn: 0.03343 }],
+            rooms: {},
             autocompleteLoader: false,
             isConnected: false,
             mailInscription: '',
@@ -442,17 +411,8 @@ var app = new Vue({
                 auteur: 'Antoine de Saint-Exupéry',
                 rating: 5
             }],
-            userBooks: [{
-                titre: '1984',
-                auteur: 'Georges Orwell',
-                Grating: 4.5,
-                Urating: 5
-            }, {
-                titre: 'Harry Potter',
-                auteur: 'JK Rowling',
-                Grating: 3,
-                Urating: 5
-            }],
+            userBooks: [],
+            books: [],
             fetchArray: {}
         };
     },
@@ -528,6 +488,7 @@ var app = new Vue({
                 data: 'message=' + message,
                 success: function success(msg) {
                     console.log(msg);
+                    $('#close-send-message').trigger("click");
                 }
             });
 
@@ -546,12 +507,12 @@ var app = new Vue({
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&description=' + description,
                 success: function success(msg) {
                     console.log(msg);
+                    $('#close-edit-profil').trigger("click");
                 }
             });
         },
         addBook: function addBook(event) {
-            //app.$root.$children[0].success('hello');
-            //app.$root.$children[0].error('error');
+            app.$root.$children[0].success('requete envoyée');
             //this.$children.success('toster ok')
             var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
@@ -568,12 +529,62 @@ var app = new Vue({
                 data: 'author=' + author + '&title=' + title + '&url_image=' + url_image + '&url_product=' + url_product + '&description=' + description + '&publication_date=' + publication_date + '&id_google_api=' + id_google_api + '&sub_category=' + sub_category,
                 success: function success(msg) {
                     app.$root.$children[0].success(msg);
-                    console.log(msg);
+                    $('#close-add-book').trigger("click");
                 }
             });
         }
     },
     mounted: function mounted() {
+        console.log('mounted');
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getBooksTrends',
+            type: 'GET',
+            data: data,
+            success: function success(msg) {
+                console.log(data);
+                this.alaunes = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg);
+            }
+        });
+        console.log('booksTrends  done');
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getAllBooks',
+            type: 'GET',
+            data: data,
+            success: function success(msg) {
+                console.log(data);
+                this.books = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg);
+            }
+        });
+        console.log('books done');
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getUserBooks',
+            type: 'GET',
+            data: data,
+            success: function success(msg) {
+                console.log(data);
+                this.userBooks = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg);
+            }
+        });
+        console.log('userBooks done');
+        $.ajax({
+            url: 'http://localhost:8000/app_dev.php/getRooms',
+            type: 'GET',
+            data: data,
+            success: function success(msg) {
+                console.log(data);
+                this.rooms = data;
+                app.$root.$children[0].success(msg);
+                console.log(msg);
+            }
+        });
+        console.log('rooms done');
+
         /*fetch('http://pokeapi.co/api/v2/pokemon/1')
             .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
             .then(function(data) {

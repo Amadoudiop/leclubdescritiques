@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7b0820-e8f3-47ec-8e03-15f9d6e87203" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/livres.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/livres.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/salons.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/salons.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js.map" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
@@ -31,26 +31,40 @@
       <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="330" column="211" lean-forward="false" selection-start-line="330" selection-start-column="60" selection-end-line="330" selection-end-column="211" />
-              <folding />
+            <state relative-caret-position="-116">
+              <caret line="317" column="75" lean-forward="false" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
+              <folding>
+                <element signature="e#5285#9225#0#Twig" expanded="false" />
+                <element signature="e#9357#17038#0#Twig" expanded="false" />
+                <element signature="e#17730#26608#0#Twig" expanded="false" />
+                <element signature="e#76234#78289#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-945">
-              <caret line="393" column="26" lean-forward="false" selection-start-line="393" selection-start-column="26" selection-end-line="393" selection-end-column="26" />
+            <state relative-caret-position="224">
+              <caret line="314" column="29" lean-forward="false" selection-start-line="314" selection-start-column="29" selection-end-line="314" selection-end-column="29" />
               <folding>
                 <element signature="e#364#9260#0" expanded="false" />
                 <element signature="e#9286#9900#0" expanded="false" />
                 <element signature="e#9924#11411#0" expanded="false" />
-                <element signature="e#11493#13494#0" expanded="false" />
-                <element signature="e#14083#14963#0" expanded="false" />
-                <element signature="e#15073#19398#0" expanded="false" />
+                <element signature="e#14092#14972#0" expanded="false" />
+                <element signature="e#18160#19474#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="salons.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/front/salons.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="24" column="110" lean-forward="false" selection-start-line="24" selection-start-column="110" selection-end-line="24" selection-end-column="110" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -58,9 +72,11 @@
       <file leaf-file-name="livres.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/livres.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="46">
+              <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+              <folding>
+                <element signature="e#2227#4282#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,8 +84,8 @@
       <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-691">
-              <caret line="174" column="85" lean-forward="false" selection-start-line="174" selection-start-column="85" selection-end-line="174" selection-end-column="85" />
+            <state relative-caret-position="66">
+              <caret line="153" column="34" lean-forward="false" selection-start-line="153" selection-start-column="34" selection-end-line="153" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -78,9 +94,11 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-483">
-              <caret line="165" column="59" lean-forward="false" selection-start-line="165" selection-start-column="59" selection-end-line="165" selection-end-column="59" />
-              <folding />
+            <state relative-caret-position="-123">
+              <caret line="137" column="4" lean-forward="false" selection-start-line="137" selection-start-column="4" selection-end-line="174" selection-end-column="10" />
+              <folding>
+                <element signature="n#div#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,8 +106,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-726">
-              <caret line="1166" column="1" lean-forward="false" selection-start-line="1166" selection-start-column="1" selection-end-line="1166" selection-end-column="1" />
+            <state relative-caret-position="-532">
+              <caret line="1195" column="22" lean-forward="false" selection-start-line="1195" selection-start-column="22" selection-end-line="1195" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -106,13 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;scrip</find>
-      <find>&lt;script</find>
-      <find>template</find>
-      <find>incre</find>
-      <find>increm</find>
-      <find>increment</find>
-      <find>min</find>
       <find>panel</find>
       <find>autocompl</find>
       <find>edit</find>
@@ -131,11 +142,18 @@
       <find>userBooks</find>
       <find>star-ra</find>
       <find>portfolio</find>
-      <find>table</find>
       <find>star</find>
-      <find>show</find>
       <find>container</find>
       <find>star-</find>
+      <find>title</find>
+      <find>oeuvreIs</find>
+      <find>titre</find>
+      <find>card</find>
+      <find>show</find>
+      <find>menu</find>
+      <find>addB</find>
+      <find>table</find>
+      <find>search</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -146,15 +164,15 @@
       <list>
         <option value="$PROJECT_DIR$/app/Resources/views/front/salon.html.twig" />
         <option value="$PROJECT_DIR$/web/js/vue-spinner.js" />
-        <option value="$PROJECT_DIR$/app/Resources/views/front/salons.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/security/login.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-        <option value="$PROJECT_DIR$/web/css/style.css" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/front/index.html.twig" />
-        <option value="$PROJECT_DIR$/web/js/Vue.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/front/livres.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/Vue.js" />
+        <option value="$PROJECT_DIR$/web/css/style.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/front/salons.html.twig" />
       </list>
     </option>
   </component>
@@ -484,12 +502,12 @@
       <workItem from="1495199160635" duration="1489000" />
       <workItem from="1497536224000" duration="18000" />
       <workItem from="1497536272388" duration="19733000" />
-      <workItem from="1498556710897" duration="37402000" />
+      <workItem from="1498556710897" duration="44311000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58887000" />
+    <option name="totallyTimeSpent" value="65796000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -550,7 +568,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#5285#9225#0#Twig" expanded="false" />
+            <element signature="e#9357#17038#0#Twig" expanded="false" />
+            <element signature="e#17730#26608#0#Twig" expanded="false" />
+            <element signature="e#76234#78289#0#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -562,9 +585,8 @@
             <element signature="e#364#9260#0" expanded="false" />
             <element signature="e#9286#9900#0" expanded="false" />
             <element signature="e#9924#11411#0" expanded="false" />
-            <element signature="e#11493#13494#0" expanded="false" />
-            <element signature="e#14083#14963#0" expanded="false" />
-            <element signature="e#15073#19398#0" expanded="false" />
+            <element signature="e#14092#14972#0" expanded="false" />
+            <element signature="e#18160#19474#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -856,66 +878,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-726">
-          <caret line="1166" column="1" lean-forward="false" selection-start-line="1166" selection-start-column="1" selection-end-line="1166" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/salons.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="30" column="85" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/front/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-483">
-          <caret line="165" column="59" lean-forward="false" selection-start-line="165" selection-start-column="59" selection-end-line="165" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-691">
-          <caret line="174" column="85" lean-forward="false" selection-start-line="174" selection-start-column="85" selection-end-line="174" selection-end-column="85" />
-          <folding />
+        <state relative-caret-position="-123">
+          <caret line="137" column="4" lean-forward="false" selection-start-line="137" selection-start-column="4" selection-end-line="174" selection-end-column="10" />
+          <folding>
+            <element signature="n#div#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/front/livres.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="19" column="25" lean-forward="false" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="46">
+          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+          <folding>
+            <element signature="e#2227#4282#0#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="330" column="211" lean-forward="false" selection-start-line="330" selection-start-column="60" selection-end-line="330" selection-end-column="211" />
+        <state relative-caret-position="-116">
+          <caret line="317" column="75" lean-forward="false" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
+          <folding>
+            <element signature="e#5285#9225#0#Twig" expanded="false" />
+            <element signature="e#9357#17038#0#Twig" expanded="false" />
+            <element signature="e#17730#26608#0#Twig" expanded="false" />
+            <element signature="e#76234#78289#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="153" column="34" lean-forward="false" selection-start-line="153" selection-start-column="34" selection-end-line="153" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-945">
-          <caret line="393" column="26" lean-forward="false" selection-start-line="393" selection-start-column="26" selection-end-line="393" selection-end-column="26" />
+        <state relative-caret-position="224">
+          <caret line="314" column="29" lean-forward="false" selection-start-line="314" selection-start-column="29" selection-end-line="314" selection-end-column="29" />
           <folding>
             <element signature="e#364#9260#0" expanded="false" />
             <element signature="e#9286#9900#0" expanded="false" />
             <element signature="e#9924#11411#0" expanded="false" />
-            <element signature="e#11493#13494#0" expanded="false" />
-            <element signature="e#14083#14963#0" expanded="false" />
-            <element signature="e#15073#19398#0" expanded="false" />
+            <element signature="e#14092#14972#0" expanded="false" />
+            <element signature="e#18160#19474#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-532">
+          <caret line="1195" column="22" lean-forward="false" selection-start-line="1195" selection-start-column="22" selection-end-line="1195" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/salons.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="24" column="110" lean-forward="false" selection-start-line="24" selection-start-column="110" selection-end-line="24" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>

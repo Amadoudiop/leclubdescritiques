@@ -1183,6 +1183,7 @@ body::-webkit-scrollbar {
 }
 
 #div-salon #search-input{
+    width:100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -1193,6 +1194,9 @@ body::-webkit-scrollbar {
     background-color: #fff;
     margin-left: auto;
     margin-right:auto;
+    text-align:center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #div-salon th {
@@ -1210,8 +1214,8 @@ body::-webkit-scrollbar {
 }
 
 #div-salon th, td {
-    min-width: 120px;
-    padding: 10px 20px;
+    min-width: 40px;
+    padding: 5px 5px;
 }
 
 #div-salon th.active {

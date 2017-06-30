@@ -305,7 +305,7 @@ Vue.component('toast', {
 });
 Vue.component('star-rating', VueStarRating.default);
 Vue.component('vue-table', {
-    template: '' + '<table>' + '    <thead>' + '    <tr>' + '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">' + '    {{ key | capitalize }}' + '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'">' + '    </span>' + '    </th>' + '    </tr>' + '    </thead>' + '    <tbody>' + '    <tr v-for="entry in filteredData">' + '    <td v-for="key in columns">' + '    {{entry[key]}}' + '</td>' + '</tr>' + '</tbody>' + '</table> ' + '',
+    template: '' + '<table class="col-sm-12">' + '    <thead>' + '    <tr>' + '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key } " >' + '    {{ key | capitalize }}' + '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'"> </span>' + '    </th>' + '    </tr>' + '    </thead>' + '    <tbody>' + '    <tr v-for="entry in filteredData">' + '    <td v-for="key in columns">' + '    {{entry[key]}}' + '</td>' + '</tr>' + '</tbody>' + '</table> ' + '',
     props: {
         data: Array,
         columns: Array,
@@ -497,6 +497,7 @@ var app = new Vue({
                 success: function success(msg) {
                     console.log(msg);
                     $('#close-edit-profil').trigger("click");
+                    app.$forceUpdate;
                 }
             });
         },
@@ -519,40 +520,53 @@ var app = new Vue({
                 success: function success(msg) {
                     app.$root.$children[0].success(msg);
                     $('#close-add-book').trigger("click");
+                    app.$forceUpdate;
+                }
+            });
+        },
+        getBooksTrends: function getBooksTrends() {
+            var that = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getBooksTrends',
+                type: 'GET',
+                success: function success(data) {
+                    that.alaunes = data;
+                    app.$root.$children[0].success('books trends récupérés');
+                }
+            });
+        },
+        getRooms: function getRooms() {
+            var that = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getRooms',
+                type: 'GET',
+                success: function success(data) {
+                    that.rooms = data;
+                    that.gridColumns = Object.keys(data[0]);
+                    that.gridData = data;
+                    console.log(Object.keys(data[0]));
+                    app.$root.$children[0].success('get rooms récupéré');
+                }
+            });
+        },
+        getAllBooks: function getAllBooks() {
+            var that = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getAllBooks',
+                type: 'GET',
+                success: function success(data) {
+                    console.log(data);
+                    that.books = data;
+                    app.$root.$children[0].success('all books récupérés');
                 }
             });
         }
     },
     mounted: function mounted() {
-        var that = this;
-        $.ajax({
-            url: 'http://localhost:8000/app_dev.php/getBooksTrends',
-            type: 'GET',
-            success: function success(data) {
-                that.alaunes = data;
-                app.$root.$children[0].success('books trends récupérés');
-            }
-        });
-        $.ajax({
-            url: 'http://localhost:8000/app_dev.php/getAllBooks',
-            type: 'GET',
-            success: function success(data) {
-                console.log(data);
-                that.books = data;
-                app.$root.$children[0].success('all books récupérés');
-            }
-        });
-        $.ajax({
-            url: 'http://localhost:8000/app_dev.php/getRooms',
-            type: 'GET',
-            success: function success(data) {
-                that.rooms = data;
-                that.gridColumns = Object.keys(data[0]);
-                that.gridData = data;
-                console.log(Object.keys(data[0]));
-                app.$root.$children[0].success('get rooms récupéré');
-            }
-        });
+        var atmPage = window.location.pathname;
+        if (atmPage == '/app_dev.php/livres') this.getAllBooks();
+        if (atmPage == '/app_dev.php/') this.getBooksTrends();
+        if (atmPage == '/app_dev.php/salons') this.getRooms();
 
         /*fetch('http://pokeapi.co/api/v2/pokemon/1')
             .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter

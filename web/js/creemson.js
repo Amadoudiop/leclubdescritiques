@@ -45,10 +45,27 @@ $('.trends').click(function(){
     $.ajax({
         url: Routing.generate('oeuvre_index'),
         type:'POST',
-        data:'oeuvre_id='+id,
+        data:'trends=true'+'&oeuvre_id='+id,
         success: function(state){
             //console.log(state);
-            location.reload();
+            //location.reload();
+        }
+    })
+});
+
+/**
+ * Approve Oeuvre
+ */
+$('.approve').click(function(){
+    var id = $(this).attr('dataInt');
+    console.log(id);
+    $.ajax({
+        url: Routing.generate('oeuvre_index'),
+        type:'POST',
+        data:'approve=true'+'&oeuvre_id='+id,
+        success: function(state){
+            //console.log(state);
+            //location.reload();
         }
     })
 });

@@ -39,44 +39,71 @@ class OeuvreController extends Controller
                        ->select('count(t.id)')
                        ->where('t.trends = true')
                        ->getQuery()->getSingleScalarResult();
-            $oeuvre = $em->getRepository('AppBundle:Oeuvre')->find(2);
+        //$oeuvre = $em->getRepository('AppBundle:Oeuvre')->find(2);
 
         dump($nbTrendingOeuvres);
 
         if( $request->getMethod() == 'POST' )
         {
-            // get the id send by ajax
-            $oeuvre_id = (int)$request->request->get('oeuvre_id');
-            $oeuvre = $em->getRepository('AppBundle:Oeuvre')->find($oeuvre_id);
-
-            $trendsStatus = $oeuvre->getTrends();
-            // Change trends status
-            if( $nbTrendingOeuvres == 6 )
+    
+            $trends = $request->request->get('trends');
+            $approve = $request->request->get('approve');
+           /* dump($trends);
+            dump($approve);
+            die();*/
+            if( $trends === 'true' )
             {
-                if( $trendsStatus )
+                // get the id send by ajax
+                $oeuvre_id = (int)$request->request->get('oeuvre_id');
+                $oeuvre = $em->getRepository('AppBundle:Oeuvre')->find($oeuvre_id);
+
+                $trendsStatus = $oeuvre->getTrends();
+                // Change trends status
+                if( $nbTrendingOeuvres == 6 )
                 {
-                    $oeuvre->setTrends(false);
+                    if( $trendsStatus )
+                    {
+                        $oeuvre->setTrends(false);
+
+                    }
 
                 }
-
-            }
-            elseif( $nbTrendingOeuvres < 6 )
-            {
-                if( $trendsStatus )
+                elseif( $nbTrendingOeuvres < 6 )
                 {
-                    $oeuvre->setTrends(false);
+                    if( $trendsStatus )
+                    {
+                        $oeuvre->setTrends(false);
+                    }
+                    else
+                    {
+                        $oeuvre->setTrends(true);                    
+                    }                
+                }                
+
+                $response = $oeuvre->getTrends();
+            }
+            elseif( $approve === 'true' )
+            {
+                // get the id send by ajax
+                $oeuvre_id = (int)$request->request->get('oeuvre_id');
+                $oeuvre = $em->getRepository('AppBundle:Oeuvre')->find($oeuvre_id);
+                
+                $approvedStatus = $oeuvre->getApproved();
+
+                if( $approvedStatus )
+                {
+                    $oeuvre->setApproved(false);
                 }
                 else
                 {
-                    $oeuvre->setTrends(true);                    
-                }                
-            }
+                    $oeuvre->setApproved(true);
+                }
 
+                $response = $oeuvre->getApproved();
+            }
             // update
             $em->persist($oeuvre);
             $em->flush();
-            $response = $oeuvre->getTrends();
-
 
             return new JsonResponse($response);
         }

@@ -70,4 +70,28 @@ class Status
     {
         return $this->wording;
     }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     *
+     * @return Status
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
 }

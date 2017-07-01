@@ -86,6 +86,13 @@
                                             <button type="button" class="btn btn-pink trends" dataInt="{{ oeuvre.id }}">Remove from Trends</button>
                                         {% endif %}
                                     {% endif %}
+                                    <li>
+                                        {% if oeuvre.approved == false %}
+                                            <button type="button" class="btn btn-pink approve" dataInt="{{ oeuvre.id }}">Approve</button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-warning approve" dataInt="{{ oeuvre.id }}">Disapprove</button>
+                                        {% endif %}
+                                    </li>
                                 </ul>
                             </td>
                         </tr>

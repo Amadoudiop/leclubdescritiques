@@ -49,7 +49,7 @@ class PageController extends Controller
 
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $page->getUrlImage();
+            $file = $page->getImage();
             //dump($file);
 
             // Generate a unique name for the file before saving it

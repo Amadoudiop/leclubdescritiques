@@ -68,6 +68,13 @@ class Oeuvre
     private $trends;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="approved", type="boolean")
+     */
+    private $approved;
+
+    /**
      * @var \int
      *
      * @ORM\Column(name="rating", type="integer")
@@ -373,5 +380,29 @@ class Oeuvre
     public function getTrends()
     {
         return $this->trends;
+    }
+
+    /**
+     * Set approved
+     *
+     * @param boolean $approved
+     *
+     * @return Oeuvre
+     */
+    public function setApproved($approved)
+    {
+        $this->approved = $approved;
+
+        return $this;
+    }
+
+    /**
+     * Get approved
+     *
+     * @return boolean
+     */
+    public function getApproved()
+    {
+        return $this->approved;
     }
 }

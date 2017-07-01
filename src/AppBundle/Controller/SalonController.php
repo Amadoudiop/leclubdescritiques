@@ -270,4 +270,59 @@ class SalonController extends Controller
         return new JsonResponse($data);
     }
 
+    /**
+     * @Route("/createRoom", name="create_room", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function createRoomAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $title = $request->request->get('title');
+        $oeuvre = $request->request->get('oeuvre');
+        $nb_max_part = $request->request->get('nb_max_part');
+        $date_start = $request->request->get('date_start');
+        $date_end = $request->request->get('date_end');
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($title) && !empty($oeuvre) && !empty($nb_max_part) &&!empty($date_start) && !empty($date_end)) {
+
+                $book = $em->getRepository('AppBundle:Salon')->find($oeuvre);
+
+                if (null === $book) {
+                    $response = ['valid' => false, 'msg' => "Cet oeuvre n'existe pas"];
+                }else{
+                    $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $book]);
+
+                    if (null === ) {
+                        $response = ['valid' => false, 'msg' => "Cet oeuvre n'est pas dans votre liste"];
+                    }else{
+                        $salon = new Salon();
+                        $salon->setTitle($title);
+                        $salon->setParticipantsNumber($nb_max_part);
+                        $salon->setDateStart($date_start);
+                        $salon->setDateEnd($date_end);     
+                        $salon->setOeuvre($oeuvre);     
+                        $salon->setUser($user);     
+                        $salon->setAddParticipant($user);    
+
+                        $em->persist($salon);
+                        $em->flush();
+
+                        $response = ['valid' => true, 'msg' => 'Salon créé']; 
+                    }
+                }  
+            }else{
+                $response = ['valid' => false, 'msg' => 'Toute les informations sont obligatoires'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
 }

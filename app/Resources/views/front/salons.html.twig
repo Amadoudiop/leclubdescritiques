@@ -22,7 +22,8 @@
                             </form>
                         </div>
                         <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
-                                <input id="create-salon-input" name="salon" type="button" value="Ajouter salon">
+                             <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalAddBook"> <i class="fa fa-pencil append-icon"></i> Créer un salon </a>
+
                         </div>
                         <div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
                     </div>
@@ -41,6 +42,65 @@
             </div>
         </div>
     </div>
+
+    <!--Modal: Editer profil form-->
+    <div class="modal fade" id="modalAddBook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header light-blue darken-3 white-text">
+                    <button type="button"  id="close-edit-profil" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="title"><i class="fa fa-pencil"></i> Ajouter un salon</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body mb-0">
+                    <div class="md-form form-sm">
+                        <label for="form19">Titre du salon</label>
+                        <input type="text" id="salon-title" class="form-control" value="">
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="form20">Oeuvre</label>
+                        <select v-model="selectedBook" class="form-control">
+                            <option v-for="book in books" v-bind:value="book.title">
+                               ${book.title}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="form20">Nombre de participants max</label>
+                        <input type="text" id="max-participants" class="form-control" value="">
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="form20">Date Debut</label>
+                        <input type="date" id="date-debut-salon" class="form-control" value="">
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="form20">Date Fin</label>
+                        <input type="date" id="date-fin-salon" class="form-control" value="">
+                    </div>
+
+
+
+
+                    <div class="text-center mt-1-half">
+                        <button class="btn btn-info mb-2" id="btnEditProfil" @click.stop.prevent="creerSalon"> Envoyer une demande <i class="fa fa-send ml-1"></i></button>
+                    </div>
+
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: Editer profil form-->
+
     <!-- Vue js star rating -->
     <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
 

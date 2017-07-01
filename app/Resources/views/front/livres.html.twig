@@ -25,7 +25,7 @@
                                     <div class="panel-body">
                                         <div>
                                             <a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-
+                                                <img :src="book.url_image" class="img-thumbnail img-alaune img-responsive">
                                             </a>
                                         </div>
                                     </div>
@@ -40,6 +40,44 @@
                     </div>
                 </div>
                 <div class="col-sm-1 col-md-1"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Oeuvre shown-->
+    <div v-if="oeuvreIsShown" v-cloak class="oeuvre" id="oeuvreShown" tabindex="1" role="dialog" >
+        <div class="modal-content">
+            <div class="close-modal" @click="closeModal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>${ oeuvreShown.title }</h2>
+                            <hr class="star-primary">
+                            <img :src="oeuvreShown.url_image" class="img-responsive img-modal img-centered" alt="">
+                            <p>${ oeuvreShown.description }</p>
+                            <ul class="list-inline item-details">
+                                <li>Auteur:
+                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.author }</a>
+                                    </strong>
+                                </li>
+                                <li>Genre:
+                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.subcategory }</a>
+                                    </strong>
+                                </li>
+                                <li>Note moyenne utilisateurs:
+                                    {#<star-rating :star-size="10" :max-rating="4" :rating="${ oeuvreShown.rating }" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>#}
+                                    ${ oeuvreShown.rating }
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" @click="closeModal" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

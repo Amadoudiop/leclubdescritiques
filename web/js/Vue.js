@@ -579,17 +579,25 @@ var app = new Vue({
         sendMessageChat : function (event) {
 
             var message = $('#message').val();
+            var id_salon = $('#id_salon').text();
+
+            var self = this;
 
             $.ajax({
-                url: Routing.generate('send_message'),
+                url: '/sendMessage',
                 type: 'POST',
-                data: 'message='+message,
-                success: function(msg) {
-                    console.log(msg);
+                data: 'message='+message+'&id_salon='+id_salon,
+                success: function(response) {
+                    //console.log(response);
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                        self.sendMessage(message);
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
                 }
             });
-            
-            this.sendMessage(message);
+
             // Empty text area
             document.getElementById("message").value = "";
 
@@ -662,8 +670,8 @@ var app = new Vue({
            // Add my own message to the list
            this.appendMessage(this.clientInformation.username, this.clientInformation.message);
        },
-       setConn: function(){
-           this.conn = new WebSocket('ws://localhost:9090/chat-01');
+       setConn: function(id){
+           this.conn = new WebSocket('ws://localhost:9090/chat-'+id);
        },
        setClientInformation: function(myusername){
             this.clientInformation = {
@@ -673,33 +681,38 @@ var app = new Vue({
        
     },
     mounted(){
-        
-        // START SOCKET CONFIG
-        /**
-         * Note that you need to change the "sandbox" for the URL of your project. 
-         * According to the configuration in Sockets/Chat.php , change the port if you need to.
-         * @type WebSocket
-         */
-         var self = this;
-        this.setConn();
-        this.setClientInformation($('#username').text());
+        var pathArray = window.location.pathname.split( '/' );
+        var indice = pathArray.length - 2;
+        //si c'est un salon
+        if (pathArray[indice] == 'salon') {
+            // START SOCKET CONFIG
+            /**
+             * Note that you need to change the "sandbox" for the URL of your project. 
+             * According to the configuration in Sockets/Chat.php , change the port if you need to.
+             * @type WebSocket
+             */
+             var self = this;
+            this.setConn($('#id_salon').text());
+            this.setClientInformation($('#username').text());   
 
-        this.conn.onopen = function(e) {
-            console.info("Connection established succesfully");
-        };  
+            this.conn.onopen = function(e) {
+                console.info("Connection established succesfully");
+            };      
 
-        this.conn.onmessage = function(e) {
-            var data = JSON.parse(e.data);
+            this.conn.onmessage = function(e) {
+                var data = JSON.parse(e.data);  
 
-            self.appendMessage(data.username, data.message);
+                self.appendMessage(data.username, data.message);
+                
+                console.log(data);
+            };
             
-            console.log(data);
-        };
+            this.conn.onerror = function(e){
+                alert("Error: something went wrong with the socket.");
+                console.error(e);
+            };
+            // END SOCKET CONFIG
+        }
         
-        this.conn.onerror = function(e){
-            alert("Error: something went wrong with the socket.");
-            console.error(e);
-        };
-        // END SOCKET CONFIG
     }
 });

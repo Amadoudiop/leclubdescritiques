@@ -43,17 +43,26 @@ class SocketCommand extends Command
         // Domain as first parameter
         $app = new App('localhost', 9090,'0.0.0.0');
         // Add route to chat with the handler as second parameter
-        $app->route('/chat-01', new Chat);
-        $app->route('/chat-02', new Chat);
-        $app->route('/chat-03', new Chat);
-        $app->route('/chat-04', new Chat);
-        $app->route('/chat-05', new Chat);
-        $app->route('/chat-06', new Chat);
-        $app->route('/chat-07', new Chat);
-        $app->route('/chat-08', new Chat);
-        $app->route('/chat-09', new Chat);
+        $app->route('/chat-1', new Chat);
+        $app->route('/chat-2', new Chat);
+        $app->route('/chat-3', new Chat);
+        $app->route('/chat-4', new Chat);
+        $app->route('/chat-5', new Chat);
+        $app->route('/chat-6', new Chat);
+        $app->route('/chat-7', new Chat);
+        $app->route('/chat-8', new Chat);
+        $app->route('/chat-9', new Chat);
         $app->route('/chat-10', new Chat);
-
+        $app->route('/chat-11', new Chat);
+        $app->route('/chat-12', new Chat);
+        $app->route('/chat-13', new Chat);
+        $app->route('/chat-14', new Chat);
+        $app->route('/chat-15', new Chat);
+        $app->route('/chat-16', new Chat);
+        $app->route('/chat-17', new Chat);
+        $app->route('/chat-18', new Chat);
+        $app->route('/chat-19', new Chat);
+        $app->route('/chat-20', new Chat);
         
         // Run !
         $app->run();

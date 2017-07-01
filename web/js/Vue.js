@@ -635,6 +635,10 @@ var app = new Vue({
             }
         });
 
+        //SALON
+        var pathArray = window.location.pathname.split( '/' );
+        var indice = pathArray.length - 2;
+
         //si c'est un salon
         if (pathArray[indice] == 'salon') {
             // START SOCKET CONFIG

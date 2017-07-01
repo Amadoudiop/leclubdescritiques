@@ -22,30 +22,35 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=255)
+     * @ORM\Column(name="description", type="text", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="text", length=255)
+     * @ORM\Column(name="photo", type="text", length=255, nullable=true)
      */
     private $photo;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", cascade={"persist"})
+     */
+    private $contacts;
 
     public function __construct()
     {
@@ -147,5 +152,39 @@ class User extends BaseUser
     public function getPhoto()
     {
         return $this->photo;
+    }
+
+    /**
+     * Add contact
+     *
+     * @param \AppBundle\Entity\User $contact
+     *
+     * @return User
+     */
+    public function addContact(\AppBundle\Entity\User $contact)
+    {
+        $this->contacts[] = $contact;
+
+        return $this;
+    }
+
+    /**
+     * Remove contact
+     *
+     * @param \AppBundle\Entity\User $contact
+     */
+    public function removeContact(\AppBundle\Entity\User $contact)
+    {
+        $this->contacts->removeElement($contact);
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
     }
 }

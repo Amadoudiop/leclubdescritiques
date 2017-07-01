@@ -17,7 +17,7 @@ class DefaultController extends Controller
         //var_dump($user);die;
         $em = $this->getDoctrine()->getManager();
 
-        $pages = $em->getRepository('AppBundle:Page')->findAll();
+        $pages = $em->getRepository('AppBundle:Page')->findBySection(true);
 
         // replace this example code with whatever you need
         return $this->render('front/index.html.twig', [

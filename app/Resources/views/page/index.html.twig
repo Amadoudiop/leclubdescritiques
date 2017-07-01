@@ -40,8 +40,8 @@
                     {% for page in pages %}
                         <tr>
                             <td>{{ page.name }}</td>
-                            <td>{{ page.image }}</td>
-                            <td>{{ page.content }}</td>
+                            <td><img style="height: 200px;" src="{{ absolute_url(pages_directory) }}{{ page.image }}"></td>
+                            <td>{{ page.content|raw }}</td>
                             <td>
                                 <ul>
                                     <li>
@@ -50,6 +50,13 @@
                                     </li>
                                     <li>
                                         <a href="{{ path('page_edit', { 'id': page.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                                    </li>
+                                    <li>
+                                        {% if page.section == false %}
+                                            <button type="button" class="btn btn-pink section" dataInt="{{ page.id }}">Add to Section</button>
+                                        {% else %}
+                                            <button type="button" class="btn btn-info section" dataInt="{{ page.id }}">Remove from section</button>
+                                        {% endif %}
                                     </li>
                                 </ul>
                             </td>

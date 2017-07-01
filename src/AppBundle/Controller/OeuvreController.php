@@ -39,18 +39,13 @@ class OeuvreController extends Controller
                        ->select('count(t.id)')
                        ->where('t.trends = true')
                        ->getQuery()->getSingleScalarResult();
-        //$oeuvre = $em->getRepository('AppBundle:Oeuvre')->find(2);
 
-        dump($nbTrendingOeuvres);
 
         if( $request->getMethod() == 'POST' )
-        {
-    
+        {    
             $trends = $request->request->get('trends');
             $approve = $request->request->get('approve');
-           /* dump($trends);
-            dump($approve);
-            die();*/
+
             if( $trends === 'true' )
             {
                 // get the id send by ajax

@@ -45,6 +45,12 @@ class Page
      */
     private $content;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="section", type="boolean", options={"default" : 0})
+     */
+    private $section;
 
     /**
      * Get id
@@ -126,5 +132,29 @@ class Page
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * Set section
+     *
+     * @param boolean $section
+     *
+     * @return Page
+     */
+    public function setSection($section)
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    /**
+     * Get section
+     *
+     * @return boolean
+     */
+    public function getSection()
+    {
+        return $this->section;
     }
 }

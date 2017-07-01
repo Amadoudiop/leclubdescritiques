@@ -48,7 +48,7 @@ $('.trends').click(function(){
         data:'trends=true'+'&oeuvre_id='+id,
         success: function(state){
             //console.log(state);
-            //location.reload();
+            location.reload();
         }
     })
 });
@@ -65,7 +65,24 @@ $('.approve').click(function(){
         data:'approve=true'+'&oeuvre_id='+id,
         success: function(state){
             //console.log(state);
-            //location.reload();
+            location.reload();
+        }
+    })
+});
+
+/**
+ * Add or Remove page from section
+ */
+$('.section').click(function(){
+    var id = $(this).attr('dataInt');
+    console.log(id);
+    $.ajax({
+        url: Routing.generate('page_index'),
+        type:'POST',
+        data:'section=true'+'&page_id='+id,
+        success: function(state){
+            //console.log(state);
+            location.reload();
         }
     })
 });

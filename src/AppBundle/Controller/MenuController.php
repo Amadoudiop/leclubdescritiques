@@ -216,4 +216,26 @@ class MenuController extends Controller
             ->getForm()
         ;
     }
+
+
+    /**
+     * Show Header menu
+     *
+     * @Method("GET")
+     */
+    public function headerAction()
+    {
+        // new link
+
+        $em = $this->getDoctrine()->getManager();
+
+        $links = $em->getRepository('AppBundle:Link')->findAll();
+
+        return $this->render(
+            'menu/header.html.twig',
+            [
+                'links' => $links,
+            ]
+        );    
+    }
 }

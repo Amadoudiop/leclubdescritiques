@@ -14,7 +14,9 @@
                             <h1 class="name">{{ page.name }}</h1>
                             <hr class="star-light">
                             {{ page.content|raw }}
-                            <a href="{{ path('page_edit', { 'id': page.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                            {% if is_granted("ROLE_ADMIN") %}
+                                <a href="{{ path('page_edit', { 'id': page.id }) }}"><button type="button" class="btn btn-warning">edit</button></a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

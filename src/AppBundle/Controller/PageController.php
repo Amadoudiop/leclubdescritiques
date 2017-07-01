@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+// Json handler
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -19,14 +22,53 @@ class PageController extends Controller
     /**
      * Lists all page entities.
      *
-     * @Route("/admin/pages/", name="page_index")
-     * @Method("GET")
+     * @Route("/admin/pages/", name="page_index", options={"expose"=true})
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-
         $pages = $em->getRepository('AppBundle:Page')->findAll();
+
+
+
+        if( $request->getMethod() == 'POST' )
+        {    
+            $section = $request->request->get('section');
+
+            if( $section === 'true' )
+            {
+                // get the id send by ajax
+                $page_id = (int)$request->request->get('page_id');
+                $page = $em->getRepository('AppBundle:Page')->find($page_id);
+                
+                if( $page ){
+                    $sectionedStatus = $page->getSection();
+
+                    if( $sectionedStatus )
+                    {
+                        $page->setSection(false);
+                    }
+                    else
+                    {
+                        $page->setSection(true);
+                    }
+
+                    $response = $page->getSection();
+
+                    // update
+                    $em->persist($page);
+                    $em->flush();
+                }else{
+                    $response = 'testing';
+                }
+
+            }
+
+
+            return new JsonResponse($response);
+        }
+
 
         return $this->render('page/index.html.twig', array(
             'pages' => $pages,

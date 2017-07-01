@@ -70,14 +70,14 @@ class Oeuvre
     /**
      * @var boolean
      *
-     * @ORM\Column(name="approved", type="boolean")
+     * @ORM\Column(name="approved", type="boolean", options={"default" : 0})
      */
     private $approved;
 
     /**
      * @var \int
      *
-     * @ORM\Column(name="rating", type="integer")
+     * @ORM\Column(name="rating", type="integer", options={"default" : 0})
      */
     private $rating;
 

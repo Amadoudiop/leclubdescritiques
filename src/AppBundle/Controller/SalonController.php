@@ -183,7 +183,8 @@ class SalonController extends Controller
         return $this->render('front/chat.html.twig', [
             'salon' => $salon,
             'messages' => $messages,
-            'participants' => $participants
+            'participants' => $participants,
+            'user' => $user
         ]);
     }
 
@@ -202,10 +203,10 @@ class SalonController extends Controller
         //var_dump($request);die;
 
         //on récupère le salon dans l'url
-        $url = $request->headers->get('referer');
-        $url = explode("/salon/", $url);
+        //$url = $request->headers->get('referer');
+        //$url = explode("/salon/", $url);
 
-        $id_salon = intval($url[1]);
+        $id_salon = intval($request->request->get('id_salon'));
 
         $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
         //dump($salon);die;

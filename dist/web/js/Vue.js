@@ -1067,7 +1067,9 @@ var app = new Vue({
             }],
             userBooks: [],
             books: [],
-            fetchArray: {}
+            fetchArray: {},
+            conn: {},
+            clientInformation: {}
         };
     },
 
@@ -1130,21 +1132,31 @@ var app = new Vue({
             }
         },
 
-        sendMessage: function sendMessage(event) {
+        sendMessageChat: function sendMessageChat(event) {
 
             var message = $('#message').val();
+            var id_salon = $('#id_salon').text();
+
+            var self = this;
 
             $.ajax({
-                url: Routing.generate('send_message'),
+                url: '/sendMessage',
                 type: 'POST',
-                data: 'message=' + message,
-                success: function success(msg) {
-                    console.log(msg);
-                    $('#close-send-message').trigger("click");
+                data: 'message=' + message + '&id_salon=' + id_salon,
+                success: function success(response) {
+                    //console.log(response);
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                        self.sendMessage(message);
+                        $('#close-send-message').trigger("click");
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
                 }
             });
 
-            $('.msg').append("<p> dit : " + message + "</p>");
+            // Empty text area
+            document.getElementById("message").value = "";
         },
         editProfil: function editProfil(event) {
 
@@ -1226,6 +1238,32 @@ var app = new Vue({
                     app.$root.$children[0].success('all books récupérés');
                 }
             });
+        },
+
+        appendMessage: function appendMessage(username, message) {
+            var dt = new Date();
+            var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
+            if (message) {
+                $('.msg:last').after('<div class="media msg">' + '<a class="pull-left" href="#">' + '<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">' + '</a>' + '<div class="media-body">' + '<small class="pull-right time"><i class="fa fa-clock-o"></i> ' + time + '</small>' + '<h5 class="media-heading">' + username + '</h5>' + '<small class="col-lg-10">' + message + '</small>' + '</div>' + '</div>');
+            }
+        },
+        sendMessage: function sendMessage(text) {
+            this.clientInformation.message = text;
+            //console.log(text);
+            console.log(this.clientInformation);
+            // Send info as JSON
+            this.conn.send(JSON.stringify(this.clientInformation));
+            // Add my own message to the list
+            this.appendMessage(this.clientInformation.username, this.clientInformation.message);
+        },
+        setConn: function setConn(id) {
+            this.conn = new WebSocket('ws://localhost:9090/chat-' + id);
+        },
+        setClientInformation: function setClientInformation(myusername) {
+            this.clientInformation = {
+                username: myusername
+            };
         }
     },
     mounted: function mounted() {
@@ -1235,19 +1273,40 @@ var app = new Vue({
         if (atmPage == '/app_dev.php/salons') {
             this.getRooms();this.getAllBooks();
         }
+        //SALON
+        var pathArray = window.location.pathname.split('/');
+        var indice = pathArray.length - 2;
 
-        /*fetch('http://pokeapi.co/api/v2/pokemon/1')
-            .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
-            .then(function(data) {
-                // Your code for handling the data you get from the API
-                this.fetchArray = data;
-                console.log(this.fetchArray);
-                console.log(this.fetchArray.name);
-            })
-            .catch(function(error) {
-                console.log(error);
-                // This is where you run code if the server returns any errors
-            });*/
+        //si c'est un salon
+        if (pathArray[indice] == 'salon') {
+            // START SOCKET CONFIG
+            /**
+             * Note that you need to change the "sandbox" for the URL of your project. 
+             * According to the configuration in Sockets/Chat.php , change the port if you need to.
+             * @type WebSocket
+             */
+            var self = this;
+            this.setConn($('#id_salon').text());
+            this.setClientInformation($('#username').text());
+
+            this.conn.onopen = function (e) {
+                console.info("Connection established succesfully");
+            };
+
+            this.conn.onmessage = function (e) {
+                var data = JSON.parse(e.data);
+
+                self.appendMessage(data.username, data.message);
+
+                console.log(data);
+            };
+
+            this.conn.onerror = function (e) {
+                alert("Error: something went wrong with the socket.");
+                console.error(e);
+            };
+            // END SOCKET CONFIG
+        }
     }
 });
 //# sourceMappingURL=Vue.js.map

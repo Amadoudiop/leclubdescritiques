@@ -297,7 +297,7 @@ class SalonController extends Controller
                 }else{
                     $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $book]);
 
-                    if (null === ) {
+                    if (null === $user_oeuvre) {
                         $response = ['valid' => false, 'msg' => "Cet oeuvre n'est pas dans votre liste"];
                     }else{
                         $salon = new Salon();

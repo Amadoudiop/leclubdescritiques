@@ -2,371 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7b0820-e8f3-47ec-8e03-15f9d6e87203" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Resources/views/chat/chat.html.twig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Command/SocketCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Sockets/Chat.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/AbstractConnectionDecorator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/App.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/ComponentInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/ConnectionInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Http/Guzzle/Http/Message/RequestFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Http/HttpRequestParser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Http/HttpServer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Http/HttpServerInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Http/OriginCheck.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Http/Router.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/MessageComponentInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/MessageInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Server/EchoServer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Server/FlashPolicy.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Server/IoConnection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Server/IoServer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Server/IpBlackList.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Session/Serialize/HandlerInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Session/Serialize/PhpBinaryHandler.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Session/Serialize/PhpHandler.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Session/SessionProvider.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Session/Storage/Proxy/VirtualProxy.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Session/Storage/VirtualSessionStorage.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/Exception.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/JsonException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/ServerProtocol.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/Topic.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/TopicManager.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/WampConnection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/WampServer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/Wamp/WampServerInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Encoding/ToggleableValidator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Encoding/Validator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Encoding/ValidatorInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/DataInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/FrameInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/Hixie76.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/Hixie76/Connection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/Hixie76/Frame.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/HyBi10.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/MessageInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/RFC6455.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/RFC6455/Connection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/RFC6455/Frame.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/RFC6455/HandshakeVerifier.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/RFC6455/Message.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/Version/VersionInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/VersionManager.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/WsServer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/src/Ratchet/WebSocket/WsServerInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/autobahn/bin/fuzzingserver-noutf8.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/autobahn/bin/fuzzingserver.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/autobahn/fuzzingclient-all.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/autobahn/fuzzingclient-profile.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/autobahn/fuzzingclient-quick.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/AbstractMessageComponentTestCase.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/Mock/Component.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/Mock/Connection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/Mock/ConnectionDecorator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/Mock/WampComponent.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/NullComponent.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/Wamp/Stub/WsWampServerInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/helpers/Ratchet/WebSocket/Stub/WsMessageComponentInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/integration/GuzzleTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/AbstractConnectionDecoratorTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Http/Guzzle/Http/Message/RequestFactoryTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Http/HttpRequestParserTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Http/HttpServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Http/OriginCheckTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Http/RouterTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Server/EchoServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Server/FlashPolicyComponentTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Server/IoConnectionTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Server/IoServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Server/IpBlackListComponentTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Session/Serialize/PhpHandlerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Session/SessionComponentTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Session/Storage/VirtualSessionStoragePDOTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Wamp/ServerProtocolTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Wamp/TopicManagerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Wamp/TopicTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Wamp/WampConnectionTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/Wamp/WampServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/Version/Hixie76Test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/Version/HyBi10Test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/Version/RFC6455/FrameTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/Version/RFC6455/HandshakeVerifierTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/Version/RFC6455/MessageTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/Version/RFC6455Test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/VersionManagerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/cboden/ratchet/tests/unit/WebSocket/WsServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/src/Evenement/EventEmitter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/src/Evenement/EventEmitterInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/src/Evenement/EventEmitterTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/tests/Evenement/Tests/EventEmitterTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/tests/Evenement/Tests/Listener.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/evenement/evenement/tests/bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/AbstractHasDispatcher.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Collection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Event.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Exception/BadMethodCallException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Exception/ExceptionCollection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Exception/GuzzleException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Exception/InvalidArgumentException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Exception/RuntimeException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Exception/UnexpectedValueException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/FromConfigInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/HasDispatcherInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/ToArrayInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/Version.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/common/Guzzle/Common/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/AbstractEntityBodyDecorator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/CachingEntityBody.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Client.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/ClientInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Curl/CurlHandle.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Curl/CurlMulti.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Curl/CurlMultiInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Curl/CurlMultiProxy.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Curl/CurlVersion.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Curl/RequestMediator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/EntityBody.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/EntityBodyInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/BadResponseException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/ClientErrorResponseException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/CouldNotRewindStreamException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/CurlException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/HttpException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/MultiTransferException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/RequestException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/ServerErrorResponseException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Exception/TooManyRedirectsException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/IoEmittingEntityBody.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/AbstractMessage.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/EntityEnclosingRequest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/EntityEnclosingRequestInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Header.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Header/CacheControl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Header/HeaderCollection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Header/HeaderFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Header/HeaderFactoryInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Header/HeaderInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Header/Link.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/MessageInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/PostFile.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/PostFileInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Request.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/RequestFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/RequestFactoryInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/RequestInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Message/Response.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Mimetypes.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/QueryAggregator/CommaAggregator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/QueryAggregator/DuplicateAggregator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/QueryAggregator/PhpAggregator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/QueryAggregator/QueryAggregatorInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/QueryString.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/ReadLimitEntityBody.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/RedirectPlugin.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Resources/cacert.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/StaticClient.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/Url.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/http/Guzzle/Http/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Cookie/CookieParser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Cookie/CookieParserInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Message/AbstractMessageParser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Message/MessageParser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Message/MessageParserInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Message/PeclHttpMessageParser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/ParserRegistry.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/UriTemplate/PeclUriTemplate.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/UriTemplate/UriTemplate.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/UriTemplate/UriTemplateInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Url/UrlParser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/Url/UrlParserInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/parser/Guzzle/Parser/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/stream/Guzzle/Stream/PhpStreamRequestFactory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/stream/Guzzle/Stream/Stream.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/stream/Guzzle/Stream/StreamInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/stream/Guzzle/Stream/StreamRequestFactoryInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/guzzle/stream/Guzzle/Stream/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/ExtEventLoop.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/Factory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/LibEvLoop.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/LibEventLoop.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/LoopInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/StreamSelectLoop.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/Tick/FutureTickQueue.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/Tick/NextTickQueue.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/Timer/Timer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/Timer/TimerInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/src/Timer/Timers.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/AbstractLoopTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/CallableStub.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/ExtEventLoopTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/LibEvLoopTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/LibEventLoopTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/StreamSelectLoopTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/TestCase.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/Timer/AbstractTimerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/Timer/ExtEventTimerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/Timer/LibEvTimerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/Timer/LibEventTimerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/Timer/StreamSelectTimerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/Timer/TimersTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/tests/bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/event-loop/travis-init.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/CancellablePromiseInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/CancellationQueue.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/Deferred.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/Exception/LengthException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/ExtendedPromiseInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/FulfilledPromise.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/LazyPromise.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/Promise.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/PromiseInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/PromisorInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/RejectedPromise.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/UnhandledRejectionException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/functions.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/src/functions_include.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/CancellationQueueTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/DeferredTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FulfilledPromiseTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionAllTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionAnyTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionCheckTypehintTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionMapTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionRaceTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionReduceTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionRejectTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionResolveTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/FunctionSomeTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/LazyPromiseTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseAdapter/CallbackPromiseAdapter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseAdapter/PromiseAdapterInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/CancelTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/FullTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/NotifyTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromiseFulfilledTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromisePendingTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromiseRejectedTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/PromiseSettledTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/RejectTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/PromiseTest/ResolveTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/RejectedPromiseTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/Stub/CallableStub.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/TestCase.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleFulfilledTestPromise.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleFulfilledTestThenable.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleRejectedTestPromise.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleTestCancellable.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/promise/tests/fixtures/SimpleTestCancellableThenable.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/examples/01-echo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/examples/02-chat-server.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/examples/03-benchmark.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/examples/10-generate-self-signed.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/examples/localhost.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/examples/localhost_swordfish.pem" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/src/Connection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/src/ConnectionException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/src/ConnectionInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/src/SecureServer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/src/Server.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/src/ServerInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/src/StreamEncryption.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/ConnectionTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/FunctionalSecureServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/FunctionalServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/SecureServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/ServerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/Stub/CallableStub.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/Stub/ConnectionStub.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/Stub/ServerStub.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/socket/tests/TestCase.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/examples/benchmark-throughput.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/Buffer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/BufferedSink.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/CompositeStream.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/DuplexStreamInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/ReadableStream.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/ReadableStreamInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/Stream.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/ThroughStream.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/Util.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/WritableStream.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/src/WritableStreamInterface.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/BufferTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/BufferedSinkTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/CallableStub.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/CompositeStreamTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/ReadableStreamTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/StreamIntegrationTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/StreamTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/Stub/ReadableStreamStub.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/TestCase.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/ThroughStreamTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/UtilTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/WritableStreamTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vendor/react/stream/tests/bootstrap.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/chat.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/chat.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/livres.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/livres.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/web/js/Vue.js.map" afterPath="$PROJECT_DIR$/dist/web/js/Vue.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SalonController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SalonController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/autoload.php" afterPath="$PROJECT_DIR$/vendor/autoload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_files.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_files.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/style.css" afterPath="$PROJECT_DIR$/web/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/Vue.js" afterPath="$PROJECT_DIR$/web/js/Vue.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -385,49 +27,59 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="profil.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="54" column="32" lean-forward="false" selection-start-line="53" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+            <state relative-caret-position="163">
+              <caret line="571" column="34" lean-forward="false" selection-start-line="571" selection-start-column="32" selection-end-line="575" selection-end-column="39" />
               <folding>
-                <element signature="e#5285#9225#0#Twig" expanded="false" />
-                <element signature="e#9357#17038#0#Twig" expanded="false" />
-                <element signature="e#17730#26608#0#Twig" expanded="false" />
-                <element signature="e#73562#76143#0#HTML" expanded="false" />
-                <element signature="e#76234#78289#0#HTML" expanded="false" />
+                <element signature="e#5730#9670#0#Twig" expanded="false" />
+                <element signature="e#9802#17483#0#Twig" expanded="false" />
+                <element signature="e#17705#29597#0#HTML" expanded="false" />
+                <element signature="e#18175#27053#0#Twig" expanded="false" />
+                <element signature="e#29623#51766#0#HTML" expanded="false" />
+                <element signature="e#74030#76611#0#HTML" expanded="false" />
+                <element signature="e#76702#78757#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Vue.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="1390" column="46" lean-forward="false" selection-start-line="1390" selection-start-column="46" selection-end-line="1390" selection-end-column="46" />
+            <state relative-caret-position="222">
+              <caret line="459" column="38" lean-forward="false" selection-start-line="459" selection-start-column="38" selection-end-line="459" selection-end-column="38" />
               <folding>
                 <element signature="e#41#331#0" expanded="false" />
                 <element signature="e#364#9260#0" expanded="false" />
                 <element signature="e#9286#9900#0" expanded="false" />
                 <element signature="e#9924#11411#0" expanded="false" />
                 <element signature="e#11493#13503#0" expanded="false" />
-                <element signature="e#13532#38846#0" expanded="false" />
-                <element signature="e#17068#18690#0" expanded="false" />
-                <element signature="e#18704#19459#0" expanded="false" />
-                <element signature="e#19562#23718#0" expanded="false" />
-                <element signature="e#23733#38695#0" expanded="false" />
-                <element signature="e#39465#40345#0" expanded="false" />
-                <marker date="1498923306000" expanded="true" signature="13903:13911" ph="…" />
-                <marker date="1498923306000" expanded="true" signature="14538:14545" ph="×" />
-                <marker date="1498923306000" expanded="true" signature="14835:14839" ph="&lt;" />
-                <marker date="1498923306000" expanded="true" signature="15072:15076" ph="&gt;" />
-                <marker date="1498923306000" expanded="true" signature="15805:15809" ph="&lt;" />
-                <marker date="1498923306000" expanded="true" signature="16020:16024" ph="&gt;" />
-                <marker date="1498923306000" expanded="true" signature="16566:16570" ph="&lt;" />
-                <marker date="1498923306000" expanded="true" signature="16735:16739" ph="&gt;" />
-                <marker date="1498923306000" expanded="true" signature="47126:47152" ph="..." />
+                <element signature="e#13582#16048#0" expanded="false" />
+                <element signature="e#15016#15896#0" expanded="false" />
+                <marker date="1499009457000" expanded="true" signature="22831:22857" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-128">
+              <caret line="203" column="67" lean-forward="false" selection-start-line="203" selection-start-column="62" selection-end-line="203" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="livres.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/front/livres.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="319">
+              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -435,8 +87,8 @@
       <file leaf-file-name="salons.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/front/salons.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="67" column="75" lean-forward="false" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
+            <state relative-caret-position="217">
+              <caret line="20" column="91" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="91" />
               <folding />
             </state>
           </provider>
@@ -445,8 +97,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="1253" column="1" lean-forward="false" selection-start-line="1253" selection-start-column="1" selection-end-line="1253" selection-end-column="1" />
+            <state relative-caret-position="286">
+              <caret line="449" column="33" lean-forward="false" selection-start-line="449" selection-start-column="33" selection-end-line="449" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -463,14 +115,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addbo</find>
-      <find>transition</find>
-      <find>formatPercent</find>
-      <find>#42B983</find>
-      <find>76</find>
-      <find>url</find>
-      <find>auto</find>
-      <find>local</find>
       <find>addBo</find>
       <find>close</find>
       <find>addBook</find>
@@ -480,10 +124,8 @@
       <find>star</find>
       <find>container</find>
       <find>star-</find>
-      <find>title</find>
       <find>oeuvreIs</find>
       <find>titre</find>
-      <find>card</find>
       <find>show</find>
       <find>menu</find>
       <find>addB</find>
@@ -491,8 +133,18 @@
       <find>table</find>
       <find>modalEdit</find>
       <find>modaladd</find>
-      <find>modalEdi</find>
+      <find>app</find>
       <find>edit</find>
+      <find>card</find>
+      <find>modalEdi</find>
+      <find>&lt;script</find>
+      <find>cardSel</find>
+      <find>title</find>
+      <find>recherch</find>
+      <find>contact</find>
+      <find>profil</find>
+      <find>projects-tab</find>
+      <find>friends-tab</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -506,12 +158,12 @@
         <option value="$PROJECT_DIR$/app/Resources/views/security/login.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/front/index.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/front/livres.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/web/css/style.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/front/salons.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/web/js/Vue.js" />
+        <option value="$PROJECT_DIR$/app/Resources/views/front/livres.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/style.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/front/profil.html.twig" />
       </list>
     </option>
   </component>
@@ -841,12 +493,12 @@
       <workItem from="1495199160635" duration="1489000" />
       <workItem from="1497536224000" duration="18000" />
       <workItem from="1497536272388" duration="19733000" />
-      <workItem from="1498556710897" duration="48766000" />
+      <workItem from="1498556710897" duration="58896000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70251000" />
+    <option name="totallyTimeSpent" value="80381000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -908,11 +560,13 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#5285#9225#0#Twig" expanded="false" />
-            <element signature="e#9357#17038#0#Twig" expanded="false" />
-            <element signature="e#17730#26608#0#Twig" expanded="false" />
-            <element signature="e#73562#76143#0#HTML" expanded="false" />
-            <element signature="e#76234#78289#0#HTML" expanded="false" />
+            <element signature="e#5730#9670#0#Twig" expanded="false" />
+            <element signature="e#9802#17483#0#Twig" expanded="false" />
+            <element signature="e#17705#29597#0#HTML" expanded="false" />
+            <element signature="e#18175#27053#0#Twig" expanded="false" />
+            <element signature="e#29623#51766#0#HTML" expanded="false" />
+            <element signature="e#74030#76611#0#HTML" expanded="false" />
+            <element signature="e#76702#78757#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -927,21 +581,9 @@
             <element signature="e#9286#9900#0" expanded="false" />
             <element signature="e#9924#11411#0" expanded="false" />
             <element signature="e#11493#13503#0" expanded="false" />
-            <element signature="e#13532#38846#0" expanded="false" />
-            <element signature="e#17068#18690#0" expanded="false" />
-            <element signature="e#18704#19459#0" expanded="false" />
-            <element signature="e#19562#23718#0" expanded="false" />
-            <element signature="e#23733#38695#0" expanded="false" />
-            <element signature="e#39465#40345#0" expanded="false" />
-            <marker date="1498923306000" expanded="true" signature="13903:13911" ph="…" />
-            <marker date="1498923306000" expanded="true" signature="14538:14545" ph="×" />
-            <marker date="1498923306000" expanded="true" signature="14835:14839" ph="&lt;" />
-            <marker date="1498923306000" expanded="true" signature="15072:15076" ph="&gt;" />
-            <marker date="1498923306000" expanded="true" signature="15805:15809" ph="&lt;" />
-            <marker date="1498923306000" expanded="true" signature="16020:16024" ph="&gt;" />
-            <marker date="1498923306000" expanded="true" signature="16566:16570" ph="&lt;" />
-            <marker date="1498923306000" expanded="true" signature="16735:16739" ph="&gt;" />
-            <marker date="1498923306000" expanded="true" signature="47126:47152" ph="..." />
+            <element signature="e#13582#16048#0" expanded="false" />
+            <element signature="e#15016#15896#0" expanded="false" />
+            <marker date="1499009457000" expanded="true" signature="22831:22857" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1243,79 +885,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/livres.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding>
-            <element signature="e#2227#4282#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="153" column="34" lean-forward="false" selection-start-line="153" selection-start-column="34" selection-end-line="153" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="1253" column="1" lean-forward="false" selection-start-line="1253" selection-start-column="1" selection-end-line="1253" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="54" column="32" lean-forward="false" selection-start-line="53" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-          <folding>
-            <element signature="e#5285#9225#0#Twig" expanded="false" />
-            <element signature="e#9357#17038#0#Twig" expanded="false" />
-            <element signature="e#17730#26608#0#Twig" expanded="false" />
-            <element signature="e#73562#76143#0#HTML" expanded="false" />
-            <element signature="e#76234#78289#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/salons.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="67" column="75" lean-forward="false" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/Vue.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="1390" column="46" lean-forward="false" selection-start-line="1390" selection-start-column="46" selection-end-line="1390" selection-end-column="46" />
+        <state relative-caret-position="222">
+          <caret line="459" column="38" lean-forward="false" selection-start-line="459" selection-start-column="38" selection-end-line="459" selection-end-column="38" />
           <folding>
             <element signature="e#41#331#0" expanded="false" />
             <element signature="e#364#9260#0" expanded="false" />
             <element signature="e#9286#9900#0" expanded="false" />
             <element signature="e#9924#11411#0" expanded="false" />
             <element signature="e#11493#13503#0" expanded="false" />
-            <element signature="e#13532#38846#0" expanded="false" />
-            <element signature="e#17068#18690#0" expanded="false" />
-            <element signature="e#18704#19459#0" expanded="false" />
-            <element signature="e#19562#23718#0" expanded="false" />
-            <element signature="e#23733#38695#0" expanded="false" />
-            <element signature="e#39465#40345#0" expanded="false" />
-            <marker date="1498923306000" expanded="true" signature="13903:13911" ph="…" />
-            <marker date="1498923306000" expanded="true" signature="14538:14545" ph="×" />
-            <marker date="1498923306000" expanded="true" signature="14835:14839" ph="&lt;" />
-            <marker date="1498923306000" expanded="true" signature="15072:15076" ph="&gt;" />
-            <marker date="1498923306000" expanded="true" signature="15805:15809" ph="&lt;" />
-            <marker date="1498923306000" expanded="true" signature="16020:16024" ph="&gt;" />
-            <marker date="1498923306000" expanded="true" signature="16566:16570" ph="&lt;" />
-            <marker date="1498923306000" expanded="true" signature="16735:16739" ph="&gt;" />
-            <marker date="1498923306000" expanded="true" signature="47126:47152" ph="..." />
+            <element signature="e#13582#16048#0" expanded="false" />
+            <element signature="e#15016#15896#0" expanded="false" />
+            <marker date="1499009457000" expanded="true" signature="22831:22857" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/livres.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-128">
+          <caret line="203" column="67" lean-forward="false" selection-start-line="203" selection-start-column="62" selection-end-line="203" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/salons.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="20" column="91" lean-forward="false" selection-start-line="20" selection-start-column="83" selection-end-line="20" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="449" column="33" lean-forward="false" selection-start-line="449" selection-start-column="33" selection-end-line="449" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/front/profil.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="571" column="34" lean-forward="false" selection-start-line="571" selection-start-column="32" selection-end-line="575" selection-end-column="39" />
+          <folding>
+            <element signature="e#5730#9670#0#Twig" expanded="false" />
+            <element signature="e#9802#17483#0#Twig" expanded="false" />
+            <element signature="e#17705#29597#0#HTML" expanded="false" />
+            <element signature="e#18175#27053#0#Twig" expanded="false" />
+            <element signature="e#29623#51766#0#HTML" expanded="false" />
+            <element signature="e#74030#76611#0#HTML" expanded="false" />
+            <element signature="e#76702#78757#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>

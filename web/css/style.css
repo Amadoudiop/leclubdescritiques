@@ -87,7 +87,48 @@ a:link, a:hover, a:visited, a:active {
             0 8px 8px -8px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease-in-out;
 }
-
+@media (max-width: 768px) {
+    .cardSelected, .card {
+        min-width:350px;
+    }
+    .vertical{
+        padding-right: 0px;
+    }
+}
+@media (max-width: 992px) and (min-width:768px) {
+    .cardSelected, .card {
+        min-width: 400px;
+    }
+    .vertical2{
+        padding-right: 0px;
+    }
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+    .cardSelected{
+        min-width: 400px;
+    }
+    .vertical{
+        padding-right: 0px;
+        right: 2.5%;
+    }
+    .vertical2{
+        padding-right: 0px;
+        right:-8%;
+    }
+}
+@media (min-width: 1200px) {
+    .cardSelected{
+        min-width: 400px;
+    }
+    .vertical{
+        padding-right: 0px;
+        right: 3.2%;
+    }
+    .vertical2{
+        padding-right: 0px;
+        right:-8%;
+    }
+}
 /*.card:hover {
     position: relative;
     left: 100%;
@@ -405,6 +446,10 @@ a:link, a:hover, a:visited, a:active {
 /*    --------------------------------------------------
 	:: Profil
 	-------------------------------------------------- */
+.button-send-message{
+    margin-bottom: 0px !important;
+}
+
 .vd_content-section{
     margin-top: 100px;
 }

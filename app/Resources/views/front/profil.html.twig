@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/theme-responsive.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
     {% endblock  %}
-
+    <span id="id_user" class="hidden">{{ user.id }}</span>
     <div class="vd_content-section clearfix">
         <div class="row">
             <div class="col-sm-3">
@@ -32,8 +32,8 @@
                                     <td><span class="label label-success">Actif</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Membre depuis</td>
-                                    <td> Jan 07, 2014 </td>
+                                    <td>Dernière connexion</td>
+                                    <td>{{ user.lastlogin|date('d-m-Y') }}</td>
                                 </tr>
                                 </tbody>
                             </table>

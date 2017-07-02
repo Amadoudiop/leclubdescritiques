@@ -59,36 +59,33 @@
                 <!--Body-->
                 <div class="modal-body mb-0">
                     <div class="md-form form-sm">
-                        <label for="form19">Titre du salon</label>
+                        <label for="salon-title">Titre du salon</label>
                         <input type="text" id="salon-title" class="form-control" value="">
                     </div>
 
                     <div class="md-form form-sm">
-                        <label for="form20">Oeuvre</label>
-                        <select v-model="selectedBook" class="form-control">
-                            <option v-for="book in books" v-bind:value="book.title">
+                        <label for="salon-book">Oeuvre</label>
+                        <select v-model="selectedBook" id="salon-book" class="form-control">
+                            <option v-for="book in books" v-bind:value="book.id">
                                ${book.title}
                             </option>
                         </select>
                     </div>
 
                     <div class="md-form form-sm">
-                        <label for="form20">Nombre de participants max</label>
-                        <input type="text" id="max-participants" class="form-control" value="">
+                        <label for="salon-max-participants">Nombre de participants max</label>
+                        <input type="text" id="salon-max-participants" class="form-control" value="">
                     </div>
 
                     <div class="md-form form-sm">
-                        <label for="form20">Date Debut</label>
-                        <input type="date" id="date-debut-salon" class="form-control" value="">
+                        <label for="salon-date-debut">Date Debut</label>
+                        <input type="date" id="salon-date-debut" class="form-control" value="">
                     </div>
 
                     <div class="md-form form-sm">
-                        <label for="form20">Date Fin</label>
-                        <input type="date" id="date-fin-salon" class="form-control" value="">
+                        <label for="salon-date-fin">Date Fin</label>
+                        <input type="date" id="salon-date-fin" class="form-control" value="">
                     </div>
-
-
-
 
                     <div class="text-center mt-1-half">
                         <button class="btn btn-info mb-2" id="btnEditProfil" @click.stop.prevent="creerSalon"> Envoyer une demande <i class="fa fa-send ml-1"></i></button>

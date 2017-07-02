@@ -564,7 +564,26 @@ var app = new Vue({
 
         },
         creerSalon(){
-            console.log('creation salon')
+            var title = $('#salon-title').val();
+            var book = $('#salon-book').val();
+            var nb_max_part = $('#salon-max-participants').val();
+            var date_start = $('#salon-date-debut').val();
+            var date_end = $('#salon-date-fin').val();
+
+            $.ajax({
+                url: '/createRoom',
+                type: 'POST',
+                data: 'title='+title+'&book='+book+'&nb_max_part='+nb_max_part+'&date_start='+date_start+'&date_end='+date_end,
+                success: function(response) {
+                    //console.log(response);
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                        //$('#close-send-message').trigger( "click" );
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
         },
         addBook(event) {
             app.$root.$children[0].success('requete envoyée');

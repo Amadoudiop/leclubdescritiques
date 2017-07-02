@@ -1,0 +1,41 @@
+{% extends 'base_back.html.twig' %}
+
+{% block body %}
+    <h1>Options list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for option in options %}
+            <tr>
+                <td><a href="{{ path('option_show', { 'id': option.id }) }}">{{ option.id }}</a></td>
+                <td>{{ option.label }}</td>
+                <td>{{ option.content }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('option_show', { 'id': option.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('option_edit', { 'id': option.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('option_new') }}">Create a new option</a>
+        </li>
+    </ul>
+{% endblock %}

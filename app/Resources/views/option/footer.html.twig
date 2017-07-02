@@ -1,0 +1,64 @@
+<footer class="text-center">
+    <div class="footer-above">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col col-md-4">
+                    <h3>Location</h3>
+                    {% if options['location'] is defined %}   
+                        {{ options['location'] | raw }}
+                    {% endif %}
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>Around the Web</h3>
+                    <ul class="list-inline">
+                        {% if options['facebook'] is defined %}                
+                            <li>
+                                <a href="{{ options['facebook'] }}" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                        {% endif %}
+                        {% if options['googlePlus'] is defined %}                
+                            <li>
+                                <a href="{{ options['googlePlus'] }}" class="btn-social btn-outline"><span class="sr-only">Google Plus</span><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                        {% endif %}
+                        {% if options['twitter'] is defined %}                                   
+                            <li>
+                                <a href="{{ options['twitter'] }}" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                        {% endif %}
+                        {% if options['linkedin'] is defined %}   
+                            <li>
+                                <a href="{{ options['linkedin'] }}" class="btn-social btn-outline"><span class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                        {% endif %}
+                        {% if options['dribble'] is defined %}   
+                            <li>
+                                <a href="{{ options['dribble'] }}" class="btn-social btn-outline"><span class="sr-only">Dribble</span><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="footer-col col-md-4">
+                    <h3>A Propos de Club des critiques</h3>
+                    {% if options['about'] is defined %}   
+                        {{ options['about'] | raw }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-below">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    {% if options['copyright'] is defined %}   
+                        {{ options['copyright'] }}
+                    {% endif %}
+                </div>
+                <div class="col-lg-6">
+                    <a href="/mentionslegales"> Mentions légales</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

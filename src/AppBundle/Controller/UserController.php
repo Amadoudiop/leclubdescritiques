@@ -211,6 +211,7 @@ class UserController extends Controller
                 $newBook->setCategory($category);
                 $newBook->setSubCategory($sub_category1);
                 $newBook->setTrends(false);
+                $newBook->setApproved(false);
 
                 $em->persist($newBook);
                 $em->flush();

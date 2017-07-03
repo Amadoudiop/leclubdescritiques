@@ -87,7 +87,48 @@ a:link, a:hover, a:visited, a:active {
             0 8px 8px -8px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease-in-out;
 }
-
+@media (max-width: 768px) {
+    .cardSelected, .card {
+        min-width:350px;
+    }
+    .vertical{
+        padding-right: 0px;
+    }
+}
+@media (max-width: 992px) and (min-width:768px) {
+    .cardSelected, .card {
+        min-width: 400px;
+    }
+    .vertical2{
+        padding-right: 0px;
+    }
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+    .cardSelected{
+        min-width: 400px;
+    }
+    .vertical{
+        padding-right: 0px;
+        right: 2.5%;
+    }
+    .vertical2{
+        padding-right: 0px;
+        right:-8%;
+    }
+}
+@media (min-width: 1200px) {
+    .cardSelected{
+        min-width: 400px;
+    }
+    .vertical{
+        padding-right: 0px;
+        right: 3.2%;
+    }
+    .vertical2{
+        padding-right: 0px;
+        right:-8%;
+    }
+}
 /*.card:hover {
     position: relative;
     left: 100%;
@@ -405,6 +446,10 @@ a:link, a:hover, a:visited, a:active {
 /*    --------------------------------------------------
 	:: Profil
 	-------------------------------------------------- */
+.button-send-message{
+    margin-bottom: 0px !important;
+}
+
 .vd_content-section{
     margin-top: 100px;
 }
@@ -427,7 +472,7 @@ a:link, a:hover, a:visited, a:active {
 }
 
 /*    --------------------------------------------------
-	:: contact modal
+	:: modal
 	-------------------------------------------------- */
 
 #modalEditProfil .modal-dialog .modal-content, #modalAddBook .modal-dialog .modal-content, #modalContactForm .modal-dialog .modal-content {
@@ -1183,6 +1228,7 @@ body::-webkit-scrollbar {
 }
 
 #div-salon #search-input{
+    width:100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -1193,6 +1239,9 @@ body::-webkit-scrollbar {
     background-color: #fff;
     margin-left: auto;
     margin-right:auto;
+    text-align:center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 #div-salon th {
@@ -1210,8 +1259,8 @@ body::-webkit-scrollbar {
 }
 
 #div-salon th, td {
-    min-width: 120px;
-    padding: 10px 20px;
+    min-width: 40px;
+    padding: 5px 5px;
 }
 
 #div-salon th.active {
@@ -1242,3 +1291,160 @@ body::-webkit-scrollbar {
     border-right: 4px solid transparent;
     border-top: 4px solid #fff;
 }
+/*    --------------------------------------------------
+                datepicker
+	-------------------------------------------------- */
+
+
+.vdp-datepicker {
+    position: relative;
+    text-align: left;
+}
+
+.vdp-datepicker * {
+    box-sizing: border-box;
+}
+
+.vdp-datepicker__calendar {
+    position: absolute;
+    z-index: 100;
+    background: #fff;
+    width: 300px;
+    border: 1px solid #ccc;
+}
+
+.vdp-datepicker__calendar header {
+    display: block;
+    line-height: 40px;
+}
+
+.vdp-datepicker__calendar header span {
+    display: inline-block;
+    text-align: center;
+    width: 71.42857142857143%;
+    float: left;
+}
+
+.vdp-datepicker__calendar header .prev,
+.vdp-datepicker__calendar header .next {
+    width: 14.285714285714286%;
+    float: left;
+    text-indent: -10000px;
+    position: relative;
+}
+
+.vdp-datepicker__calendar header .prev:after,
+.vdp-datepicker__calendar header .next:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 6px solid transparent;
+}
+
+.vdp-datepicker__calendar header .prev:after {
+    border-right: 10px solid #000;
+    margin-left: -5px;
+}
+
+.vdp-datepicker__calendar header .prev.disabled:after {
+    border-right: 10px solid #ddd;
+}
+
+.vdp-datepicker__calendar header .next:after {
+    border-left: 10px solid #000;
+    margin-left: 5px;
+}
+
+.vdp-datepicker__calendar header .next.disabled:after {
+    border-left: 10px solid #ddd;
+}
+
+.vdp-datepicker__calendar header .prev:not(.disabled),
+.vdp-datepicker__calendar header .next:not(.disabled),
+.vdp-datepicker__calendar header .up:not(.disabled) {
+    cursor: pointer;
+}
+
+.vdp-datepicker__calendar header .prev:not(.disabled):hover,
+.vdp-datepicker__calendar header .next:not(.disabled):hover,
+.vdp-datepicker__calendar header .up:not(.disabled):hover {
+    background: #eee;
+}
+
+.vdp-datepicker__calendar .disabled {
+    color: #ddd;
+    cursor: default;
+}
+
+.vdp-datepicker__calendar .cell {
+    display: inline-block;
+    padding: 0 5px;
+    width: 14.285714285714286%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+}
+
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year {
+    cursor: pointer;
+}
+
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).day:hover,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).month:hover,
+.vdp-datepicker__calendar .cell:not(.blank):not(.disabled).year:hover {
+    border: 1px solid #4bd;
+}
+
+.vdp-datepicker__calendar .cell.selected {
+    background: #4bd;
+}
+
+.vdp-datepicker__calendar .cell.selected:hover {
+    background: #4bd;
+}
+
+.vdp-datepicker__calendar .cell.selected.highlighted {
+    background: #4bd;
+}
+
+.vdp-datepicker__calendar .cell.highlighted {
+    background: #cae5ed;
+}
+
+.vdp-datepicker__calendar .cell.grey {
+    color: #888;
+}
+
+.vdp-datepicker__calendar .cell.grey:hover {
+    background: inherit;
+}
+
+.vdp-datepicker__calendar .cell.day-header {
+    font-size: 75%;
+    white-space: no-wrap;
+    cursor: inherit;
+}
+
+.vdp-datepicker__calendar .cell.day-header:hover {
+    background: inherit;
+}
+
+.vdp-datepicker__calendar .month,
+.vdp-datepicker__calendar .year {
+    width: 33.333%;
+}
+
+.vdp-datepicker__clear-button,
+.vdp-datepicker__calendar-button {
+    cursor: pointer;
+    font-style: normal;
+}
+
+
+

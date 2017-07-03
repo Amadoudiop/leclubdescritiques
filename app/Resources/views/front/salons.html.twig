@@ -12,21 +12,92 @@
     <div id="div-salon" class="content">
         <div class="row">
             <div class="container">
-                <div class="col-sm-1 col-md-1"></div>
-                <div class="col-sm-10 col-md-10">
-                    <form id="search">
-                        <input id="search-input" name="query" placeholder="Recherche" v-model="searchQuery">
-                    </form>
-                    <vue-table
-                            :data="gridData"
-                            :columns="gridColumns"
-                            :filter-key="searchQuery">
-                    </vue-table>
+                <div class="col-xs-1 col-sm-1 col-md-1"></div>
+                <div class="col-xs-10 col-sm-10 col-md-10">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
+                        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-3">
+                            <form id="search">
+                                <input id="search-input" name="query" placeholder="Recherche" v-model="searchQuery">
+                            </form>
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
+                             <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalAddBook"> <i class="fa fa-pencil append-icon"></i> Créer un salon </a>
+
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <vue-table
+                                    :data="gridData"
+                                    :columns="gridColumns"
+                                    :filter-key="searchQuery">
+                            </vue-table>
+
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-1 col-md-1"></div>
+                <div class="col-xs-1 col-sm-1 col-md-1"></div>
             </div>
         </div>
     </div>
+
+    <!--Modal: Editer profil form-->
+    <div class="modal fade" id="modalAddBook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header light-blue darken-3 white-text">
+                    <button type="button"  id="close-edit-profil" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="title"><i class="fa fa-pencil"></i> Ajouter un salon</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body mb-0">
+                    <div class="md-form form-sm">
+                        <label for="salon-title">Titre du salon</label>
+                        <input type="text" id="salon-title" class="form-control" value="">
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="salon-book">Oeuvre</label>
+                        <select v-model="selectedBook" id="salon-book" class="form-control">
+                            <option v-for="book in books" v-bind:value="book.id">
+                               ${book.title}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="salon-max-participants">Nombre de participants max</label>
+                        <input type="text" id="salon-max-participants" class="form-control" value="">
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="salon-date-debut">Date Debut</label>
+                        <input type="date" id="salon-date-debut" class="form-control" value="">
+                    </div>
+
+                    <div class="md-form form-sm">
+                        <label for="salon-date-fin">Date Fin</label>
+                        <input type="date" id="salon-date-fin" class="form-control" value="">
+                    </div>
+
+                    <div class="text-center mt-1-half">
+                        <button class="btn btn-info mb-2" id="btnEditProfil" @click.stop.prevent="creerSalon"> Envoyer une demande <i class="fa fa-send ml-1"></i></button>
+                    </div>
+
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: Editer profil form-->
+
     <!-- Vue js star rating -->
     <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
 

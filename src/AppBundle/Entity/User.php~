@@ -22,30 +22,35 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
      */
     private $firstname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255)
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
      */
     private $lastname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", length=255)
+     * @ORM\Column(name="description", type="text", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="text", length=255)
+     * @ORM\Column(name="photo", type="text", length=255, nullable=true)
      */
     private $photo;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="User", cascade={"persist"})
+     */
+    private $contacts;
 
     public function __construct()
     {

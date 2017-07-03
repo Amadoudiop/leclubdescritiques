@@ -397,6 +397,8 @@ class UserController extends Controller
           throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
         }
 
+        $data = [];
+
         $firstname = (empty($user->getFirstname())) ? '' : $user->getFirstname();
         $lastname = (empty($user->getLastname())) ? '' : $user->getLastname();
         $description = (empty($user->getDescription())) ? '' : $user->getDescription();
@@ -431,6 +433,8 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user_oeuvres = $em->getRepository('AppBundle:UserOeuvre')->findByUser($user);
 
+        $data = [];
+
         foreach ($user_oeuvres as $user_oeuvre) {
             $title = (empty($user_oeuvre->getOeuvre()->getTitle())) ? '' : $user_oeuvre->getOeuvre()->getTitle();
             $url_product = (empty($user_oeuvre->getOeuvre()->getUrlProduct())) ? '' : $user_oeuvre->getOeuvre()->getUrlProduct();
@@ -452,6 +456,35 @@ class UserController extends Controller
                 'author' => $author,
                 'category' => $category,
                 'sub_category' => $sub_category
+             ];
+        }
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/getContactsUser/{id}", name="get_contacts_user", options={"expose"=true})
+     */
+    public function getContactsUserAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $em->getRepository('AppBundle:User')->find($id);
+
+        if (null === $user) {
+          throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
+        }
+
+        $contacts = $user->getContacts();
+        $data = [];
+
+        foreach ($contacts as $contact) {   
+            $firstname = (empty($contact->getFirstname())) ? '' : $contact->getFirstname();
+            $lastname = (empty($contact->getLastname())) ? '' : $contact->getLastname();   
+
+            $data[] = [
+                'firstname' => $firstname,
+                'lastname' => $lastname,
              ];
         }
 

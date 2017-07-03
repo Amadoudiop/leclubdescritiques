@@ -183,7 +183,8 @@ class SalonController extends Controller
         return $this->render('front/chat.html.twig', [
             'salon' => $salon,
             'messages' => $messages,
-            'participants' => $participants
+            'participants' => $participants,
+            'user' => $user
         ]);
     }
 
@@ -202,10 +203,10 @@ class SalonController extends Controller
         //var_dump($request);die;
 
         //on récupère le salon dans l'url
-        $url = $request->headers->get('referer');
-        $url = explode("/salon/", $url);
+        //$url = $request->headers->get('referer');
+        //$url = explode("/salon/", $url);
 
-        $id_salon = intval($url[1]);
+        $id_salon = intval($request->request->get('id_salon'));
 
         $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
         //dump($salon);die;
@@ -254,6 +255,7 @@ class SalonController extends Controller
             //$participants = (empty($salon->getParticipants())) ? '' : $salon->getParticipants();
             $start_date = (empty($salon->getDateStart()->format('d/m/Y'))) ? '' : $salon->getDateStart()->format('d/m/Y');
             $end_date = (empty($salon->getDateEnd()->format('d/m/Y'))) ? '' : $salon->getDateEnd()->format('d/m/Y');
+            $id = (empty($salon->getId())) ? '' : $salon->getId();
 
             $data[] = [
                 'title' => $title,
@@ -263,10 +265,69 @@ class SalonController extends Controller
                 /*'participants' => $participants,*/
                 'start_date' => $start_date,
                 'end_date' => $end_date,
+                'id' => $id
              ];
         }
 
         return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/createRoom", name="create_room", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function createRoomAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $title = $request->request->get('title');
+        $oeuvre = $request->request->get('book');
+        $nb_max_part = intval($request->request->get('nb_max_part'));
+        $date_start = $request->request->get('date_start');
+        $date_end = $request->request->get('date_end');
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($title) && !empty($oeuvre) && !empty($nb_max_part) &&!empty($date_start) && !empty($date_end)) {
+
+                $book = $em->getRepository('AppBundle:Oeuvre')->find($oeuvre);
+
+                if (null === $book) {
+                    $response = ['valid' => false, 'msg' => "Cet oeuvre n'existe pas"];
+                }else{
+                    $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $book]);
+
+                    if (null === $user_oeuvre) {
+                        $response = ['valid' => false, 'msg' => "Cet oeuvre n'est pas dans votre liste"];
+                    }else{
+                        $date_start = new \DateTime($date_start);
+                        $date_end = new \DateTime($date_end);
+
+                        $salon = new Salon();
+                        $salon->setTitle($title);
+                        $salon->setParticipantsNumber($nb_max_part);
+                        $salon->setDateStart($date_start);
+                        $salon->setDateEnd($date_end);     
+                        $salon->setOeuvre($book);     
+                        $salon->setUser($user);     
+                        $salon->addParticipant($user);    
+
+                        $em->persist($salon);
+                        $em->flush();
+
+                        $response = ['valid' => true, 'msg' => 'Salon créé']; 
+                    }
+                }  
+            }else{
+                $response = ['valid' => false, 'msg' => 'Toute les informations sont obligatoires'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
     }
 
 }

@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/theme-responsive.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
     {% endblock  %}
-
+    <span id="id_user" class="hidden">{{ user.id }}</span>
     <div class="vd_content-section clearfix">
         <div class="row">
             <div class="col-sm-3">
@@ -16,9 +16,12 @@
                     <div class="panel-heading no-title"> </div>
                     <div class="panel-body">
                         <div class="text-center vd_info-parent"> <img alt="example image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrJ2P7MVKF8hUlVR87wMsGO7T4Jikl_8R7BehuqezQEOhQDnl3Aw"> </div>
-                        <div class="row">
+                        <div class="row button-send-message">
 
-                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Contacter</a> </div>
+                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Encoyer un message</a> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"  ><i class="fa fa-user append-icon"></i>Ajouter aux contacts</a> </div>
                         </div>
                         <h3 class="font-semibold mgbt-xs-5">{{ user.firstname }} {{ user.lastname }}</h3>
                         <div class="mgtp-20">
@@ -29,8 +32,8 @@
                                     <td><span class="label label-success">Actif</span></td>
                                 </tr>
                                 <tr>
-                                    <td>Membre depuis</td>
-                                    <td> Jan 07, 2014 </td>
+                                    <td>Dernière connexion</td>
+                                    <td>{{ user.lastlogin|date('d-m-Y') }}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -46,6 +49,7 @@
                     <ul class="nav nav-tabs widget">
                         <li class="active"> <a data-toggle="tab" href="#profile-tab"> Profil <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
                         <li class=""> <a data-toggle="tab" href="#projects-tab"> Livres <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        <li class=""> <a data-toggle="tab" href="#friends-tab"> Contacts <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
 
                     </ul>
                     <div class="tab-content">
@@ -562,14 +566,14 @@
                             </div>
                             <!-- pd-20 -->
                         </div> #}<!-- photos tab -->
-                        {#<div id="friends-tab" class="tab-pane">
+                        <div id="friends-tab" class="tab-pane">
                             <div class="pd-20">
-                                <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-users mgr-10 profile-icon"></i> FRIENDS</h3>
-                                <ul class="nav nav-pills">
+                                <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-users mgr-10 profile-icon"></i>CONTACTS</h3>
+                                {#<ul class="nav nav-pills">
                                     <li class="active"><a href="#photos-1" data-toggle="tab">Friends</a></li>
                                     <li><a href="#photos-2" data-toggle="tab">Pending Request</a></li>
                                     <li><a href="#photos-3" data-toggle="tab">Blacklisted</a></li>
-                                </ul>
+                                </ul>#}
                                 <div class="content-grid column-xs-3 column-sm-4 column-md-4 column-lg-6 height-xs-4 mgbt-xs-20">
                                     <div>
                                         <ul class="list-wrapper">
@@ -715,7 +719,8 @@
                                     </div>
                                 </div>
                             </div><!-- pd-20 -->
-                        </div> #} <!-- photos tab -->
+                        </div>
+                        <!-- photos tab -->
                         {#<div id="groups-tab" class="tab-pane">
                             <div class="pd-20">
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-leaf mgr-10 profile-icon"></i> GROUPS</h3>
@@ -954,6 +959,44 @@
         </div>
         <!--Modal: Editer profil form-->
         
+    </div>
+    <!-- Oeuvre shown-->
+    <div v-if="oeuvreIsShown" v-cloak class="oeuvre" id="oeuvreShown" tabindex="1" role="dialog" >
+        <div class="modal-content">
+            <div class="close-modal" @click="closeModal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>${ oeuvreShown.title }</h2>
+                            <hr class="star-primary">
+                            <img :src="oeuvreShown.url_image" class="img-responsive img-modal img-centered" alt="">
+                            <p>${ oeuvreShown.description }</p>
+                            <ul class="list-inline item-details">
+                                <li>Auteur:
+                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.author }</a>
+                                    </strong>
+                                </li>
+                                <li>Genre:
+                                    <strong><a href="http://startbootstrap.com">${ oeuvreShown.subcategory }</a>
+                                    </strong>
+                                </li>
+                                <li>Note moyenne utilisateurs:
+                                    {#<star-rating :star-size="10" :max-rating="4" :rating="${ oeuvreShown.rating }" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>#}
+                                    ${ oeuvreShown.rating }
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" @click="closeModal" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Vue js star rating -->
     <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>

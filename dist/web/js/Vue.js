@@ -305,7 +305,7 @@ Vue.component('toast', {
 });
 Vue.component('star-rating', VueStarRating.default);
 Vue.component('vue-table', {
-    template: '' + '<table>' + '    <thead>' + '    <tr>' + '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key }">' + '    {{ key | capitalize }}' + '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'">' + '    </span>' + '    </th>' + '    </tr>' + '    </thead>' + '    <tbody>' + '    <tr v-for="entry in filteredData">' + '    <td v-for="key in columns">' + '    {{entry[key]}}' + '</td>' + '</tr>' + '</tbody>' + '</table> ' + '',
+    template: '' + '<table class="col-sm-12">' + '    <thead>' + '    <tr>' + '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key } " >' + '    {{ key | capitalize }}' + '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'"> </span>' + '    </th>' + '    </tr>' + '    </thead>' + '    <tbody>' + '    <tr v-for="entry in filteredData">' + '    <td v-for="key in columns">' + '    {{entry[key]}}' + '</td>' + '</tr>' + '</tbody>' + '</table> ' + '',
     props: {
         data: Array,
         columns: Array,
@@ -363,6 +363,7 @@ var app = new Vue({
     delimiters: ['${', '}'],
     data: function data() {
         return {
+            selectedBook: '',
             searchBook: '',
             searchQuery: '',
             gridColumns: [],
@@ -373,7 +374,18 @@ var app = new Vue({
             floatMenu1IsActive: false,
             floatMenu2IsActive: false,
             oeuvreIsShown: false,
-            oeuvreShown: {},
+            oeuvreShown: {
+                author: "J.K. Rowling",
+                category: "Livre",
+                description: "Une rentre fracassante en voiture volante, une trange maldiction qui INTOabat sur les Slves, cette deuxime anne INTOLcole des sorciers ne INTOannonce pas de tout repos! Entre les cours de potions magiques, les matches de Quidditch et les combats de mauvais sorts, Harry et ses amis Ron et Hermione trouveront-ils le temps de percer le mystSre de la Chambre des Secrets? Le deuxi me volume des aventures de Harry Potter : un livre magique pour sorciers confirms.",
+                publication_date: "08/12/2015",
+                rating: 4,
+                sub_category: "Education",
+                title: "Harry Potter et la Chambre des Secrets",
+                url_image: "",
+                url_product: "https://play.google.com/store/books/details?id=GBl6MWssicEC&source=gbs_api"
+
+            },
             sujetSalon: "Lord of the Rings",
             nbParticipantsSalon: '3',
             dateSalon: '',
@@ -404,11 +416,18 @@ var app = new Vue({
             }],
             userBooks: [],
             books: [],
-            fetchArray: {}
+            fetchArray: {},
+            conn: {},
+            clientInformation: {}
         };
     },
 
     methods: {
+        filterItems: function filterItems(items) {
+            return items.filter(function (item) {
+                return item.price > 10;
+            });
+        },
         chargement: function chargement() {
             //this.autocompleteLoader = true
         },
@@ -467,21 +486,31 @@ var app = new Vue({
             }
         },
 
-        sendMessage: function sendMessage(event) {
+        sendMessageChat: function sendMessageChat(event) {
 
             var message = $('#message').val();
+            var id_salon = $('#id_salon').text();
+
+            var self = this;
 
             $.ajax({
-                url: Routing.generate('send_message'),
+                url: '/sendMessage',
                 type: 'POST',
-                data: 'message=' + message,
-                success: function success(msg) {
-                    console.log(msg);
-                    $('#close-send-message').trigger("click");
+                data: 'message=' + message + '&id_salon=' + id_salon,
+                success: function success(response) {
+                    //console.log(response);
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                        self.sendMessage(message);
+                        $('#close-send-message').trigger("click");
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
                 }
             });
 
-            $('.msg').append("<p> dit : " + message + "</p>");
+            // Empty text area
+            document.getElementById("message").value = "";
         },
         editProfil: function editProfil(event) {
 
@@ -497,8 +526,12 @@ var app = new Vue({
                 success: function success(msg) {
                     console.log(msg);
                     $('#close-edit-profil').trigger("click");
+                    app.$forceUpdate;
                 }
             });
+        },
+        creerSalon: function creerSalon() {
+            console.log('creation salon');
         },
         addBook: function addBook(event) {
             app.$root.$children[0].success('requete envoyée');
@@ -519,53 +552,121 @@ var app = new Vue({
                 success: function success(msg) {
                     app.$root.$children[0].success(msg);
                     $('#close-add-book').trigger("click");
+                    app.$forceUpdate;
                 }
             });
+        },
+        getBooksTrends: function getBooksTrends() {
+            var that = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getBooksTrends',
+                type: 'GET',
+                success: function success(data) {
+                    that.alaunes = data;
+                    app.$root.$children[0].success('books trends récupérés');
+                }
+            });
+        },
+        getRooms: function getRooms() {
+            var that = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getRooms',
+                type: 'GET',
+                success: function success(data) {
+                    that.rooms = data;
+                    that.gridColumns = Object.keys(data[0]);
+                    that.gridData = data;
+                    console.log(Object.keys(data[0]));
+                    app.$root.$children[0].success('get rooms récupéré');
+                }
+            });
+        },
+        getAllBooks: function getAllBooks() {
+            var that = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getAllBooks',
+                type: 'GET',
+                success: function success(data) {
+                    console.log(data);
+                    that.books = data;
+                    app.$root.$children[0].success('all books récupérés');
+                }
+            });
+        },
+
+        appendMessage: function appendMessage(username, message) {
+            var dt = new Date();
+            var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
+
+            if (message) {
+                $('.msg:last').after('<div class="media msg">' + '<a class="pull-left" href="#">' + '<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">' + '</a>' + '<div class="media-body">' + '<small class="pull-right time"><i class="fa fa-clock-o"></i> ' + time + '</small>' + '<h5 class="media-heading">' + username + '</h5>' + '<small class="col-lg-10">' + message + '</small>' + '</div>' + '</div>');
+            }
+        },
+        sendMessage: function sendMessage(text) {
+            this.clientInformation.message = text;
+            //console.log(text);
+            console.log(this.clientInformation);
+            // Send info as JSON
+            this.conn.send(JSON.stringify(this.clientInformation));
+            // Add my own message to the list
+            this.appendMessage(this.clientInformation.username, this.clientInformation.message);
+        },
+        setConn: function setConn(id) {
+            this.conn = new WebSocket('ws://localhost:9090/chat-' + id);
+            console.log(this.conn);
+        },
+        setClientInformation: function setClientInformation(myusername) {
+            this.clientInformation = {
+                username: myusername
+            };
         }
     },
+    created: function created() {
+        this.getRooms();
+        this.getAllBooks();
+        this.getRooms();
+        this.getBooksTrends();
+    },
     mounted: function mounted() {
-        var that = this;
-        $.ajax({
-            url: 'http://localhost:8000/app_dev.php/getBooksTrends',
-            type: 'GET',
-            success: function success(data) {
-                that.alaunes = data;
-                app.$root.$children[0].success('books trends récupérés');
-            }
-        });
-        $.ajax({
-            url: 'http://localhost:8000/app_dev.php/getAllBooks',
-            type: 'GET',
-            success: function success(data) {
-                console.log(data);
-                that.books = data;
-                app.$root.$children[0].success('all books récupérés');
-            }
-        });
-        $.ajax({
-            url: 'http://localhost:8000/app_dev.php/getRooms',
-            type: 'GET',
-            success: function success(data) {
-                that.rooms = data;
-                that.gridColumns = Object.keys(data[0]);
-                that.gridData = data;
-                console.log(Object.keys(data[0]));
-                app.$root.$children[0].success('get rooms récupéré');
-            }
-        });
+        var self = this;
+        //var atmPage = window.location.pathname;
+        //if (atmPage == '/app_dev.php/livres') this.getAllBooks()
+        //if (atmPage == '/app_dev.php/')  {this.getBooksTrends(); this.getRooms(); }
+        //if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks()}
+        //SALON
+        var pathArray = window.location.pathname.split('/');
+        var indice = pathArray.length - 2;
 
-        /*fetch('http://pokeapi.co/api/v2/pokemon/1')
-            .then((resp) => resp.json())// Call the fetch function passing the url of the API as a parameter
-            .then(function(data) {
-                // Your code for handling the data you get from the API
-                this.fetchArray = data;
-                console.log(this.fetchArray);
-                console.log(this.fetchArray.name);
-            })
-            .catch(function(error) {
-                console.log(error);
-                // This is where you run code if the server returns any errors
-            });*/
+        //si c'est un salon
+        if (pathArray[indice] == 'salon') {
+            // START SOCKET CONFIG
+            /**
+             * Note that you need to change the "sandbox" for the URL of your project. 
+             * According to the configuration in Sockets/Chat.php , change the port if you need to.
+             * @type WebSocket
+             */
+
+            this.setConn($('#id_salon').text());
+            this.setClientInformation($('#username').text());
+
+            this.conn.onopen = function (e) {
+                console.info("Connection established succesfully");
+            };
+
+            this.conn.onmessage = function (e) {
+                var data = JSON.parse(e.data);
+
+                self.appendMessage(data.username, data.message);
+
+                console.log(data);
+            };
+
+            this.conn.onerror = function (e) {
+                alert("Error: something went wrong with the socket.");
+                console.error(e);
+            };
+            // END SOCKET CONFIG
+        }
     }
 });
 //# sourceMappingURL=Vue.js.map

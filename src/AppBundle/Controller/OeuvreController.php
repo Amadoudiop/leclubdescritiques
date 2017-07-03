@@ -294,6 +294,7 @@ class OeuvreController extends Controller
             $author = (empty($book->getAuthor()->getFirstname())) ? '' : $book->getAuthor()->getFirstname();
             $category = (empty($book->getCategory()->getName())) ? '' : $book->getCategory()->getName();
             $sub_category = (empty($book->getSubCategory()->getName())) ? '' : $book->getSubCategory()->getName();
+            $id = (empty($book->getId())) ? '' : $book->getId();
 
             $data[] = [
                 'title' => $title,
@@ -304,7 +305,8 @@ class OeuvreController extends Controller
                 'rating' => $rating,
                 'author' => $author,
                 'category' => $category,
-                'sub_category' => $sub_category
+                'sub_category' => $sub_category,
+                'id' => $id
              ];
         }
 
@@ -330,6 +332,7 @@ class OeuvreController extends Controller
             $author = (empty($book->getAuthor()->getFirstname())) ? '' : $book->getAuthor()->getFirstname();
             $category = (empty($book->getCategory()->getName())) ? '' : $book->getCategory()->getName();
             $sub_category = (empty($book->getSubCategory()->getName())) ? '' : $book->getSubCategory()->getName();
+            $id = (empty($book->getId())) ? '' : $book->getId();
 
             $data[] = [
                 'title' => $title,
@@ -340,7 +343,8 @@ class OeuvreController extends Controller
                 'rating' => $rating,
                 'author' => $author,
                 'category' => $category,
-                'sub_category' => $sub_category
+                'sub_category' => $sub_category,
+                'id' => $id
              ];
         }
 

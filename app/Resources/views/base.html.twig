@@ -137,6 +137,30 @@
     {% block stylesheets %}{% endblock %}
     {{ render(controller("AppBundle:Menu:header")) }}
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/">Accueil</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/livres">Livres</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/salons">Salons</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a  href="/profil">Mon compte</a> <a  href="/login">Se connecter</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
     <toast></toast>
     <!-- NEW MENU FLOTTANT  --><!-- float-menu1  faire un conponent de ca-->
     <div class="card-holder">
@@ -189,8 +213,55 @@
     {% block body %}{% endblock %}
     <!-- / Body -->
     <!-- Footer -->
-    {{ render(controller("AppBundle:Option:footer")) }}
-
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Location</h3>
+                        <p>3481 Melrose Place
+                            <br>Beverly Hills, CA 90210</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Around the Web</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Google Plus</span><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><span class="sr-only">Dribble</span><i class="fa fa-fw fa-dribbble"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>A Propos de Club des critiques</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam consectetur dicta dolor eligendi excepturi labore maiores minima nemo numquam officia porro possimus quos repellendus repudiandae tempore unde velit, veniam.</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        Copyright &copy; Club des critiques 2016
+                    </div>
+                    <div class="col-lg-6">
+                        <a href="/mentionslegales"> Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
     <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">

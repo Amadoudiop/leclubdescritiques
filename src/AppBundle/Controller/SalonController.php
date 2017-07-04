@@ -247,6 +247,8 @@ class SalonController extends Controller
         
         $salons = $em->getRepository('AppBundle:Salon')->findAll();
 
+        $data = [];
+        
         foreach ($salons as $salon) {
             $title = (empty($salon->getTitle())) ? '' : $salon->getTitle();
             $participants_number = (empty($salon->getParticipantsNumber())) ? '' : $salon->getParticipantsNumber();

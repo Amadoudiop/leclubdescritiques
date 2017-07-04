@@ -284,6 +284,8 @@ class OeuvreController extends Controller
         
         $books = $em->getRepository('AppBundle:Oeuvre')->findBy(['trends' => true]);
 
+        $data = [];
+
         foreach ($books as $book) {
             $title = (empty($book->getTitle())) ? '' : $book->getTitle();
             $url_product = (empty($book->getUrlProduct())) ? '' : $book->getUrlProduct();
@@ -321,6 +323,8 @@ class OeuvreController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $books = $em->getRepository('AppBundle:Oeuvre')->findAll();
+
+        $data = [];
 
         foreach ($books as $book) {
             $title = (empty($book->getTitle())) ? '' : $book->getTitle();

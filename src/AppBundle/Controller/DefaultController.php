@@ -26,7 +26,7 @@ class DefaultController extends Controller
         ]);
     }
     /**
-     * @Route("/profil", name="profil")
+     * @Route("/profil", name="my_profil")
      */
     public function profilAction(Request $request)
     {
@@ -38,9 +38,33 @@ class DefaultController extends Controller
         $user_oeuvres = $em->getRepository('AppBundle:UserOeuvre')->findByUser($user);
         //var_dump($user_oeuvres[0]->getOeuvre());die;
 
+        $my_profil = true;
+
         return $this->render('front/profil.html.twig', [
             'user' => $user,
-            'user_oeuvres' => $user_oeuvres
+            'user_oeuvres' => $user_oeuvres,
+            'my_profil' => $my_profil
+        ]);
+    }
+    /**
+     * @Route("/profil/{id}", name="other_profil")
+     */
+    public function otherProfilAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $em->getRepository('AppBundle:User')->find($id);
+
+        //les oeuvres de l'utilisateur
+        $user_oeuvres = $em->getRepository('AppBundle:UserOeuvre')->findByUser($user);
+        //var_dump($user_oeuvres[0]->getOeuvre());die;
+
+        $my_profil = false;
+
+        return $this->render('front/profil.html.twig', [
+            'user' => $user,
+            'user_oeuvres' => $user_oeuvres,
+            'my_profil' => $my_profil
         ]);
     }
      /**

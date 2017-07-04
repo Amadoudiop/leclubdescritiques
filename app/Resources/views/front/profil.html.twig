@@ -16,13 +16,15 @@
                     <div class="panel-heading no-title"> </div>
                     <div class="panel-body">
                         <div class="text-center vd_info-parent"> <img alt="example image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrJ2P7MVKF8hUlVR87wMsGO7T4Jikl_8R7BehuqezQEOhQDnl3Aw"> </div>
+                        {% if my_profil == false %}
                         <div class="row button-send-message">
 
-                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Encoyer un message</a> </div>
+                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Envoyer un message</a> </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"  ><i class="fa fa-user append-icon"></i>Ajouter aux contacts</a> </div>
                         </div>
+                        {% endif %}
                         <h3 class="font-semibold mgbt-xs-5">{{ user.firstname }} {{ user.lastname }}</h3>
                         <div class="mgtp-20">
                             <table class="table table-striped table-hover">
@@ -49,13 +51,17 @@
                     <ul class="nav nav-tabs widget">
                         <li class="active"> <a data-toggle="tab" href="#profile-tab"> Profil <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
                         <li class=""> <a data-toggle="tab" href="#projects-tab"> Livres <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        {% if my_profil == true %}
                         <li class=""> <a data-toggle="tab" href="#friends-tab"> Contacts <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        {% endif %}
 
                     </ul>
                     <div class="tab-content">
                         <div id="profile-tab" class="tab-pane active">
                             <div class="pd-20">
+                                {% if my_profil == true %}
                                 <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalEditProfil"> <i class="fa fa-pencil append-icon"></i> Editer </a> </div>
+                                {% endif %}
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-user mgr-10 profile-icon " aria-hidden="true" ></i> A PROPOS</h3>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -72,6 +78,7 @@
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
+                                    {% if my_profil == true %}
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-5 control-label">Email:</label>
@@ -79,6 +86,7 @@
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
+                                    {% endif %}
                                     <div class="col-sm-12">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-2 control-label">Description:</label>
@@ -185,7 +193,9 @@
 
                         <div id="projects-tab" class="tab-pane">
                             <div class="pd-20">
+                                {% if my_profil == true %}
                                 <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalAddBook"> <i class="fa fa-plus append-icon"></i> Ajouter livre </a> </div>
+                                {% endif %}
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-book mgr-10 profile-icon"></i> LIVRES</h3>
                                 {#<table class="table table-striped table-hover">
                                     <thead>
@@ -566,6 +576,7 @@
                             </div>
                             <!-- pd-20 -->
                         </div> #}<!-- photos tab -->
+                        {% if my_profil == true %}
                         <div id="friends-tab" class="tab-pane">
                             <div class="pd-20">
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-users mgr-10 profile-icon"></i>CONTACTS</h3>
@@ -720,6 +731,7 @@
                                 </div>
                             </div><!-- pd-20 -->
                         </div>
+                        {% endif %}
                         <!-- photos tab -->
                         {#<div id="groups-tab" class="tab-pane">
                             <div class="pd-20">

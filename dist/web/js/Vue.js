@@ -72,18 +72,11 @@ Vue.component('autocomplete', {
             type: "",
             json: [],
             focusList: "",
-            dataRecup: ""
+            dataRecup: {}
         };
     },
 
     methods: {
-        chargement: function chargement() {
-            console.log("debut");
-        },
-        finChargement: function finChargement() {
-            console.log("fin");
-        },
-
         // Netralize Autocomplete
         clearInput: function clearInput() {
             this.showList = false;
@@ -169,7 +162,6 @@ Vue.component('autocomplete', {
         selectList: function selectList(data) {
             this.dataRecup = this.cleanUp(data);
             this.autocompleteFlag = true;
-            console.log(this.dataRecup);
             var clean = this.cleanUp(data);
             // Put the selected data to type (model)
             this.type = clean[this.anchor];
@@ -303,7 +295,7 @@ Vue.component('toast', {
         };
     }
 });
-Vue.component('star-rating', VueStarRating.default);
+/*Vue.component('star-rating', VueStarRating.default);*/
 Vue.component('vue-table', {
     template: '' + '<table class="col-sm-12">' + '    <thead>' + '    <tr>' + '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key } " >' + '    {{ key | capitalize }}' + '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'"> </span>' + '    </th>' + '    </tr>' + '    </thead>' + '    <tbody>' + '    <tr v-for="entry in filteredData">' + '    <td v-for="key in columns">' + '    {{entry[key]}}' + '</td>' + '</tr>' + '</tbody>' + '</table> ' + '',
     props: {
@@ -357,12 +349,247 @@ Vue.component('vue-table', {
         }
     }
 });
+Vue.component('star-rating', {
+    template: '' + '<div :class="[\'vue-star-rating\', {\'vue-star-rating-rtl\':rtl}, {\'vue-star-rating-inline\': inline}]">' + '<div @mouseleave="resetRating" class="vue-star-rating">' + '<span v-for="n in maxRating" :class="[{\'vue-star-rating-pointer\': !readOnly }, \'vue-star-rating-star\']">' + '<star :fill="fillLevel[n-1]" :size="starSize" :star-id="n" :step="step" :active-color="activeColor" :inactive-color="inactiveColor" :border-color="borderColor" :border-width="borderWidth" :padding="padding" @star-selected="setRating($event, true)" @star-mouse-move="setRating" :rtl="rtl"></star>' + '</span>' + '<span v-if="showRating" :class="[\'vue-star-rating-rating-text\', textClass]"> {{formattedRating}}</span>' + '</div>' + '</div>' + '',
+    model: {
+        prop: 'rating',
+        event: 'rating-selected'
+    },
+    props: {
+        increment: {
+            type: Number,
+            default: 1
+        },
+        rating: {
+            type: Number,
+            default: 0
+        },
+        activeColor: {
+            type: String,
+            default: '#ffd055'
+        },
+        inactiveColor: {
+            type: String,
+            default: '#d8d8d8'
+        },
+        maxRating: {
+            type: Number,
+            default: 5
+        },
+        starSize: {
+            type: Number,
+            default: 50
+        },
+        showRating: {
+            type: Boolean,
+            default: true
+        },
+        readOnly: {
+            type: Boolean,
+            default: false
+        },
+        textClass: {
+            type: String,
+            default: ''
+        },
+        inline: {
+            type: Boolean,
+            default: false
+        },
+        borderColor: {
+            type: String,
+            default: '#999'
+        },
+        borderWidth: {
+            type: Number,
+            default: 0
+        },
+        padding: {
+            type: Number,
+            default: 0
+        },
+        rtl: {
+            type: Boolean,
+            default: false
+        },
+        fixedPoints: {
+            type: Number,
+            default: null
+        }
+    },
+    data: function data() {
+        return {
+            step: 0,
+            fillLevel: [],
+            currentRating: 0,
+            selectedRating: 0
+        };
+    },
+    created: function created() {
+        this.step = this.increment * 100;
+        this.currentRating = this.rating;
+        this.selectedRating = this.rating;
+        this.createStars();
+    },
+
+    methods: {
+        setRating: function setRating($event, persist) {
+            if (!this.readOnly) {
+                var position = this.rtl ? (100 - $event.position) / 100 : $event.position / 100;
+                this.currentRating = ($event.id + position - 1).toFixed(2);
+                this.currentRating = this.currentRating > this.maxRating ? this.maxRating : this.currentRating;
+                this.createStars();
+                if (persist) {
+                    this.selectedRating = this.currentRating;
+                    this.$emit('rating-selected', this.selectedRating);
+                } else {
+                    this.$emit('current-rating', this.currentRating);
+                }
+            }
+        },
+        resetRating: function resetRating() {
+            if (!this.readOnly) {
+                this.currentRating = this.selectedRating;
+                this.createStars();
+            }
+        },
+        createStars: function createStars() {
+            this.round();
+            for (var i = 0; i < this.maxRating; i++) {
+                var level = 0;
+                if (i < this.currentRating) {
+                    level = this.currentRating - i > 1 ? 100 : (this.currentRating - i) * 100;
+                }
+                this.$set(this.fillLevel, i, Math.round(level));
+            }
+        },
+        round: function round() {
+            var inv = 1.0 / this.increment;
+            this.currentRating = Math.min(this.maxRating, Math.ceil(this.currentRating * inv) / inv);
+        }
+    },
+    computed: {
+        formattedRating: function formattedRating() {
+            return this.fixedPoints === null ? this.currentRating : this.currentRating.toFixed(this.fixedPoints);
+        }
+    },
+    watch: {
+        rating: function rating(val) {
+            this.currentRating = val;
+            this.selectedRating = val;
+            this.createStars();
+        }
+    }
+});
+Vue.component('star', {
+    template: '' + '<svg :height="getSize" :width="getSize" @mousemove="mouseMoving" @click="selected" style="overflow:visible;">' + '<linearGradient :id="grad" x1="0" x2="100%" y1="0" y2="0">' + '<stop :offset="getFill" :stop-color="(rtl) ? inactiveColor : activeColor" />' + '<stop :offset="getFill" :stop-color="(rtl) ? activeColor : inactiveColor" />' + '</linearGradient>' + '<polygon :points="starPointsToString" :fill="getGradId" :stroke="borderColor" :stroke-width="borderWidth" />' + '<polygon :points="starPointsToString" :fill="getGradId" />' + '</svg>' + '',
+    props: {
+        fill: {
+            type: Number,
+            default: 0
+        },
+        size: {
+            type: Number,
+            default: 50
+        },
+        starId: {
+            type: Number,
+            required: true
+        },
+        activeColor: {
+            type: String,
+            required: true
+        },
+        inactiveColor: {
+            type: String,
+            required: true
+        },
+        borderColor: {
+            type: String,
+            default: '#000'
+        },
+        borderWidth: {
+            type: Number,
+            default: 0
+        },
+        padding: {
+            type: Number,
+            default: 0
+        },
+        rtl: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data: function data() {
+        return {
+            starPoints: [19.8, 2.2, 6.6, 43.56, 39.6, 17.16, 0, 17.16, 33, 43.56],
+            grad: ''
+        };
+    },
+    created: function created() {
+        this.calculatePoints;
+        this.grad = Math.random().toString(36).substring(7);
+    },
+
+    computed: {
+        calculatePoints: function calculatePoints() {
+            var _this4 = this;
+
+            this.starPoints = this.starPoints.map(function (point) {
+                return _this4.size / 43 * point + _this4.borderWidth * 1.5;
+            });
+        },
+        starPointsToString: function starPointsToString() {
+            return this.starPoints.join(',');
+        },
+        getGradId: function getGradId() {
+            return 'url(#' + this.grad + ')';
+        },
+        getSize: function getSize() {
+            return parseInt(this.size) + parseInt(this.borderWidth * 3) + this.padding;
+        },
+        getFill: function getFill() {
+            return this.rtl ? 100 - this.fill + '%' : this.fill + '%';
+        }
+    },
+    methods: {
+        mouseMoving: function mouseMoving($event) {
+            this.$emit('star-mouse-move', {
+                event: $event,
+                position: this.getPosition($event),
+                id: this.starId
+            });
+        },
+        getPosition: function getPosition($event) {
+            // calculate position in percentage.
+            var starWidth = 92 / 100 * this.size;
+            var position = Math.round(100 / starWidth * $event.offsetX);
+            return Math.min(position, 100);
+        },
+        selected: function selected($event) {
+            this.$emit('star-selected', {
+                id: this.starId,
+                position: this.getPosition($event)
+            });
+        }
+    }
+});
 
 var app = new Vue({
     el: '#app',
     delimiters: ['${', '}'],
     data: function data() {
         return {
+            userID: {},
+            userData: {
+                firstname: "Joe",
+                lastname: "RIBEIRO",
+                description: "Bonsoir à tous les pilotes",
+                last_login: "02/07/2017",
+                email: "johribe@gmail.com"
+            },
+            atmUser: '1',
             selectedBook: '',
             searchBook: '',
             searchQuery: '',
@@ -423,18 +650,6 @@ var app = new Vue({
     },
 
     methods: {
-        filterItems: function filterItems(items) {
-            return items.filter(function (item) {
-                return item.price > 10;
-            });
-        },
-        chargement: function chargement() {
-            //this.autocompleteLoader = true
-        },
-        finChargement: function finChargement() {
-            // this.autocompleteLoader = false
-        },
-
         inscription: function inscription(event) {
 
             var email = $('#email').val();
@@ -444,7 +659,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'email=' + email,
                 success: function success(msg) {
-                    console.log(msg);
+                    app.$root.$children[0].success(msg);
                 }
             });
         },
@@ -460,7 +675,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&password=' + password + '&confirmPassword=' + confirmPassword,
                 success: function success(msg) {
-                    console.log(msg);
+                    app.$root.$children[0].success(msg);
                 }
             });
         },
@@ -498,13 +713,12 @@ var app = new Vue({
                 type: 'POST',
                 data: 'message=' + message + '&id_salon=' + id_salon,
                 success: function success(response) {
-                    //console.log(response);
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        apselfp.$root.$children[0].success(response.msg);
                         self.sendMessage(message);
                         $('#close-send-message').trigger("click");
                     } else {
-                        app.$root.$children[0].error(response.msg);
+                        self.$root.$children[0].error(response.msg);
                     }
                 }
             });
@@ -524,14 +738,32 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&description=' + description,
                 success: function success(msg) {
-                    console.log(msg);
+                    app.$root.$children[0].success(msg);
                     $('#close-edit-profil').trigger("click");
-                    app.$forceUpdate;
+                    app.$forceUpdate();
                 }
             });
         },
         creerSalon: function creerSalon() {
-            console.log('creation salon');
+            var title = $('#salon-title').val();
+            var book = $('#salon-book').val();
+            var nb_max_part = $('#salon-max-participants').val();
+            var date_start = $('#salon-date-debut').val();
+            var date_end = $('#salon-date-fin').val();
+
+            $.ajax({
+                url: '/createRoom',
+                type: 'POST',
+                data: 'title=' + title + '&book=' + book + '&nb_max_part=' + nb_max_part + '&date_start=' + date_start + '&date_end=' + date_end,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                        //$('#close-send-message').trigger( "click" );
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
         },
         addBook: function addBook(event) {
             app.$root.$children[0].success('requete envoyée');
@@ -576,7 +808,6 @@ var app = new Vue({
                     that.rooms = data;
                     that.gridColumns = Object.keys(data[0]);
                     that.gridData = data;
-                    console.log(Object.keys(data[0]));
                     app.$root.$children[0].success('get rooms récupéré');
                 }
             });
@@ -587,7 +818,6 @@ var app = new Vue({
                 url: 'http://localhost:8000/app_dev.php/getAllBooks',
                 type: 'GET',
                 success: function success(data) {
-                    console.log(data);
                     that.books = data;
                     app.$root.$children[0].success('all books récupérés');
                 }
@@ -604,8 +834,6 @@ var app = new Vue({
         },
         sendMessage: function sendMessage(text) {
             this.clientInformation.message = text;
-            //console.log(text);
-            console.log(this.clientInformation);
             // Send info as JSON
             this.conn.send(JSON.stringify(this.clientInformation));
             // Add my own message to the list
@@ -619,54 +847,79 @@ var app = new Vue({
             this.clientInformation = {
                 username: myusername
             };
+        },
+        getUser: function getUser() {
+            return $('#id_user').text();
+        },
+        getUserData: function getUserData() {
+            var self = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getInfosUser/1',
+                type: 'GET',
+                success: function success(data) {
+                    self.userData = data;
+                    self.$root.$children[0].success('UserData récupérés');
+                }
+            });
+        },
+        getOeuvreUser: function getOeuvreUser() {
+            var self = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getBooksUser/1',
+                type: 'GET',
+                success: function success(data) {
+                    self.userBooks = data;
+                    app.$refs.toast.success('userBooks OK');
+                }
+            });
         }
     },
+    computed: function computed() {},
     created: function created() {
-        this.getRooms();
-        this.getAllBooks();
-        this.getRooms();
-        this.getBooksTrends();
+        console.log('HELLLLOOOOOOOOO //////////////////////////');
+        //this.getRooms();
+        //this.getAllBooks()
+        //this.getRooms()
+        //this.getBooksTrends();
+        console.log('BYYYYYYYYYYYYYYYEEEEEEEEEEEE //////////////////////////');
     },
     mounted: function mounted() {
-        var self = this;
-        //var atmPage = window.location.pathname;
+        /*var self = this;
+        this.atmUser = this.getUser();
+        var atmPage = window.location.pathname;
+        if (atmPage == '/app_dev.php/profil') {this.getUserData(); this.getOeuvreUser()}
         //if (atmPage == '/app_dev.php/livres') this.getAllBooks()
         //if (atmPage == '/app_dev.php/')  {this.getBooksTrends(); this.getRooms(); }
         //if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks()}
         //SALON
-        var pathArray = window.location.pathname.split('/');
+        var pathArray = window.location.pathname.split( '/' );
         var indice = pathArray.length - 2;
-
-        //si c'est un salon
+         //si c'est un salon
         if (pathArray[indice] == 'salon') {
             // START SOCKET CONFIG
-            /**
+            /!**
              * Note that you need to change the "sandbox" for the URL of your project. 
              * According to the configuration in Sockets/Chat.php , change the port if you need to.
              * @type WebSocket
-             */
-
-            this.setConn($('#id_salon').text());
-            this.setClientInformation($('#username').text());
-
-            this.conn.onopen = function (e) {
+             *!/
+             this.setConn($('#id_salon').text());
+            this.setClientInformation($('#username').text());   
+             this.conn.onopen = function(e) {
                 console.info("Connection established succesfully");
-            };
-
-            this.conn.onmessage = function (e) {
-                var data = JSON.parse(e.data);
-
-                self.appendMessage(data.username, data.message);
-
+            };      
+             this.conn.onmessage = function(e) {
+                var data = JSON.parse(e.data);  
+                 self.appendMessage(data.username, data.message);
+                
                 console.log(data);
             };
-
-            this.conn.onerror = function (e) {
+            
+            this.conn.onerror = function(e){
                 alert("Error: something went wrong with the socket.");
                 console.error(e);
             };
             // END SOCKET CONFIG
-        }
+        }*/
     }
 });
 //# sourceMappingURL=Vue.js.map

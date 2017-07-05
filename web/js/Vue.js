@@ -681,6 +681,22 @@ var app = new Vue({
             this.clientInformation = {
                 username: myusername
             };
+        },
+        addContact() {
+            var id_user = encodeURIComponent($('#id_user').text());
+
+            $.ajax({
+                url: '/addContact',
+                type: 'POST',
+                data: 'id_user='+id_user,
+                success: function(response) {
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
         }
     },
     created(){

@@ -22,7 +22,7 @@
                             <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Envoyer un message</a> </div>
                         </div>
                         <div class="row">
-                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"  ><i class="fa fa-user append-icon"></i>Ajouter aux contacts</a> </div>
+                            <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"  ><i class="fa fa-user append-icon" @click.stop.prevent="addContact"></i>Ajouter aux contacts</a> </div>
                         </div>
                         {% endif %}
                         <h3 class="font-semibold mgbt-xs-5">{{ user.firstname }} {{ user.lastname }}</h3>

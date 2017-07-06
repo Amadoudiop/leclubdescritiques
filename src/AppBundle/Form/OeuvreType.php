@@ -60,13 +60,6 @@ class OeuvreType extends AbstractType
                         'class' => 'form-control'
                     ]
                 ))
-                ->add('statut', EntityType::class, array(
-                    'class' => 'AppBundle:Statut',
-                    'choice_label' => 'label',
-                    'attr' => [
-                        'class' => 'form-control'
-                    ]
-                ))
                 ->add('url_image', FileType::class, [
                     'data' => null,
                     'label' => 'Image',

@@ -98,16 +98,10 @@ Vue.component('autocomplete', {
             type: "",
             json: [],
             focusList: "",
-            dataRecup: ""
+            dataRecup: {}
         };
     },
     methods: {
-        chargement() {
-            console.log("debut")
-        },
-        finChargement(){
-          console.log("fin")
-        },
         // Netralize Autocomplete
         clearInput() {
             this.showList = false
@@ -186,7 +180,6 @@ Vue.component('autocomplete', {
         selectList(data){
             this.dataRecup = this.cleanUp(data);
             this.autocompleteFlag = true ;
-            console.log(this.dataRecup);
             let clean = this.cleanUp(data);
             // Put the selected data to type (model)
             this.type = clean[this.anchor];
@@ -309,7 +302,7 @@ Vue.component('toast',{
         }
     }
 })
-Vue.component('star-rating', VueStarRating.default);
+/*Vue.component('star-rating', VueStarRating.default);*/
 Vue.component('vue-table', {
     template: '' +
     '<table class="col-sm-12">'+
@@ -381,6 +374,246 @@ Vue.component('vue-table', {
         }
     }
 })
+Vue.component('star-rating', {
+    template:'' +
+    '<div :class="[\'vue-star-rating\', {\'vue-star-rating-rtl\':rtl}, {\'vue-star-rating-inline\': inline}]">'+
+        '<div @mouseleave="resetRating" class="vue-star-rating">'+
+        '<span v-for="n in maxRating" :class="[{\'vue-star-rating-pointer\': !readOnly }, \'vue-star-rating-star\']">'+
+        '<star :fill="fillLevel[n-1]" :size="starSize" :star-id="n" :step="step" :active-color="activeColor" :inactive-color="inactiveColor" :border-color="borderColor" :border-width="borderWidth" :padding="padding" @star-selected="setRating($event, true)" @star-mouse-move="setRating" :rtl="rtl"></star>'+
+        '</span>'+
+        '<span v-if="showRating" :class="[\'vue-star-rating-rating-text\', textClass]"> {{formattedRating}}</span>'+
+    '</div>'+
+    '</div>' +
+    '',
+    model: {
+        prop: 'rating',
+        event: 'rating-selected'
+    },
+    props: {
+        increment: {
+            type: Number,
+            default: 1
+        },
+        rating: {
+            type: Number,
+            default: 0
+        },
+        activeColor: {
+            type: String,
+            default: '#ffd055'
+        },
+        inactiveColor: {
+            type: String,
+            default: '#d8d8d8'
+        },
+        maxRating: {
+            type: Number,
+            default: 5
+        },
+        starSize: {
+            type: Number,
+            default: 50
+        },
+        showRating: {
+            type: Boolean,
+            default: true
+        },
+        readOnly: {
+            type: Boolean,
+            default: false
+        },
+        textClass: {
+            type: String,
+            default: ''
+        },
+        inline: {
+            type: Boolean,
+            default: false
+        },
+        borderColor: {
+            type: String,
+            default: '#999'
+        },
+        borderWidth: {
+            type: Number,
+            default: 0
+        },
+        padding: {
+            type: Number,
+            default: 0
+        },
+        rtl: {
+            type: Boolean,
+            default: false
+        },
+        fixedPoints: {
+            type: Number,
+            default: null
+        }
+    },
+    data() {
+        return {
+            step: 0,
+            fillLevel: [],
+            currentRating: 0,
+            selectedRating: 0
+        }
+    },
+    created() {
+        this.step = this.increment * 100
+        this.currentRating = this.rating
+        this.selectedRating = this.rating
+        this.createStars()
+    },
+    methods: {
+        setRating($event, persist) {
+            if (!this.readOnly) {
+                const position = (this.rtl) ? (100 - $event.position) / 100 : $event.position / 100
+                this.currentRating = (($event.id + position) - 1).toFixed(2)
+                this.currentRating = (this.currentRating > this.maxRating) ? this.maxRating : this.currentRating
+                this.createStars()
+                if (persist) {
+                    this.selectedRating = this.currentRating
+                    this.$emit('rating-selected', this.selectedRating)
+                } else {
+                    this.$emit('current-rating', this.currentRating)
+                }
+            }
+        },
+        resetRating() {
+            if (!this.readOnly) {
+                this.currentRating = this.selectedRating
+                this.createStars()
+            }
+        },
+        createStars() {
+            this.round()
+            for (var i = 0; i < this.maxRating; i++) {
+                let level = 0
+                if (i < this.currentRating) {
+                    level = (this.currentRating - i > 1) ? 100 : (this.currentRating - i) * 100
+                }
+                this.$set(this.fillLevel, i, Math.round(level))
+            }
+        },
+        round() {
+            var inv = 1.0 / this.increment
+            this.currentRating = Math.min(this.maxRating, Math.ceil(this.currentRating * inv) / inv)
+        }
+    },
+    computed: {
+        formattedRating() {
+            return (this.fixedPoints === null) ? this.currentRating : this.currentRating.toFixed(this.fixedPoints)
+        }
+    },
+    watch: {
+        rating(val) {
+            this.currentRating = val
+            this.selectedRating = val
+            this.createStars()
+        }
+    }
+})
+Vue.component('star', {
+    template : '' +
+    '<svg :height="getSize" :width="getSize" @mousemove="mouseMoving" @click="selected" style="overflow:visible;">'+
+    '<linearGradient :id="grad" x1="0" x2="100%" y1="0" y2="0">'+
+    '<stop :offset="getFill" :stop-color="(rtl) ? inactiveColor : activeColor" />'+
+    '<stop :offset="getFill" :stop-color="(rtl) ? activeColor : inactiveColor" />'+
+    '</linearGradient>'+
+    '<polygon :points="starPointsToString" :fill="getGradId" :stroke="borderColor" :stroke-width="borderWidth" />'+
+    '<polygon :points="starPointsToString" :fill="getGradId" />'+
+    '</svg>' +
+    '',
+    props: {
+        fill: {
+            type: Number,
+            default: 0
+        },
+        size: {
+            type: Number,
+            default: 50
+        },
+        starId: {
+            type: Number,
+            required: true
+        },
+        activeColor: {
+            type: String,
+            required: true
+        },
+        inactiveColor: {
+            type: String,
+            required: true
+        },
+        borderColor: {
+            type: String,
+            default: '#000'
+        },
+        borderWidth: {
+            type: Number,
+            default: 0
+        },
+        padding: {
+            type: Number,
+            default: 0
+        },
+        rtl: {
+            type: Boolean,
+            default: false
+        }
+    },
+    data() {
+        return {
+            starPoints: [19.8, 2.2, 6.6, 43.56, 39.6, 17.16, 0, 17.16, 33, 43.56],
+            grad: ''
+        }
+    },
+    created() {
+        this.calculatePoints
+        this.grad = Math.random().toString(36).substring(7)
+    },
+    computed: {
+        calculatePoints() {
+            this.starPoints = this.starPoints.map((point) => {
+                return ((this.size / 43) * point) + (this.borderWidth * 1.5)
+            })
+        },
+        starPointsToString() {
+            return this.starPoints.join(',')
+        },
+        getGradId() {
+            return 'url(#' + this.grad + ')'
+        },
+        getSize() {
+            return parseInt(this.size) + parseInt(this.borderWidth * 3) + this.padding
+        },
+        getFill() {
+            return (this.rtl) ? 100 - this.fill + '%' : this.fill + '%'
+        }
+    },
+    methods: {
+        mouseMoving($event) {
+            this.$emit('star-mouse-move', {
+                event: $event,
+                position: this.getPosition($event),
+                id: this.starId
+            })
+        },
+        getPosition($event) {
+            // calculate position in percentage.
+            var starWidth = (92 / 100) * this.size
+            var position = Math.round((100 / starWidth) * $event.offsetX)
+            return Math.min(position, 100)
+        },
+        selected($event) {
+            this.$emit('star-selected', {
+                id: this.starId,
+                position: this.getPosition($event)
+            })
+        }
+    }
+})
 
 
 var app = new Vue({
@@ -388,12 +621,20 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            userID:{ },
+            userData: {
+                firstname: "Joe",
+                lastname: "RIBEIRO",
+                description: "Bonsoir à tous les pilotes",
+                last_login: "02/07/2017",
+                email: "johribe@gmail.com"
+            } ,
+            atmUser: '1',
             selectedBook: '',
             searchBook:'',
             searchQuery: '',
-            gridColumns: [],
-            gridData: [
-            ],
+            gridColumns: [ ],
+            gridData: [ ],
             rooms: [ ],
             autocompleteLoader: false,
             mailInscription: '',
@@ -455,27 +696,16 @@ var app = new Vue({
         }
     },
     methods: {
-        filterItems: function(items) {
-            return items.filter(function(item) {
-                return item.price > 10;
-            })
-        },
-        chargement() {
-            //this.autocompleteLoader = true
-        },
-        finChargement(){
-           // this.autocompleteLoader = false
-        },
         inscription : function (event) {
 
-          var email = $('#email').val();    
+          var email = $('#email').val();
 
           $.ajax({
                 url: 'http://localhost:8000/register/',
                 type: 'POST',
                 data: 'email='+email,
                 success: function(msg) {
-                    console.log(msg);
+                    app.$root.$children[0].success(msg);
                 }
             });
 
@@ -492,7 +722,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
                 success: function(msg) {
-                    console.log(msg);
+                    app.$root.$children[0].success(msg);
                 }
             });
         },
@@ -529,13 +759,12 @@ var app = new Vue({
                 type: 'POST',
                 data: 'message='+message+'&id_salon='+id_salon,
                 success: function(response) {
-                    //console.log(response);
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        apselfp.$root.$children[0].success(response.msg);
                         self.sendMessage(message);
                         $('#close-send-message').trigger( "click" );
                     }else{
-                        app.$root.$children[0].error(response.msg);
+                        self.$root.$children[0].error(response.msg);
                     }
                 }
             });
@@ -556,9 +785,9 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&email='+email+'&description='+description,
                 success: function(msg) {
-                    console.log(msg);
+                    app.$root.$children[0].success(msg);
                     $('#close-edit-profil').trigger( "click" );
-                    app.$forceUpdate
+                    app.$forceUpdate()
                 }
             });
 
@@ -575,7 +804,6 @@ var app = new Vue({
                 type: 'POST',
                 data: 'title='+title+'&book='+book+'&nb_max_part='+nb_max_part+'&date_start='+date_start+'&date_end='+date_end,
                 success: function(response) {
-                    //console.log(response);
                     if (response.valid === true) {
                         app.$root.$children[0].success(response.msg);
                         //$('#close-send-message').trigger( "click" );
@@ -628,7 +856,6 @@ var app = new Vue({
                     that.rooms = data;
                     that.gridColumns = Object.keys(data[0]);
                     that.gridData = data;
-                    console.log(Object.keys(data[0]));
                     app.$root.$children[0].success('get rooms récupéré');
                 }
             });
@@ -639,7 +866,6 @@ var app = new Vue({
                 url: 'http://localhost:8000/app_dev.php/getAllBooks',
                 type: 'GET',
                 success: function(data) {
-                    console.log(data);
                     that.books = data;
                     app.$root.$children[0].success('all books récupérés');
                 }
@@ -666,8 +892,6 @@ var app = new Vue({
         },
         sendMessage: function(text){
             this.clientInformation.message = text;
-            //console.log(text);
-            console.log(this.clientInformation);
             // Send info as JSON
             this.conn.send(JSON.stringify(this.clientInformation));
             // Add my own message to the list
@@ -688,26 +912,62 @@ var app = new Vue({
             $.ajax({
                 url: '/addContact',
                 type: 'POST',
-                data: 'id_user='+id_user,
-                success: function(response) {
+                data: 'id_user=' + id_user,
+                success: function (response) {
                     if (response.valid === true) {
                         app.$root.$children[0].success(response.msg);
-                    }else{
+                    } else {
                         app.$root.$children[0].error(response.msg);
                     }
+                }
+            })
+        },
+        getUser(){
+            return $('#id_user').text();
+        },
+        getUserData(){
+            var self = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getInfosUser/1',
+                type: 'GET',
+                success: function(data) {
+                    self.userData = data;
+                    self.$root.$children[0].success('UserData récupérés');
+
+                }
+            });
+        },
+        getOeuvreUser(){
+            var self = this;
+            $.ajax({
+                url: 'http://localhost:8000/app_dev.php/getBooksUser/1',
+                type: 'GET',
+                success: function(data) {
+                    self.userBooks = data;
+                    app.$refs.toast.success('userBooks OK');
                 }
             });
         }
     },
+    computed(){
+    },
     created(){
+        console.log('HELLLLOOOOOOOOO //////////////////////////')
+        //this.getRooms();
+        //this.getAllBooks()
+        //this.getRooms()
+        //this.getBooksTrends();
+        console.log('BYYYYYYYYYYYYYYYEEEEEEEEEEEE //////////////////////////')
+    },
+    mounted(){
+        var self = this;
+        this.atmUser = this.getUser();
+        var atmPage = window.location.pathname;
         this.getRooms();
         this.getAllBooks()
         this.getRooms()
         this.getBooksTrends();
-    },
-    mounted(){
-        var self = this;
-        //var atmPage = window.location.pathname;
+        if (atmPage == '/app_dev.php/profil') {this.getUserData(); this.getOeuvreUser()}
         //if (atmPage == '/app_dev.php/livres') this.getAllBooks()
         //if (atmPage == '/app_dev.php/')  {this.getBooksTrends(); this.getRooms(); }
         //if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks()}
@@ -718,11 +978,11 @@ var app = new Vue({
         //si c'est un salon
         if (pathArray[indice] == 'salon') {
             // START SOCKET CONFIG
-            /**
+            /*/!**
              * Note that you need to change the "sandbox" for the URL of your project. 
              * According to the configuration in Sockets/Chat.php , change the port if you need to.
              * @type WebSocket
-             */
+             *!/*/
 
             this.setConn($('#id_salon').text());
             this.setClientInformation($('#username').text());   
@@ -745,5 +1005,5 @@ var app = new Vue({
             };
             // END SOCKET CONFIG
         }
-    }
+    },
 });

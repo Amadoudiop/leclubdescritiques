@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/theme-responsive.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
     {% endblock  %}
-    <span id="id_user" class="hidden">{{ user.id }}</span>
+    <span id="id_user" ref="userId" class="hidden" value="{{ user.id }}">{{ user.id }}</span>
     <div class="vd_content-section clearfix">
         <div class="row">
             <div class="col-sm-3">
@@ -24,8 +24,12 @@
                         <div class="row">
                             <div class="col-xs-12"> <a class="btn vd_btn vd_bg-green btn-xs btn-block no-br"  ><i class="fa fa-user append-icon" @click.stop.prevent="addContact"></i>Ajouter aux contacts</a> </div>
                         </div>
+<<<<<<< HEAD
                         {% endif %}
                         <h3 class="font-semibold mgbt-xs-5">{{ user.firstname }} {{ user.lastname }}</h3>
+=======
+                        <h3 class="font-semibold mgbt-xs-5">${ userData.firstname } ${ userData.lastname }</h3>
+>>>>>>> front
                         <div class="mgtp-20">
                             <table class="table table-striped table-hover">
                                 <tbody>
@@ -35,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>Dernière connexion</td>
-                                    <td>{{ user.lastlogin|date('d-m-Y') }}</td>
+                                    <td>${ userData.last_login }</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -67,14 +71,14 @@
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-5 control-label">Prénom:</label>
-                                            <div class="col-xs-7 controls">{{ user.firstname }}</div>
+                                            <div class="col-xs-7 controls">${ userData.firstname }</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-5 control-label">Nom:</label>
-                                            <div class="col-xs-7 controls">{{ user.lastname }}</div>
+                                            <div class="col-xs-7 controls">${ userData.lastname }</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
@@ -82,7 +86,7 @@
                                     <div class="col-sm-6">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-5 control-label">Email:</label>
-                                            <div class="col-xs-7 controls">{{ user.email }}</div>
+                                            <div class="col-xs-7 controls">${ userData.email }</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
@@ -90,7 +94,7 @@
                                     <div class="col-sm-12">
                                         <div class="row mgbt-xs-0">
                                             <label class="col-xs-2 control-label">Description:</label>
-                                            <div class="col-xs-10 controls">{{ user.description }}</div>
+                                            <div class="col-xs-10 controls">${ userData.description }</div>
                                             <!-- col-sm-10 -->
                                         </div>
                                     </div>
@@ -589,7 +593,7 @@
                                     <div>
                                         <ul class="list-wrapper">
                                             <li> <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text"> Gabriella Montagna
                             <span class="menu-info">
@@ -607,7 +611,7 @@
                                             </li>
                                             <li class="warning">
                                                 <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar-2.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text">  Jonathan Fuzzy
                             	<span class="menu-info">
@@ -624,7 +628,7 @@
                             </span>
                                             </li>
                                             <li> <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar-3.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text">  Sakura Hinata
                             <span class="menu-info">
@@ -641,7 +645,7 @@
                         </span>
                                             </li>
                                             <li> <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar-4.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text">  Rikudou Sennin
                             <span class="menu-info">
@@ -658,7 +662,7 @@
                         </span>
                                             </li>
                                             <li> <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar-5.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text">  Kim Kardiosun
                             <span class="menu-info">
@@ -675,7 +679,7 @@
                         </span>
                                             </li>
                                             <li> <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar-6.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text">   Brad Pita
                             <span class="menu-info">
@@ -692,7 +696,7 @@
                         </span>
                                             </li>
                                             <li> <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar-7.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text">  Celline Dior
                             <span class="menu-info">
@@ -709,7 +713,7 @@
                         </span>
                                             </li>
                                             <li> <a href="#">
-                                                    <span class="menu-icon"><img src="img/avatar/avatar-8.jpg" alt="example image"></span>
+                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
                                                 </a>
                                                 <span class="menu-text">  Goerge Bruno Marz
                             <span class="menu-info">
@@ -1011,6 +1015,6 @@
         </div>
     </div>
     <!-- Vue js star rating -->
-    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+    {#<script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>#}
 
 {% endblock %}

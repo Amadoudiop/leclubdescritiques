@@ -2,15 +2,41 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/dist/web/js/contact_me.js" />
+        <item url="file://$PROJECT_DIR$/dist/web/js/gulpfile.js" />
         <item url="file://$PROJECT_DIR$/dist/web/js/color-picker.min.js" />
         <item url="file://$PROJECT_DIR$/dist/web/js/creemson.js" />
+        <item url="file://$PROJECT_DIR$/dist/web/js/freelancer.min.js" />
+        <item url="file://$PROJECT_DIR$/dist/web/js/freelancer.js" />
+        <item url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.js" />
         <item url="file://$PROJECT_DIR$/dist/web/js/Vue.js" />
+        <item url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/router.test.js" />
+        <item url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/run_jsunit.js" />
+        <item url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/router.js" />
+        <item url="file://$PROJECT_DIR$/dist/web/js/vue-spinner.js" />
+        <item url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/externs.js" />
+        <item url="file://$PROJECT_DIR$/dist/web/js/jqBootstrapValidation.js" />
+        <item url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/export.js" />
+        <item url="file://$PROJECT_DIR$/dist/web/js/vue2-autocomplete.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/dist/web/js/contact_me.js" />
+      <root url="file://$PROJECT_DIR$/dist/web/js/gulpfile.js" />
       <root url="file://$PROJECT_DIR$/dist/web/js/color-picker.min.js" />
       <root url="file://$PROJECT_DIR$/dist/web/js/creemson.js" />
+      <root url="file://$PROJECT_DIR$/dist/web/js/freelancer.min.js" />
+      <root url="file://$PROJECT_DIR$/dist/web/js/freelancer.js" />
+      <root url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.js" />
       <root url="file://$PROJECT_DIR$/dist/web/js/Vue.js" />
+      <root url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/router.test.js" />
+      <root url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/run_jsunit.js" />
+      <root url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/router.js" />
+      <root url="file://$PROJECT_DIR$/dist/web/js/vue-spinner.js" />
+      <root url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/externs.js" />
+      <root url="file://$PROJECT_DIR$/dist/web/js/jqBootstrapValidation.js" />
+      <root url="file://$PROJECT_DIR$/dist/vendor/friendsofsymfony/jsrouting-bundle/Resources/js/export.js" />
+      <root url="file://$PROJECT_DIR$/dist/web/js/vue2-autocomplete.js" />
     </CLASSES>
     <SOURCES />
   </library>

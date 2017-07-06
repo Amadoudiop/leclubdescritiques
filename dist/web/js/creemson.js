@@ -43,7 +43,41 @@ $('.trends').click(function () {
     $.ajax({
         url: Routing.generate('oeuvre_index'),
         type: 'POST',
-        data: 'oeuvre_id=' + id,
+        data: 'trends=true' + '&oeuvre_id=' + id,
+        success: function success(state) {
+            //console.log(state);
+            location.reload();
+        }
+    });
+});
+
+/**
+ * Approve Oeuvre
+ */
+$('.approve').click(function () {
+    var id = $(this).attr('dataInt');
+    console.log(id);
+    $.ajax({
+        url: Routing.generate('oeuvre_index'),
+        type: 'POST',
+        data: 'approve=true' + '&oeuvre_id=' + id,
+        success: function success(state) {
+            //console.log(state);
+            location.reload();
+        }
+    });
+});
+
+/**
+ * Add or Remove page from section
+ */
+$('.section').click(function () {
+    var id = $(this).attr('dataInt');
+    console.log(id);
+    $.ajax({
+        url: Routing.generate('page_index'),
+        type: 'POST',
+        data: 'section=true' + '&page_id=' + id,
         success: function success(state) {
             //console.log(state);
             location.reload();

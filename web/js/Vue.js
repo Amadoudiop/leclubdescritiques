@@ -961,13 +961,10 @@ var app = new Vue({
     },
     mounted(){
         var self = this;
-        this.atmUser = this.getUser();
+        //this.atmUser = this.getUser();
         var atmPage = window.location.pathname;
-        this.getRooms();
-        this.getAllBooks()
-        this.getRooms()
-        this.getBooksTrends();
-        if (atmPage == '/app_dev.php/profil') {this.getUserData(); this.getOeuvreUser()}
+
+        //if (atmPage == '/app_dev.php/profil') {this.getUserData(); this.getOeuvreUser()}
         //if (atmPage == '/app_dev.php/livres') this.getAllBooks()
         //if (atmPage == '/app_dev.php/')  {this.getBooksTrends(); this.getRooms(); }
         //if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks()}

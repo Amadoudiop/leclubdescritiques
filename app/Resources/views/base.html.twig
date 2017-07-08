@@ -137,30 +137,6 @@
     {% block stylesheets %}{% endblock %}
     {{ render(controller("AppBundle:Menu:header")) }}
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="/">Accueil</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="/livres">Livres</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="/salons">Salons</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a  href="/profil">Mon compte</a> <a  href="/login">Se connecter</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
     <toast ref="toast"></toast>
     <!-- NEW MENU FLOTTANT  --><!-- float-menu1  faire un conponent de ca-->
     <div class="card-holder">

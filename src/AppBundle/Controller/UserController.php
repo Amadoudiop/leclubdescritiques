@@ -503,19 +503,24 @@ class UserController extends Controller
         //infos de l'utlisateur
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $id_suser= $request->request->get('id_user');
+        $id_user= $request->request->get('id_user');
+        //var_dump($id_user);die;
 
-        $user_target = $em->getRepository('AppBundle:Salon')->find($id_user);
+        $user_target = $em->getRepository('AppBundle:User')->find($id_user);
 
         if ($request->getMethod() == 'POST') {
             if (null === $user_target) {
 
                 $response = ['valid' => false, 'msg' => "Cet utilisateur n'existe pas"];
             }else{
-                $user->addContact($user_target);
-                $em->flush();
+                if ($user->hasContact($user_target)) {
+                    $response = ['valid' => true, 'msg' => 'Cet utilisateur est déjà dans vos contacts']; 
+                }else{
+                    $user->addContact($user_target);
+                    $em->flush();   
 
-                $response = ['valid' => true, 'msg' => 'Ce contact est enregistré']; 
+                    $response = ['valid' => true, 'msg' => 'Ce contact est enregistré']; 
+                }
             }
         }else{
             $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];

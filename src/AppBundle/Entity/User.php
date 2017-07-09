@@ -187,4 +187,16 @@ class User extends BaseUser
     {
         return $this->contacts;
     }
+
+    /**
+     * Has contact
+     *
+     * @param \AppBundle\Entity\User $contact
+     *
+     * @return bool
+     */
+    public function hasContact(\AppBundle\Entity\User $contact)
+    {
+        return $this->getContacts()->contains($contact);
+    }
 }

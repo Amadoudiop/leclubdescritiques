@@ -953,10 +953,9 @@ var app = new Vue({
     },
     created(){
         console.log('HELLLLOOOOOOOOO //////////////////////////')
-        //this.getRooms();
-        //this.getAllBooks()
-        //this.getRooms()
-        //this.getBooksTrends();
+        this.getRooms();
+        this.getAllBooks();
+        this.getBooksTrends();
         console.log('BYYYYYYYYYYYYYYYEEEEEEEEEEEE //////////////////////////')
     },
     mounted(){

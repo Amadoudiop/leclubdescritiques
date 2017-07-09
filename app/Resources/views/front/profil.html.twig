@@ -21,8 +21,11 @@
 
                             <div class="col-xs-12"> <a class="btn vd_btn vd_bg-grey btn-xs btn-block no-br" data-toggle="modal" data-target="#modalContactForm" ><i class="fa fa-envelope append-icon"></i>Envoyer un message</a> </div>
                         </div>
-                        <div class="row">
+                        <div id="btnAddContact" class="row {% if my_contact == true %}hidden{% endif %}">
                             <div class="col-xs-12"> <button class="btn vd_btn vd_bg-green btn-xs btn-block no-br"  @click.stop.prevent="addContact"><i class="fa fa-user append-icon" ></i>Ajouter aux contacts</button> </div>
+                        </div>
+                        <div id="btnRemoveContact" class="row {% if my_contact == false %}hidden{% endif %}">
+                            <div class="col-xs-12"> <button class="btn vd_btn vd_bg-red btn-xs btn-block no-br"  @click.stop.prevent="removeContact"><i class="fa fa-ban append-icon" ></i>Supprimer ce contact</button> </div>
                         </div>
                         {% endif %}
                         <h3 class="font-semibold mgbt-xs-5">{{ user.firstname }} {{ user.lastname }}</h3>

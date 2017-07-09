@@ -53,6 +53,8 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $user_target = $this->get('security.token_storage')->getToken()->getUser();
+
         $user = $em->getRepository('AppBundle:User')->find($id);
 
         //les oeuvres de l'utilisateur
@@ -61,10 +63,17 @@ class DefaultController extends Controller
 
         $my_profil = false;
 
+        if ($user_target->hasContact($user)) {
+            $my_contact = true;
+        }else{
+            $my_contact = false;
+        }
+
         return $this->render('front/profil.html.twig', [
             'user' => $user,
             'user_oeuvres' => $user_oeuvres,
-            'my_profil' => $my_profil
+            'my_profil' => $my_profil,
+            'my_contact' => $my_contact
         ]);
     }
      /**

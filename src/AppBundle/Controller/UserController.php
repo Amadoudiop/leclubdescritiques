@@ -528,4 +528,42 @@ class UserController extends Controller
 
         return new JsonResponse($response);
     }
+
+    /**
+     * @Route("/removeContact", name="remove_contact", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function removeContactAction(Request $request)
+    {
+        //dump($request);die;
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $id_user= $request->request->get('id_user');
+        //var_dump($id_user);die;
+
+        $user_target = $em->getRepository('AppBundle:User')->find($id_user);
+
+        if ($request->getMethod() == 'POST') {
+            if (null === $user_target) {
+
+                $response = ['valid' => false, 'msg' => "Cet utilisateur n'existe pas"];
+            }else{
+                if (!$user->hasContact($user_target)) {
+                    $response = ['valid' => true, 'msg' => "Cet utilisateur n'est pas dans vos contacts"]; 
+                }else{
+                    $user->removeContact($user_target);
+                    $em->flush();   
+
+                    $response = ['valid' => true, 'msg' => 'Ce contact est supprimé']; 
+                }
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
 }

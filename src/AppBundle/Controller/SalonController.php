@@ -332,4 +332,52 @@ class SalonController extends Controller
         return new JsonResponse($response);
     }
 
+    /**
+     * @Route("/rejoinRoom", name="create_room", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function rejoinRoomAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $id_salon = $request->request->get('id_salon');
+
+        if ($request->getMethod() == 'POST') {
+
+            $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+
+            if (null === $salon) {
+                $response = ['valid' => false, 'msg' => "Ce salon n'existe pas"];
+            }else{
+                $participants = $salon->getParticipants();
+                $nb_part = count($participants);
+                $nb_part_max = $salon->getParticipantsNumber();
+
+                if ($nb_part >= $nb_part_max) {
+                    $response = ['valid' => false, 'msg' => "Le nombre maximum de participants est atteint"];
+                }else{
+                    $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $salon->getOeuvre()]);
+
+                    if (null === $user_oeuvre) {
+                        $response = ['valid' => false, 'msg' => "Cet oeuvre n'est pas dans votre liste"];
+                    }else{
+                        $salon->addParticipant($user);  
+
+                        $em->persist($salon);
+                        $em->flush();
+
+                        $response = ['valid' => true, 'msg' => 'Salon rejoint']; 
+                    }
+                }
+            }  
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
 }

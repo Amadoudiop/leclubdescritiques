@@ -33,9 +33,9 @@
                                     :data="gridData"
                                     :columns="gridColumns"
                                     :filter-key="searchQuery">
-                            </vue-table>{#
+                            </vue-table>
                             <div class="table-responsive">
-                                <table id="mytable" class="table table-bordred table-striped">
+                                {#<table id="mytable" class="table table-bordred table-striped">
                                     <thead>
                                         <th>Titre</th>
                                         <th>Participants</th>
@@ -45,7 +45,7 @@
                                         <th>Rejoindre</th>
                                     </thead>
                                     <tbody>
-                                        <div v-for="room in gridData">
+                                        <div v-for="room in rooms">
                                             <tr>
                                                 <td>${ room.title }</td>
                                                 <td>${ room.participants_number }</td>
@@ -56,13 +56,8 @@
                                             </tr>
                                         </div>
                                     </tbody>
-                                </table>
-
-
-
-
-
-                            </div>#}
+                                </table>#}
+                            </div>
                         </div>
                     </div>
                 </div>

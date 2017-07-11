@@ -13,7 +13,7 @@ var debounce = function debounce(callback, delay) {
 };
 
 Vue.component('autocomplete', {
-    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' + '<div class="row" v-if="autocompleteFlag">' + '<div class="container-fluid">' + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' + '<div class="userBooksCard"  >' + '<div class="panel panel-default">' + '<div class="panel-body">' + '<div>' + '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">' + '<img :src="dataRecup.url_image" id="url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">' + '</a>' + '</div>' + '</div>' + '<div class="panel-footer" >' + '<h3><span id="title">{{ dataRecup.title }}</span></h3><br>' + '<span  id="url_product" class="hidden">{{ dataRecup.url_product }}</span>' + '<span  id="description" class="hidden">{{ dataRecup.description }}</span>' + '<span  id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span>' + '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>' + '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>' + '<h4><span id="author">{{ dataRecup.authors }}</span></h4>' + '<star-rating :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>',
+    template: '<div :class=\"(className ? className + \'-wrapper \' : \'\') + \'autocomplete-wrapper\'\"><input  type=\"text\" :id=\"id\":class=\"(className ? className + \'-input \' : \'\') + \'autocomplete-input\'\":placeholder=\"placeholder\"v-model=\"type\"@input=\"input(type)\"@dblclick=\"showAll\"@blur=\"hideAll\"@keydown=\"keydown\"@focus=\"focus\"autocomplete=\"off\" /><div :class=\"(className ? className + \'-list \' : \'\') + \'autocomplete transition autocomplete-list\'\" v-show=\"showList\"><ul><li v-for=\"(data, i) in json\"transition=\"showAll\":class=\"activeClass(i)\"><a  href=\"#\"@click.prevent=\"selectList(data)"@mousemove=\"mousemove(i)\"><b>{{ data[anchor] }}</b><span>{{ data[label] }}</span></a></li></ul></div> <br> <div v-if="autocompleteFlag" class="previsu">  <br></div>' + '<div class="row" v-if="autocompleteFlag">' + '<div class="container-fluid">' + '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">' + '<div class="userBooksCard"  >' + '<div class="panel panel-default">' + '<div class="panel-body">' + '<div>' + '<a  href="#portfolioModal1" class="portfolio-link" data-toggle="modal">' + '<img :src="dataRecup.url_image" id="url_image" alt="bookImg" class="img-thumbnail img-userBook img-responsive">' + '</a>' + '</div>' + '</div>' + '<div class="panel-footer" >' + '<h3><span id="title">{{ dataRecup.title }}</span></h3><br>' + '<span  id="url_product" class="hidden">{{ dataRecup.url_product }}</span>' + '<span  id="description" class="hidden">{{ dataRecup.description }}</span>' + '<span  id="publication_date" class="hidden">{{ dataRecup.publication_date }}</span>' + '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>' + '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>' + '<h4><span id="author">{{ dataRecup.authors }}</span></h4>' + '<star-rating ref="starRatingBook" :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>' + '</div>',
     props: {
         id: String,
         className: String,
@@ -662,7 +662,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'email=' + email,
                 success: function success(msg) {
-                    app.$root.$children[0].success(msg);
+                    app.$refs.toast.success(msg);
                 }
             });
         },
@@ -678,7 +678,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&password=' + password + '&confirmPassword=' + confirmPassword,
                 success: function success(msg) {
-                    app.$root.$children[0].success(msg);
+                    app.$refs.toast.success(msg);
                 }
             });
         },
@@ -717,7 +717,7 @@ var app = new Vue({
                 data: 'message=' + message + '&id_salon=' + id_salon,
                 success: function success(response) {
                     if (response.valid === true) {
-                        apselfp.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         self.sendMessage(message);
                         $('#close-send-message').trigger("click");
                     } else {
@@ -741,7 +741,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&description=' + description,
                 success: function success(msg) {
-                    app.$root.$children[0].success(msg);
+                    app.$refs.toast.success(msg);
                     $('#close-edit-profil').trigger("click");
                     app.$forceUpdate();
                 }
@@ -760,7 +760,7 @@ var app = new Vue({
                 data: 'title=' + title + '&book=' + book + '&nb_max_part=' + nb_max_part + '&date_start=' + date_start + '&date_end=' + date_end,
                 success: function success(response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         //$('#close-send-message').trigger( "click" );
                     } else {
                         app.$root.$children[0].error(response.msg);
@@ -769,7 +769,7 @@ var app = new Vue({
             });
         },
         addBook: function addBook(event) {
-            app.$root.$children[0].success('requete envoyée');
+            app.$refs.toast.success('requete envoyée');
             //this.$children.success('toster ok')
             var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
@@ -785,7 +785,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'author=' + author + '&title=' + title + '&url_image=' + url_image + '&url_product=' + url_product + '&description=' + description + '&publication_date=' + publication_date + '&id_google_api=' + id_google_api + '&sub_category=' + sub_category,
                 success: function success(msg) {
-                    app.$root.$children[0].success(msg);
+                    app.$refs.toast.success(msg);
                     $('#close-add-book').trigger("click");
                     app.$forceUpdate;
                 }
@@ -798,7 +798,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function success(data) {
                     that.alaunes = data;
-                    app.$root.$children[0].success('books trends récupérés');
+                    app.$refs.toast.success('books trends récupérés');
                 }
             });
         },
@@ -811,7 +811,7 @@ var app = new Vue({
                     that.rooms = data;
                     that.gridColumns = Object.keys(data[0]);
                     that.gridData = data;
-                    app.$root.$children[0].success('get rooms récupéré');
+                    app.$refs.toast.success('get rooms récupéré');
                 }
             });
         },
@@ -822,7 +822,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function success(data) {
                     that.books = data;
-                    app.$root.$children[0].success('all books récupérés');
+                    app.$refs.toast.success('all books récupérés');
                 }
             });
         },
@@ -860,7 +860,7 @@ var app = new Vue({
                 data: 'id_user=' + id_user,
                 success: function success(response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         $("#btnAddContact").addClass("hidden");
                         $("#btnRemoveContact").removeClass("hidden");
                     } else {
@@ -878,7 +878,7 @@ var app = new Vue({
                 data: 'id_user=' + id_user,
                 success: function success(response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         $("#btnAddContact").removeClass("hidden");
                         $("#btnRemoveContact").addClass("hidden");
                     } else {
@@ -897,7 +897,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function success(data) {
                     self.userData = data;
-                    self.$root.$children[0].success('UserData récupérés');
+                    self.$refs.toast.success('UserData récupérés');
                 }
             });
         },

@@ -631,7 +631,7 @@ var app = new Vue({
             } ,
             atmUser: '1',
             selectedBook: '',
-            searchBook:'',
+            searchBook: '',
             searchQuery: '',
             gridColumns: [ ],
             gridData: [ ],
@@ -689,7 +689,20 @@ var app = new Vue({
             }
              ],
             userBooks:[ ],
-            books: [ ],
+            books: [
+                {
+                    author:"Lana A. Whited",
+                    category:"Livre",
+                    description:"Now available in paper, The Ivory Tower and Harry Potter is the first book-length analysis of J. K. Rowling's work from a broad range of perspectives within literature, folklore, psychology, sociology, and popular culture. A significant portion of the book explores the Harry Potter series' literary ancestors, including magic and fantasy works by Ursula K. LeGuin, Monica Furlong, Jill Murphy, and others, as well as previous works about the British boarding school experience. Other chapters explore the moral and ethical dimensions of Harry's world, including objections to the series raised within some religious circles. In her new epilogue, Lana A. Whited brings this volume up to date by covering Rowling's latest book, Harry Potter and the Order of the Phoenix.",
+                    id:1,
+                    publication_date:"08/07/2017",
+                    rating:5,
+                    sub_category:"Literary Criticism",
+                    title:"The Ivory Tower and Harry Potter",
+                    url_image:"http://books.google.com/books/content?id=iO5pApw2JycC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                    url_product:"http://books.google.fr/books?id=iO5pApw2JycC&dq=%7Bharry%7D&hl=&source=gbs_api"
+                }
+            ],
             fetchArray: {},
             conn: {},
             clientInformation: {}
@@ -969,14 +982,21 @@ var app = new Vue({
             });
         }
     },
-    computed(){
+    computed: {
+        filteredBooks(){
+            var self = this;
+            return this.books.filter(function(book) {
+                // of course you can use .map() or .reduce() depending on your business logic
+                return book.title.toLowerCase().indexOf(self.searchBook.toLowerCase())>=0;
+
+            })
+        },
+
     },
     created(){
-        console.log('HELLLLOOOOOOOOO //////////////////////////')
         this.getRooms();
         this.getAllBooks();
         this.getBooksTrends();
-        console.log('BYYYYYYYYYYYYYYYEEEEEEEEEEEE //////////////////////////')
     },
     mounted(){
         var self = this;

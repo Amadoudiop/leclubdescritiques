@@ -858,6 +858,26 @@ var app = new Vue({
                 success: function success(response) {
                     if (response.valid === true) {
                         app.$root.$children[0].success(response.msg);
+                        $("#btnAddContact").addClass("hidden");
+                        $("#btnRemoveContact").removeClass("hidden");
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
+        },
+        removeContact: function removeContact() {
+            var id_user = encodeURIComponent($('#id_user').text());
+
+            $.ajax({
+                url: '/removeContact',
+                type: 'POST',
+                data: 'id_user=' + id_user,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                        $("#btnAddContact").removeClass("hidden");
+                        $("#btnRemoveContact").addClass("hidden");
                     } else {
                         app.$root.$children[0].error(response.msg);
                     }
@@ -893,10 +913,9 @@ var app = new Vue({
     computed: function computed() {},
     created: function created() {
         console.log('HELLLLOOOOOOOOO //////////////////////////');
-        //this.getRooms();
-        //this.getAllBooks()
-        //this.getRooms()
-        //this.getBooksTrends();
+        this.getRooms();
+        this.getAllBooks();
+        this.getBooksTrends();
         console.log('BYYYYYYYYYYYYYYYEEEEEEEEEEEE //////////////////////////');
     },
     mounted: function mounted() {

@@ -595,7 +595,23 @@ var app = new Vue({
             searchQuery: '',
             gridColumns: [],
             gridData: [],
-            rooms: [],
+            rooms: [{
+                created_by: "",
+                end_date: "04/01/2018",
+                id: 1,
+                oeuvre: "The Ivory Tower and Harry Potter",
+                participants_number: 3,
+                start_date: "01/,01/2012",
+                title: "test 1"
+            }, {
+                created_by: "",
+                end_date: "04/01/2018",
+                id: 1,
+                oeuvre: "The Ivory Tower and Harry Potter",
+                participants_number: 3,
+                start_date: "01/,01/2012",
+                title: "test 1"
+            }],
             autocompleteLoader: false,
             mailInscription: '',
             floatMenu1IsActive: false,
@@ -616,31 +632,7 @@ var app = new Vue({
             sujetSalon: "Lord of the Rings",
             nbParticipantsSalon: '3',
             dateSalon: '',
-            alaunes: [{
-                titre: '1984',
-                auteur: 'Georges Orwell',
-                rating: 4.5
-            }, {
-                titre: 'Harry Potter',
-                auteur: 'JK Rowling',
-                rating: 3
-            }, {
-                titre: 'Lord of the rings',
-                auteur: 'J.R.R Tolkien',
-                rating: 4
-            }, {
-                titre: ' Don Quijote de la Mancha',
-                auteur: 'Miguel de Cervantes',
-                rating: 4.8
-            }, {
-                titre: 'Le conte de Deux cités',
-                auteur: 'Charles Dickens',
-                rating: 5
-            }, {
-                titre: 'Le Petit Prince',
-                auteur: 'Antoine de Saint-Exupéry',
-                rating: 5
-            }],
+            alaunes: [],
             userBooks: [],
             books: [{
                 author: "Lana A. Whited",

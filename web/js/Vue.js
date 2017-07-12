@@ -767,7 +767,7 @@ var app = new Vue({
                         self.sendMessage(message);
                         $('#close-send-message').trigger( "click" );
                     }else{
-                        self.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });

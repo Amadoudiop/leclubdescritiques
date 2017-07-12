@@ -672,9 +672,6 @@ var app = new Vue({
                 url_product:"https://play.google.com/store/books/details?id=GBl6MWssicEC&source=gbs_api",
 
             },
-            sujetSalon: "Lord of the Rings",
-            nbParticipantsSalon: '3',
-            dateSalon: '',
             alaunes: [
 
              ],
@@ -858,7 +855,6 @@ var app = new Vue({
                 success: function(data) {
                     that.rooms = data;
                     that.gridColumns = Object.keys(data[0]);
-                    that.gridData = data;
                     app.$refs.toast.success('get rooms récupéré');
                 }
             });
@@ -984,19 +980,15 @@ var app = new Vue({
 
     },
     created(){
-        this.getRooms();
-        this.getAllBooks();
-        this.getBooksTrends();
+        var self = this;
+        var atmPage = window.location.pathname;
+        if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }
+        if (atmPage == '/app_dev.php/')  { this.getBooksTrends(); this.getRooms() }
+        if (atmPage == '/app_dev.php/livres') this.getAllBooks();
+        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser() }
+
     },
     mounted(){
-        var self = this;
-        //this.atmUser = this.getUser();
-        var atmPage = window.location.pathname;
-
-        //if (atmPage == '/app_dev.php/profil') {this.getUserData(); this.getOeuvreUser()}
-        //if (atmPage == '/app_dev.php/livres') this.getAllBooks()
-        //if (atmPage == '/app_dev.php/')  {this.getBooksTrends(); this.getRooms(); }
-        //if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks()}
         //SALON
         var pathArray = window.location.pathname.split( '/' );
         var indice = pathArray.length - 2;

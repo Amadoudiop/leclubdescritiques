@@ -29,13 +29,13 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <vue-table
+                            {#<vue-table
                                     :data="gridData"
                                     :columns="gridColumns"
                                     :filter-key="searchQuery">
-                            </vue-table>
+                            </vue-table>#}
                             <div class="table-responsive">
-                                {#<table id="mytable" class="table table-bordred table-striped">
+                                <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
                                         <th>Titre</th>
                                         <th>Participants</th>
@@ -45,8 +45,7 @@
                                         <th>Rejoindre</th>
                                     </thead>
                                     <tbody>
-                                        <div v-for="room in rooms">
-                                            <tr>
+                                            <tr v-for="room in rooms">
                                                 <td>${ room.title }</td>
                                                 <td>${ room.participants_number }</td>
                                                 <td>${ room.created_by }</td>
@@ -54,9 +53,8 @@
                                                 <td>${ room.end_date }</td>
                                                 <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-glass"></span></button></p></td>
                                             </tr>
-                                        </div>
                                     </tbody>
-                                </table>#}
+                                </table>
                             </div>
                         </div>
                     </div>

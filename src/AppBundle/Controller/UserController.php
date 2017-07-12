@@ -566,4 +566,48 @@ class UserController extends Controller
 
         return new JsonResponse($response);
     }
+
+    /**
+     * @Route("/sendMessagePersonal", name="send_message", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function sendMessagePersonalAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $id_user = $request->request->get('id_user');
+        $sujet = $request->request->get('sujet');
+        $message = $request->request->get('message');
+
+        $user_target = $em->getRepository('AppBundle:User')->find($id_user);
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($sujet) && !empty($message)) {
+
+                $message = (new \Swift_Message('Un utilisateur vous envoie un email'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setTo($user_target->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'email/send_message.html.twig',
+                        ['user' => $user, 'user_target' => $user_target, 'sujet' => $sujet, 'message' => $message]
+                    ),
+                    'text/html'
+                );      
+
+                $this->get('mailer')->send($message);
+
+                $response = ['valid' => true, 'msg' => 'Votre message a été envoyé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => 'Toute les informations sont obligatoires'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
 }

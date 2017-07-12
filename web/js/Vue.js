@@ -815,8 +815,6 @@ var app = new Vue({
             });
         },
         addBook(event) {
-            app.$refs.toast.success('requete envoyée');
-            //this.$children.success('toster ok')
             var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
             var description = encodeURIComponent($('#description').text());
@@ -832,10 +830,15 @@ var app = new Vue({
                 url: Routing.generate('add_book'),
                 type: 'POST',
                 data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category,
-                success: function(msg) {
-                    app.$refs.toast.success(msg)
-                    $('#close-add-book').trigger( "click" );
-                    self.userBooks.push(object)
+                success: function(response) {
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                        //app.$refs.toast.success(msg)
+                        $('#close-add-book').trigger( "click" );
+                        self.userBooks.push(object);
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }    
                 }
             });
         },

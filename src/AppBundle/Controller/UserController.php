@@ -222,16 +222,22 @@ class UserController extends Controller
 
             $status = $em->getRepository('AppBundle:Status')->find(1);
 
-            $userBook = new UserOeuvre();
-            $userBook->setUser($user);
-            $userBook->setOeuvre($book);
-            $userBook->setStatus($status);
-            $userBook->setRating(5);
+            $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $book]);
 
-            $em->persist($userBook);
-            $em->flush();
+            if ($user_oeuvre) {
+                $response = ['valid' => false, 'msg' => "Ce livre est déjà votre liste"];
+            }else{
+                $userBook = new UserOeuvre();
+                $userBook->setUser($user);
+                $userBook->setOeuvre($book);
+                $userBook->setStatus($status);
+                $userBook->setRating(5);    
 
-            $response = ['valid' => true, 'msg' => 'Vos informations sont enregistrées'];
+                $em->persist($userBook);
+                $em->flush();   
+
+                $response = ['valid' => true, 'msg' => 'Ce livre a été ajouté à votre liste'];
+            }
                      
         }else{
             $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
@@ -574,7 +580,7 @@ class UserController extends Controller
     public function sendMessagePersonalAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         //infos de l'utlisateur
         $user = $this->get('security.token_storage')->getToken()->getUser();
 

@@ -629,7 +629,7 @@ var app = new Vue({
                 last_login: "02/07/2017",
                 email: "johribe@gmail.com"
             } ,
-            atmUser: '1',
+            atmUser: '',
             selectedBook: '',
             searchBook: '',
             searchQuery: '',
@@ -697,15 +697,13 @@ var app = new Vue({
     },
     methods: {
         inscription : function (event) {
-
           var email = $('#email').val();
-
           $.ajax({
                 url: 'http://localhost:8000/register/',
                 type: 'POST',
                 data: 'email='+email,
                 success: function(msg) {
-                    app.$refs.toast.success(msg);
+                    msg.valid == true ? app.$refs.toast.success(msg) : app.$refs.toast.error(msg.text());
                 }
             });
 
@@ -779,15 +777,18 @@ var app = new Vue({
             var lastname = $('#edit_lastname').val();
             var email = $('#edit_email').val();
             var description = $('#edit_description').val();
-
+            var self = this;
             $.ajax({
                 url: Routing.generate('edit_profil'),
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&email='+email+'&description='+description,
                 success: function(msg) {
+                    self.userData.firstname = firstname;
+                    self.userData.lastname = lastname;
+                    self.userData.email = email;
+                    self.userData.description = description;
                     app.$refs.toast.success(msg);
                     $('#close-edit-profil').trigger( "click" );
-                    app.$forceUpdate()
                 }
             });
 
@@ -825,6 +826,8 @@ var app = new Vue({
             var url_product = encodeURIComponent($('#url_product').text());
             var sub_category = encodeURIComponent($('#sub_category').text());
 
+            var object = {'author':author,'title':title, 'description':description,'publication_date':publication_date,'id_google_api':id_google_api,'url_image':url_image,'url_product':url_product,'sub_category':sub_category};
+            var self = this;
             $.ajax({
                 url: Routing.generate('add_book'),
                 type: 'POST',
@@ -832,7 +835,7 @@ var app = new Vue({
                 success: function(msg) {
                     app.$refs.toast.success(msg)
                     $('#close-add-book').trigger( "click" );
-                    app.$forceUpdate
+                    self.userBooks.push(object)
                 }
             });
         },
@@ -959,7 +962,7 @@ var app = new Vue({
         getOeuvreUser(){
             var self = this;
             $.ajax({
-                url: 'http://localhost:8000/app_dev.php/getBooksUser/1',
+                url: 'http://localhost:8000/app_dev.php/getBooksUser/'+ self.atmUser,
                 type: 'GET',
                 success: function(data) {
                     self.userBooks = data;
@@ -980,6 +983,7 @@ var app = new Vue({
 
     },
     created(){
+        this.atmUser = this.getUser();
         var self = this;
         var atmPage = window.location.pathname;
         if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }

@@ -32,7 +32,7 @@ Vue.component('autocomplete', {
                             '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
                             '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>'+
                             '<h4><span id="author">{{ dataRecup.authors }}</span></h4>'+
-                            '<star-rating :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
+                            '<star-rating ref="starRatingBook" :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -631,11 +631,30 @@ var app = new Vue({
             } ,
             atmUser: '1',
             selectedBook: '',
-            searchBook:'',
+            searchBook: '',
             searchQuery: '',
             gridColumns: [ ],
             gridData: [ ],
-            rooms: [ ],
+            rooms: [
+                {
+                    created_by: "",
+                    end_date: "04/01/2018",
+                    id: 1,
+                    oeuvre: "The Ivory Tower and Harry Potter",
+                    participants_number: 3,
+                    start_date: "01/,01/2012",
+                    title: "test 1",
+                },
+                {
+                    created_by: "",
+                    end_date: "04/01/2018",
+                    id: 1,
+                    oeuvre: "The Ivory Tower and Harry Potter",
+                    participants_number: 3,
+                    start_date: "01/,01/2012",
+                    title: "test 1",
+                }
+            ],
             autocompleteLoader: false,
             mailInscription: '',
             floatMenu1IsActive:false,
@@ -653,46 +672,27 @@ var app = new Vue({
                 url_product:"https://play.google.com/store/books/details?id=GBl6MWssicEC&source=gbs_api",
 
             },
-            sujetSalon: "Lord of the Rings",
-            nbParticipantsSalon: '3',
-            dateSalon: '',
             alaunes: [
-             {
-                 titre:'1984',
-                 auteur: 'Georges Orwell',
-                 rating: 4.5
-             },
-             {
-                titre:'Harry Potter',
-                auteur: 'JK Rowling',
-                 rating: 3
-             },
-             {
-                titre:'Lord of the rings',
-                auteur: 'J.R.R Tolkien',
-                 rating: 4
-             },
-             {
-                titre:' Don Quijote de la Mancha',
-                auteur: 'Miguel de Cervantes',
-                 rating: 4.8
-             },
-             {
-                titre:'Le conte de Deux cités',
-                auteur: 'Charles Dickens',
-                 rating: 5
-             },
-            {
-                titre:'Le Petit Prince',
-                auteur: 'Antoine de Saint-Exupéry',
-                rating: 5
-            }
+
              ],
             userBooks:[ ],
-            books: [ ],
-            fetchArray: {},
-            conn: {},
-            clientInformation: {}
+            books: [
+                {
+                    author:"Lana A. Whited",
+                    category:"Livre",
+                    description:"Now available in paper, The Ivory Tower and Harry Potter is the first book-length analysis of J. K. Rowling's work from a broad range of perspectives within literature, folklore, psychology, sociology, and popular culture. A significant portion of the book explores the Harry Potter series' literary ancestors, including magic and fantasy works by Ursula K. LeGuin, Monica Furlong, Jill Murphy, and others, as well as previous works about the British boarding school experience. Other chapters explore the moral and ethical dimensions of Harry's world, including objections to the series raised within some religious circles. In her new epilogue, Lana A. Whited brings this volume up to date by covering Rowling's latest book, Harry Potter and the Order of the Phoenix.",
+                    id:1,
+                    publication_date:"08/07/2017",
+                    rating:5,
+                    sub_category:"Literary Criticism",
+                    title:"The Ivory Tower and Harry Potter",
+                    url_image:"http://books.google.com/books/content?id=iO5pApw2JycC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                    url_product:"http://books.google.fr/books?id=iO5pApw2JycC&dq=%7Bharry%7D&hl=&source=gbs_api"
+                }
+            ],
+            fetchArray: { },
+            conn: { },
+            clientInformation: { }
         }
     },
     methods: {
@@ -705,7 +705,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'email='+email,
                 success: function(msg) {
-                    app.$root.$children[0].success(msg);
+                    app.$refs.toast.success(msg);
                 }
             });
 
@@ -722,7 +722,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
                 success: function(msg) {
-                    app.$root.$children[0].success(msg);
+                    app.$refs.toast.success(msg);
                 }
             });
         },
@@ -760,11 +760,11 @@ var app = new Vue({
                 data: 'message='+message+'&id_salon='+id_salon,
                 success: function(response) {
                     if (response.valid === true) {
-                        apselfp.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         self.sendMessage(message);
                         $('#close-send-message').trigger( "click" );
                     }else{
-                        self.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -785,7 +785,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&email='+email+'&description='+description,
                 success: function(msg) {
-                    app.$root.$children[0].success(msg);
+                    app.$refs.toast.success(msg);
                     $('#close-edit-profil').trigger( "click" );
                     app.$forceUpdate()
                 }
@@ -805,7 +805,7 @@ var app = new Vue({
                 data: 'title='+title+'&book='+book+'&nb_max_part='+nb_max_part+'&date_start='+date_start+'&date_end='+date_end,
                 success: function(response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         //$('#close-send-message').trigger( "click" );
                     }else{
                         app.$root.$children[0].error(response.msg);
@@ -814,7 +814,7 @@ var app = new Vue({
             });
         },
         addBook(event) {
-            app.$root.$children[0].success('requete envoyée');
+            app.$refs.toast.success('requete envoyée');
             //this.$children.success('toster ok')
             var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
@@ -830,7 +830,7 @@ var app = new Vue({
                 type: 'POST',
                 data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category,
                 success: function(msg) {
-                    app.$root.$children[0].success(msg)
+                    app.$refs.toast.success(msg)
                     $('#close-add-book').trigger( "click" );
                     app.$forceUpdate
                 }
@@ -843,7 +843,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     that.alaunes = data;
-                    app.$root.$children[0].success('books trends récupérés');
+                    app.$refs.toast.success('books trends récupérés');
                 }
             });
         },
@@ -855,8 +855,7 @@ var app = new Vue({
                 success: function(data) {
                     that.rooms = data;
                     that.gridColumns = Object.keys(data[0]);
-                    that.gridData = data;
-                    app.$root.$children[0].success('get rooms récupéré');
+                    app.$refs.toast.success('get rooms récupéré');
                 }
             });
         },
@@ -867,7 +866,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     that.books = data;
-                    app.$root.$children[0].success('all books récupérés');
+                    app.$refs.toast.success('all books récupérés');
                 }
             });
         },
@@ -915,7 +914,7 @@ var app = new Vue({
                 data: 'id_user=' + id_user,
                 success: function (response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         $("#btnAddContact").addClass("hidden");
                         $("#btnRemoveContact").removeClass("hidden");
                     } else {
@@ -933,7 +932,7 @@ var app = new Vue({
                 data: 'id_user=' + id_user,
                 success: function (response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
+                        app.$refs.toast.success(response.msg);
                         $("#btnAddContact").removeClass("hidden");
                         $("#btnRemoveContact").addClass("hidden");
                     } else {
@@ -952,7 +951,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     self.userData = data;
-                    self.$root.$children[0].success('UserData récupérés');
+                    self.$refs.toast.success('UserData récupérés');
 
                 }
             });
@@ -990,24 +989,27 @@ var app = new Vue({
             });
         }
     },
-    computed(){
+    computed: {
+        filteredBooks(){
+            var self = this;
+            return this.books.filter(function(book) {
+                // of course you can use .map() or .reduce() depending on your business logic
+                return book.title.toLowerCase().indexOf(self.searchBook.toLowerCase())>=0;
+
+            })
+        },
+
     },
     created(){
-        console.log('HELLLLOOOOOOOOO //////////////////////////')
-        this.getRooms();
-        this.getAllBooks();
-        this.getBooksTrends();
-        console.log('BYYYYYYYYYYYYYYYEEEEEEEEEEEE //////////////////////////')
+        var self = this;
+        var atmPage = window.location.pathname;
+        if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }
+        if (atmPage == '/app_dev.php/')  { this.getBooksTrends(); this.getRooms() }
+        if (atmPage == '/app_dev.php/livres') this.getAllBooks();
+        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser() }
+
     },
     mounted(){
-        var self = this;
-        //this.atmUser = this.getUser();
-        var atmPage = window.location.pathname;
-
-        //if (atmPage == '/app_dev.php/profil') {this.getUserData(); this.getOeuvreUser()}
-        //if (atmPage == '/app_dev.php/livres') this.getAllBooks()
-        //if (atmPage == '/app_dev.php/')  {this.getBooksTrends(); this.getRooms(); }
-        //if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks()}
         //SALON
         var pathArray = window.location.pathname.split( '/' );
         var indice = pathArray.length - 2;

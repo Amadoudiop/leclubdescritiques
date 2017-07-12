@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="container">
-                    <div v-for="alaune in alaunes">
+                    <div v-for="alaune in alaunes" >
                         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
 
                             <div class="alauneCard" @click="showOeuvre(alaune)" >
@@ -242,7 +242,7 @@
 
 
 
-    <!-- Fetch -->
+    {#<!-- Fetch -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.js"></script>
 
     <!-- jQuery -->
@@ -265,7 +265,7 @@
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script type="text/javascript" src="{{ asset('js/Vue.js') }}"></script>
     <!-- Vue js star rating -->
-    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
+    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>#}
 
 
 {% endblock %}

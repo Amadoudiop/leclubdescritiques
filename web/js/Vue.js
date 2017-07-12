@@ -32,7 +32,7 @@ Vue.component('autocomplete', {
                             '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
                             '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>'+
                             '<h4><span id="author">{{ dataRecup.authors }}</span></h4>'+
-                            '<star-rating ref="starRatingBook" :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
+                            '<star-rating v-model="ratingAddBook" :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -93,6 +93,7 @@ Vue.component('autocomplete', {
     },
     data() {
         return {
+            ratingAddBook: '',
             autocompleteFlag:false,
             showList: false,
             type: "",
@@ -621,6 +622,7 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            ratingAddBook: '',
             userID:{ },
             userData: {
                 firstname: "Joe",
@@ -849,7 +851,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     that.alaunes = data;
-                    app.$refs.toast.success('books trends récupérés');
+                    //app.$refs.toast.success('books trends récupérés');
                 }
             });
         },
@@ -861,7 +863,7 @@ var app = new Vue({
                 success: function(data) {
                     that.rooms = data;
                     that.gridColumns = Object.keys(data[0]);
-                    app.$refs.toast.success('get rooms récupéré');
+                    //app.$refs.toast.success('get rooms récupéré');
                 }
             });
         },
@@ -872,7 +874,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     that.books = data;
-                    app.$refs.toast.success('all books récupérés');
+                    //app.$refs.toast.success('all books récupérés');
                 }
             });
         },

@@ -1,0 +1,9 @@
+Bonjour {{ user_target.getFirstname }} {{ user_target.getLastname }},<br><br>
+
+Vous avez reçu l'email suivant de <a url="{{ url('other_profil', {'id': user.getId}) }}">{{ user.getFirstname }} {{ user.getLastname }}</a> :<br><br>
+
+<b>Sujet</b> : {{ sujet }}<br>
+<b>Message</b> : {{ message }}<br><br>
+
+Cordialement,<br>
+Le club des critiques

@@ -967,6 +967,27 @@ var app = new Vue({
                     app.$refs.toast.success('userBooks OK');
                 }
             });
+        },
+        sendMessagePersonal : function (event) {
+
+            var message = $('#message').val();
+            var sujet = $('#sujet').val();
+            var id_user = $('#id_user').text();
+
+            var self = this;
+
+            $.ajax({
+                url: '/sendMessagePersonal',
+                type: 'POST',
+                data: 'message='+message+'&sujet='+sujet+'&id_user='+id_user,
+                success: function(response) {
+                    if (response.valid === true) {
+                        app.$root.$children[0].success(response.msg);
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
         }
     },
     computed(){

@@ -158,7 +158,7 @@ class SalonController extends Controller
     }
 
     /**
-     * @Route("/salon/{id}", name="salon")
+     * @Route("/salon/{id}", name="salon", options={"expose"=true})
      */
     public function salonAction($id)
     {
@@ -352,26 +352,29 @@ class SalonController extends Controller
             if (null === $salon) {
                 $response = ['valid' => false, 'msg' => "Ce salon n'existe pas"];
             }else{
-                $participants = $salon->getParticipants();
-                $nb_part = count($participants);
-                $nb_part_max = $salon->getParticipantsNumber();
+                $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $salon->getOeuvre()]);
 
-                if ($nb_part >= $nb_part_max) {
-                    $response = ['valid' => false, 'msg' => "Le nombre maximum de participants est atteint"];
+                if (null === $user_oeuvre) {
+                    $response = ['valid' => false, 'msg' => "Cet oeuvre n'est pas dans votre liste"];
                 }else{
-                    $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $salon->getOeuvre()]);
-
-                    if (null === $user_oeuvre) {
-                        $response = ['valid' => false, 'msg' => "Cet oeuvre n'est pas dans votre liste"];
+                    if ($salon->hasParticipant($user)) {
+                        $response = ['valid' => true, 'msg' => 'Salon rejoint 1']; 
                     }else{
-                        $salon->addParticipant($user);  
+                        $participants = $salon->getParticipants();
+                        $nb_part = count($participants);
+                        $nb_part_max = $salon->getParticipantsNumber();
 
-                        $em->persist($salon);
-                        $em->flush();
+                        if ($nb_part >= $nb_part_max) {
+                            $response = ['valid' => false, 'msg' => "Le nombre maximum de participants est atteint"];
+                        }else{
+                            $salon->addParticipant($user);  
+                            $em->flush();       
 
-                        $response = ['valid' => true, 'msg' => 'Salon rejoint']; 
+                            $response = ['valid' => true, 'msg' => 'Salon rejoint 2']; 
+                        }
                     }
                 }
+
             }  
         }else{
             $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];

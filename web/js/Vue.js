@@ -987,6 +987,20 @@ var app = new Vue({
                     }
                 }
             });
+        },
+        rejoinRoom : function (id) {
+            $.ajax({
+                url: '/rejoinRoom',
+                type: 'POST',
+                data: 'id_salon='+id,
+                success: function(response) {
+                    if (response.valid === true) {
+                        document.location.href=Routing.generate('salon', { id: id });
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
         }
     },
     computed: {

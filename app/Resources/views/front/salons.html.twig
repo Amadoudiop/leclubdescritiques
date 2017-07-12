@@ -51,7 +51,7 @@
                                                 <td>${ room.created_by }</td>
                                                 <td>${ room.start_date }</td>
                                                 <td>${ room.end_date }</td>
-                                                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-glass"></span></button></p></td>
+                                                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs"@click.stop.prevent="rejoinRoom(room.id)"><span class="glyphicon glyphicon-glass"></span></button></p></td>
                                             </tr>
                                     </tbody>
                                 </table>

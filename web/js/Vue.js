@@ -32,7 +32,10 @@ Vue.component('autocomplete', {
                             '<span  id="id_google_books_api" class="hidden">{{ dataRecup.id_google_books_api }}</span>'+
                             '<span  id="sub_category" class="hidden">{{ dataRecup.sub_category }}</span>'+
                             '<h4><span id="author">{{ dataRecup.authors }}</span></h4>'+
-                            '<star-rating v-model="ratingAddBook" :star-size="20" :max-rating="4" :rating="0"  :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
+                            '<select id="status">'+
+                                '<option v-for="status in dataRecup.statuts" :value="status.id">{{ status.wording }}</option>'+
+                            '</select>'+
+                            '<star-rating v-model="ratingAddBook" :star-size="20" :max-rating="4" :rating="0"  :increment="1" :show-rating="false"  active-color="#D99E7E"></star-rating>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -817,6 +820,7 @@ var app = new Vue({
             });
         },
         addBook(event) {
+            var rating = app.$refs.autocomplete.ratingAddBook;
             var author = encodeURIComponent($('#author').text());
             var title = encodeURIComponent($('#title').text());
             var description = encodeURIComponent($('#description').text());
@@ -825,13 +829,14 @@ var app = new Vue({
             var url_image = encodeURIComponent(document.getElementById("url_image").src);
             var url_product = encodeURIComponent($('#url_product').text());
             var sub_category = encodeURIComponent($('#sub_category').text());
+            var status = encodeURIComponent($('#status').val());
 
-            var object = {'author':author,'title':title, 'description':description,'publication_date':publication_date,'id_google_api':id_google_api,'url_image':url_image,'url_product':url_product,'sub_category':sub_category};
+            var object = {'author':author,'title':title, 'description':description,'publication_date':publication_date,'id_google_api':id_google_api,'url_image':url_image,'url_product':url_product,'sub_category':sub_category,'rating':rating,'status':status};
             var self = this;
             $.ajax({
                 url: Routing.generate('add_book'),
                 type: 'POST',
-                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category,
+                data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category+'&rating='+rating+'&status='+status,
                 success: function(response) {
                     if (response.valid === true) {
                         app.$root.$children[0].success(response.msg);
@@ -847,7 +852,7 @@ var app = new Vue({
         getBooksTrends() {
             var that = this;
             $.ajax({
-                url: 'http://localhost:8000/app_dev.php/getBooksTrends',
+                url: '/getBooksTrends',
                 type: 'GET',
                 success: function(data) {
                     that.alaunes = data;
@@ -858,7 +863,7 @@ var app = new Vue({
         getRooms(){
             var that = this;
             $.ajax({
-                url: 'http://localhost:8000/app_dev.php/getRooms',
+                url: '/getRooms',
                 type: 'GET',
                 success: function(data) {
                     that.rooms = data;
@@ -870,7 +875,7 @@ var app = new Vue({
         getAllBooks(){
             var that = this;
             $.ajax({
-                url: 'http://localhost:8000/app_dev.php/getAllBooks',
+                url: '/getAllBooks',
                 type: 'GET',
                 success: function(data) {
                     that.books = data;
@@ -955,7 +960,7 @@ var app = new Vue({
         getUserData(){
             var self = this;
             $.ajax({
-                url: 'http://localhost:8000/app_dev.php/getInfosUser/1',
+                url: '/getInfosUser/1',
                 type: 'GET',
                 success: function(data) {
                     self.userData = data;
@@ -967,7 +972,7 @@ var app = new Vue({
         getOeuvreUser(){
             var self = this;
             $.ajax({
-                url: 'http://localhost:8000/app_dev.php/getBooksUser/'+ self.atmUser,
+                url: '/getBooksUser/'+ self.atmUser,
                 type: 'GET',
                 success: function(data) {
                     self.userBooks = data;

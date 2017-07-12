@@ -30,6 +30,7 @@ class DefaultController extends Controller
      */
     public function profilAction(Request $request)
     {
+
         //infos de l'utlisateur
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
@@ -40,10 +41,13 @@ class DefaultController extends Controller
 
         $my_profil = true;
 
+        $status = $em->getRepository('AppBundle:Status')->findAll();
+
         return $this->render('front/profil.html.twig', [
             'user' => $user,
             'user_oeuvres' => $user_oeuvres,
-            'my_profil' => $my_profil
+            'my_profil' => $my_profil,
+            'status' => $status
         ]);
     }
     /**

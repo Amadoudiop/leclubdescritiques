@@ -642,6 +642,7 @@
                             </transition>
 
                             <autocomplete
+                                    ref="autocomplete"
                                     url="http://localhost:8000/app_dev.php/getBooks/"
                                     anchor="title"
                                     label="authors"
@@ -684,25 +685,25 @@
                         <div class="md-form form-sm">
                             <i class="fa fa-envelope prefix"></i>
                             <label for="form19">Votre prénom</label>
-                            <input type="text" id="edit_firstname" class="form-control" value="{{ user.firstname }}">
+                            <input type="text" id="edit_firstname" class="form-control" value="${ userData.firstname }">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-lock prefix"></i>
                             <label for="form20">Votre nom </label>
-                            <input type="text" id="edit_lastname" class="form-control" value="{{ user.lastname }}">
+                            <input type="text" id="edit_lastname" class="form-control" value="${ userData.lastname }">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-tag prefix"></i>
                             <label for="form21">Votre adresse email</label>
-                            <input type="text" id="edit_email" class="form-control" value="{{ user.email }}">
+                            <input type="text" id="edit_email" class="form-control" value="${ userData.email }">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-pencil prefix"></i>
                             <label for="form8">Votre description</label>
-                            <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0">{{ user.description }}</textarea>
+                            <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0">${ userData.description }</textarea>
                         </div>
 
                         <div class="text-center mt-1-half">

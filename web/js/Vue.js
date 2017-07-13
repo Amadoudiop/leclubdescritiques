@@ -931,7 +931,7 @@ var app = new Vue({
                         $("#btnAddContact").addClass("hidden");
                         $("#btnRemoveContact").removeClass("hidden");
                     } else {
-                        app.$root.$children[0].error(response.msg);
+                        app.$refs.toast.error(response.msg);
                     }
                 }
             })
@@ -960,7 +960,7 @@ var app = new Vue({
         getUserData(){
             var self = this;
             $.ajax({
-                url: '/getInfosUser/1',
+                url: '/app_dev.php/getInfosUser/'+ self.atmUser,
                 type: 'GET',
                 success: function(data) {
                     self.userData = data;
@@ -972,7 +972,7 @@ var app = new Vue({
         getOeuvreUser(){
             var self = this;
             $.ajax({
-                url: '/getBooksUser/'+ self.atmUser,
+                url: '/app_dev.php/getBooksUser/'+ self.atmUser,
                 type: 'GET',
                 success: function(data) {
                     self.userBooks = data;
@@ -1032,7 +1032,6 @@ var app = new Vue({
     },
     created(){
         this.atmUser = this.getUser();
-        var self = this;
         var atmPage = window.location.pathname;
         if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }
         if (atmPage == '/app_dev.php/')  { this.getBooksTrends(); this.getRooms() }

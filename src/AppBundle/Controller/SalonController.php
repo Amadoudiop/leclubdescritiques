@@ -171,6 +171,8 @@ class SalonController extends Controller
          //infos de l'utlisateur connecté
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
+        $contacts = $user->getContacts();
+
         if ($user->getId() == $owner->getId()) {
             $my_room = true;
         }else{
@@ -186,7 +188,8 @@ class SalonController extends Controller
             'messages' => $messages,
             'participants' => $participants,
             'user' => $user,
-            'my_room' => $my_room
+            'my_room' => $my_room,
+            'contacts' => $contacts
         ]);
     }
 
@@ -412,6 +415,63 @@ class SalonController extends Controller
 
                             $response = ['valid' => true, 'msg' => 'Salon rejoint 2']; 
                         }
+                    }
+                }
+
+            }  
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/inviteContact", name="invite_contact", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function inviteContactAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $contact = $request->request->get('contact');
+        $id_salon = $request->request->get('id_salon');
+
+        if ($request->getMethod() == 'POST') {
+
+            $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+
+            if (null === $salon) {
+                $response = ['valid' => false, 'msg' => "Ce salon n'existe pas"];
+            }else{
+                $user_target = $em->getRepository('AppBundle:User')->find($contact);
+
+                if (null === $user_target) {
+                    $response = ['valid' => false, 'msg' => "Ce contact n'est pas dans votre liste"];
+                }else{
+                    if ($salon->hasParticipant($user_target)) {
+                        $response = ['valid' => false, 'msg' => 'Ce contact participe déjà à ce salon']; 
+                    }else{
+                        $salon->addParticipant($user_target);  
+                        $em->flush();
+
+                        $message = (new \Swift_Message('Un utilisateur vous invite à un salon'))
+                        ->setFrom($this->getParameter('mailer_user'))
+                        ->setTo($user_target->getEmail())
+                        ->setBody(
+                            $this->renderView(
+                                'email/invite_room.html.twig',
+                                ['user' => $user, 'user_target' => $user_target, 'salon' => $salon]
+                            ),
+                            'text/html'
+                        );      
+
+                        $this->get('mailer')->send($message);   
+
+                        $response = ['valid' => true, 'msg' => 'Ce contact a rejoint ce salon'];
                     }
                 }
 

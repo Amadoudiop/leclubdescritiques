@@ -17,7 +17,7 @@
             <div class="col-lg-3">
                 <div class="btn-panel btn-panel-conversation">
                     Liste des participants
-                    <button class="btn  col-lg-6  send-message-btn pull-right" ><i class="fa fa-plus"></i> Inviter un contact</button>
+                    <button class="btn  col-lg-6  send-message-btn pull-right" data-toggle="modal" data-target="#modalInviteContact"><i class="fa fa-plus"></i> Inviter un contact</button>
                 </div>
             </div>
             {% if my_room == true %}
@@ -110,5 +110,43 @@
         </div>
     </div>
     <!--Modal: Editer room form-->
+
+    <!--Modal: Inviter contact form-->
+    <div class="modal fade" id="modalInviteContact" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header light-blue darken-3 white-text">
+                    <button type="button"  id="close-edit-profil" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="title"><i class="fa fa-pencil"></i> Inviter un contact</h4>
+                </div>
+                <!--Body-->
+                <div class="modal-body mb-0">
+
+                    <div class="md-form form-sm">
+                        <label for="contact">Contact</label>
+                        <select  id="contact" class="form-control">
+                            {% for contact in contacts %}
+                            <option value="{{ contact.getId }}">
+                               {{ contact.getFirstname }} {{ contact.getLastname }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="text-center mt-1-half">
+                        <button class="btn btn-info mb-2" id="btnEditProfil" @click.stop.prevent="inviteContact"> Inviter ce contact <i class="fa fa-send ml-1"></i></button>
+                    </div>
+
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: Inviter contact form-->
 
 {% endblock %}

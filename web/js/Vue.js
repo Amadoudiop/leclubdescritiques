@@ -1033,7 +1033,24 @@ var app = new Vue({
                     }
                 }
             });
-        }
+        },
+        inviteContact() {
+            var contact = encodeURIComponent($('#contact').val());
+            var id_salon = $('#id_salon').text();
+
+            $.ajax({
+                url: '/inviteContact',
+                type: 'POST',
+                data: 'contact='+contact+'&id_salon='+id_salon,
+                success: function (response) {
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            })
+        },
     },
     computed: {
         filteredBooks(){

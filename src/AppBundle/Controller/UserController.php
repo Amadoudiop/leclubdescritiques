@@ -162,6 +162,8 @@ class UserController extends Controller
         $publication_date = new \DateTime($publication_date);
         $id_google_api = $request->request->get('id_google_api');
         $sub_category = $request->request->get('sub_category');
+        $rating = $request->request->get('rating');
+        $status = $request->request->get('status');
 
         if ($request->getMethod() == 'POST') {
             $book = $em->getRepository('AppBundle:Oeuvre')->findOneBy(['id_google_api' => $id_google_api]);
@@ -205,7 +207,7 @@ class UserController extends Controller
                 $newBook->setDescription($description);
                 $newBook->setUrlImage($url_image);
                 $newBook->setPublicationDate($publication_date);
-                $newBook->setRating(5);
+                $newBook->setRating($rating);
                 $newBook->setAuthor($author1);
                 $newBook->setIdGoogleApi($id_google_api);
                 $newBook->setCategory($category);
@@ -220,18 +222,33 @@ class UserController extends Controller
             }
 
 
-            $status = $em->getRepository('AppBundle:Status')->find(1);
+            $status = $em->getRepository('AppBundle:Status')->find($status);
 
-            $userBook = new UserOeuvre();
-            $userBook->setUser($user);
-            $userBook->setOeuvre($book);
-            $userBook->setStatus($status);
-            $userBook->setRating(5);
+            if ($status) {
+                $user_oeuvre = $em->getRepository('AppBundle:UserOeuvre')->findOneBy(['user' => $user, 'oeuvre' => $book]);
 
-            $em->persist($userBook);
-            $em->flush();
+                if ($user_oeuvre) {
+                    $response = ['valid' => false, 'msg' => "Ce livre est déjà votre liste"];
+                }else{
+                    $userBook = new UserOeuvre();
+                    $userBook->setUser($user);
+                    $userBook->setOeuvre($book);
+                    $userBook->setStatus($status);
+                    $userBook->setRating($rating);    
 
-            $response = ['valid' => true, 'msg' => 'Vos informations sont enregistrées'];
+                    $em->persist($userBook);
+                    $em->flush();
+
+                    //calcul de la moyenne des notes
+                    $moyenne = $em->getRepository('AppBundle:UserOeuvre')->avgRatingBook($book->getId());
+                    $book->setRating($moyenne);
+                    $em->flush();
+
+                    $response = ['valid' => true, 'msg' => 'Ce livre a été ajouté à votre liste'];
+                }
+            }else{
+                $response = ['valid' => false, 'msg' => "Ce statut n'existe pas"];
+            }
                      
         }else{
             $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
@@ -445,6 +462,11 @@ class UserController extends Controller
             $author = (empty($user_oeuvre->getOeuvre()->getAuthor()->getFirstname())) ? '' : $user_oeuvre->getOeuvre()->getAuthor()->getFirstname();
             $category = (empty($user_oeuvre->getOeuvre()->getCategory()->getName())) ? '' : $user_oeuvre->getOeuvre()->getCategory()->getName();
             $sub_category = (empty($user_oeuvre->getOeuvre()->getSubCategory()->getName())) ? '' : $user_oeuvre->getOeuvre()->getSubCategory()->getName();
+            $avg_rating = (empty($user_oeuvre->getOeuvre()->getRating())) ? '' : $user_oeuvre->getOeuvre()->getRating();
+            $approved = (empty($user_oeuvre->getOeuvre()->getApproved())) ? '' : $user_oeuvre->getOeuvre()->getApproved();
+            $status = (empty($user_oeuvre->getStatus()->getWording())) ? '' : $user_oeuvre->getStatus()->getWording();
+            $status_color = (empty($user_oeuvre->getStatus()->getColor())) ? '' : $user_oeuvre->getStatus()->getColor();
+
 
             $data[] = [
                 'title' => $title,
@@ -455,7 +477,11 @@ class UserController extends Controller
                 'rating' => $rating,
                 'author' => $author,
                 'category' => $category,
-                'sub_category' => $sub_category
+                'sub_category' => $sub_category,
+                'avg_rating' => $avg_rating,
+                'approved' => $approved,
+                'status' => $status,
+                'status_color' => $status_color
              ];
         }
 
@@ -574,7 +600,7 @@ class UserController extends Controller
     public function sendMessagePersonalAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        
+
         //infos de l'utlisateur
         $user = $this->get('security.token_storage')->getToken()->getUser();
 

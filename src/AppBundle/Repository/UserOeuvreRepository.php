@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class UserOeuvreRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function avgRatingBook($book)
+    {
+        $qb = $this->createQueryBuilder('a');
+        $qb->select('AVG(a.rating) AS moyenne')
+            ->where('a.oeuvre = :book')
+            ->setParameter('book', $book);
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
 }

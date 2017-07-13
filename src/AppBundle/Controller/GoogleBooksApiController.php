@@ -24,6 +24,14 @@ class GoogleBooksApiController extends Controller
         $result = file_get_contents($url);
         $result = json_decode($result, true);
 
+        $em = $this->getDoctrine()->getManager();
+
+        $status = $em->getRepository('AppBundle:Status')->findAll();
+
+        foreach ($status as $statut) {
+            $statuts[] = ['id' => $statut->getId(), 'wording' =>$statut->getWording()];
+        }
+
         //var_dump($result);die;
 
         if ($result) {
@@ -38,7 +46,7 @@ class GoogleBooksApiController extends Controller
                 $sub_category = (empty($item['volumeInfo']['categories'][0])) ? '' : $item['volumeInfo']['categories'][0];
 
                 $response[] = ['authors' => $authors, 'title' => $title, 'url_product' => $url_product, 'description' => $description, 'url_image' => $url_image, 'publication_date' => $publication_date, 'id_google_books_api' => $id_google_books_api,
-                   'sub_category' => $sub_category ];
+                   'sub_category' => $sub_category, 'statuts' => $statuts];
             }
         }
         return new JsonResponse($response);

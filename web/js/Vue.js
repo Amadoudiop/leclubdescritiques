@@ -634,6 +634,7 @@ var app = new Vue({
                 last_login: "02/07/2017",
                 email: "johribe@gmail.com"
             } ,
+            userContacts:{ },
             atmUser: '',
             selectedBook: '',
             searchBook: '',
@@ -922,7 +923,7 @@ var app = new Vue({
             var id_user = encodeURIComponent($('#id_user').text());
 
             $.ajax({
-                url: '/addContact',
+                url: '/app_dev.php/addContact',
                 type: 'POST',
                 data: 'id_user=' + id_user,
                 success: function (response) {
@@ -1014,7 +1015,19 @@ var app = new Vue({
                     }
                 }
             });
-        }
+        },
+        getUserContacts(){
+            var self = this;
+            $.ajax({
+                url: '/app_dev.php/getContactsUser/'+ self.atmUser,
+                type: 'GET',
+                success: function(data) {
+                    self.userContacts = data;
+                    self.$refs.toast.success('UserData récupérés');
+
+                }
+            });
+        },
     },
     computed: {
         filteredBooks(){
@@ -1036,7 +1049,7 @@ var app = new Vue({
         if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }
         if (atmPage == '/app_dev.php/')  { this.getBooksTrends(); this.getRooms() }
         if (atmPage == '/app_dev.php/livres') this.getAllBooks();
-        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser() }
+        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser(); this.getUserContacts() }
 
     },
     mounted(){

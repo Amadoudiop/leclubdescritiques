@@ -591,6 +591,7 @@ var app = new Vue({
                 last_login: "02/07/2017",
                 email: "johribe@gmail.com"
             },
+            userContacts: {},
             atmUser: '',
             selectedBook: '',
             searchBook: '',
@@ -861,7 +862,7 @@ var app = new Vue({
             var id_user = encodeURIComponent($('#id_user').text());
 
             $.ajax({
-                url: '/addContact',
+                url: '/app_dev.php/addContact',
                 type: 'POST',
                 data: 'id_user=' + id_user,
                 success: function success(response) {
@@ -953,6 +954,17 @@ var app = new Vue({
                     }
                 }
             });
+        },
+        getUserContacts: function getUserContacts() {
+            var self = this;
+            $.ajax({
+                url: '/app_dev.php/getContactsUser/' + self.atmUser,
+                type: 'GET',
+                success: function success(data) {
+                    self.userContacts = data;
+                    self.$refs.toast.success('UserData récupérés');
+                }
+            });
         }
     },
     computed: {
@@ -978,7 +990,7 @@ var app = new Vue({
         }
         if (atmPage == '/app_dev.php/livres') this.getAllBooks();
         if (atmPage == '/app_dev.php/profil') {
-            this.getUserData();this.getOeuvreUser();
+            this.getUserData();this.getOeuvreUser();this.getUserContacts();
         }
     },
     mounted: function mounted() {

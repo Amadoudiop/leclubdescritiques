@@ -8,7 +8,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('css/theme-responsive.min.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('css/fonts.css') }}">
     {% endblock  %}
-    
+    <span id="id_user" ref="userId" class="hidden" value="{{ user.id }}">{{ user.id }}</span>
     <div class="container-fluid" id="salon">
         <div class="row">
             Salon : {{ salon.title }}
@@ -37,7 +37,7 @@
                         <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 50px; height: 50px;" src="">
                     </a>
                     <div class="media-body">
-                        <h5 class="media-heading">{{ participant.firstname }} {{ participant.lastname }}</h5>
+                        <a url="{{ path('other_profil', {'id': participant.getId}) }}"><h5 class="media-heading">{{ participant.firstname }} {{ participant.lastname }}</h5></a>
                     </div>
                 </div>
                 {% endfor %}
@@ -45,16 +45,21 @@
 
             <div class="message-wrap col-lg-8">
                 <div class="msg-wrap">
+                    <div class="media msg">
+                    </div>
                     {% for message in messages %}
-                        <div class="media msg">
+                        <div class="media msg" id="{{ message.id }}">
                             <a class="pull-left" href="#">
                                 <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">
                             </a>
                             <div class="media-body">
-                                <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ message.time|date('d-m-Y h:i:s') }}</small>    
+                                <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ message.time|date('d-m-Y h:i:s') }}
+                                {% if my_room == true %}<span id="span-{{ message.id }}" class="red {% if not message.report %}hidden{% endif %}">Commentaire signalé</span><button type="button" class="close waves-effect waves-light pull-right" aria-label="Supprimer" @click.stop.prevent="deleteMessageChat({{ message.id }})">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>{% else %}<button id="btn-{{ message.id }}" class="fa fa-exclamation-circle waves-effect waves-light {% if message.report %}hidden{% endif %}" @click.stop.prevent="reportMessageChat({{ message.id }})"></button><span id="span-{{ message.id }}" class="red {% if not message.report %}hidden{% endif %}">Commentaire signalé</span>{% endif %}</small>
 
-                                <h5 class="media-heading">{{ message.user.firstname }} {{ message.user.lastname }}</h5>
-                                <small class="col-lg-10">{{ message.message }}</small>
+                                <a url="{{ path('other_profil', {'id': message.user.getId}) }}"><h5 class="media-heading">{{ message.user.firstname }} {{ message.user.lastname }}</h5></a>
+                                <small class="col-lg-10">{{ message.message }} {{ message.report  }}</small>
                             </div>
                         </div>
                     {% endfor %}

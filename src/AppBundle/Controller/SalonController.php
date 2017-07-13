@@ -194,10 +194,10 @@ class SalonController extends Controller
     }
 
     /**
-     * @Route("/sendMessage", name="send_message", options={"expose"=true})
+     * @Route("/sendMessageChat", name="send_message_chat", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
-    public function sendMessageAction(Request $request)
+    public function sendMessageChatAction(Request $request)
     {
         //dump($request);die;
         $em = $this->getDoctrine()->getManager();
@@ -205,11 +205,6 @@ class SalonController extends Controller
 
         //infos de l'utlisateur
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        //var_dump($request);die;
-
-        //on récupère le salon dans l'url
-        //$url = $request->headers->get('referer');
-        //$url = explode("/salon/", $url);
 
         $id_salon = intval($request->request->get('id_salon'));
 
@@ -235,6 +230,78 @@ class SalonController extends Controller
                 $response = ['valid' => true, 'msg' => 'Message envoyé']; 
             }else{
                 $response = ['valid' => false, 'msg' => 'Votre message est obligatoire'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/deleteMessageChat", name="delete_message_chat", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMessageChatAction(Request $request)
+    {
+        //dump($request);die;
+        $em = $this->getDoctrine()->getManager();
+        //dump($em);die;
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $id_salon = intval($request->request->get('id_salon'));
+        $id_message = $request->request->get('id_message');
+
+        $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+        $message = $em->getRepository('AppBundle:SalonMessages')->find($id_message);
+
+        if ($request->getMethod() == 'POST') {
+            if ($message) {
+
+                $em->remove($message);
+                $em->flush();
+
+                $response = ['valid' => true, 'msg' => 'Message supprimé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => "Ce message n'existe pas"];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/reportMessageChat", name="report_message_chat", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function reportMessageChatAction(Request $request)
+    {
+        //dump($request);die;
+        $em = $this->getDoctrine()->getManager();
+        //dump($em);die;
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $id_salon = intval($request->request->get('id_salon'));
+        $id_message = $request->request->get('id_message');
+
+        $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+        $message = $em->getRepository('AppBundle:SalonMessages')->find($id_message);
+
+        if ($request->getMethod() == 'POST') {
+            if ($message) {
+
+                $message->setReport(true);
+                $em->flush();
+
+                $response = ['valid' => true, 'msg' => 'Message signalé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => "Ce message n'existe pas"];
             }
         }else{
             $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];

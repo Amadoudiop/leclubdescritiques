@@ -51,6 +51,13 @@ class SalonMessages
      */
     private $time;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="report", type="boolean", options={"default" : 0})
+     */
+    private $report;
+
 
     /**
      * Get id
@@ -156,5 +163,29 @@ class SalonMessages
     public function getTime()
     {
         return $this->time;
+    }
+
+    /**
+     * Set report
+     *
+     * @param boolean $report
+     *
+     * @return SalonMessages
+     */
+    public function setReport($report)
+    {
+        $this->report = $report;
+
+        return $this;
+    }
+
+    /**
+     * Get report
+     *
+     * @return boolean
+     */
+    public function getReport()
+    {
+        return $this->report;
     }
 }

@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 /**
  * Salon controller.
@@ -180,6 +181,12 @@ class SalonController extends Controller
         }
 
         $participants = $salon->getParticipants();
+
+        $access = $salon->hasParticipant($user);
+         
+        if (!$access) {
+            throw new UnauthorizedHttpException("Vous ne pouvez pas accéder à ce salon");
+        }
 
         $messages = $em->getRepository('AppBundle:SalonMessages')->findBySalon($salon);
 

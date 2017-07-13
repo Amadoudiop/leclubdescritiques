@@ -819,6 +819,25 @@ var app = new Vue({
                 }
             });
         },
+        editSalon(){
+            var title = $('#salon-title').val();
+            var nb_max_part = $('#salon-max-participants').val();
+            var id_salon = $('#id_salon').text();
+
+            $.ajax({
+                url: '/editRoom',
+                type: 'POST',
+                data: 'title='+title+'&nb_max_part='+nb_max_part+'&id_salon='+id_salon,
+                success: function(response) {
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                        //$('#close-send-message').trigger( "click" );
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
+        },
         addBook(event) {
             var rating = app.$refs.autocomplete.ratingAddBook;
             var author = encodeURIComponent($('#author').text());
@@ -960,7 +979,7 @@ var app = new Vue({
         getUserData(){
             var self = this;
             $.ajax({
-                url: '/getInfosUser/1',
+                url: '/getInfosUser/'+ self.atmUser,
                 type: 'GET',
                 success: function(data) {
                     self.userData = data;

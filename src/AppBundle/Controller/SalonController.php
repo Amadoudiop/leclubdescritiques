@@ -165,26 +165,28 @@ class SalonController extends Controller
         $em = $this->getDoctrine()->getManager();
         $salon = $em->getRepository('AppBundle:Salon')->find($id);
 
-         //infos de l'utlisateur
+        //infos du propriétaire du salon
+        $owner = $salon->getUser();
+
+         //infos de l'utlisateur connecté
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        if ($user->getId() == $owner->getId()) {
+            $my_room = true;
+        }else{
+            $my_room = false;
+        }
 
         $participants = $salon->getParticipants();
 
-        /*foreach ($salon->getParticipants() as $participant) {
-            $verif = 
-        }*/
-
-        //die;
-
-
         $messages = $em->getRepository('AppBundle:SalonMessages')->findBySalon($salon);
-
 
         return $this->render('front/chat.html.twig', [
             'salon' => $salon,
             'messages' => $messages,
             'participants' => $participants,
-            'user' => $user
+            'user' => $user,
+            'my_room' => $my_room
         ]);
     }
 
@@ -321,6 +323,44 @@ class SalonController extends Controller
 
                         $response = ['valid' => true, 'msg' => 'Salon créé']; 
                     }
+                }  
+            }else{
+                $response = ['valid' => false, 'msg' => 'Toute les informations sont obligatoires'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/editRoom", name="edit_room", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function editRoomAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $title = $request->request->get('title');
+        $nb_max_part = intval($request->request->get('nb_max_part'));
+        $id_salon = $request->request->get('id_salon');
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($title) && !empty($nb_max_part)) {
+
+                $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+
+                if (null === $salon) {
+                    $response = ['valid' => false, 'msg' => "Ce salon n'existe pas"];
+                }else{
+                  $salon->setTitle($title);
+                  $salon->setParticipantsNumber($nb_max_part);
+                  $em->flush();
+                  $response = ['valid' => true, 'msg' => 'Salon modifié']; 
                 }  
             }else{
                 $response = ['valid' => false, 'msg' => 'Toute les informations sont obligatoires'];

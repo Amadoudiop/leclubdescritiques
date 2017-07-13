@@ -130,10 +130,11 @@
                                                         </div>
                                                         <div class="panel-footer"  >
                                                             ${ book.title } <br>
-                                                            ${ book.author } rating<star-rating  :star-size="20" :max-rating="4" :rating=" book.rating " :read-only="true" :show-rating="false" :increment="0.5" >
+                                                            ${ book.author } rating<star-rating  :star-size="20" :max-rating="4" :rating=" book.avg_rating " :read-only="true" :show-rating="false" :increment="0.5" >
                                                             </star-rating>
-                                                            <star-rating :star-size="20" :max-rating="4" :rating="5" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
-                                                            <span class="label label-success">à échanger</span>
+                                                            <star-rating :star-size="20" :max-rating="4" :rating="book.rating" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
+                                                            <span class="label label-default" v-bind:style="{ backgroundColor: book.status_color}">${ book.status }</span>
+                                                            <span v-if="book.approved !== 0" class="label label-warning">En attente d'approbation</span>
                                                             <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                                         </div>
                                                     </div>
@@ -378,110 +379,24 @@
                                 <div class="content-grid column-xs-3 column-sm-4 column-md-4 column-lg-6 height-xs-4 mgbt-xs-20">
                                     <div>
                                         <ul class="list-wrapper">
-                                            <li> <a href="#">
-                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
-                                                </a>
-                                                <span class="menu-text"> Gabriella Montagna
-                            <span class="menu-info">
-                                <span class="menu-date">San Diego</span>
-                                <span class="menu-action">
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
-                                        <i class="fa fa-times"></i>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                                            </li>
-                                            <li class="warning">
-                                                <a href="#">
-                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
-                                                </a>
-                                                <span class="menu-text">  Jonathan Fuzzy
-                            	<span class="menu-info">
-                                    <span class="menu-date">Seattle</span>
-                                    <span class="menu-action">
-                                        <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
-                                            <i class="fa fa-check"></i>
-                                        </span>
-                                        <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
-                                            <i class="fa fa-times"></i>
-                                        </span>
-                                    </span>
-                            	</span>
-                            </span>
-
-                                            </li>
-                                            <li> <a href="#">
-                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
-                                                </a>
-                                                <span class="menu-text">  Kim Kardiosun
-                            <span class="menu-info">
-                                <span class="menu-date">New York</span>
-                                <span class="menu-action">
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
-                                        <i class="fa fa-times"></i>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                                            </li>
-                                            <li> <a href="#">
-                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
-                                                </a>
-                                                <span class="menu-text">   Brad Pita
-                            <span class="menu-info">
-                                <span class="menu-date">Seattle</span>
-                                <span class="menu-action">
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
-                                        <i class="fa fa-times"></i>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                                            </li>
-                                            <li> <a href="#">
-                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
-                                                </a>
-                                                <span class="menu-text">  Celline Dior
-                            <span class="menu-info">
-                                <span class="menu-date">Los Angeles</span>
-                                <span class="menu-action">
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
-                                        <i class="fa fa-times"></i>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                                            </li>
-                                            <li> <a href="#">
-                                                    <span class="menu-icon"><img src="{{ asset('images/book.jpg') }}" alt="example image"></span>
-                                                </a>
-                                                <span class="menu-text">  Goerge Bruno Marz
-                            <span class="menu-info">
-                                <span class="menu-date">Las Vegas</span>
-                                <span class="menu-action">
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
-                                        <i class="fa fa-check"></i>
-                                    </span>
-                                    <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
-                                        <i class="fa fa-times"></i>
-                                    </span>
-                                </span>
-                            </span>
-                        </span>
-                                            </li>
+                                            <div v-for="contact in userContacts">
+                                                <li> <a href="#">
+                                                        <span class="menu-icon"><img :src="contact.img" alt="example image"></span>
+                                                    </a>
+                                                    <span class="menu-text"> ${ contact.firstname contact.lastname }
+                                                        <span class="menu-info">
+                                                            <span class="menu-action">
+                                                                <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
+                                                                    <i class="fa fa-check"></i>
+                                                                </span>
+                                                                <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
+                                                                    <i class="fa fa-times"></i>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </div>
 
                                         </ul>
                                     </div>
@@ -685,25 +600,25 @@
                         <div class="md-form form-sm">
                             <i class="fa fa-envelope prefix"></i>
                             <label for="form19">Votre prénom</label>
-                            <input type="text" id="edit_firstname" class="form-control" value="${ userData.firstname }">
+                            <input type="text" id="edit_firstname" class="form-control" value=" userData.firstname ">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-lock prefix"></i>
                             <label for="form20">Votre nom </label>
-                            <input type="text" id="edit_lastname" class="form-control" value="${ userData.lastname }">
+                            <input type="text" id="edit_lastname" class="form-control" value=" userData.lastname ">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-tag prefix"></i>
                             <label for="form21">Votre adresse email</label>
-                            <input type="text" id="edit_email" class="form-control" value="${ userData.email }">
+                            <input type="text" id="edit_email" class="form-control" value=" userData.email ">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-pencil prefix"></i>
                             <label for="form8">Votre description</label>
-                            <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0">${ userData.description }</textarea>
+                            <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0"> userData.description </textarea>
                         </div>
 
                         <div class="text-center mt-1-half">

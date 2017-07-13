@@ -306,7 +306,6 @@ Vue.component('toast',{
         }
     }
 })
-/*Vue.component('star-rating', VueStarRating.default);*/
 Vue.component('vue-table', {
     template: '' +
     '<table class="col-sm-12">'+
@@ -625,6 +624,7 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            loadingFrame: true,
             ratingAddBook: '',
             userID:{ },
             userData: {
@@ -634,6 +634,7 @@ var app = new Vue({
                 last_login: "02/07/2017",
                 email: "johribe@gmail.com"
             } ,
+            userContacts:{ },
             atmUser: '',
             selectedBook: '',
             searchBook: '',
@@ -975,7 +976,7 @@ var app = new Vue({
             var id_user = encodeURIComponent($('#id_user').text());
 
             $.ajax({
-                url: '/addContact',
+                url: '/app_dev.php/addContact',
                 type: 'POST',
                 data: 'id_user=' + id_user,
                 success: function (response) {
@@ -984,7 +985,7 @@ var app = new Vue({
                         $("#btnAddContact").addClass("hidden");
                         $("#btnRemoveContact").removeClass("hidden");
                     } else {
-                        app.$root.$children[0].error(response.msg);
+                        app.$refs.toast.error(response.msg);
                     }
                 }
             })
@@ -1013,7 +1014,7 @@ var app = new Vue({
         getUserData(){
             var self = this;
             $.ajax({
-                url: '/getInfosUser/'+ self.atmUser,
+                url: '/app_dev.php/getInfosUser/'+ self.atmUser,
                 type: 'GET',
                 success: function(data) {
                     self.userData = data;
@@ -1025,7 +1026,7 @@ var app = new Vue({
         getOeuvreUser(){
             var self = this;
             $.ajax({
-                url: '/getBooksUser/'+ self.atmUser,
+                url: '/app_dev.php/getBooksUser/'+ self.atmUser,
                 type: 'GET',
                 success: function(data) {
                     self.userBooks = data;
@@ -1083,7 +1084,19 @@ var app = new Vue({
                         app.$root.$children[0].error(response.msg);
                     }
                 }
-            })
+            });
+        },
+        getUserContacts(){
+            var self = this;
+            $.ajax({
+                url: '/app_dev.php/getContactsUser/'+ self.atmUser,
+                type: 'GET',
+                success: function(data) {
+                    self.userContacts = data;
+                    self.$refs.toast.success('UserData récupérés');
+
+                }
+            });
         },
     },
     computed: {
@@ -1097,14 +1110,16 @@ var app = new Vue({
         },
 
     },
+    beforeCreate(){
+        this.loadingFrame = true;
+    },
     created(){
         this.atmUser = this.getUser();
-        var self = this;
         var atmPage = window.location.pathname;
         if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }
         if (atmPage == '/app_dev.php/')  { this.getBooksTrends(); this.getRooms() }
         if (atmPage == '/app_dev.php/livres') this.getAllBooks();
-        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser() }
+        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser(); this.getUserContacts() }
 
     },
     mounted(){

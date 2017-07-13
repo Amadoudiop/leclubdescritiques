@@ -40,7 +40,8 @@
 <body id="page-top" class="index">
 
 <div id="app">
-    <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+    {#<div class="loadingFrame" v-if="loadingFrame"> <loader :loading="true" size="200px" ></loader> </div>
+    <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>#}
 
     <!-- Navigation -->
     {% block stylesheets %}{% endblock %}

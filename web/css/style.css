@@ -924,6 +924,7 @@ body::-webkit-scrollbar {
 .v-spinner
 {
     text-align: center;
+    z-index: 1000;
 }
 .v-spinner .v-square
 {
@@ -1446,5 +1447,13 @@ body::-webkit-scrollbar {
     font-style: normal;
 }
 
+/*    --------------------------------------------------
+               loadingFrame
+	-------------------------------------------------- */
 
-
+.loadingFrame{
+    z-index: 10000;
+    width:2000px;
+    height:2000px;
+    position:fixed;
+}

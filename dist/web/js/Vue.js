@@ -296,7 +296,6 @@ Vue.component('toast', {
         };
     }
 });
-/*Vue.component('star-rating', VueStarRating.default);*/
 Vue.component('vue-table', {
     template: '' + '<table class="col-sm-12">' + '    <thead>' + '    <tr>' + '    <th v-for="key in columns" @click="sortBy(key)" :class="{ active: sortKey == key } " >' + '    {{ key | capitalize }}' + '<span class="arrow" :class="sortOrders[key] > 0 ? \'asc\' : \'dsc\'"> </span>' + '    </th>' + '    </tr>' + '    </thead>' + '    <tbody>' + '    <tr v-for="entry in filteredData">' + '    <td v-for="key in columns">' + '    {{entry[key]}}' + '</td>' + '</tr>' + '</tbody>' + '</table> ' + '',
     props: {
@@ -582,6 +581,7 @@ var app = new Vue({
     delimiters: ['${', '}'],
     data: function data() {
         return {
+            loadingFrame: true,
             ratingAddBook: '',
             userID: {},
             userData: {
@@ -934,6 +934,20 @@ var app = new Vue({
                     }
                 }
             });
+        },
+        rejoinRoom: function rejoinRoom(id) {
+            $.ajax({
+                url: '/rejoinRoom',
+                type: 'POST',
+                data: 'id_salon=' + id,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        document.location.href = Routing.generate('salon', { id: id });
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
         }
     },
     computed: {
@@ -944,6 +958,9 @@ var app = new Vue({
                 return book.title.toLowerCase().indexOf(self.searchBook.toLowerCase()) >= 0;
             });
         }
+    },
+    beforeCreate: function beforeCreate() {
+        this.loadingFrame = true;
     },
     created: function created() {
         this.atmUser = this.getUser();

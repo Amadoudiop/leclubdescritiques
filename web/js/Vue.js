@@ -303,7 +303,6 @@ Vue.component('toast',{
         }
     }
 })
-/*Vue.component('star-rating', VueStarRating.default);*/
 Vue.component('vue-table', {
     template: '' +
     '<table class="col-sm-12">'+
@@ -622,6 +621,7 @@ var app = new Vue({
     delimiters: ['${','}'],
     data() {
         return {
+            loadingFrame: true,
             ratingAddBook: '',
             userID:{ },
             userData: {
@@ -1018,6 +1018,9 @@ var app = new Vue({
             })
         },
 
+    },
+    beforeCreate(){
+        this.loadingFrame = true;
     },
     created(){
         this.atmUser = this.getUser();

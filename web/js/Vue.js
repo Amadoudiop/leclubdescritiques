@@ -1082,7 +1082,7 @@ var app = new Vue({
             };
             
             this.conn.onerror = function(e){
-                alert("Error: something went wrong with the socket.");
+                console.log("Error: something went wrong with the socket.");
                 console.error(e);
             };
             // END SOCKET CONFIG

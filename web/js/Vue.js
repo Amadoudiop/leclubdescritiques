@@ -705,11 +705,15 @@ var app = new Vue({
         inscription : function (event) {
           var email = $('#email').val();
           $.ajax({
-                url: 'http://localhost:8000/register/',
+                url: '/register/',
                 type: 'POST',
                 data: 'email='+email,
                 success: function(msg) {
-                    msg.valid == true ? app.$refs.toast.success(msg) : app.$refs.toast.error(msg.text());
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                    }else{
+                        app.$refs.toast.error(response.msg);
+                    }
                 }
             });
 
@@ -726,7 +730,11 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
                 success: function(msg) {
-                    app.$refs.toast.success(msg);
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
                 }
             });
         },

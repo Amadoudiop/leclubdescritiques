@@ -36,34 +36,27 @@ class RegistrationController extends BaseController
                         $user->setPlainPassword($password);
                         $user->setEnabled(false);
                         $user->addRole('ROLE_USER');
-                        $user->setConfirmationToken($tokenGenerator->generateToken()); 
-                        $user->setFirstname(''); 
-                        $user->setLastname(''); 
-                        $user->setDescription(''); 
-                        $user->setPhoto('');          
+                        $user->setConfirmationToken($tokenGenerator->generateToken());      
 
                         $userManager->updateUser($user);
 
                         //on recupere le token
                         $token = $user->getConfirmationToken();
 
-                        //on récupère le host
-                        $host = $request->headers->get('host');
-
-                        //lien activation
-                        $url = $host."/activateAccount/".$token;
-
                         //envoie d'un mail pour activation de compte
 
-                        $message = \Swift_Message::newInstance();
-                        $message->setContentType("text/html");
-                        $message->setSubject("Activation de votre compte");
-                        $message->setFrom('fx.brazier@gmail.com');
-                        $message->setTo($email);
-                        // pour envoyer le message en HTML
-                        $message->setBody("Bonjour,<br />Pour activer votre compte veuillez vous rendre ici $url"); 
-                        //envoi du message
-                         $this->get('mailer')->send($message);     
+                        $message = (new \Swift_Message('Activation de votre compte'))
+                        ->setFrom($this->getParameter('mailer_user'))
+                        ->setTo($email)
+                        ->setBody(
+                            $this->renderView(
+                                'email/confirm_account.html.twig',
+                                ['token' => $token]
+                            ),
+                            'text/html'
+                        );      
+
+                        $this->get('mailer')->send($message);    
 
                         $response = ['valid' => true, 'msg' => 'Un mail vous sera envoyé pour activer votre compte']; 
                     }else{

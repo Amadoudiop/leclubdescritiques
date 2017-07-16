@@ -230,6 +230,7 @@ class SalonController extends Controller
                 $salon_message->setUser($user);
                 $salon_message->setMessage($message);
                 $salon_message->setTime($time);
+                $salon_message->setReport(false);
 
                 $em->persist($salon_message);
                 $em->flush();

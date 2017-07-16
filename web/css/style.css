@@ -783,6 +783,7 @@ a:link, a:hover, a:visited, a:active {
 {
     box-shadow: 0 0 3px #ddd;
     padding:0;
+    background-color: #D99E7E;
 
 }
 .msg
@@ -796,7 +797,7 @@ a:link, a:hover, a:visited, a:active {
     padding:10px;
     max-height: 400px;
     overflow: auto;
-
+    min-height: 200px;
 }
 
 .time
@@ -806,8 +807,6 @@ a:link, a:hover, a:visited, a:active {
 
 .send-wrap
 {
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
     padding:10px;
     /*background: #f8f8f8;*/
 }

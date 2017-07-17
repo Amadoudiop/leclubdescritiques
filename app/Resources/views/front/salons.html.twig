@@ -21,10 +21,12 @@
                                 <input id="search-input" name="query" placeholder="Recherche" v-model="searchQuery">
                             </form>
                         </div>
+                        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <div class="col-xs-2 col-sm-2 col-md-1 col-lg-1">
                              <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalAddBook"> <i class="fa fa-pencil append-icon"></i> Créer un salon </a>
 
                         </div>
+                        {% endif %}
                         <div class="col-xs-2 col-sm-2 col-md-3 col-lg-4"></div>
                     </div>
                     <div class="row">

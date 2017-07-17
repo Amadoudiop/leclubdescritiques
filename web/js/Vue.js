@@ -1123,11 +1123,15 @@ var app = new Vue({
     },
     created(){
         this.atmUser = this.getUser();
-        var atmPage = window.location.pathname;
-        if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }
-        if (atmPage == '/app_dev.php/')  { this.getBooksTrends(); this.getRooms() }
-        if (atmPage == '/app_dev.php/livres') this.getAllBooks();
-        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser(); this.getUserContacts() }
+        var pathArray = window.location.pathname.split( '/' );
+        var indice = pathArray.length;
+
+        if (pathArray[indice-1] == 'salons') { this.getRooms(); this.getAllBooks() }
+        if (pathArray[indice-1] == '')  { this.getBooksTrends(); this.getRooms() }
+        if (pathArray[indice-1] == 'livres') this.getAllBooks();
+        if (pathArray[indice-1] == 'profil') { this.getUserData(); this.getOeuvreUser(); this.getUserContacts() }
+        if (pathArray[indice-2] == 'profil') { this.getUserData(); this.getOeuvreUser(); this.getUserContacts() }
+
 
     },
     mounted(){

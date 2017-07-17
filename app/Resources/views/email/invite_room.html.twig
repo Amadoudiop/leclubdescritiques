@@ -1,0 +1,8 @@
+Bonjour {{ user_target.getFirstname }} {{ user_target.getLastname }},<br><br>
+
+Vous avez reçu une l'invitation suivante de <a url="{{ url('other_profil', {'id': user.getId}) }}">{{ user.getFirstname }} {{ user.getLastname }}</a> :<br><br>
+
+<b>Salon</b> : {{ salon.getTitle }}<br><br>
+
+Cordialement,<br>
+Le club des critiques

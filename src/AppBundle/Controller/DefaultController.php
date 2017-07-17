@@ -73,6 +73,11 @@ class DefaultController extends Controller
             $my_contact = false;
         }
 
+        if ($user->getId() == $user_target->getId()) {
+            //var_dump("OK");die;
+            //return $this->redirectToRoute("my_profil");
+        }
+
         return $this->render('front/profil.html.twig', [
             'user' => $user,
             'user_oeuvres' => $user_oeuvres,
@@ -102,15 +107,5 @@ class DefaultController extends Controller
                 'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
             ]);
         }
-
-    /**
-     * @Route("/chat", name="chat")
-     */
-    public function chatAction(Request $request)
-    {
-        return $this->render('chat/chat.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
-    }
 
 }

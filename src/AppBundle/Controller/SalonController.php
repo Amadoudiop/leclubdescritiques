@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 /**
  * Salon controller.
@@ -165,34 +166,45 @@ class SalonController extends Controller
         $em = $this->getDoctrine()->getManager();
         $salon = $em->getRepository('AppBundle:Salon')->find($id);
 
-         //infos de l'utlisateur
+        //infos du propriétaire du salon
+        $owner = $salon->getUser();
+
+         //infos de l'utlisateur connecté
         $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $contacts = $user->getContacts();
+
+        if ($user->getId() == $owner->getId()) {
+            $my_room = true;
+        }else{
+            $my_room = false;
+        }
 
         $participants = $salon->getParticipants();
 
-        /*foreach ($salon->getParticipants() as $participant) {
-            $verif = 
-        }*/
-
-        //die;
-
+        $access = $salon->hasParticipant($user);
+         
+        if (!$access) {
+            throw new UnauthorizedHttpException("Vous ne pouvez pas accéder à ce salon");
+        }
 
         $messages = $em->getRepository('AppBundle:SalonMessages')->findBySalon($salon);
-
 
         return $this->render('front/chat.html.twig', [
             'salon' => $salon,
             'messages' => $messages,
             'participants' => $participants,
-            'user' => $user
+            'user' => $user,
+            'my_room' => $my_room,
+            'contacts' => $contacts
         ]);
     }
 
     /**
-     * @Route("/sendMessage", name="send_message", options={"expose"=true})
+     * @Route("/sendMessageChat", name="send_message_chat", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
-    public function sendMessageAction(Request $request)
+    public function sendMessageChatAction(Request $request)
     {
         //dump($request);die;
         $em = $this->getDoctrine()->getManager();
@@ -200,11 +212,6 @@ class SalonController extends Controller
 
         //infos de l'utlisateur
         $user = $this->get('security.token_storage')->getToken()->getUser();
-        //var_dump($request);die;
-
-        //on récupère le salon dans l'url
-        //$url = $request->headers->get('referer');
-        //$url = explode("/salon/", $url);
 
         $id_salon = intval($request->request->get('id_salon'));
 
@@ -223,6 +230,7 @@ class SalonController extends Controller
                 $salon_message->setUser($user);
                 $salon_message->setMessage($message);
                 $salon_message->setTime($time);
+                $salon_message->setReport(false);
 
                 $em->persist($salon_message);
                 $em->flush();
@@ -230,6 +238,78 @@ class SalonController extends Controller
                 $response = ['valid' => true, 'msg' => 'Message envoyé']; 
             }else{
                 $response = ['valid' => false, 'msg' => 'Votre message est obligatoire'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/deleteMessageChat", name="delete_message_chat", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function deleteMessageChatAction(Request $request)
+    {
+        //dump($request);die;
+        $em = $this->getDoctrine()->getManager();
+        //dump($em);die;
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $id_salon = intval($request->request->get('id_salon'));
+        $id_message = $request->request->get('id_message');
+
+        $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+        $message = $em->getRepository('AppBundle:SalonMessages')->find($id_message);
+
+        if ($request->getMethod() == 'POST') {
+            if ($message) {
+
+                $em->remove($message);
+                $em->flush();
+
+                $response = ['valid' => true, 'msg' => 'Message supprimé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => "Ce message n'existe pas"];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/reportMessageChat", name="report_message_chat", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function reportMessageChatAction(Request $request)
+    {
+        //dump($request);die;
+        $em = $this->getDoctrine()->getManager();
+        //dump($em);die;
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $id_salon = intval($request->request->get('id_salon'));
+        $id_message = $request->request->get('id_message');
+
+        $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+        $message = $em->getRepository('AppBundle:SalonMessages')->find($id_message);
+
+        if ($request->getMethod() == 'POST') {
+            if ($message) {
+
+                $message->setReport(true);
+                $em->flush();
+
+                $response = ['valid' => true, 'msg' => 'Message signalé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => "Ce message n'existe pas"];
             }
         }else{
             $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
@@ -333,6 +413,44 @@ class SalonController extends Controller
     }
 
     /**
+     * @Route("/editRoom", name="edit_room", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function editRoomAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $title = $request->request->get('title');
+        $nb_max_part = intval($request->request->get('nb_max_part'));
+        $id_salon = $request->request->get('id_salon');
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($title) && !empty($nb_max_part)) {
+
+                $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+
+                if (null === $salon) {
+                    $response = ['valid' => false, 'msg' => "Ce salon n'existe pas"];
+                }else{
+                  $salon->setTitle($title);
+                  $salon->setParticipantsNumber($nb_max_part);
+                  $em->flush();
+                  $response = ['valid' => true, 'msg' => 'Salon modifié']; 
+                }  
+            }else{
+                $response = ['valid' => false, 'msg' => 'Toute les informations sont obligatoires'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
      * @Route("/rejoinRoom", name="create_room", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
@@ -372,6 +490,63 @@ class SalonController extends Controller
 
                             $response = ['valid' => true, 'msg' => 'Salon rejoint 2']; 
                         }
+                    }
+                }
+
+            }  
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
+
+    /**
+     * @Route("/inviteContact", name="invite_contact", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function inviteContactAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $contact = $request->request->get('contact');
+        $id_salon = $request->request->get('id_salon');
+
+        if ($request->getMethod() == 'POST') {
+
+            $salon = $em->getRepository('AppBundle:Salon')->find($id_salon);
+
+            if (null === $salon) {
+                $response = ['valid' => false, 'msg' => "Ce salon n'existe pas"];
+            }else{
+                $user_target = $em->getRepository('AppBundle:User')->find($contact);
+
+                if (null === $user_target) {
+                    $response = ['valid' => false, 'msg' => "Ce contact n'est pas dans votre liste"];
+                }else{
+                    if ($salon->hasParticipant($user_target)) {
+                        $response = ['valid' => false, 'msg' => 'Ce contact participe déjà à ce salon']; 
+                    }else{
+                        $salon->addParticipant($user_target);  
+                        $em->flush();
+
+                        $message = (new \Swift_Message('Un utilisateur vous invite à un salon'))
+                        ->setFrom($this->getParameter('mailer_user'))
+                        ->setTo($user_target->getEmail())
+                        ->setBody(
+                            $this->renderView(
+                                'email/invite_room.html.twig',
+                                ['user' => $user, 'user_target' => $user_target, 'salon' => $salon]
+                            ),
+                            'text/html'
+                        );      
+
+                        $this->get('mailer')->send($message);   
+
+                        $response = ['valid' => true, 'msg' => 'Ce contact a rejoint ce salon'];
                     }
                 }
 

@@ -705,11 +705,15 @@ var app = new Vue({
         inscription : function (event) {
           var email = $('#email').val();
           $.ajax({
-                url: 'http://localhost:8000/register/',
+                url: '/register/',
                 type: 'POST',
                 data: 'email='+email,
                 success: function(msg) {
-                    msg.valid == true ? app.$refs.toast.success(msg) : app.$refs.toast.error(msg.text());
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                    }else{
+                        app.$refs.toast.error(response.msg);
+                    }
                 }
             });
 
@@ -726,7 +730,11 @@ var app = new Vue({
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
                 success: function(msg) {
-                    app.$refs.toast.success(msg);
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
                 }
             });
         },
@@ -759,7 +767,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/sendMessage',
+                url: '/sendMessageChat',
                 type: 'POST',
                 data: 'message='+message+'&id_salon='+id_salon,
                 success: function(response) {
@@ -768,7 +776,7 @@ var app = new Vue({
                         self.sendMessage(message);
                         $('#close-send-message').trigger( "click" );
                     }else{
-                        self.$refs.toast.error(response.msg);
+                        app.$root.$children[0].error(response.msg);
                     }
                 }
             });
@@ -776,6 +784,41 @@ var app = new Vue({
             // Empty text area
             document.getElementById("message").value = "";
 
+        },
+        deleteMessageChat : function (id) {
+            var id_salon = $('#id_salon').text();
+
+            $.ajax({
+                url: '/deleteMessageChat',
+                type: 'POST',
+                data: 'id_message='+id+'&id_salon='+id_salon,
+                success: function(response) {
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                        $('#'+id).remove();
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
+        },
+        reportMessageChat : function (id) {
+            var id_salon = $('#id_salon').text();
+
+            $.ajax({
+                url: '/reportMessageChat',
+                type: 'POST',
+                data: 'id_message='+id+'&id_salon='+id_salon,
+                success: function(response) {
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                        $("#btn-"+id).addClass("hidden");
+                        $("#span-"+id).removeClass("hidden");
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
         },
         editProfil(event) {
 
@@ -810,6 +853,25 @@ var app = new Vue({
                 url: '/createRoom',
                 type: 'POST',
                 data: 'title='+title+'&book='+book+'&nb_max_part='+nb_max_part+'&date_start='+date_start+'&date_end='+date_end,
+                success: function(response) {
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                        //$('#close-send-message').trigger( "click" );
+                    }else{
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
+        },
+        editSalon(){
+            var title = $('#salon-title').val();
+            var nb_max_part = $('#salon-max-participants').val();
+            var id_salon = $('#id_salon').text();
+
+            $.ajax({
+                url: '/editRoom',
+                type: 'POST',
+                data: 'title='+title+'&nb_max_part='+nb_max_part+'&id_salon='+id_salon,
                 success: function(response) {
                     if (response.valid === true) {
                         app.$refs.toast.success(response.msg);
@@ -884,39 +946,38 @@ var app = new Vue({
                 }
             });
         },
-        appendMessage: function(username,message){
+        appendMessage: function(username,message,id){
             var dt = new Date();
             var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 
-            if(message){
-                $('.msg:last').after(
-                    '<div class="media msg">'+
-                    '<a class="pull-left" href="#">'+
-                    '<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">' +
-                    '</a>'+
-                    '<div class="media-body">'+
-                    '<small class="pull-right time"><i class="fa fa-clock-o"></i> '+ time +'</small>'+
-                    '<h5 class="media-heading">'+ username +'</h5>'+
-                    '<small class="col-lg-10">'+ message +'</small>'+
-                    '</div>'+
-                    '</div>'
-                );
-            }
+            $('.msg:last').after(
+                '<div class="media msg">'+
+                '<a class="pull-left" href="#">'+
+                '<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">' +
+                '</a>'+
+                '<div class="media-body">'+
+                '<small class="pull-right time"><i class="fa fa-clock-o"></i> '+ time +'</small>'+
+                '<h5 class="media-heading">'+ username +'</h5>'+
+                '<small class="col-lg-10">'+ message +'</small>'+
+                '</div>'+
+                '</div>'
+            );
         },
         sendMessage: function(text){
             this.clientInformation.message = text;
             // Send info as JSON
             this.conn.send(JSON.stringify(this.clientInformation));
             // Add my own message to the list
-            this.appendMessage(this.clientInformation.username, this.clientInformation.message);
+            this.appendMessage(this.clientInformation.username, this.clientInformation.message, this.clientInformation.id);
         },
         setConn: function(id){
             this.conn = new WebSocket('ws://localhost:9090/chat-'+id);
-            console.log(this.conn)
+            //console.log(this.conn)
         },
-        setClientInformation: function(myusername){
+        setClientInformation: function(myusername, myid){
             this.clientInformation = {
-                username: myusername
+                username: myusername,
+                id: myid
             };
         },
         addContact() {
@@ -1016,6 +1077,23 @@ var app = new Vue({
                 }
             });
         },
+        inviteContact() {
+            var contact = encodeURIComponent($('#contact').val());
+            var id_salon = $('#id_salon').text();
+
+            $.ajax({
+                url: '/inviteContact',
+                type: 'POST',
+                data: 'contact='+contact+'&id_salon='+id_salon,
+                success: function (response) {
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
+        },
         getUserContacts(){
             var self = this;
             $.ajax({
@@ -1066,8 +1144,10 @@ var app = new Vue({
              * @type WebSocket
              *!/*/
 
+            var self = this;
+
             this.setConn($('#id_salon').text());
-            this.setClientInformation($('#username').text());   
+            this.setClientInformation($('#username').text(), $('#id_user').text());   
 
             this.conn.onopen = function(e) {
                 console.info("Connection established succesfully");
@@ -1076,7 +1156,7 @@ var app = new Vue({
             this.conn.onmessage = function(e) {
                 var data = JSON.parse(e.data);  
 
-                self.appendMessage(data.username, data.message);
+                self.appendMessage(data.username, data.message, data.id);
                 
                 console.log(data);
             };

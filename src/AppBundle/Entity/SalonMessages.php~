@@ -51,6 +51,13 @@ class SalonMessages
      */
     private $time;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="report", type="boolean", options={"default" : 0})
+     */
+    private $report;
+
 
     /**
      * Get id

@@ -781,10 +781,11 @@ a:link, a:hover, a:visited, a:active {
 
 .message-wrap
 {
+    padding: 10px;
     box-shadow: 0 0 3px #ddd;
     padding:0;
-    background-color: #D99E7E;
-
+    background-color: #70BEB1;
+    margin-bottom: 80px;
 }
 .msg
 {

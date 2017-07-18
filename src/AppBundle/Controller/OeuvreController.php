@@ -282,7 +282,7 @@ class OeuvreController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $books = $em->getRepository('AppBundle:Oeuvre')->findBy(['trends' => true]);
+        $books = $em->getRepository('AppBundle:Oeuvre')->findBy(['trends' => true], ['approved' => true]);
 
         $data = [];
 
@@ -322,7 +322,7 @@ class OeuvreController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $books = $em->getRepository('AppBundle:Oeuvre')->findAll();
+        $books = $em->getRepository('AppBundle:Oeuvre')->findBy(['approved' => true]);
 
         $data = [];
 

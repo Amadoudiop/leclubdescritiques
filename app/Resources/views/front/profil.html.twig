@@ -59,6 +59,7 @@
                         <li class=""> <a data-toggle="tab" href="#friends-tab"> Contacts <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
                         {% endif %}
                         <li class=""> <a data-toggle="tab" href="#rooms-tab"> Salons <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        <li class=""> <a data-toggle="tab" href="#booktubers-tab"> Booktubers <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
 
                     </ul>
                     <div class="tab-content">
@@ -485,6 +486,33 @@
                             </div> <!-- pd-20 -->
                         </div> #} <!-- groups tab -->
 
+
+                        <div id="booktubers-tab" class="tab-pane">
+                            <div class="pd-20">
+                                {% if my_profil == true %}
+                                <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalAddVideo"> <i class="fa fa-pencil append-icon"></i> Ajouter </a> </div>
+                                {% endif %}
+                                <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-youtube-play mgr-10 profile-icon " aria-hidden="true" ></i> Booktube</h3>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="row mgbt-xs-0">
+                                            {{ render(controller("AppBundle:Video:new")) }}
+
+                                            <!-- col-sm-10 -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="pd-10">
+                                <!-- row -->
+                                {#<hr class="pd-10">#}
+                                <!-- row -->
+                            </div>
+                            <!-- pd-20 -->
+                        </div>
+                        <!-- home-tab -->
+
+
+
                     </div>
                     <!-- tab-content -->
                 </div>
@@ -631,6 +659,38 @@
             </div>
         </div>
         <!--Modal: Editer profil form-->
+
+        <!--Modal: Add Video form-->
+        <div class="modal fade" id="modalAddVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog cascading-modal" role="document">
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Header-->
+                    <div class="modal-header light-blue darken-3 white-text">
+                        <button type="button"  id="close-edit-profil" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="title"><i class="fa fa-pencil"></i> Ajouter une video</h4>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body mb-0">
+                        <div class="md-form form-sm">
+                            <i class="fa fa-pencil prefix"></i>
+                            <label for="form8">Iframe</label>
+                            <textarea type="text" id="iframe" rows="6" class="md-textarea mb-0" placeholder="</>"></textarea>
+                        </div>
+
+                        <div class="text-center mt-1-half">
+                            <button class="btn btn-info mb-2" id="btnAddVideo" @click.stop.prevent="editProfil"> Ajouter une video <i class="fa fa-send ml-1"></i></button>
+                        </div>
+
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal: Add Video form-->
         
     </div>
     <!-- Oeuvre shown-->

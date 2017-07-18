@@ -52,6 +52,12 @@ class User extends BaseUser
      */
     private $contacts;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="user")
+     */
+    private $videos;
+
+
     public function __construct()
     {
         parent::__construct();
@@ -198,5 +204,39 @@ class User extends BaseUser
     public function hasContact(\AppBundle\Entity\User $contact)
     {
         return $this->getContacts()->contains($contact);
+    }
+
+    /**
+     * Add video
+     *
+     * @param \AppBundle\Entity\Video $video
+     *
+     * @return User
+     */
+    public function addVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos[] = $video;
+
+        return $this;
+    }
+
+    /**
+     * Remove video
+     *
+     * @param \AppBundle\Entity\Video $video
+     */
+    public function removeVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos->removeElement($video);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

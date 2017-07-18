@@ -105,6 +105,7 @@ class PageController extends Controller
             // Update the 'brochure' property to store the PDF file name
             // instead of its contents
             $page->setImage($fileName);
+            $page->setSection(false);
 
 
             $em = $this->getDoctrine()->getManager();
@@ -155,7 +156,32 @@ class PageController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            /*$oldPage = $em->getRepository('AppBundle:Page')->find($page->getId());
+            dump($oldPage); 
+            dump($page->getId());
+            //die();
+
+            die();*/
+            if( isset( $_FILES['size'] ){
+                $file = $page->getImage();
+
+                // Generate a unique name for the file before saving it
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                // Move the file to the directory where brochures are stored
+                $file->move(
+                    $this->getParameter('pages_directory'),
+                    $fileName
+                );
+                // Update the 'brochure' property to store the PDF file name
+                // instead of its contents
+                $page->setImage($fileName);
+                //$page->setSection(false);
+
+            } 
+
+
+            $em->flush();
 
 
             // Show notice

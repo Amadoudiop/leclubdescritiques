@@ -20,13 +20,18 @@
                         <a href="{{ path('homepage') }}{{ link.url }}">{{ link.name }}</a>
                     </li>
                 {% endfor %}
-                <li>
-                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        <a href="{{ path('homepage') }}logout">se deconnecter</a>
-                    {% else %}
-                        <a href="{{ path('homepage') }}login">se connecter</a>
-                    {% endif %}
-                </li>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    <li>
+                        <a href="{{ path('homepage') }}profil"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('homepage') }}logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('homepage') }}login"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                    </li>
+                {% endif %}
 
             </ul>
         </div>

@@ -48,7 +48,7 @@ class Page
     /**
      * @var boolean
      *
-     * @ORM\Column(name="section", type="boolean", options={"default" : false})
+     * @ORM\Column(name="section", type="boolean", options={"default" : 0})
      */
     private $section;
 

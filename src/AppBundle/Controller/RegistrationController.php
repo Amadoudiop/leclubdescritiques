@@ -30,12 +30,14 @@ class RegistrationController extends BaseController
                 if(filter_var($email, FILTER_VALIDATE_EMAIL)){
                     $verifUser = $userManager->findUserByEmail($email);
                     if (null === $verifUser) {
+                         $time = new \DateTime('now');
                         $user = $userManager->createUser();
                         $user->setEmail($email);
                         $user->setUsername($email);
                         $user->setPlainPassword($password);
                         $user->setEnabled(false);
                         $user->addRole('ROLE_USER');
+                        $user->setDateSubscribe($time);
                         $user->setConfirmationToken($tokenGenerator->generateToken());      
 
                         $userManager->updateUser($user);

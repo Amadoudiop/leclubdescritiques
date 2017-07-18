@@ -52,6 +52,13 @@ class User extends BaseUser
      */
     private $contacts;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_subscribe", type="date", nullable=true)
+     */
+    private $date_subscribe;
+
     public function __construct()
     {
         parent::__construct();
@@ -198,5 +205,29 @@ class User extends BaseUser
     public function hasContact(\AppBundle\Entity\User $contact)
     {
         return $this->getContacts()->contains($contact);
+    }
+
+    /**
+     * Set dateSubscribe
+     *
+     * @param \DateTime $dateSubscribe
+     *
+     * @return User
+     */
+    public function setDateSubscribe($dateSubscribe)
+    {
+        $this->date_subscribe = $dateSubscribe;
+
+        return $this;
+    }
+
+    /**
+     * Get dateSubscribe
+     *
+     * @return \DateTime
+     */
+    public function getDateSubscribe()
+    {
+        return $this->date_subscribe;
     }
 }

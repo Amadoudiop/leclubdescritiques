@@ -704,11 +704,12 @@ var app = new Vue({
     methods: {
         inscription : function (event) {
           var email = $('#email').val();
+          var self = this;
           $.ajax({
                 url: '/app.php/register/',
                 type: 'POST',
                 data: 'email='+email,
-                success: function(msg) {
+                success: function(response) {
                     if (response.valid === true) {
                         self.$refs.toast.success(response.msg);
                     }else{

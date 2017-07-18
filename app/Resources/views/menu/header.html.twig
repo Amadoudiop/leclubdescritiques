@@ -20,6 +20,11 @@
                         <a href="{{ path('homepage') }}{{ link.url }}">{{ link.name }}</a>
                     </li>
                 {% endfor %}
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li>
+                    <a href="{{ path('my_profil') }}">mon profil</a> 
+                </li>
+                {% endif %} 
                 <li>
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <a href="{{ path('homepage') }}logout">se deconnecter</a>

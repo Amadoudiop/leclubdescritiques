@@ -429,7 +429,7 @@ class SalonController extends Controller
                                 $response = ['valid' => false, 'msg' => "La date de fin doit être supérieur à la date de début"];
                              }else{
                                 $now = new \DateTime('now');
-                                if ($date_start < $now) {
+                                if ($date_start->format('Y-m-d') < $now->format('Y-m-d')) {
                                     $response = ['valid' => false, 'msg' => "La date de début doit être supérieur à la date d'aujoud'hui"];
                                 }else{
                                    $salon = new Salon();

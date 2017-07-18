@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
 
 	/**
-	 * @Route("/admin/dashboard", name="dashboard")
+	 * @Route("/admin/", name="dashboard")
 	 * @return Response
 	 */
 	public function indexAction()

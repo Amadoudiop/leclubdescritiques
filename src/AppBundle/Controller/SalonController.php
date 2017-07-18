@@ -325,7 +325,7 @@ class SalonController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         
-        $salons = $em->getRepository('AppBundle:Salon')->findAll();
+        $salons = $em->getRepository('AppBundle:Salon')->findActualRooms();
 
         $data = [];
         
@@ -384,22 +384,34 @@ class SalonController extends Controller
                     if (null === $user_oeuvre) {
                         $response = ['valid' => false, 'msg' => "Cet oeuvre n'est pas dans votre liste"];
                     }else{
-                        $date_start = new \DateTime($date_start);
-                        $date_end = new \DateTime($date_end);
+                        if ($nb_max_part < 20) {
+                            $response = ['valid' => false, 'msg' => "Le nombre de participants doit être supérieur à 20"];
+                        }else{
+                             $date_start = new \DateTime($date_start);
+                             $date_end = new \DateTime($date_end);
+                             if ($date_end <= $date_start) {
+                                $response = ['valid' => false, 'msg' => "La date de fin doit être supérieur à la date de début"];
+                             }else{
+                                $now = new \DateTime('now');
+                                if ($date_start < $now) {
+                                    $response = ['valid' => false, 'msg' => "La date de début doit être supérieur à la date d'aujoud'hui"];
+                                }else{
+                                   $salon = new Salon();
+                                   $salon->setTitle($title);
+                                   $salon->setParticipantsNumber($nb_max_part);
+                                   $salon->setDateStart($date_start);
+                                   $salon->setDateEnd($date_end);     
+                                   $salon->setOeuvre($book);     
+                                   $salon->setUser($user);     
+                                   $salon->addParticipant($user);    
 
-                        $salon = new Salon();
-                        $salon->setTitle($title);
-                        $salon->setParticipantsNumber($nb_max_part);
-                        $salon->setDateStart($date_start);
-                        $salon->setDateEnd($date_end);     
-                        $salon->setOeuvre($book);     
-                        $salon->setUser($user);     
-                        $salon->addParticipant($user);    
+                                        $em->persist($salon);
+                                   $em->flush();
 
-                        $em->persist($salon);
-                        $em->flush();
-
-                        $response = ['valid' => true, 'msg' => 'Salon créé']; 
+                                        $response = ['valid' => true, 'msg' => 'Salon créé']; 
+                                }
+                             }
+                        }
                     }
                 }  
             }else{
@@ -451,7 +463,7 @@ class SalonController extends Controller
     }
 
     /**
-     * @Route("/rejoinRoom", name="create_room", options={"expose"=true})
+     * @Route("/rejoinRoom", name="rejoin_room", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
     public function rejoinRoomAction(Request $request)

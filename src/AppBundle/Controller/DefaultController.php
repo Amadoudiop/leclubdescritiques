@@ -44,7 +44,7 @@ class DefaultController extends Controller
         $status = $em->getRepository('AppBundle:Status')->findAll();
 
         //récupération des salons dans lequel l'user est inscrit
-        $salons = $em->getRepository('AppBundle:Salon')->findAll();
+        $salons = $em->getRepository('AppBundle:Salon')->findActualRooms();//var_dump($salons);die;
 
         $rooms = [];
 
@@ -91,7 +91,7 @@ class DefaultController extends Controller
         }
 
         //récupération des salons dans lequel l'user est inscrit
-        $salons = $em->getRepository('AppBundle:Salon')->findAll();
+        $salons = $em->getRepository('AppBundle:Salon')->findActualRooms();
 
         $rooms = [];
 

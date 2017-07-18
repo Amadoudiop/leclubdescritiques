@@ -1457,3 +1457,14 @@ body::-webkit-scrollbar {
     height:2000px;
     position:fixed;
 }
+
+
+/*    --------------------------------------------------
+               Contactform homepage
+	-------------------------------------------------- */
+
+
+
+.form-group.col-xs-12.floating-label-form-group.controls {
+    background-color: white;
+}

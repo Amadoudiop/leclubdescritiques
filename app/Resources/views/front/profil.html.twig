@@ -150,6 +150,39 @@
                             </div>
                         </div>
 
+                        {% if my_profil == true %}
+                            <div id="friends-tab" class="tab-pane">
+                                <div class="pd-20">
+                                    <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-users mgr-10 profile-icon"></i>CONTACTS</h3>
+                                    <div class="content-grid column-xs-3 column-sm-4 column-md-4 column-lg-6 height-xs-4 mgbt-xs-20">
+                                        <div>
+                                            <ul class="list-wrapper">
+                                                <div v-for="contact in userContacts">
+                                                    <li> <a href="#">
+                                                            <span class="menu-icon"><img :src="contact.img" alt="example image"></span>
+                                                        </a>
+                                                        <span class="menu-text"> ${ contact.firstname  } ${ contact.lastname }
+                                                          <span class="menu-info">
+                                                              <span class="menu-action">
+                                                                  <span data-placement="bottom" data-toggle="tooltip" data-original-title="Approve" class="menu-action-icon vd_green vd_bd-green">
+                                                                      <i class="fa fa-check"></i>
+                                                                  </span>
+                                                                  <span data-placement="bottom" data-toggle="tooltip" data-original-title="Reject" class="menu-action-icon vd_red vd_bd-red">
+                                                                      <i class="fa fa-times"></i>
+                                                                  </span>
+                                                              </span>
+                                                          </span>
+                                                      </span>
+                                                    </li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div><!-- pd-20 -->
+                            </div>
+                        {% endif %}
+                        <!-- photos tab -->
+
                         <div id="rooms-tab" class="tab-pane">
                             <div class="pd-20">
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-book mgr-10 profile-icon"></i> SALONS</h3>
@@ -600,25 +633,25 @@
                         <div class="md-form form-sm">
                             <i class="fa fa-envelope prefix"></i>
                             <label for="form19">Votre prénom</label>
-                            <input type="text" id="edit_firstname" class="form-control" value=" userData.firstname ">
+                            <input type="text" id="edit_firstname" class="form-control" :value="userData.firstname ">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-lock prefix"></i>
                             <label for="form20">Votre nom </label>
-                            <input type="text" id="edit_lastname" class="form-control" value=" userData.lastname ">
+                            <input type="text" id="edit_lastname" class="form-control" :value=" userData.lastname ">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-tag prefix"></i>
                             <label for="form21">Votre adresse email</label>
-                            <input type="text" id="edit_email" class="form-control" value=" userData.email ">
+                            <input type="text" id="edit_email" class="form-control" :value=" userData.email ">
                         </div>
 
                         <div class="md-form form-sm">
                             <i class="fa fa-pencil prefix"></i>
                             <label for="form8">Votre description</label>
-                            <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0"> userData.description </textarea>
+                            <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0"> ${userData.description} </textarea>
                         </div>
 
                         <div class="text-center mt-1-half">

@@ -655,12 +655,17 @@ var app = new Vue({
     methods: {
         inscription: function inscription(event) {
             var email = $('#email').val();
+            var self = this;
             $.ajax({
-                url: 'http://localhost:8000/register/',
+                url: '/app.php/register/',
                 type: 'POST',
                 data: 'email=' + email,
-                success: function success(msg) {
-                    msg.valid == true ? app.$refs.toast.success(msg) : app.$refs.toast.error(msg.text());
+                success: function success(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                    } else {
+                        self.$refs.toast.error(response.msg);
+                    }
                 }
             });
         },
@@ -672,11 +677,15 @@ var app = new Vue({
             var confirmPassword = $('#confirmPassword').val();
 
             $.ajax({
-                url: Routing.generate('valide_activate_account'),
+                url: '/app.php/valideActivateAccount',
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&password=' + password + '&confirmPassword=' + confirmPassword,
                 success: function success(msg) {
-                    app.$refs.toast.success(msg);
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                    } else {
+                        self.$refs.toast.error(response.msg);
+                    }
                 }
             });
         },
@@ -710,12 +719,12 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/sendMessage',
+                url: '/app.php/sendMessageChat',
                 type: 'POST',
                 data: 'message=' + message + '&id_salon=' + id_salon,
                 success: function success(response) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
+                        self.$refs.toast.success(response.msg);
                         self.sendMessage(message);
                         $('#close-send-message').trigger("click");
                     } else {
@@ -727,6 +736,45 @@ var app = new Vue({
             // Empty text area
             document.getElementById("message").value = "";
         },
+        deleteMessageChat: function deleteMessageChat(id) {
+            var id_salon = $('#id_salon').text();
+
+            var self = this;
+
+            $.ajax({
+                url: '/app.php/deleteMessageChat',
+                type: 'POST',
+                data: 'id_message=' + id + '&id_salon=' + id_salon,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                        $('#' + id).remove();
+                    } else {
+                        self.$refs.toast.error(response.msg);
+                    }
+                }
+            });
+        },
+        reportMessageChat: function reportMessageChat(id) {
+            var id_salon = $('#id_salon').text();
+
+            var self = this;
+
+            $.ajax({
+                url: '/app.php/reportMessageChat',
+                type: 'POST',
+                data: 'id_message=' + id + '&id_salon=' + id_salon,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                        $("#btn-" + id).addClass("hidden");
+                        $("#span-" + id).removeClass("hidden");
+                    } else {
+                        self.$refs.toast.error(response.msg);
+                    }
+                }
+            });
+        },
         editProfil: function editProfil(event) {
 
             var firstname = $('#edit_firstname').val();
@@ -735,16 +783,20 @@ var app = new Vue({
             var description = $('#edit_description').val();
             var self = this;
             $.ajax({
-                url: Routing.generate('edit_profil'),
+                url: '/app.php/editProfil',
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&description=' + description,
-                success: function success(msg) {
-                    self.userData.firstname = firstname;
-                    self.userData.lastname = lastname;
-                    self.userData.email = email;
-                    self.userData.description = description;
-                    app.$refs.toast.success(msg);
-                    $('#close-edit-profil').trigger("click");
+                success: function success(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                        self.userData.firstname = firstname;
+                        self.userData.lastname = lastname;
+                        self.userData.email = email;
+                        self.userData.description = description;
+                        $('#close-edit-profil').trigger("click");
+                    } else {
+                        self.$refs.toast.error(response.msg);
+                    }
                 }
             });
         },
@@ -754,17 +806,36 @@ var app = new Vue({
             var nb_max_part = $('#salon-max-participants').val();
             var date_start = $('#salon-date-debut').val();
             var date_end = $('#salon-date-fin').val();
+            var self = this;
 
             $.ajax({
-                url: '/createRoom',
+                url: '/app.php/createRoom',
                 type: 'POST',
                 data: 'title=' + title + '&book=' + book + '&nb_max_part=' + nb_max_part + '&date_start=' + date_start + '&date_end=' + date_end,
                 success: function success(response) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
-                        //$('#close-send-message').trigger( "click" );
+                        self.$refs.toast.success(response.msg);
                     } else {
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
+                    }
+                }
+            });
+        },
+        editSalon: function editSalon() {
+            var title = $('#salon-title').val();
+            var nb_max_part = $('#salon-max-participants').val();
+            var id_salon = $('#id_salon').text();
+            var self = this;
+
+            $.ajax({
+                url: '/app.php/editRoom',
+                type: 'POST',
+                data: 'title=' + title + '&nb_max_part=' + nb_max_part + '&id_salon=' + id_salon,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                    } else {
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -784,17 +855,16 @@ var app = new Vue({
             var object = { 'author': author, 'title': title, 'description': description, 'publication_date': publication_date, 'id_google_api': id_google_api, 'url_image': url_image, 'url_product': url_product, 'sub_category': sub_category, 'rating': rating, 'status': status };
             var self = this;
             $.ajax({
-                url: Routing.generate('add_book'),
+                url: '/app.php/addBook',
                 type: 'POST',
                 data: 'author=' + author + '&title=' + title + '&url_image=' + url_image + '&url_product=' + url_product + '&description=' + description + '&publication_date=' + publication_date + '&id_google_api=' + id_google_api + '&sub_category=' + sub_category + '&rating=' + rating + '&status=' + status,
                 success: function success(response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
-                        //app.$refs.toast.success(msg)
+                        self.$refs.toast.success(response.msg);
                         $('#close-add-book').trigger("click");
                         self.userBooks.push(object);
                     } else {
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -802,7 +872,7 @@ var app = new Vue({
         getBooksTrends: function getBooksTrends() {
             var that = this;
             $.ajax({
-                url: '/getBooksTrends',
+                url: '/app.php/getBooksTrends',
                 type: 'GET',
                 success: function success(data) {
                     that.alaunes = data;
@@ -813,7 +883,7 @@ var app = new Vue({
         getRooms: function getRooms() {
             var that = this;
             $.ajax({
-                url: '/getRooms',
+                url: '/app.php/getRooms',
                 type: 'GET',
                 success: function success(data) {
                     that.rooms = data;
@@ -825,7 +895,7 @@ var app = new Vue({
         getAllBooks: function getAllBooks() {
             var that = this;
             $.ajax({
-                url: '/getAllBooks',
+                url: '/app.php/getAllBooks',
                 type: 'GET',
                 success: function success(data) {
                     that.books = data;
@@ -834,35 +904,34 @@ var app = new Vue({
             });
         },
 
-        appendMessage: function appendMessage(username, message) {
+        appendMessage: function appendMessage(username, message, id) {
             var dt = new Date();
             var time = dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
 
-            if (message) {
-                $('.msg:last').after('<div class="media msg">' + '<a class="pull-left" href="#">' + '<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">' + '</a>' + '<div class="media-body">' + '<small class="pull-right time"><i class="fa fa-clock-o"></i> ' + time + '</small>' + '<h5 class="media-heading">' + username + '</h5>' + '<small class="col-lg-10">' + message + '</small>' + '</div>' + '</div>');
-            }
+            $('.msg:last').after('<div class="media msg">' + '<a class="pull-left" href="#">' + '<img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 32px; height: 32px;" src="">' + '</a>' + '<div class="media-body">' + '<small class="pull-right time"><i class="fa fa-clock-o"></i> ' + time + '</small>' + '<h5 class="media-heading">' + username + '</h5>' + '<small class="col-lg-10">' + message + '</small>' + '</div>' + '</div>');
         },
         sendMessage: function sendMessage(text) {
             this.clientInformation.message = text;
             // Send info as JSON
             this.conn.send(JSON.stringify(this.clientInformation));
             // Add my own message to the list
-            this.appendMessage(this.clientInformation.username, this.clientInformation.message);
+            this.appendMessage(this.clientInformation.username, this.clientInformation.message, this.clientInformation.id);
         },
         setConn: function setConn(id) {
             this.conn = new WebSocket('ws://localhost:9090/chat-' + id);
-            console.log(this.conn);
+            //console.log(this.conn)
         },
-        setClientInformation: function setClientInformation(myusername) {
+        setClientInformation: function setClientInformation(myusername, myid) {
             this.clientInformation = {
-                username: myusername
+                username: myusername,
+                id: myid
             };
         },
         addContact: function addContact() {
             var id_user = encodeURIComponent($('#id_user').text());
 
             $.ajax({
-                url: '/app_dev.php/addContact',
+                url: '/app.php/addContact',
                 type: 'POST',
                 data: 'id_user=' + id_user,
                 success: function success(response) {
@@ -880,7 +949,7 @@ var app = new Vue({
             var id_user = encodeURIComponent($('#id_user').text());
 
             $.ajax({
-                url: '/removeContact',
+                url: '/app.php/removeContact',
                 type: 'POST',
                 data: 'id_user=' + id_user,
                 success: function success(response) {
@@ -900,7 +969,7 @@ var app = new Vue({
         getUserData: function getUserData() {
             var self = this;
             $.ajax({
-                url: '/app_dev.php/getInfosUser/' + self.atmUser,
+                url: '/app.php/getInfosUser/' + self.atmUser,
                 type: 'GET',
                 success: function success(data) {
                     self.userData = data;
@@ -911,7 +980,7 @@ var app = new Vue({
         getOeuvreUser: function getOeuvreUser() {
             var self = this;
             $.ajax({
-                url: '/app_dev.php/getBooksUser/' + self.atmUser,
+                url: '/app.php/getBooksUser/' + self.atmUser,
                 type: 'GET',
                 success: function success(data) {
                     self.userBooks = data;
@@ -929,7 +998,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/sendMessagePersonal',
+                url: '/app.php/sendMessagePersonal',
                 type: 'POST',
                 data: 'message=' + message + '&sujet=' + sujet + '&id_user=' + id_user,
                 success: function success(response) {
@@ -943,12 +1012,29 @@ var app = new Vue({
         },
         rejoinRoom: function rejoinRoom(id) {
             $.ajax({
-                url: '/rejoinRoom',
+                url: '/app.php/rejoinRoom',
                 type: 'POST',
                 data: 'id_salon=' + id,
                 success: function success(response) {
                     if (response.valid === true) {
-                        document.location.href = Routing.generate('salon', { id: id });
+                        document.location.href = '/app.php/salon/' + id;
+                    } else {
+                        app.$root.$children[0].error(response.msg);
+                    }
+                }
+            });
+        },
+        inviteContact: function inviteContact() {
+            var contact = encodeURIComponent($('#contact').val());
+            var id_salon = $('#id_salon').text();
+
+            $.ajax({
+                url: '/app.php/inviteContact',
+                type: 'POST',
+                data: 'contact=' + contact + '&id_salon=' + id_salon,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        app.$refs.toast.success(response.msg);
                     } else {
                         app.$root.$children[0].error(response.msg);
                     }
@@ -958,11 +1044,35 @@ var app = new Vue({
         getUserContacts: function getUserContacts() {
             var self = this;
             $.ajax({
-                url: '/app_dev.php/getContactsUser/' + self.atmUser,
+                url: '/app.php/getContactsUser/' + self.atmUser,
                 type: 'GET',
                 success: function success(data) {
                     self.userContacts = data;
                     self.$refs.toast.success('UserData récupérés');
+                }
+            });
+        },
+
+        sendEmailFormContact: function sendEmailFormContact(event) {
+
+            var message = $('#contact_message').val();
+            var sujet = $('#contact_sujet').val();
+            var firstname = $('#contact_firstname').val();
+            var lastname = $('#contact_lastname').val();
+            var email = $('#contact_email').val();
+
+            var self = this;
+
+            $.ajax({
+                url: '/app.php/sendEmailFormContact',
+                type: 'POST',
+                data: 'message=' + message + '&sujet=' + sujet + '&firstname=' + firstname + '&lastname=' + lastname + '&email=' + email,
+                success: function success(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                    } else {
+                        self.$refs.toast.error(response.msg);
+                    }
                 }
             });
         }
@@ -981,16 +1091,21 @@ var app = new Vue({
     },
     created: function created() {
         this.atmUser = this.getUser();
-        var atmPage = window.location.pathname;
-        if (atmPage == '/app_dev.php/salons') {
+        var pathArray = window.location.pathname.split('/');
+        var indice = pathArray.length;
+
+        if (pathArray[indice - 1] == 'salons') {
             this.getRooms();this.getAllBooks();
         }
-        if (atmPage == '/app_dev.php/') {
+        if (pathArray[indice - 1] == '') {
             this.getBooksTrends();this.getRooms();
         }
-        if (atmPage == '/app_dev.php/livres') this.getAllBooks();
-        if (atmPage == '/app_dev.php/profil') {
+        if (pathArray[indice - 1] == 'livres') this.getAllBooks();
+        if (pathArray[indice - 1] == 'profil') {
             this.getUserData();this.getOeuvreUser();this.getUserContacts();
+        }
+        if (pathArray[indice - 2] == 'profil') {
+            this.getUserData();this.getOeuvreUser();
         }
     },
     mounted: function mounted() {
@@ -1007,8 +1122,10 @@ var app = new Vue({
              * @type WebSocket
              *!/*/
 
+            var self = this;
+
             this.setConn($('#id_salon').text());
-            this.setClientInformation($('#username').text());
+            this.setClientInformation($('#username').text(), $('#id_user').text());
 
             this.conn.onopen = function (e) {
                 console.info("Connection established succesfully");
@@ -1017,7 +1134,7 @@ var app = new Vue({
             this.conn.onmessage = function (e) {
                 var data = JSON.parse(e.data);
 
-                self.appendMessage(data.username, data.message);
+                self.appendMessage(data.username, data.message, data.id);
 
                 console.log(data);
             };

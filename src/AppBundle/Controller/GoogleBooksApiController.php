@@ -17,7 +17,7 @@ class GoogleBooksApiController extends Controller
         $research = str_replace(' ', '%', $research);
         $research = str_replace('q=', '', $research);
 
-        $api_key = $this->container->getParameter('api_key');
+        $api_key = $this->getParameter('api_key');
 
         $url = "https://www.googleapis.com/books/v1/volumes?q=".urlencode($research)."&key=".urlencode($api_key)."&maxResults=5";
 

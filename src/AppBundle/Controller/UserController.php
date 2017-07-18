@@ -442,10 +442,6 @@ class UserController extends Controller
         
         $user = $em->getRepository('AppBundle:User')->find($id);
 
-        if (null === $user) {
-          throw new NotFoundHttpException("L'utilisateur d'id ".$id." n'existe pas.");
-        }
-
         //les oeuvres de l'utilisateur
         $em = $this->getDoctrine()->getManager();
         $user_oeuvres = $em->getRepository('AppBundle:UserOeuvre')->findByUser($user);
@@ -466,6 +462,7 @@ class UserController extends Controller
             $approved = (empty($user_oeuvre->getOeuvre()->getApproved())) ? '' : $user_oeuvre->getOeuvre()->getApproved();
             $status = (empty($user_oeuvre->getStatus()->getWording())) ? '' : $user_oeuvre->getStatus()->getWording();
             $status_color = (empty($user_oeuvre->getStatus()->getColor())) ? '' : $user_oeuvre->getStatus()->getColor();
+            $id = (empty($user_oeuvre->getOeuvre()->getId())) ? '' : $user_oeuvre->getOeuvre()->getId();
 
 
             $data[] = [
@@ -481,7 +478,8 @@ class UserController extends Controller
                 'avg_rating' => $avg_rating,
                 'approved' => $approved,
                 'status' => $status,
-                'status_color' => $status_color
+                'status_color' => $status_color,
+                'id' => $id
              ];
         }
 

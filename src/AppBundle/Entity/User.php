@@ -57,6 +57,12 @@ class User extends BaseUser
      */
     private $videos;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_subscribe", type="date", nullable=true)
+     */
+    private $date_subscribe;
 
     public function __construct()
     {
@@ -216,7 +222,17 @@ class User extends BaseUser
     public function addVideo(\AppBundle\Entity\Video $video)
     {
         $this->videos[] = $video;
-
+    }
+    /**
+     * Set dateSubscribe
+     *
+     * @param \DateTime $dateSubscribe
+     *
+     * @return User
+     */
+    public function setDateSubscribe($dateSubscribe)
+    {
+        $this->date_subscribe = $dateSubscribe;
         return $this;
     }
 
@@ -238,5 +254,14 @@ class User extends BaseUser
     public function getVideos()
     {
         return $this->videos;
+    }
+    /**
+     * Get dateSubscribe
+     *
+     * @return \DateTime
+     */
+    public function getDateSubscribe()
+    {
+        return $this->date_subscribe;
     }
 }

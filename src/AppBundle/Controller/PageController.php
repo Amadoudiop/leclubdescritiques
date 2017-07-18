@@ -163,7 +163,7 @@ class PageController extends Controller
             //die();
 
             die();*/
-            if( isset( $_FILES['size'] ){
+            if( isset( $_FILES['size'] )){
                 $file = $page->getImage();
 
                 // Generate a unique name for the file before saving it

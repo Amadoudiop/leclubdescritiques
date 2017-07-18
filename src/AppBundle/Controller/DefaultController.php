@@ -117,6 +117,8 @@ class DefaultController extends Controller
             //infos de l'utlisateur
             $user = $this->get('security.token_storage')->getToken()->getUser();
 
+            //var_dump($user->getId());die;
+
             return $this->render('front/salons.html.twig', [
                 'user' => $user
             ]);

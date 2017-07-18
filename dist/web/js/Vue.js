@@ -655,11 +655,12 @@ var app = new Vue({
     methods: {
         inscription: function inscription(event) {
             var email = $('#email').val();
+            var self = this;
             $.ajax({
-                url: '/register/',
+                url: '/app.php/register/',
                 type: 'POST',
                 data: 'email=' + email,
-                success: function success(msg) {
+                success: function success(response) {
                     if (response.valid === true) {
                         self.$refs.toast.success(response.msg);
                     } else {
@@ -676,7 +677,7 @@ var app = new Vue({
             var confirmPassword = $('#confirmPassword').val();
 
             $.ajax({
-                url: Routing.generate('valide_activate_account'),
+                url: '/app.php/valideActivateAccount',
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&password=' + password + '&confirmPassword=' + confirmPassword,
                 success: function success(msg) {
@@ -718,7 +719,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/sendMessageChat',
+                url: '/app.php/sendMessageChat',
                 type: 'POST',
                 data: 'message=' + message + '&id_salon=' + id_salon,
                 success: function success(response) {
@@ -741,7 +742,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/deleteMessageChat',
+                url: '/app.php/deleteMessageChat',
                 type: 'POST',
                 data: 'id_message=' + id + '&id_salon=' + id_salon,
                 success: function success(response) {
@@ -760,7 +761,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/reportMessageChat',
+                url: '/app.php/reportMessageChat',
                 type: 'POST',
                 data: 'id_message=' + id + '&id_salon=' + id_salon,
                 success: function success(response) {
@@ -782,7 +783,7 @@ var app = new Vue({
             var description = $('#edit_description').val();
             var self = this;
             $.ajax({
-                url: Routing.generate('edit_profil'),
+                url: '/app.php/editProfil',
                 type: 'POST',
                 data: 'firstname=' + firstname + '&lastname=' + lastname + '&email=' + email + '&description=' + description,
                 success: function success(response) {
@@ -808,7 +809,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/createRoom',
+                url: '/app.php/createRoom',
                 type: 'POST',
                 data: 'title=' + title + '&book=' + book + '&nb_max_part=' + nb_max_part + '&date_start=' + date_start + '&date_end=' + date_end,
                 success: function success(response) {
@@ -827,7 +828,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/editRoom',
+                url: '/app.php/editRoom',
                 type: 'POST',
                 data: 'title=' + title + '&nb_max_part=' + nb_max_part + '&id_salon=' + id_salon,
                 success: function success(response) {
@@ -854,7 +855,7 @@ var app = new Vue({
             var object = { 'author': author, 'title': title, 'description': description, 'publication_date': publication_date, 'id_google_api': id_google_api, 'url_image': url_image, 'url_product': url_product, 'sub_category': sub_category, 'rating': rating, 'status': status };
             var self = this;
             $.ajax({
-                url: Routing.generate('add_book'),
+                url: '/app.php/addBook',
                 type: 'POST',
                 data: 'author=' + author + '&title=' + title + '&url_image=' + url_image + '&url_product=' + url_product + '&description=' + description + '&publication_date=' + publication_date + '&id_google_api=' + id_google_api + '&sub_category=' + sub_category + '&rating=' + rating + '&status=' + status,
                 success: function success(response) {
@@ -871,7 +872,7 @@ var app = new Vue({
         getBooksTrends: function getBooksTrends() {
             var that = this;
             $.ajax({
-                url: '/getBooksTrends',
+                url: '/app.php/getBooksTrends',
                 type: 'GET',
                 success: function success(data) {
                     that.alaunes = data;
@@ -882,7 +883,7 @@ var app = new Vue({
         getRooms: function getRooms() {
             var that = this;
             $.ajax({
-                url: '/getRooms',
+                url: '/app.php/getRooms',
                 type: 'GET',
                 success: function success(data) {
                     that.rooms = data;
@@ -894,7 +895,7 @@ var app = new Vue({
         getAllBooks: function getAllBooks() {
             var that = this;
             $.ajax({
-                url: '/getAllBooks',
+                url: '/app.php/getAllBooks',
                 type: 'GET',
                 success: function success(data) {
                     that.books = data;
@@ -930,7 +931,7 @@ var app = new Vue({
             var id_user = encodeURIComponent($('#id_user').text());
 
             $.ajax({
-                url: '/app_dev.php/addContact',
+                url: '/app.php/addContact',
                 type: 'POST',
                 data: 'id_user=' + id_user,
                 success: function success(response) {
@@ -948,7 +949,7 @@ var app = new Vue({
             var id_user = encodeURIComponent($('#id_user').text());
 
             $.ajax({
-                url: '/removeContact',
+                url: '/app.php/removeContact',
                 type: 'POST',
                 data: 'id_user=' + id_user,
                 success: function success(response) {
@@ -968,7 +969,7 @@ var app = new Vue({
         getUserData: function getUserData() {
             var self = this;
             $.ajax({
-                url: '/app_dev.php/getInfosUser/' + self.atmUser,
+                url: '/app.php/getInfosUser/' + self.atmUser,
                 type: 'GET',
                 success: function success(data) {
                     self.userData = data;
@@ -979,7 +980,7 @@ var app = new Vue({
         getOeuvreUser: function getOeuvreUser() {
             var self = this;
             $.ajax({
-                url: '/app_dev.php/getBooksUser/' + self.atmUser,
+                url: '/app.php/getBooksUser/' + self.atmUser,
                 type: 'GET',
                 success: function success(data) {
                     self.userBooks = data;
@@ -997,7 +998,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/sendMessagePersonal',
+                url: '/app.php/sendMessagePersonal',
                 type: 'POST',
                 data: 'message=' + message + '&sujet=' + sujet + '&id_user=' + id_user,
                 success: function success(response) {
@@ -1011,12 +1012,12 @@ var app = new Vue({
         },
         rejoinRoom: function rejoinRoom(id) {
             $.ajax({
-                url: '/rejoinRoom',
+                url: '/app.php/rejoinRoom',
                 type: 'POST',
                 data: 'id_salon=' + id,
                 success: function success(response) {
                     if (response.valid === true) {
-                        document.location.href = Routing.generate('salon', { id: id });
+                        document.location.href = '/app.php/salon/' + id;
                     } else {
                         app.$root.$children[0].error(response.msg);
                     }
@@ -1028,7 +1029,7 @@ var app = new Vue({
             var id_salon = $('#id_salon').text();
 
             $.ajax({
-                url: '/inviteContact',
+                url: '/app.php/inviteContact',
                 type: 'POST',
                 data: 'contact=' + contact + '&id_salon=' + id_salon,
                 success: function success(response) {
@@ -1043,11 +1044,10 @@ var app = new Vue({
         getUserContacts: function getUserContacts() {
             var self = this;
             $.ajax({
-                url: '/app_dev.php/getContactsUser/' + self.atmUser,
+                url: '/app.php/getContactsUser/' + self.atmUser,
                 type: 'GET',
                 success: function success(data) {
                     self.userContacts = data;
-                    console.log(data);
                     self.$refs.toast.success('UserData récupérés');
                 }
             });
@@ -1064,7 +1064,7 @@ var app = new Vue({
             var self = this;
 
             $.ajax({
-                url: '/sendEmailFormContact',
+                url: '/app.php/sendEmailFormContact',
                 type: 'POST',
                 data: 'message=' + message + '&sujet=' + sujet + '&firstname=' + firstname + '&lastname=' + lastname + '&email=' + email,
                 success: function success(response) {

@@ -40,6 +40,7 @@
                                 <table id="mytable" class="table table-bordred table-striped">
                                     <thead>
                                         <th>Titre</th>
+                                        <th>Oeuvre</th>
                                         <th>Participants</th>
                                         <th>Créateur</th>
                                         <th>Date début</th>
@@ -49,7 +50,8 @@
                                     <tbody>
                                             <tr v-for="room in rooms">
                                                 <td>${ room.title }</td>
-                                                <td>${ room.participants_number }</td>
+                                                <td>${ room.oeuvre }</td>
+                                                <td>${ room.participants }/${ room.participants_number }</td>
                                                 <td>${ room.created_by }</td>
                                                 <td>${ room.start_date }</td>
                                                 <td>${ room.end_date }</td>

@@ -334,7 +334,7 @@ class SalonController extends Controller
             $participants_number = (empty($salon->getParticipantsNumber())) ? '' : $salon->getParticipantsNumber();
             $oeuvre = (empty($salon->getOeuvre()->getTitle())) ? '' : $salon->getOeuvre()->getTitle();
             $created_by = (empty($salon->getUser()->getFirstname())) ? '' : $salon->getUser()->getFirstname().' '.$salon->getUser()->getLastname();
-            //$participants = (empty($salon->getParticipants())) ? '' : $salon->getParticipants();
+            $participants = (empty($salon->getParticipants())) ? '' : count($salon->getParticipants());
             $start_date = (empty($salon->getDateStart()->format('d/m/Y'))) ? '' : $salon->getDateStart()->format('d/m/Y');
             $end_date = (empty($salon->getDateEnd()->format('d/m/Y'))) ? '' : $salon->getDateEnd()->format('d/m/Y');
             $id = (empty($salon->getId())) ? '' : $salon->getId();
@@ -344,7 +344,43 @@ class SalonController extends Controller
                 'participants_number' => $participants_number,
                 'oeuvre' => $oeuvre,
                 'created_by' => $created_by,
-                /*'participants' => $participants,*/
+                'participants' => $participants,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
+                'id' => $id
+             ];
+        }
+
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @Route("/getNextRooms", name="get_next_rooms", options={"expose"=true})
+     */
+    public function getNextRoomsAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $salons = $em->getRepository('AppBundle:Salon')->findNextRooms();
+
+        $data = [];
+        
+        foreach ($salons as $salon) {
+            $title = (empty($salon->getTitle())) ? '' : $salon->getTitle();
+            $participants_number = (empty($salon->getParticipantsNumber())) ? '' : $salon->getParticipantsNumber();
+            $oeuvre = (empty($salon->getOeuvre()->getTitle())) ? '' : $salon->getOeuvre()->getTitle();
+            $created_by = (empty($salon->getUser()->getFirstname())) ? '' : $salon->getUser()->getFirstname().' '.$salon->getUser()->getLastname();
+            $participants = (empty($salon->getParticipants())) ? '' : count($salon->getParticipants());
+            $start_date = (empty($salon->getDateStart()->format('d/m/Y'))) ? '' : $salon->getDateStart()->format('d/m/Y');
+            $end_date = (empty($salon->getDateEnd()->format('d/m/Y'))) ? '' : $salon->getDateEnd()->format('d/m/Y');
+            $id = (empty($salon->getId())) ? '' : $salon->getId();
+
+            $data[] = [
+                'title' => $title,
+                'participants_number' => $participants_number,
+                'oeuvre' => $oeuvre,
+                'created_by' => $created_by,
+                'participants' => $participants,
                 'start_date' => $start_date,
                 'end_date' => $end_date,
                 'id' => $id

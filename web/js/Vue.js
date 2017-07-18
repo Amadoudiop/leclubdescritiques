@@ -710,9 +710,9 @@ var app = new Vue({
                 data: 'email='+email,
                 success: function(msg) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
+                        self.$refs.toast.success(response.msg);
                     }else{
-                        app.$refs.toast.error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -731,9 +731,9 @@ var app = new Vue({
                 data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
                 success: function(msg) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
+                        self.$refs.toast.success(response.msg);
                     }else{
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -772,11 +772,11 @@ var app = new Vue({
                 data: 'message='+message+'&id_salon='+id_salon,
                 success: function(response) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
+                        self.$refs.toast.success(response.msg);
                         self.sendMessage(message);
                         $('#close-send-message').trigger( "click" );
                     }else{
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -788,16 +788,18 @@ var app = new Vue({
         deleteMessageChat : function (id) {
             var id_salon = $('#id_salon').text();
 
+            var self = this;
+
             $.ajax({
                 url: '/deleteMessageChat',
                 type: 'POST',
                 data: 'id_message='+id+'&id_salon='+id_salon,
                 success: function(response) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
+                        self.$refs.toast.success(response.msg);
                         $('#'+id).remove();
                     }else{
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -805,17 +807,19 @@ var app = new Vue({
         reportMessageChat : function (id) {
             var id_salon = $('#id_salon').text();
 
+            var self = this;
+
             $.ajax({
                 url: '/reportMessageChat',
                 type: 'POST',
                 data: 'id_message='+id+'&id_salon='+id_salon,
                 success: function(response) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
+                        self.$refs.toast.success(response.msg);
                         $("#btn-"+id).addClass("hidden");
                         $("#span-"+id).removeClass("hidden");
                     }else{
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -831,13 +835,17 @@ var app = new Vue({
                 url: Routing.generate('edit_profil'),
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&email='+email+'&description='+description,
-                success: function(msg) {
-                    self.userData.firstname = firstname;
-                    self.userData.lastname = lastname;
-                    self.userData.email = email;
-                    self.userData.description = description;
-                    app.$refs.toast.success(msg);
-                    $('#close-edit-profil').trigger( "click" );
+                success: function(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                        self.userData.firstname = firstname;
+                        self.userData.lastname = lastname;
+                        self.userData.email = email;
+                        self.userData.description = description;
+                        $('#close-edit-profil').trigger( "click" );
+                    }else{
+                        self.$refs.toast.error(response.msg);
+                    }
                 }
             });
 
@@ -848,6 +856,7 @@ var app = new Vue({
             var nb_max_part = $('#salon-max-participants').val();
             var date_start = $('#salon-date-debut').val();
             var date_end = $('#salon-date-fin').val();
+            var self = this;
 
             $.ajax({
                 url: '/createRoom',
@@ -855,10 +864,9 @@ var app = new Vue({
                 data: 'title='+title+'&book='+book+'&nb_max_part='+nb_max_part+'&date_start='+date_start+'&date_end='+date_end,
                 success: function(response) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
-                        //$('#close-send-message').trigger( "click" );
+                        self.$refs.toast.success(response.msg);
                     }else{
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -867,6 +875,7 @@ var app = new Vue({
             var title = $('#salon-title').val();
             var nb_max_part = $('#salon-max-participants').val();
             var id_salon = $('#id_salon').text();
+            var self = this;
 
             $.ajax({
                 url: '/editRoom',
@@ -874,10 +883,9 @@ var app = new Vue({
                 data: 'title='+title+'&nb_max_part='+nb_max_part+'&id_salon='+id_salon,
                 success: function(response) {
                     if (response.valid === true) {
-                        app.$refs.toast.success(response.msg);
-                        //$('#close-send-message').trigger( "click" );
+                        self.$refs.toast.success(response.msg);
                     }else{
-                        app.$root.$children[0].error(response.msg);
+                        self.$refs.toast.error(response.msg);
                     }
                 }
             });
@@ -902,13 +910,12 @@ var app = new Vue({
                 data: 'author='+author+'&title='+title+'&url_image='+url_image+'&url_product='+url_product+'&description='+description+'&publication_date='+publication_date+'&id_google_api='+id_google_api+'&sub_category='+sub_category+'&rating='+rating+'&status='+status,
                 success: function(response) {
                     if (response.valid === true) {
-                        app.$root.$children[0].success(response.msg);
-                        //app.$refs.toast.success(msg)
+                        self.$refs.toast.success(response.msg);
                         $('#close-add-book').trigger( "click" );
                         self.userBooks.push(object);
                     }else{
-                        app.$root.$children[0].error(response.msg);
-                    }    
+                        self.$refs.toast.error(response.msg);
+                    }   
                 }
             });
         },
@@ -1101,8 +1108,32 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     self.userContacts = data;
+                    console.log(data);
                     self.$refs.toast.success('UserData récupérés');
 
+                }
+            });
+        },
+        sendEmailFormContact : function (event) {
+
+            var message = $('#contact_message').val();
+            var sujet = $('#contact_sujet').val();
+            var firstname = $('#contact_firstname').val();
+            var lastname = $('#contact_lastname').val();
+            var email = $('#contact_email').val();
+
+            var self = this;
+
+            $.ajax({
+                url: '/sendEmailFormContact',
+                type: 'POST',
+                data: 'message='+message+'&sujet='+sujet+'&firstname='+firstname+'&lastname='+lastname+'&email='+email,
+                success: function(response) {
+                    if (response.valid === true) {
+                        self.$refs.toast.success(response.msg);
+                    }else{
+                        self.$refs.toast.error(response.msg);
+                    }
                 }
             });
         },
@@ -1123,11 +1154,15 @@ var app = new Vue({
     },
     created(){
         this.atmUser = this.getUser();
-        var atmPage = window.location.pathname;
-        if (atmPage == '/app_dev.php/salons') { this.getRooms(); this.getAllBooks() }
-        if (atmPage == '/app_dev.php/')  { this.getBooksTrends(); this.getRooms() }
-        if (atmPage == '/app_dev.php/livres') this.getAllBooks();
-        if (atmPage == '/app_dev.php/profil') { this.getUserData(); this.getOeuvreUser(); this.getUserContacts() }
+        var pathArray = window.location.pathname.split( '/' );
+        var indice = pathArray.length;
+
+        if (pathArray[indice-1] == 'salons') { this.getRooms(); this.getAllBooks() }
+        if (pathArray[indice-1] == '')  { this.getBooksTrends(); this.getRooms() }
+        if (pathArray[indice-1] == 'livres') this.getAllBooks();
+        if (pathArray[indice-1] == 'profil') { this.getUserData(); this.getOeuvreUser(); this.getUserContacts(); }
+        if (pathArray[indice-2] == 'profil') { this.getUserData(); this.getOeuvreUser(); }
+
 
     },
     mounted(){

@@ -43,11 +43,23 @@ class DefaultController extends Controller
 
         $status = $em->getRepository('AppBundle:Status')->findAll();
 
+        //récupération des salons dans lequel l'user est inscrit
+        $salons = $em->getRepository('AppBundle:Salon')->findActualRooms();//var_dump($salons);die;
+
+        $rooms = [];
+
+        foreach ($salons as $salon) {
+            if ($salon->hasParticipant($user)) {
+                $rooms[] = $salon;
+            }
+        }
+
         return $this->render('front/profil.html.twig', [
             'user' => $user,
             'user_oeuvres' => $user_oeuvres,
             'my_profil' => $my_profil,
-            'status' => $status
+            'status' => $status,
+            'salons' => $rooms
         ]);
     }
     /**
@@ -75,14 +87,26 @@ class DefaultController extends Controller
 
         if ($user->getId() == $user_target->getId()) {
             //var_dump("OK");die;
-            //return $this->redirectToRoute("my_profil");
+            return $this->redirectToRoute("my_profil");
+        }
+
+        //récupération des salons dans lequel l'user est inscrit
+        $salons = $em->getRepository('AppBundle:Salon')->findActualRooms();
+
+        $rooms = [];
+
+        foreach ($salons as $salon) {
+            if ($salon->hasParticipant($user)) {
+                $rooms[] = $salon;
+            }
         }
 
         return $this->render('front/profil.html.twig', [
             'user' => $user,
             'user_oeuvres' => $user_oeuvres,
             'my_profil' => $my_profil,
-            'my_contact' => $my_contact
+            'my_contact' => $my_contact,
+            'salons' => $rooms
         ]);
     }
      /**

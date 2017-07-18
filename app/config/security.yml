@@ -6,7 +6,7 @@ security:
 
     role_hierarchy:
         ROLE_BOOKTUBEUR:  ROLE_USER
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       [ROLE_USER, ROLE_BOOKTUBEUR]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
@@ -30,3 +30,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/salon/, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/profil, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/profil/, role: IS_AUTHENTICATED_REMEMBERED }

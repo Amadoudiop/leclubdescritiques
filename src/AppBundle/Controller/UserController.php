@@ -636,4 +636,48 @@ class UserController extends Controller
 
         return new JsonResponse($response);
     }
+
+    /**
+     * @Route("/sendEmailFormContact", name="send_message_contact", options={"expose"=true})
+     * @Method({"GET", "POST"})
+     */
+    public function sendEmailFormContactAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //infos de l'utlisateur
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $firstname = $request->request->get('firstname');
+        $lastname = $request->request->get('lastname');
+        $sujet = $request->request->get('sujet');
+        $message = $request->request->get('message');
+        $email = $request->request->get('email');
+
+        if ($request->getMethod() == 'POST') {
+            if (!empty($sujet) && !empty($message) && !empty($firstname) && !empty($lastname) && !empty($email)) {
+
+                $message = (new \Swift_Message('Formulaire de contact'))
+                ->setFrom($this->getParameter('mailer_user'))
+                ->setTo($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+                        'email/send_message_contact.html.twig',
+                        ['firstname' => $firstname, 'lastname' => $lastname, 'sujet' => $sujet, 'message' => $message, 'email' => $email]
+                    ),
+                    'text/html'
+                );      
+
+                $this->get('mailer')->send($message);
+
+                $response = ['valid' => true, 'msg' => 'Votre message a été envoyé']; 
+            }else{
+                $response = ['valid' => false, 'msg' => 'Toute les informations sont obligatoires'];
+            }
+        }else{
+            $response = ['valid' => false, 'msg' => 'Une erreure est survenue, veuillez réessayer'];
+        }
+
+        return new JsonResponse($response);
+    }
 }

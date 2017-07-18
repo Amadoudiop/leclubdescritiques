@@ -6,4 +6,6 @@ Vous avez reçu l'email suivant de <a url="{{ url('other_profil', {'id': user.ge
 <b>Message</b> : {{ message }}<br><br>
 
 Cordialement,<br>
-Le club des critiques
+Le club des critiques<br><br>
+-----------------------------<br>
+Si le lien ne fonctionne pas, veuillez copier-coller ceci dans votre navigateur : {{ url('other_profil', {'id': user.getId}) }}

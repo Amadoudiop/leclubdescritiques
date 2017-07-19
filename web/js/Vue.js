@@ -1056,7 +1056,7 @@ var app = new Vue({
         getNextRoom(){
             var self = this;
             $.ajax({
-                url: '/app.php/getNextRooms/'+ self.atmUser,
+                url: '/app.php/getNextRooms',
                 type: 'GET',
                 success: function(data) {
                     self.nextRoom = data;

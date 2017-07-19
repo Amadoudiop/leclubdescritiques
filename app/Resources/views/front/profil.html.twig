@@ -59,9 +59,8 @@
                         <li class=""> <a data-toggle="tab" href="#friends-tab"> Contacts <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
                         {% endif %}
                         <li class=""> <a data-toggle="tab" href="#rooms-tab"> Salons <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
-                        {% if is_granted("ROLE_BOOKTUBEUR") %}
+
                         <li class=""> <a data-toggle="tab" href="#booktubers-tab"> Booktubers <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
-                        {% endif %}
 
                     </ul>
                     <div class="tab-content">
@@ -525,7 +524,9 @@
                         <div id="booktubers-tab" class="tab-pane">
                             <div class="pd-20">
                                 {% if my_profil == true %}
+                                {% if is_granted("ROLE_BOOKTUBEUR") %}
                                 <div class="vd_info tr"> <a class="btn vd_btn btn-xs vd_bg-yellow" data-toggle="modal" data-target="#modalAddVideo"> <i class="fa fa-pencil append-icon"></i> Ajouter </a> </div>
+                                                        {% endif %}
                                 {% endif %}
                                 <h3 class="mgbt-xs-15 mgtp-10 font-semibold"><i class="fa fa-youtube-play mgr-10 profile-icon " aria-hidden="true" ></i> Booktube</h3>
                                 <div class="row">

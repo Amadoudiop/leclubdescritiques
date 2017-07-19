@@ -682,6 +682,7 @@ var app = new Vue({
 
              ],
             userBooks:[ ],
+            nextRoom:{},
             books: [
                 {
                     author:"Lana A. Whited",
@@ -1049,6 +1050,18 @@ var app = new Vue({
                 success: function(data) {
                     self.userBooks = data;
                     //app.$refs.toast.success('userBooks OK');
+                }
+            });
+        },
+        getNextRoom(){
+            var self = this;
+            $.ajax({
+                url: '/app.php/getNextRooms/'+ self.atmUser,
+                type: 'GET',
+                success: function(data) {
+                    self.nextRoom = data;
+                    //self.$refs.toast.success('UserData récupérés');
+
                 }
             });
         },

@@ -1171,7 +1171,7 @@ var app = new Vue({
         this.atmUser = this.getUser();
         var pathArray = window.location.pathname.split( '/' );
         var indice = pathArray.length;
-        this.getNextRoom();
+        //this.getNextRoom();
         if (pathArray[indice-1] == 'salons') { this.getRooms(); this.getAllBooks(); this.getOeuvreUser();}
         if (pathArray[indice-1] == '')  { this.getBooksTrends(); this.getRooms() }
         if (pathArray[indice-1] == 'livres') this.getAllBooks();

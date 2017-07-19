@@ -730,7 +730,7 @@ var app = new Vue({
                 url: '/app.php/valideActivateAccount',
                 type: 'POST',
                 data: 'firstname='+firstname+'&lastname='+lastname+'&password='+password+'&confirmPassword='+confirmPassword,
-                success: function(msg) {
+                success: function(response) {
                     if (response.valid === true) {
                         self.$refs.toast.success(response.msg);
                     }else{

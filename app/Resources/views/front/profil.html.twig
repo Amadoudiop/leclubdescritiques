@@ -136,7 +136,7 @@
                                                             </star-rating>
                                                             <star-rating :star-size="20" :max-rating="4" :rating="book.rating" :read-only="true" :increment="0.5" :show-rating="false"  active-color="#D99E7E"></star-rating>
                                                             <span class="label label-default" v-bind:style="{ backgroundColor: book.status_color}">${ book.status }</span>
-                                                            <span v-if="book.approved !== 0" class="label label-warning">En attente d'approbation</span>
+                                                            <span v-if="!book.approved" class="label label-warning">En attente d'approbation</span>
                                                             <!--<test-compo v-if="oeuvreIsShown" title="gg"></test-compo>-->
                                                         </div>
                                                     </div>

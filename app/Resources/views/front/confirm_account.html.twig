@@ -2,26 +2,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div id="content">
+<section id="login">
+        <div class="container">
 
     <form name="userFrm" method="POST" id="monForm">
         <div class="form-group">
-            <label for="firstname" class="required">Firstname</label>
+            <label for="firstname" class="required">Prénom</label>
             <input id="firstname" name="firstname" class="form-control" type="text" />
         </div>
         <div class="form-group">
-            <label for="lastname" class="required">Lastname</label>
+            <label for="lastname" class="required">Nom</label>
             <input id="lastname" name="lastname" class="form-control" type="text" />
         </div>
         <div class="form-group">
-            <label for="password" class="required">Password</label>
+            <label for="password" class="required">Mot de passe</label>
             <input id="password" name="password" class="form-control" type="password" />
         </div>
         <div class="form-group">
-            <label for="confirmPassword" class="required">Confirm Password</label>
+            <label for="confirmPassword" class="required">Confirmation du mot de passe</label>
             <input id="confirmPassword" name="confirmPassword" class="form-control" type="password" />
         </div>
-        <input type="submit" @click.stop.prevent="confirmInscription" value="Register" ng-disabled="userFrm.$invalid"  class="btn btn-primary center-block col-lg-2" />
+        <input type="submit" @click.stop.prevent="confirmInscription" value="Register" class="btn btn-primary center-block col-lg-2" />
     </form>
 </div>
+</section>
 {% endblock %}

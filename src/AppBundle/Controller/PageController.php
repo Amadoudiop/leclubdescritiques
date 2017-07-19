@@ -91,7 +91,8 @@ class PageController extends Controller
 
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-        if( isset( $_FILES['size'] ) ){
+
+        //if( isset( $_FILES['size'] ) ){
             $file = $page->getImage();
             //dump($file);
 
@@ -106,10 +107,10 @@ class PageController extends Controller
             // Update the 'brochure' property to store the PDF file name
             // instead of its contents
             $page->setImage($fileName);
-        }else{
+        /*}else{
             $page->setImage(null);
 
-        }
+        }*/
             $page->setSection(false);
 
 

@@ -164,4 +164,28 @@ class SalonMessages
     {
         return $this->time;
     }
+
+    /**
+     * Set report
+     *
+     * @param boolean $report
+     *
+     * @return SalonMessages
+     */
+    public function setReport($report)
+    {
+        $this->report = $report;
+
+        return $this;
+    }
+
+    /**
+     * Get report
+     *
+     * @return boolean
+     */
+    public function getReport()
+    {
+        return $this->report;
+    }
 }

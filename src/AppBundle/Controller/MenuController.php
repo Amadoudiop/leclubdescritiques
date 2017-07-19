@@ -229,7 +229,7 @@ class MenuController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $links = $em->getRepository('AppBundle:Link')->findAll();
+        $links = $em->getRepository('AppBundle:Link')->findBy(  ['menu' => 1] );
 
         return $this->render(
             'menu/header.html.twig',

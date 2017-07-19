@@ -1,0 +1,29 @@
+<div class="modal fade" id="modalEditProfil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <button type="button"  id="close-edit-profil" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="title"><i class="fa fa-pencil"></i> Ajouter une video</h4>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <label for="form8">Iframe</label>
+                    <textarea type="text" id="edit_description" rows="6" class="md-textarea mb-0"> </> </textarea>
+                </div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-2" id="btnEditProfil" @click.stop.prevent="editProfil"> Ajouter une video <i class="fa fa-send ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

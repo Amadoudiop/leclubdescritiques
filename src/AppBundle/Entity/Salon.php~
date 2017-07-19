@@ -266,4 +266,16 @@ class Salon
     {
         return $this->date_end;
     }
+
+    /**
+     * Has participant
+     *
+     * @param \AppBundle\Entity\User $participant
+     *
+     * @return bool
+     */
+    public function hasParticipant(\AppBundle\Entity\User $participant)
+    {
+        return $this->getParticipants()->contains($participant);
+    }
 }

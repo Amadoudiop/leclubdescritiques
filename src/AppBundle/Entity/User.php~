@@ -53,11 +53,18 @@ class User extends BaseUser
     private $contacts;
 
     /**
+<<<<<<< HEAD
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="user")
+     */
+    private $videos;
+
+=======
      * @var \DateTime
      *
      * @ORM\Column(name="date_subscribe", type="date", nullable=true)
      */
     private $date_subscribe;
+>>>>>>> 7fc6455bf0f16192e890911d1b46df89b6a59a8e
 
     public function __construct()
     {
@@ -206,4 +213,41 @@ class User extends BaseUser
     {
         return $this->getContacts()->contains($contact);
     }
+<<<<<<< HEAD
+
+    /**
+     * Add video
+     *
+     * @param \AppBundle\Entity\Video $video
+     *
+     * @return User
+     */
+    public function addVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos[] = $video;
+
+        return $this;
+    }
+
+    /**
+     * Remove video
+     *
+     * @param \AppBundle\Entity\Video $video
+     */
+    public function removeVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos->removeElement($video);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
+=======
+>>>>>>> 7fc6455bf0f16192e890911d1b46df89b6a59a8e
 }

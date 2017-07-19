@@ -53,6 +53,11 @@ class User extends BaseUser
     private $contacts;
 
     /**
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="user")
+     */
+    private $videos;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_subscribe", type="date", nullable=true)
@@ -208,6 +213,17 @@ class User extends BaseUser
     }
 
     /**
+     * Add video
+     *
+     * @param \AppBundle\Entity\Video $video
+     *
+     * @return User
+     */
+    public function addVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos[] = $video;
+    }
+    /**
      * Set dateSubscribe
      *
      * @param \DateTime $dateSubscribe
@@ -217,10 +233,28 @@ class User extends BaseUser
     public function setDateSubscribe($dateSubscribe)
     {
         $this->date_subscribe = $dateSubscribe;
-
         return $this;
     }
 
+    /**
+     * Remove video
+     *
+     * @param \AppBundle\Entity\Video $video
+     */
+    public function removeVideo(\AppBundle\Entity\Video $video)
+    {
+        $this->videos->removeElement($video);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVideos()
+    {
+        return $this->videos;
+    }
     /**
      * Get dateSubscribe
      *

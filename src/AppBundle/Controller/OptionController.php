@@ -149,47 +149,15 @@ class OptionController extends Controller
             $options[$option->getLabel()] = $option->getContent();
 
         }
-        /*    switch ($option->getLabel()) {
-                case 'facebook':
-                    $options['facebook'] = $option->getContent();
-                    break;
 
-                case 'twitter':
-                    $options['twitter'] = $option->getContent();
-                    break;
+        $links = $em->getRepository('AppBundle:Link')->findBy(  ['menu' => 2] );
 
-                case 'googlePlus':
-                    $options['googlePlus'] = $option->getContent();
-                    break;
-
-                case 'linkedin':
-                    $options['linkedin'] = $option->getContent();
-                    break;
-
-                case 'dribble':
-                    $options['dribble'] = $option->getContent();
-                    break;
-
-                case 'copyright':
-                    $options['copyright'] = $option->getContent();
-                    break;
-
-                case 'location':
-                    $options['location'] = $option->getContent();
-                    break;
-
-                case 'about':
-                    $options['about'] = $option->getContent();
-                    break;
-                
-                default:
-                    # code...
-                    break;
-            }
-        }*/
-        return $this->render('option/footer.html.twig', array(
-            'options' => $options,
-        ));
+        return $this->render('option/footer.html.twig',
+            [
+                'options' => $options,
+                'footerLinks' => $links
+            ]
+        );
     }
 
 }

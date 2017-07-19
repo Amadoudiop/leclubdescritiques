@@ -56,7 +56,11 @@
                     {% endif %}
                 </div>
                 <div class="col-lg-6">
-                    <a href="/mentionslegales"> Mentions légales</a>
+                    {% for link in footerLinks %}
+                        <li class="page-scroll">
+                            <a href="{{ path('homepage') }}{{ link.url }}">{{ link.name }}</a>
+                        </li>
+                    {% endfor %}
                 </div>
             </div>
         </div>

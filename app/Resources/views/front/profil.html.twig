@@ -59,7 +59,9 @@
                         <li class=""> <a data-toggle="tab" href="#friends-tab"> Contacts <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
                         {% endif %}
                         <li class=""> <a data-toggle="tab" href="#rooms-tab"> Salons <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        {% if is_granted("ROLE_BOOKTUBEUR") %}
                         <li class=""> <a data-toggle="tab" href="#booktubers-tab"> Booktubers <span class="menu-active"><i class="fa fa-caret-up"></i></span> </a></li>
+                        {% endif %}
 
                     </ul>
                     <div class="tab-content">

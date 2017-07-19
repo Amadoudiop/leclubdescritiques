@@ -57,7 +57,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>{% else %}<button id="btn-{{ message.id }}" class="fa fa-exclamation-circle waves-effect waves-light {% if message.report %}hidden{% endif %}" @click.stop.prevent="reportMessageChat({{ message.id }})"></button><span id="span-{{ message.id }}" class="red {% if not message.report %}hidden{% endif %}">Commentaire signalé</span>{% endif %}</small>
                                 <a url="{{ path('other_profil', {'id': message.user.getId}) }}"><h5 class="media-heading">{{ message.user.firstname }} {{ message.user.lastname }}</h5></a>
-                                <small class="col-lg-10">{{ message.message }} {{ message.report  }}</small>
+                                <small class="col-lg-10">{{ message.message|escape }} {{ message.report  }}</small>
                             </div>
                         </div>
                     {% endfor %}

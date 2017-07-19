@@ -726,7 +726,7 @@ var app = new Vue({
             var password = $('#password').val();
             var confirmPassword = $('#confirmPassword').val();
           var self = this;
-            
+
 
             $.ajax({
                 url: '/app.php/valideActivateAccount',
@@ -1036,7 +1036,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     self.userData = data;
-                    self.$refs.toast.success('UserData récupérés');
+                    //self.$refs.toast.success('UserData récupérés');
 
                 }
             });
@@ -1048,7 +1048,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     self.userBooks = data;
-                    app.$refs.toast.success('userBooks OK');
+                    //app.$refs.toast.success('userBooks OK');
                 }
             });
         },
@@ -1111,7 +1111,7 @@ var app = new Vue({
                 type: 'GET',
                 success: function(data) {
                     self.userContacts = data;
-                    self.$refs.toast.success('UserData récupérés');
+                    //self.$refs.toast.success('UserData récupérés');
 
                 }
             });

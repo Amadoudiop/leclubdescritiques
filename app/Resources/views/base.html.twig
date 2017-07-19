@@ -51,6 +51,8 @@
     <!-- NEW MENU FLOTTANT  --><!-- float-menu1  faire un conponent de ca-->
     <div class="card-holder">
         <!-- float-menu1  faire un conponent de ca-->
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {% else %}
         <div class="card-wrapper"  @click="floatMenu1IsActive = !floatMenu1IsActive">
             <div class="container card" :class="{ cardSelected: floatMenu1IsActive }">
                 <div class="row">
@@ -71,6 +73,7 @@
                 </div> <!-- /.row -->
             </div> <!-- /.container -->
         </div>
+        {% endif %}
 
         <!-- MENU FLOTTANT 2 -->
         <div class="card-wrapper" @click="floatMenu2IsActive = !floatMenu2IsActive" >

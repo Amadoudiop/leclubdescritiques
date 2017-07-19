@@ -725,6 +725,8 @@ var app = new Vue({
             var lastname = $('#lastname').val();
             var password = $('#password').val();
             var confirmPassword = $('#confirmPassword').val();
+          var self = this;
+            
 
             $.ajax({
                 url: '/app.php/valideActivateAccount',

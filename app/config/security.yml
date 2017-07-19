@@ -33,3 +33,4 @@ security:
         - { path: ^/salon/, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/profil, role: IS_AUTHENTICATED_REMEMBERED }
         - { path: ^/profil/, role: IS_AUTHENTICATED_REMEMBERED }
+        - { path: ^/salons, role: IS_AUTHENTICATED_REMEMBERED }

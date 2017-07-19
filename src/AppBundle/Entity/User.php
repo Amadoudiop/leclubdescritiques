@@ -53,11 +53,6 @@ class User extends BaseUser
     private $contacts;
 
     /**
-     * @ORM\OneToMany(targetEntity="Video", mappedBy="user")
-     */
-    private $videos;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_subscribe", type="date", nullable=true)

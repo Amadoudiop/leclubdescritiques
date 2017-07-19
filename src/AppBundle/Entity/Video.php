@@ -37,10 +37,15 @@ class Video
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="videos")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User")
      */
     private $user;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Oeuvre")
+     */
+    private $oeuvre;
+
 
     /**
      * Get id
@@ -122,5 +127,29 @@ class Video
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set oeuvre
+     *
+     * @param \AppBundle\Entity\Oeuvre $oeuvre
+     *
+     * @return Video
+     */
+    public function setOeuvre(\AppBundle\Entity\Oeuvre $oeuvre = null)
+    {
+        $this->oeuvre = $oeuvre;
+
+        return $this;
+    }
+
+    /**
+     * Get oeuvre
+     *
+     * @return \AppBundle\Entity\Oeuvre
+     */
+    public function getOeuvre()
+    {
+        return $this->oeuvre;
     }
 }

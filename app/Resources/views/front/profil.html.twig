@@ -707,6 +707,14 @@
                         <h4 class="title"><i class="fa fa-pencil"></i> Ajouter une video</h4>
                     </div>
                     <!--Body-->
+                    <div class="md-form form-sm">
+                        <label for="salon-book">Oeuvre</label>
+                        <select v-model="selectedBook" id="salon-book" class="form-control">
+                            <option v-for="book in userBooks" v-bind:value="book.id">
+                               ${book.title}
+                            </option>
+                        </select>
+                    </div>
                     <div class="modal-body mb-0">
                         <div class="md-form form-sm">
                             <i class="fa fa-pencil prefix"></i>

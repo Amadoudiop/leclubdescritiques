@@ -37,6 +37,11 @@ class PageType extends AbstractType
                     'attr' => [
                         'class' => 'form-control'
                     ]
+                ])
+                ->add('slug', TextType::class, [
+                    'attr' => [
+                        'class' => 'form-control'
+                    ]
                 ]);
     }
     

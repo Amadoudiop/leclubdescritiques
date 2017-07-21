@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 
@@ -56,6 +57,11 @@ class UserType extends AbstractType
                         'class' => 'fileUploader'
                     ]
 
+                ])
+                ->add('roles', ChoiceType::class, [
+                    'choices' => ['Utilisateur' => 'ROLE_USER', 'Administrateur' => 'ROLE_ADMIN', 'Booktuber' => 'ROLE_BOOKTUBEUR'],
+                     'expanded' => true,
+                    'multiple' => true,
                 ]);
     }
     

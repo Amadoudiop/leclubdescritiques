@@ -37,7 +37,8 @@ class UserType extends AbstractType
                 ->add('password', PasswordType::class, [
                     'attr' => [
                         'class' => 'form-control'
-                    ]
+                    ],
+                    'required' => false
                 ])
                 ->add('email', TextType::class, [
                     'attr' => [
@@ -47,7 +48,8 @@ class UserType extends AbstractType
                 ->add('description', TextareaType::class, [
                     'attr' => [
                         'class' => 'form-control'
-                    ]
+                    ],
+                    'required' => false
                 ])
                 ->add('photo', FileType::class, [
                     'data' => null,

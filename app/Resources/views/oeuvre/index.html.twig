@@ -42,7 +42,7 @@
                     {% for oeuvre in oeuvres %}
                         <tr>
                             <td class="text-center">
-                                <img src="{{ absolute_url(oeuvres_directory) }}{{ oeuvre.urlimage }}" alt="{{ oeuvre.title }}">
+                                <img src="{{ oeuvre.urlimage }}" alt="{{ oeuvre.title }}">
                             </td>
                             <td>{{ oeuvre.title }}</td>
                             <td class="text-center">{{ oeuvre.rating }}</td>

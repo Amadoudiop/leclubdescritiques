@@ -92,19 +92,20 @@ class PageController extends Controller
             // $file stores the uploaded PDF file
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $page->getImage();
-            //dump($file);
+            if( $file ){
 
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            // Move the file to the directory where brochures are stored
-            $file->move(
-                $this->getParameter('pages_directory'),
-                $fileName
-            );
+                // Generate a unique name for the file before saving it
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                // Move the file to the directory where brochures are stored
+                $file->move(
+                    $this->getParameter('pages_directory'),
+                    $fileName
+                );
 
-            // Update the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $page->setImage($fileName);
+                // Update the 'brochure' property to store the PDF file name
+                // instead of its contents
+                $page->setImage($fileName);
+            }
             $page->setSection(false);
 
 
@@ -157,15 +158,11 @@ class PageController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            /*$oldPage = $em->getRepository('AppBundle:Page')->find($page->getId());
-            dump($oldPage); 
-            dump($page->getId());
-            //die();
+            $oldPage = $em->getRepository('AppBundle:Page')->find($page->getId());
 
-            die();*/
-            if( isset( $_FILES['size'] )){
-                $file = $page->getImage();
+           $file = $page->getImage();
 
+            if( $file ){
                 // Generate a unique name for the file before saving it
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
                 // Move the file to the directory where brochures are stored
@@ -177,9 +174,8 @@ class PageController extends Controller
                 // instead of its contents
                 $page->setImage($fileName);
                 //$page->setSection(false);
-
-            } 
-
+            }
+            
 
             $em->flush();
 
@@ -187,7 +183,7 @@ class PageController extends Controller
             // Show notice
             $this->addFlash(
                 'notice',
-                'Page Added'
+                'Page Edited'
             );
 
             return $this->redirectToRoute('page_edit', array('id' => $page->getId()));
